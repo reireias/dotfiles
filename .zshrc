@@ -16,6 +16,9 @@ HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
 SAVEHIST=100000
 
+# LS_COLORS関係
+eval `dircolors -b`
+
 # 補完でカラーを使用する
 autoload colors
 zstyle ':completion:*' verbose yes
@@ -27,7 +30,7 @@ local HOST_COLOR=$'%{\e[38;5;'"$(printf "%d\n" 0x$(hostname|md5sum|cut -c1-2))"'
 PROMPT=" ${COLOR_FG_AFFF00}%~${STYLE_DEFAULT}
  ${COLOR_FG_5FD7FF}%(!.#.$)${STYLE_DEFAULT} "
 # 右側に表示
-RPROMPT="${HOST_COLOR}[%T]${STYLE_DEFAULT}"
+RPROMPT="${HOST_COLOR}[%m]${STYLE_DEFAULT}"
 
 # キーバインド設定
 # create a zkbd compatible hash;

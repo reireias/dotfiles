@@ -1,5 +1,5 @@
 "screenで256色表示する
-if $TERM == 'screen-bce'
+if $TERM == 'screen-bce' || $TERM == 'screen'
     set t_Co=256
 endif
 set expandtab "タブ入力を複数の空白入力に置き換える
@@ -22,6 +22,8 @@ else
     let &t_te.="\e[0 q" "カーソルを調整
 endif
 
+let mapleader = ","
+
 set number
 set backspace=indent,eol,start "Backspaceを調整
 colorscheme molokai
@@ -31,6 +33,7 @@ let g:rehash256 = 1
 set background=dark
 set encoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+set clipboard=unnamed,autoselect
 
 " markdownのハイライトを有効にする
 set syntax=markdown
@@ -70,6 +73,28 @@ NeoBundle 'bling/vim-airline'
   let g:airline_section_z = get(g:, 'airline_linecolumn_prefix', '').'%3l:%-2v'
   let g:airline#extensions#whitespace#enabled = 0
   "let g:airline_left_sep = ''
+
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+
+NeoBundle 'Shougo/neocomplcache'
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" " Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" " Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" " Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+    \ }
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+NeoBundle 'dhruvasagar/vim-table-mode'
 
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
