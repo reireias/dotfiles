@@ -73,6 +73,8 @@ NeoBundle 'bling/vim-airline'
   let g:airline_section_z = get(g:, 'airline_linecolumn_prefix', '').'%3l:%-2v'
   let g:airline#extensions#whitespace#enabled = 0
   "let g:airline_left_sep = ''
+  let g:airline_left_sep = '⮀'
+  let g:airline_right_sep = '⮂'
 
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
