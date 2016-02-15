@@ -30,6 +30,10 @@ set background=dark
 set syntax=markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
+" ------------------------
+"  NeoBundle
+" ------------------------
+
 " 環境によっては以下のruntimepathの設定を書き換える必要があるかも
 if has('vim_starting')
   " Required:
@@ -38,11 +42,12 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'dhruvasagar/vim-table-mode'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
