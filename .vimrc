@@ -51,6 +51,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'dhruvasagar/vim-table-mode'
+NeoBundle 'scrooloose/syntastic'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 " airline
@@ -88,6 +89,12 @@ let g:neocomplcache_dictionary_filetype_lists = {
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " 補完のプレビューウィンドウを下に表示にする
 set splitbelow
+
+" syntastic
+let g:syntastic_javascript_checkers = ['gjslint']
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_save = 1
+let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 
 call neobundle#end()
 
