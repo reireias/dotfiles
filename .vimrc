@@ -92,6 +92,7 @@ set splitbelow
 
 " syntastic
 let g:syntastic_javascript_checkers = ['gjslint']
+let g:syntastic_javascript_gjslint_args = '--disable 0110'
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
