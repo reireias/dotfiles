@@ -1,5 +1,5 @@
-reireiAs's dotfiles
-===================
+dotfiles
+========
 
 ## Rules
 * The cygwin specific settings must be comment out.
