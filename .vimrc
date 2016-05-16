@@ -8,10 +8,12 @@ set shiftwidth=4
 set softtabstop=1
 
 " 挿入時のカーソルの形を指定
-let &t_ti.="\e[1 q"
-let &t_SI.="\e[5 q"
-let &t_EI.="\e[1 q"
-let &t_te.="\e[0 q"
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"let &t_ti.="\e[1 q"
+"let &t_SI.="\e[5 q"
+"let &t_EI.="\e[1 q"
+"let &t_te.="\e[0 q"
 
 " キーマップを変更
 let mapleader = ","
@@ -39,7 +41,7 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " 環境によっては以下のruntimepathの設定を書き換える必要があるかも
 if has('vim_starting')
   " Required:
-  set runtimepath+=~/.bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -93,7 +95,7 @@ set splitbelow
 
 " syntastic
 let g:syntastic_javascript_checkers = ['gjslint']
-let g:syntastic_javascript_gjslint_args = '--disable 0110'
+let g:syntastic_javascript_gjslint_args = '--disable 0110,0120,0213'
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }

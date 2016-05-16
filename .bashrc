@@ -114,7 +114,9 @@ alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
 alias vi='vim'
-alias open='cygstart'
+alias open='nemo'
+alias du='du -sh *'
+alias caddy='ruby /opt/caddy/caddy/caddy.rb'
 
 # Umask
 #
@@ -198,48 +200,7 @@ alias open='cygstart'
 # }
 #
 export LANG=ja_JP.utf8 
-# alias cd=cd_func
-# サクラエディタ起動 関数
-# 2008/01/14
-alias _sakura="/cygdrive/d/soft/sakura/sakura.exe"
-function sakura() {
-    if [[ "$#" == "0" ]]
-    then
-        _sakura &
-    else
-        for p in $*
-        do (
-            _sakura `cygpath -aw $p` &
-        )
-        done
-    fi
-}
-#Sublimetext起動
-alias _sublime="/cygdrive/d/soft/Sublime\ Text\ 3/sublime_text.exe"
-function sublime() {
-    if [[ "$#" == "0" ]]
-    then
-        _sublime &
-    else
-        for p in $*
-        do (
-            _sublime `cygpath -aw $p` &
-        )
-        done
-    fi
-}
 
-#lsのcolor
+#ls color settings
 eval `dircolors ${HOME}/.dircolors`
 
-#windowsコマンドを文字化けしないようにする
-WINCMDS=("ipconfig" "netstat" "ping")
-for i in $WINCMDS; do
-    alias $i="wincmd $i"
-done
-
-function wincmd() {
-    local CMD=$1
-    shift
-    ($CMD $* 2>&1 | nkf -w | dos2unix) 2>&1 | nkf -w | dos2unix 1>&2
-}
