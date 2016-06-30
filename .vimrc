@@ -55,6 +55,8 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'dhruvasagar/vim-table-mode'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'miyakogi/seiya.vim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'kannokanno/previm'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 " airline
@@ -102,6 +104,9 @@ let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 
 " seiya
 let g:seiya_auto_enable=1
+
+" Previm
+let g:previm_open_cmd = ''
 
 call neobundle#end()
 
