@@ -1,3 +1,4 @@
+set t_Co=256
 " タブ入力を複数の空白入力に置き換える
 set expandtab 
 " 画面上でタブ文字が占める幅
@@ -8,16 +9,14 @@ set shiftwidth=4
 set softtabstop=1
 
 " 挿入時のカーソルの形を指定
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-"let &t_ti.="\e[1 q"
-"let &t_SI.="\e[5 q"
-"let &t_EI.="\e[1 q"
-"let &t_te.="\e[0 q"
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+set number
 
 " キーマップを変更
 let mapleader = ","
-set number
+set t_ut=
 set backspace=indent,eol,start
 syntax on
 set encoding=utf-8
@@ -55,6 +54,7 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'dhruvasagar/vim-table-mode'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'miyakogi/seiya.vim'
+NeoBundle 'tmhedberg/SimpylFold'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
@@ -92,8 +92,18 @@ let g:neocomplcache_dictionary_filetype_lists = {
     \ }
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" jedi-vim
+" Disable AutoComplPop.
+" let g:acp_enableAtStartup = 0
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#completions_enabled = 1
 " 補完のプレビューウィンドウを下に表示にする
 set splitbelow
+" 補完の最初の項目が選択された状態だと使いにくいためオフにする
+let g:jedi#popup_select_first = 0
+
 
 " syntastic
 let g:syntastic_javascript_checkers = ['gjslint']
@@ -103,6 +113,9 @@ let g:syntastic_check_on_save = 1
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 
 " seiya
+let g:seiya_auto_enable=1
+
+" SimpyFold
 let g:seiya_auto_enable=1
 
 " Previm
