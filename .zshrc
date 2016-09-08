@@ -101,6 +101,13 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
+# pandoc
+pandoc_git () {
+    pandoc -s --self-contained -t html5 -c ~/.pandoc/github.css $@
+}
+
 # 環境固有の設定を読み込む
-source ~/.zshrc_local
+if [ -e ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
 
