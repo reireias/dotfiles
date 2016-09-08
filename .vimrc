@@ -57,6 +57,8 @@ NeoBundle 'miyakogi/seiya.vim'
 NeoBundle 'tmhedberg/SimpylFold'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
+NeoBundle 'Align'
+NeoBundle 'vim-scripts/SQLUtilities'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 " airline
@@ -116,7 +118,6 @@ let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 let g:seiya_auto_enable=1
 
 " SimpyFold
-let g:seiya_auto_enable=1
 
 " Previm
 let g:previm_open_cmd = ''
@@ -127,3 +128,7 @@ filetype plugin indent on
 
 NeoBundleCheck
 
+" 環境固有の設定の読み込み
+if filereadable(expand($HOME.'/.vimrc_local'))
+    source $HOME/.vimrc_local
+endif

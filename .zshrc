@@ -85,3 +85,22 @@ unsetopt list_types
 setopt inc_append_history
 # ヒストリを共有
 setopt share_history
+
+# go
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# peco
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+# 環境固有の設定を読み込む
+source ~/.zshrc_local
+
