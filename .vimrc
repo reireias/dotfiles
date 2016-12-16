@@ -60,7 +60,7 @@ NeoBundle 'tmhedberg/SimpylFold'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'Align'
-NeoBundle 'vim-scripts/SQLUtilities'
+NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 " airline
