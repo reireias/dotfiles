@@ -87,7 +87,7 @@ setopt inc_append_history
 setopt share_history
 
 # go
-export GOROOT=/usr/local/go
+export GOROOT=/usr/lib/go-1.6
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
@@ -105,6 +105,9 @@ bindkey '^R' peco-history-selection
 pandoc_git () {
     pandoc -s --self-contained -t html5 -c ~/.pandoc/github.css $@
 }
+
+# NeoVim
+export XDG_CONFIG_HOME=~/.config
 
 # 環境固有の設定を読み込む
 if [ -e ~/.zshrc_local ]; then

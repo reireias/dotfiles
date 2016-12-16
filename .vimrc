@@ -21,7 +21,7 @@ set backspace=indent,eol,start
 syntax on
 set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
-set clipboard=unnamed,autoselect,unnamedplus
+set clipboard=unnamed,unnamedplus
 
 " カラースキーマに関する設定
 colorscheme molokai
@@ -110,6 +110,8 @@ let g:jedi#popup_select_first = 0
 " syntastic
 let g:syntastic_javascript_checkers = ['gjslint']
 let g:syntastic_javascript_gjslint_args = '--disable 0110,0120,0213'
+let g:syntastic_go_checkers = ['go', 'golint']
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
