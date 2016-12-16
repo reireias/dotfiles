@@ -7,6 +7,8 @@ set tabstop=4
 set shiftwidth=4
 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set softtabstop=1
+" ターミナルのタイトルにファイル名を表示
+set title
 
 " 挿入時のカーソルの形を指定
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
