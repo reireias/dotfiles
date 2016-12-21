@@ -10,10 +10,6 @@ set softtabstop=1
 " ターミナルのタイトルにファイル名を表示
 set title
 
-" 挿入時のカーソルの形を指定
-" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
 set number
 
 " キーマップを変更
@@ -77,9 +73,6 @@ let g:airline_section_x =
 let g:airline_section_y = '%3p%%'
 let g:airline_section_z = get(g:, 'airline_linecolumn_prefix', '').'%3l:%-2v'
 let g:airline#extensions#whitespace#enabled = 0
-" フォントによっては以下のセパレータが表示されない
-" let g:airline_left_sep = '⮀'
-" let g:airline_right_sep = '⮂'
 
 " neocomplcache
 " Disable AutoComplPop.
