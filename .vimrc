@@ -21,8 +21,6 @@ set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 set clipboard=unnamed,unnamedplus
 
-" terminal modeからESCでcommand modeに移行
-tnoremap <silent> <ESC> <C-\><C-n>
 
 " カラースキーマに関する設定
 colorscheme molokai
@@ -127,6 +125,12 @@ call neobundle#end()
 filetype plugin indent on
 
 NeoBundleCheck
+
+" neovim固有設定
+if has('nvim')
+  " terminal modeからESCでcommand modeに移行
+  tnoremap <silent> <ESC> <C-\><C-n>
+endif
 
 " 環境固有の設定の読み込み
 if filereadable(expand($HOME.'/.vimrc_local'))
