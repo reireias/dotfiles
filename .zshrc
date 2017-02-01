@@ -109,6 +109,9 @@ pandoc_git () {
 # NeoVim
 export XDG_CONFIG_HOME=~/.config
 
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions/src $fpath)
+
 # 環境固有の設定を読み込む
 if [ -e ~/.zshrc_local ]; then
     source ~/.zshrc_local

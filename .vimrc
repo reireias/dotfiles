@@ -108,6 +108,7 @@ let g:syntastic_javascript_checkers = ['gjslint']
 let g:syntastic_javascript_gjslint_args = '--disable 0110,0120,0213'
 let g:syntastic_go_checkers = ['go', 'golint']
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
