@@ -120,6 +120,8 @@ let g:seiya_auto_enable=1
 
 " Previm
 let g:previm_open_cmd = ''
+let g:previm_show_header = 0
+let g:previm_custom_css_path = '~/.vim/bundle/previm/preview/css/dark.css'
 
 call neobundle#end()
 
