@@ -123,6 +123,20 @@ alias reload='source ~/.zshrc'
 alias ssh='TERM=xterm ssh'
 alias jgrep='grep --include="*.java"'
 
+# git
+alias g='git'
+alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(magenta)%ci%Creset%n%C(cyan)%an <%ae>%Creset%n%B"'
+alias glp='git log -p'
+alias glg='git log --graph --pretty=format:"%C(yellow)%h%Creset %C(magenta)%ci%Creset%n%C(cyan)%an <%ae>%Creset%n%B"'
+alias gco='git checkout'
+alias gd='git diff'
+alias gds='git diff --stat'
+alias gst='git status'
+alias gp='git pull'
+
+# docker
+alias dps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
+
 # Umask
 #
 # /etc/profile sets 022, removing write perms to group + others.
