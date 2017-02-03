@@ -8,8 +8,11 @@ if [ ! -e "${HOME}/.zsh/colorcode" ]; then
 fi
 . ${HOME}/.zsh/colorcode
 
-autoload -U compinit
-compinit
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions/src ~/.zsh/completion $fpath)
+
+autoload -Uz compinit
+compinit -i
 
 # historyの設定
 HISTFILE=$HOME/.zsh-history
@@ -108,9 +111,6 @@ pandoc_git () {
 
 # NeoVim
 export XDG_CONFIG_HOME=~/.config
-
-# zsh-completions
-fpath=(/usr/local/share/zsh-completions/src $fpath)
 
 # 環境固有の設定を読み込む
 if [ -e ~/.zshrc_local ]; then

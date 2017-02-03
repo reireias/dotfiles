@@ -107,16 +107,21 @@
 # alias fgrep='fgrep --color=auto'              # show differences in colour
 #
 # Some shortcuts for different directory listings
-alias ls='ls -h --color=auto'                 # classify files in colour
+alias ls='ls -h --color=always'                 # classify files in colour
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
 alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
-alias vi='vim'
-alias open='nemo'
+alias vi='nvim'
+alias nvi='nvim'
 alias du='du -sh *'
 alias caddy='ruby /opt/caddy/caddy/caddy.rb'
+alias grep='grep --color=always'
+alias terminal='gnome-terminal --hide-menubar'
+alias reload='source ~/.zshrc'
+alias ssh='TERM=xterm ssh'
+alias jgrep='grep --include="*.java"'
 
 # Umask
 #
@@ -201,6 +206,8 @@ alias caddy='ruby /opt/caddy/caddy/caddy.rb'
 #
 export LANG=ja_JP.utf8 
 
-#ls color settings
+# ls color settings
 eval `dircolors ${HOME}/.dircolors`
 
+# less
+export LESS='-R'
