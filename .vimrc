@@ -55,7 +55,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'miyakogi/seiya.vim'
 NeoBundle 'tmhedberg/SimpylFold'
 NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'kannokanno/previm'
+NeoBundle 'reireias/previm'
 NeoBundle 'Align'
 NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
