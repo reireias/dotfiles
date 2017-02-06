@@ -102,6 +102,8 @@ set splitbelow
 " 補完の最初の項目が選択された状態だと使いにくいためオフにする
 let g:jedi#popup_select_first = 0
 
+" vim-table-mode
+let g:table_mode_corner="|"
 
 " syntastic
 let g:syntastic_javascript_checkers = ['gjslint']
