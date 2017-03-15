@@ -70,6 +70,7 @@ NeoBundle 'Align'
 NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
+NeoBundleLazy 'fs111/pydoc.vim', {'autoload':{'filetypes':['python']}}
 
 " airline
 let g:airline_theme = 'wombat'
@@ -116,6 +117,11 @@ autocmd FileType python setlocal completeopt-=preview
 let g:jedi#show_call_signatures = 2
 " 定義へ移動
 let g:jedi#goto_definitions_command = "<C-d>"
+" pydocの表示はoffに
+let g:jedi#documentation_command = "None"
+
+" pydoc
+let g:pydoc_cmd = '/usr/bin/pydoc3'
 
 " vim-table-mode
 let g:table_mode_corner="|"
