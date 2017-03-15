@@ -114,6 +114,8 @@ let g:jedi#force_py_version = 3
 autocmd FileType python setlocal completeopt-=preview
 " 関数のシグネチャをコマンドラインに表示(set noshowmodeが必要)
 let g:jedi#show_call_signatures = 2
+" 定義へ移動
+let g:jedi#goto_definitions_command = "<C-d>"
 
 " vim-table-mode
 let g:table_mode_corner="|"
