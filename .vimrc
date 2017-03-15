@@ -1,16 +1,26 @@
+" 256色対応
 set t_Co=256
+
 " タブ入力を複数の空白入力に置き換える
 set expandtab 
+
 " 画面上でタブ文字が占める幅
 set tabstop=4
+
 " 自動インデントでずれる幅
 set shiftwidth=4
+
 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set softtabstop=1
+
 " ターミナルのタイトルにファイル名を表示
 set title
 
+" 行番号の表示
 set number
+
+" モードを非表示
+set noshowmode
 
 " キーマップを変更
 let mapleader = ","
@@ -59,6 +69,7 @@ NeoBundle 'reireias/previm'
 NeoBundle 'Align'
 NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
 
 " airline
 let g:airline_theme = 'wombat'
@@ -78,29 +89,31 @@ let g:airline#extensions#whitespace#enabled = 0
 " neocomplcache
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" " Use neocomplcache.
+" Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
-" " Use smartcase.
+" Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
-" " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 4
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
+" 
+let g:neocomplcache_enable_caching_message = 0
 
 " jedi-vim
-" Disable AutoComplPop.
-" let g:acp_enableAtStartup = 0
-autocmd FileType python setlocal omnifunc=jedi#completions
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_enabled = 1
-" 補完のプレビューウィンドウを下に表示にする
-set splitbelow
-" 補完の最初の項目が選択された状態だと使いにくいためオフにする
-let g:jedi#popup_select_first = 0
+"   python or python3が必要
+"   neovimの場合はpip3 install neovimを行う
+" pythonのバージョンを固定
+let g:jedi#force_py_version = 3
+" docstringを非表示
+autocmd FileType python setlocal completeopt-=preview
+" 関数のシグネチャをコマンドラインに表示(set noshowmodeが必要)
+let g:jedi#show_call_signatures = 2
 
 " vim-table-mode
 let g:table_mode_corner="|"
