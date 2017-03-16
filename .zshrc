@@ -35,6 +35,39 @@ PROMPT=" ${COLOR_FG_AFFF00}%~${STYLE_DEFAULT}
 # 右側に表示
 RPROMPT="${HOST_COLOR}[%m]${STYLE_DEFAULT}"
 
+# alias
+alias ls='ls -h --color=always'
+alias dir='ls --color=auto --format=vertical'
+alias vdir='ls --color=auto --format=long'
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias vi='nvim'
+alias nvi='nvim'
+alias du='du -sh *'
+alias open='gnome-open'
+alias caddy='ruby /opt/caddy/caddy/caddy.rb'
+alias grep='grep --color=always'
+alias terminal='gnome-terminal --hide-menubar'
+alias tm='terminal'
+alias reload='source ~/.zshrc'
+alias ssh='TERM=xterm ssh'
+alias jgrep='grep --include="*.java"'
+
+# git
+alias g='git'
+alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(magenta)%ci%Creset%n%C(cyan)%an <%ae>%Creset%n%B"'
+alias glp='git log -p'
+alias glg='git log --graph --pretty=format:"%C(yellow)%h%Creset %C(magenta)%ci%Creset%n%C(cyan)%an <%ae>%Creset%n%B"'
+alias gco='git checkout'
+alias gd='git diff'
+alias gds='git diff --stat'
+alias gst='git status'
+alias gp='git pull'
+
+# docker
+alias dps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
+
 # キーバインド設定
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
