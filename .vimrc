@@ -23,7 +23,7 @@ set number
 set noshowmode
 
 " キーマップを変更
-let mapleader = ","
+let mapleader = "\<Space>"
 set t_ut=
 set backspace=indent,eol,start
 syntax on
@@ -151,6 +151,8 @@ let g:jedi#show_call_signatures = 2
 let g:jedi#goto_definitions_command = "<C-d>"
 " pydocの表示はoffに
 let g:jedi#documentation_command = "None"
+" vim-quickrunと被るのでrenameのキーを解除
+let g:jedi#rename_command = "None"
 
 " pydoc
 let g:pydoc_cmd = '/usr/bin/pydoc3'
