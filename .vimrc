@@ -82,7 +82,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/denite.nvim'
 NeoBundle 'dhruvasagar/vim-table-mode'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'miyakogi/seiya.vim'
@@ -92,6 +91,7 @@ NeoBundle 'reireias/previm'
 NeoBundle 'Align'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'simeji/winresizer'
+NeoBundle 'cocopon/vaffle.vim'
 NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
