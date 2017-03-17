@@ -165,6 +165,10 @@ let g:quickrun_config = {
 \   }
 \}
 
+" winresizer
+let g:winresizer_vert_resize = 1
+let g:winresizer_horiz_resize = 1
+
 " jedi-vim
 "   python or python3が必要
 "   neovimの場合はpip3 install neovimを行う
