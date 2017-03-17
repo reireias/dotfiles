@@ -1,3 +1,6 @@
+" =============================================================================
+"   一般
+" =============================================================================
 " 256色対応
 set t_Co=256
 
@@ -24,26 +27,33 @@ set noshowmode
 
 " キーマップを変更
 let mapleader = "\<Space>"
-set t_ut=
+
+" backspaceで文字削除
 set backspace=indent,eol,start
-syntax on
+
+" 文字コード設定
 set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
-set clipboard=unnamed,unnamedplus
 
+" クリップボードをOSと共有
+set clipboard=unnamed,unnamedplus
 
 " カラースキーマに関する設定
 colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
 set background=dark
+set t_ut=
+syntax on
 
 " markdownのハイライトを有効にする
 set syntax=markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
-" NeoBundle
 
+" =============================================================================
+"   NeoBundle
+" =============================================================================
 " 環境によっては以下のruntimepathの設定を書き換える必要があるかも
 if has('vim_starting')
   " Required:
@@ -161,6 +171,9 @@ filetype plugin indent on
 
 NeoBundleCheck
 
+" =============================================================================
+"   環境固有
+" =============================================================================
 " neovim固有設定
 if has('nvim')
   " terminal modeからESCでcommand modeに移行
