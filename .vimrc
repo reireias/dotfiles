@@ -19,8 +19,9 @@ set softtabstop=1
 " ターミナルのタイトルにファイル名を表示
 set title
 
-" 行番号の表示
+" 行番号の表示 & ハイライト
 set number
+set cursorline
 
 " モードを非表示
 set noshowmode
