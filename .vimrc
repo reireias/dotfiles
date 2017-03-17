@@ -90,6 +90,7 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'reireias/previm'
 NeoBundle 'Align'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'simeji/winresizer'
 NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
