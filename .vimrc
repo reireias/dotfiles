@@ -19,9 +19,8 @@ set softtabstop=1
 " ターミナルのタイトルにファイル名を表示
 set title
 
-" 行番号の表示 & ハイライト
+" 行番号の表示
 set number
-set cursorline
 
 " モードを非表示
 set noshowmode
@@ -43,6 +42,8 @@ let g:rehash256 = 1
 set background=dark
 set t_ut=
 syntax on
+set cursorline
+hi clear CursorLine
 
 " markdownのハイライトを有効にする
 set syntax=markdown
