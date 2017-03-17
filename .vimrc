@@ -92,6 +92,8 @@ NeoBundle 'Align'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'simeji/winresizer'
 NeoBundle 'cocopon/vaffle.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
