@@ -42,9 +42,7 @@ set background=dark
 set syntax=markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
-" ------------------------
-"  NeoBundle
-" ------------------------
+" NeoBundle
 
 " 環境によっては以下のruntimepathの設定を書き換える必要があるかも
 if has('vim_starting')
@@ -67,10 +65,13 @@ NeoBundle 'tmhedberg/SimpylFold'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'reireias/previm'
 NeoBundle 'Align'
+NeoBundle 'thinca/vim-quickrun'
 NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
 NeoBundleLazy 'fs111/pydoc.vim', {'autoload':{'filetypes':['python']}}
+
+call neobundle#end()
 
 " airline
 let g:airline_theme = 'wombat'
@@ -106,23 +107,6 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
 " 
 let g:neocomplcache_enable_caching_message = 0
 
-" jedi-vim
-"   python or python3が必要
-"   neovimの場合はpip3 install neovimを行う
-" pythonのバージョンを固定
-let g:jedi#force_py_version = 3
-" docstringを非表示
-autocmd FileType python setlocal completeopt-=preview
-" 関数のシグネチャをコマンドラインに表示(set noshowmodeが必要)
-let g:jedi#show_call_signatures = 2
-" 定義へ移動
-let g:jedi#goto_definitions_command = "<C-d>"
-" pydocの表示はoffに
-let g:jedi#documentation_command = "None"
-
-" pydoc
-let g:pydoc_cmd = '/usr/bin/pydoc3'
-
 " vim-table-mode
 let g:table_mode_corner="|"
 
@@ -146,7 +130,24 @@ let g:previm_open_cmd = ''
 let g:previm_show_header = 0
 let g:previm_custom_css_path = '~/.vim/bundle/previm/preview/css/dark.css'
 
-call neobundle#end()
+" vim-quickrun
+
+" jedi-vim
+"   python or python3が必要
+"   neovimの場合はpip3 install neovimを行う
+" pythonのバージョンを固定
+let g:jedi#force_py_version = 3
+" docstringを非表示
+autocmd FileType python setlocal completeopt-=preview
+" 関数のシグネチャをコマンドラインに表示(set noshowmodeが必要)
+let g:jedi#show_call_signatures = 2
+" 定義へ移動
+let g:jedi#goto_definitions_command = "<C-d>"
+" pydocの表示はoffに
+let g:jedi#documentation_command = "None"
+
+" pydoc
+let g:pydoc_cmd = '/usr/bin/pydoc3'
 
 filetype plugin indent on
 
