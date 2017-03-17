@@ -131,6 +131,12 @@ let g:previm_show_header = 0
 let g:previm_custom_css_path = '~/.vim/bundle/previm/preview/css/dark.css'
 
 " vim-quickrun
+let g:quickrun_config = {
+\   "_": {
+\       "outputter/buffer/close_on_empty": 1,
+\       "outputter/buffer/append": 1
+\   }
+\}
 
 " jedi-vim
 "   python or python3が必要
