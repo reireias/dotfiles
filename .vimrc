@@ -168,6 +168,12 @@ let g:quickrun_config = {
 let g:winresizer_vert_resize = 1
 let g:winresizer_horiz_resize = 1
 
+" unite-outline
+" 下か右に表示
+let g:unite_split_rule = 'botright'
+" 右に表示し、閉じないように設定
+nnoremap <Leader>o :<C-u>Unite -vertical -winwidth=30 -no-quit outline<CR>
+
 " jedi-vim
 "   python or python3が必要
 "   neovimの場合はpip3 install neovimを行う
