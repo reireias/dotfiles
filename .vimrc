@@ -85,7 +85,6 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'dhruvasagar/vim-table-mode'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'miyakogi/seiya.vim'
-NeoBundle 'tmhedberg/SimpylFold'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'reireias/previm'
 NeoBundle 'Align'
@@ -98,6 +97,7 @@ NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
 NeoBundleLazy 'fs111/pydoc.vim', {'autoload':{'filetypes':['python']}}
+NeoBundleLazy 'tmhedberg/SimpylFold', {'autoload':{'filetypes':['python']}}
 
 call neobundle#end()
 
@@ -150,8 +150,6 @@ let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 
 " seiya
 let g:seiya_auto_enable=1
-
-" SimpyFold
 
 " Previm
 let g:previm_open_cmd = ''
