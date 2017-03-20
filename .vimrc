@@ -1,11 +1,9 @@
-" =============================================================================
-"   General
-" =============================================================================
+" General {{{
 " 256色対応
 set t_Co=256
 
 " タブ入力を複数の空白入力に置き換える
-set expandtab 
+set expandtab
 
 " 画面上でタブ文字が占める幅
 set tabstop=4
@@ -49,10 +47,11 @@ hi clear CursorLine
 set syntax=markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
+autocmd FileType vim setlocal shiftwidth=2 tabstop=2 fdm=marker
+" }}}
 
-" =============================================================================
-"   KeyMap
-" =============================================================================
+
+" KeyMap {{{
 " キーマップを変更
 let mapleader = "\<Space>"
 
@@ -65,11 +64,10 @@ nnoremap <Leader><Tab> <C-w>w
 
 " 検索によるハイライト表示を解除する
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+" }}}
 
 
-" =============================================================================
-"   NeoBundle
-" =============================================================================
+" NeoBundle {{{
 " 環境によっては以下のruntimepathの設定を書き換える必要があるかも
 if has('vim_starting')
   " Required:
@@ -93,6 +91,7 @@ NeoBundle 'simeji/winresizer'
 NeoBundle 'cocopon/vaffle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
@@ -104,17 +103,13 @@ call neobundle#end()
 " airline
 let g:airline_theme = 'wombat'
 set laststatus=2
-let g:airline_enable_branch = 0
-let g:airline_section_b = "%t %M"
-let g:airline_section_c = ''
-let s:sep = " %{get(g:, 'airline_right_alt_sep', '')} "
-let g:airline_section_x =
-            \ "%{strlen(&fileformat)?&fileformat:''}".s:sep.
-            \ "%{strlen(&fenc)?&fenc:&enc}".s:sep.
-            \ "%{strlen(&filetype)?&filetype:'no ft'}"
-let g:airline_section_y = '%3p%%'
-let g:airline_section_z = get(g:, 'airline_linecolumn_prefix', '').'%3l:%-2v'
-let g:airline#extensions#whitespace#enabled = 0
+" gitのbranch名を表示
+let g:airline#extensions#branch#enabled = 1
+" バッファーのファイル名を表示
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_section_z = '%3p%% %4l/%L:%3v'
+" 行末の空白に警告を表示
+let g:airline#extensions#whitespace#enabled = 1
 
 " neocomplcache
 " Disable AutoComplPop.
@@ -132,7 +127,6 @@ let g:neocomplcache_dictionary_filetype_lists = {
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
-" 
 let g:neocomplcache_enable_caching_message = 0
 
 " vim-table-mode
@@ -196,10 +190,10 @@ let g:pydoc_cmd = '/usr/bin/pydoc3'
 filetype plugin indent on
 
 NeoBundleCheck
+" }}}
 
-" =============================================================================
-"   Environment
-" =============================================================================
+
+" Environment {{{
 " neovim固有設定
 if has('nvim')
   " terminal modeからESCでcommand modeに移行
@@ -210,3 +204,4 @@ endif
 if filereadable(expand($HOME.'/.vimrc_local'))
     source $HOME/.vimrc_local
 endif
+" }}}
