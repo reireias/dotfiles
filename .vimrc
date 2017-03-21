@@ -1,18 +1,7 @@
 " General {{{
-" 256色対応
-set t_Co=256
-
-" タブ入力を複数の空白入力に置き換える
-set expandtab
-
-" 画面上でタブ文字が占める幅
+" Indent
 set tabstop=4
-
-" 自動インデントでずれる幅
 set shiftwidth=4
-
-" 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set softtabstop=1
 
 " ターミナルのタイトルにファイル名を表示
 set title
@@ -23,22 +12,20 @@ set number
 " モードを非表示
 set noshowmode
 
-" 文字コード設定
+" Encoding
 set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
-" クリップボードをOSと共有
+" Clipboard
 set clipboard=unnamed,unnamedplus
 " }}}
 
 
 " Color {{{
-" カラースキーマに関する設定
+" Color Scheme
 colorscheme molokai
-let g:molokai_original = 1
 let g:rehash256 = 1
-set background=dark
-set t_ut=
+
 syntax on
 set cursorline
 hi clear CursorLine
@@ -50,6 +37,9 @@ augroup vimrc_filetype
   autocmd!
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd FileType vim setlocal shiftwidth=2 tabstop=2 fdm=marker
+  autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+  autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+  autocmd FileType xml setlocal shiftwidth=2 tabstop=2
 augroup END
 " }}}
 
@@ -197,13 +187,12 @@ NeoBundleCheck
 
 
 " Environment {{{
-" neovim固有設定
+" neovim
 if has('nvim')
-  " terminal modeからESCでcommand modeに移行
   tnoremap <silent> <ESC> <C-\><C-n>
 endif
 
-" 環境固有の設定の読み込み
+" Load local settings
 if filereadable(expand($HOME.'/.vimrc_local'))
     source $HOME/.vimrc_local
 endif
