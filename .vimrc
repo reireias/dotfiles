@@ -23,16 +23,16 @@ set number
 " モードを非表示
 set noshowmode
 
-" backspaceで文字削除
-set backspace=indent,eol,start
-
 " 文字コード設定
 set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
 " クリップボードをOSと共有
 set clipboard=unnamed,unnamedplus
+" }}}
 
+
+" Color {{{
 " カラースキーマに関する設定
 colorscheme molokai
 let g:molokai_original = 1
@@ -42,12 +42,15 @@ set t_ut=
 syntax on
 set cursorline
 hi clear CursorLine
+" }}}
 
-" markdownのハイライトを有効にする
-set syntax=markdown
-au BufRead,BufNewFile *.md set filetype=markdown
 
-autocmd FileType vim setlocal shiftwidth=2 tabstop=2 fdm=marker
+" File Types {{{
+augroup vimrc_filetype
+  autocmd!
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd FileType vim setlocal shiftwidth=2 tabstop=2 fdm=marker
+augroup END
 " }}}
 
 
@@ -67,7 +70,7 @@ nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 " }}}
 
 
-" NeoBundle {{{
+" Plugin {{{
 " 環境によっては以下のruntimepathの設定を書き換える必要があるかも
 if has('vim_starting')
   " Required:
@@ -174,7 +177,7 @@ nnoremap <Leader>o :<C-u>Unite -vertical -winwidth=30 -no-quit outline<CR>
 " pythonのバージョンを固定
 let g:jedi#force_py_version = 3
 " docstringを非表示
-autocmd FileType python setlocal completeopt-=preview
+set completeopt=menu,menuone
 " 関数のシグネチャをコマンドラインに表示(set noshowmodeが必要)
 let g:jedi#show_call_signatures = 2
 " 定義へ移動
