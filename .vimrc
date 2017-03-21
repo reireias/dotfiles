@@ -3,13 +3,8 @@
 set tabstop=4
 set shiftwidth=4
 
-" ターミナルのタイトルにファイル名を表示
 set title
-
-" 行番号の表示
 set number
-
-" モードを非表示
 set noshowmode
 
 " Encoding
@@ -45,23 +40,24 @@ augroup END
 
 
 " KeyMap {{{
-" キーマップを変更
 let mapleader = "\<Space>"
 
-" 行頭・行末に移動する
+" Home / End
 noremap <Leader>h ^
 noremap <Leader>l $
 
-" ウィンドウ間を移動する
+" Move to next window
 nnoremap <Leader><Tab> <C-w>w
 
-" 検索によるハイライト表示を解除する
+" Unhighlight search result
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+
+" Show outline
+nnoremap <Leader>o :<C-u>Unite -vertical -winwidth=30 -no-quit outline<CR>
 " }}}
 
 
 " Plugin {{{
-" 環境によっては以下のruntimepathの設定を書き換える必要があるかも
 if has('vim_starting')
   " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -96,12 +92,12 @@ call neobundle#end()
 " airline
 let g:airline_theme = 'wombat'
 set laststatus=2
-" gitのbranch名を表示
+" Show branch name
 let g:airline#extensions#branch#enabled = 1
-" バッファーのファイル名を表示
+" Show buffer's filename
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_z = '%3p%% %4l/%L:%3v'
-" 行末の空白に警告を表示
+" Check whitespace at end of line
 let g:airline#extensions#whitespace#enabled = 1
 
 " neocomplcache
@@ -156,30 +152,28 @@ let g:winresizer_vert_resize = 1
 let g:winresizer_horiz_resize = 1
 
 " unite-outline
-" 下か右に表示
+" Display at bottom or right
 let g:unite_split_rule = 'botright'
-" 右に表示し、閉じないように設定
-nnoremap <Leader>o :<C-u>Unite -vertical -winwidth=30 -no-quit outline<CR>
 
 " jedi-vim
-"   python or python3が必要
-"   neovimの場合はpip3 install neovimを行う
-" pythonのバージョンを固定
+"   needs python3 and 'pip3 install neovim'
+" python version
 let g:jedi#force_py_version = 3
-" docstringを非表示
+" hide docstring
 set completeopt=menu,menuone
-" 関数のシグネチャをコマンドラインに表示(set noshowmodeが必要)
+" Show function signature on command line (need 'set noshowmode')
 let g:jedi#show_call_signatures = 2
-" 定義へ移動
+" Go to definitions
 let g:jedi#goto_definitions_command = "<C-d>"
-" pydocの表示はoffに
+" Remove show document command
 let g:jedi#documentation_command = "None"
-" vim-quickrunと被るのでrenameのキーを解除
+" Remove rename command (for vim-quickrun)
 let g:jedi#rename_command = "None"
 
 " pydoc
 let g:pydoc_cmd = '/usr/bin/pydoc3'
 
+" Load plugin/indent settings when filetype changed
 filetype plugin indent on
 
 NeoBundleCheck
