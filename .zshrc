@@ -145,8 +145,8 @@ pandoc_git () {
 # NeoVim
 export XDG_CONFIG_HOME=~/.config
 
-# 環境固有の設定を読み込む
-if [ -e ~/.zshrc_local ]; then
-    source ~/.zshrc_local
+# Load local setting
+if [ -e ~/.env/.zshrc ]; then
+    source ~/.env/.zshrc
 fi
 
