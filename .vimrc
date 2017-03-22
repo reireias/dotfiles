@@ -172,7 +172,7 @@ let g:pydoc_cmd = '/usr/bin/pydoc3'
 filetype plugin indent on
 
 if dein#check_install()
-	call dein#install()
+  call dein#install()
 endif
 " }}}
 
