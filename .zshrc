@@ -1,12 +1,5 @@
 # Created by newuser for 5.0.6
-# なるべくbashの設定を利用
 source ~/.bashrc
-
-# colorコードの読み込み
-if [ ! -e "${HOME}/.zsh/colorcode" ]; then
-    ~/.zsh/gen-256colorlib.sh -z > ${HOME}/.zsh/colorcode
-fi
-. ${HOME}/.zsh/colorcode
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions/src ~/.zsh/completion $fpath)
@@ -14,26 +7,25 @@ fpath=(/usr/local/share/zsh-completions/src ~/.zsh/completion $fpath)
 autoload -Uz compinit
 compinit -i
 
-# historyの設定
+# history
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
 SAVEHIST=100000
 
-# LS_COLORS関係
+# LS_COLORS
 eval `dircolors -b`
+eval `dircolors ${HOME}/.dircolors`
 
-# 補完でカラーを使用する
+# color at completion
 autoload colors
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# プロンプト関係
+# prompt
 colors
-local HOST_COLOR=$'%{\e[38;5;'"$(printf "%d\n" 0x$(hostname|md5sum|cut -c1-2))"'m%}'
-PROMPT=" ${COLOR_FG_AFFF00}%~${STYLE_DEFAULT}
- ${COLOR_FG_5FD7FF}%(!.#.$)${STYLE_DEFAULT} "
-# 右側に表示
-RPROMPT="${HOST_COLOR}[%m]${STYLE_DEFAULT}"
+PROMPT=" %{[38;5;154m%}%~%{[0m%}
+ %{[38;5;81m%}%(!.#.$)%{[0m%} "
+RPROMPT="%{[38;5;134m%}[%m]%{[0m%}"
 
 # alias
 alias ls='ls -h --color=always'
@@ -68,7 +60,7 @@ alias gp='git pull'
 # docker
 alias dps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
 
-# キーバインド設定
+# key bind
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -A key
@@ -113,13 +105,12 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   zle -N zle-line-finish
 fi
 
-# 識別マーク
+# file mark
 unsetopt list_types
 
-# screenでのコマンド共有
-# シェルを横断して.zshhistoryに記録
+# history on screen
+# share .zshhistory
 setopt inc_append_history
-# ヒストリを共有
 setopt share_history
 
 # go
@@ -144,6 +135,9 @@ pandoc_git () {
 
 # NeoVim
 export XDG_CONFIG_HOME=~/.config
+
+# less
+export LESS='-R'
 
 # Load local setting
 if [ -e ~/.env/.zshrc ]; then
