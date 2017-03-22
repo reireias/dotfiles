@@ -58,36 +58,42 @@ nnoremap <Leader>o :<C-u>Unite -vertical -winwidth=30 -no-quit outline<CR>
 
 
 " Plugin {{{
-if has('vim_starting')
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible
 endif
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+call dein#begin(expand('~/.vim/dein'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'dhruvasagar/vim-table-mode'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'miyakogi/seiya.vim'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'reireias/previm'
-NeoBundle 'Align'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'simeji/winresizer'
-NeoBundle 'cocopon/vaffle.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundleLazy 'vim-scripts/SQLUtilities', {'autoload':{'filetypes':['sql']}}
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
-NeoBundleLazy 'fs111/pydoc.vim', {'autoload':{'filetypes':['python']}}
-NeoBundleLazy 'tmhedberg/SimpylFold', {'autoload':{'filetypes':['python']}}
+call dein#add('Shougo/dein.vim')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('Shougo/neocomplcache')
+call dein#add('dhruvasagar/vim-table-mode')
+call dein#add('scrooloose/syntastic')
+call dein#add('miyakogi/seiya.vim')
+call dein#add('tyru/open-browser.vim')
+call dein#add('reireias/previm')
+call dein#add('Align')
+call dein#add('thinca/vim-quickrun')
+call dein#add('simeji/winresizer')
+call dein#add('cocopon/vaffle.vim')
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/neomru.vim')
+call dein#add('Shougo/unite-outline')
+call dein#add('tpope/vim-fugitive')
 
-call neobundle#end()
+
+call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
+call dein#add('jelera/vim-javascript-syntax', {'on_ft' : 'javascript'})
+call dein#add('davidhalter/jedi-vim', {'on_ft' : 'python'})
+call dein#add('fs111/pydoc.vim', {'on_ft' : 'python'})
+call dein#add('tmhedberg/SimpylFold', {'on_ft' : 'python'})
+
+call dein#end()
+
+" dein
+let g:dein#install_process_timeout = 300
 
 " airline
 let g:airline_theme = 'wombat'
@@ -176,7 +182,9 @@ let g:pydoc_cmd = '/usr/bin/pydoc3'
 " Load plugin/indent settings when filetype changed
 filetype plugin indent on
 
-NeoBundleCheck
+if dein#check_install()
+	call dein#install()
+endif
 " }}}
 
 
