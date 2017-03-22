@@ -83,7 +83,7 @@ call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/unite-outline')
 call dein#add('tpope/vim-fugitive')
 
-
+" lazy load
 call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
 call dein#add('jelera/vim-javascript-syntax', {'on_ft' : 'javascript'})
 call dein#add('davidhalter/jedi-vim', {'on_ft' : 'python'})
