@@ -15,18 +15,6 @@ set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,
 set clipboard=unnamed,unnamedplus
 " }}}
 
-
-" Color {{{
-" Color Scheme
-colorscheme molokai
-let g:rehash256 = 1
-
-syntax on
-set cursorline
-hi clear CursorLine
-" }}}
-
-
 " File Types {{{
 augroup vimrc_filetype
   autocmd!
@@ -66,6 +54,7 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/dein.vim')
+call dein#add('tomasr/molokai')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('Shougo/neocomplcache')
@@ -187,6 +176,17 @@ if dein#check_install()
 endif
 " }}}
 
+
+" Color {{{
+" Color Scheme
+colorscheme molokai
+let g:rehash256 = 1
+
+syntax on
+set cursorline
+hi clear CursorLine
+" }}}
+"
 
 " Environment {{{
 " neovim
