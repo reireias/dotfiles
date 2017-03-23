@@ -1,9 +1,6 @@
 dotfiles
 ========
 
-## Rules
-* None.
-
 ## Instlation
 
 ### dein.vim
