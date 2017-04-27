@@ -116,6 +116,7 @@ let g:neocomplcache_enable_caching_message = 0
 
 " vim-table-mode
 let g:table_mode_corner="|"
+let g:table_mode_auto_align = 0
 
 " syntastic
 let g:syntastic_javascript_checkers = ['gjslint']
