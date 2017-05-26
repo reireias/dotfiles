@@ -72,6 +72,7 @@ call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/unite-outline')
 call dein#add('tpope/vim-fugitive')
+call dein#add('pearofducks/ansible-vim')
 
 " lazy load
 call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
