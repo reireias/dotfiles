@@ -145,3 +145,8 @@ if [ -e ~/.env/.zshrc ]; then
     source ~/.env/.zshrc
 fi
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/takumi/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/home/takumi/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/takumi/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/takumi/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
