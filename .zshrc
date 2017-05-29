@@ -115,7 +115,7 @@ setopt inc_append_history
 setopt share_history
 
 # go
-export GOROOT=/usr/lib/go-1.6
+export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
