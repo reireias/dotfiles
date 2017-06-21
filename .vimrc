@@ -7,6 +7,8 @@ set expandtab
 set title
 set number
 set noshowmode
+set list
+set listchars=tab:»-
 
 " Encoding
 set encoding=utf-8
@@ -81,6 +83,7 @@ call dein#add('jelera/vim-javascript-syntax', {'on_ft' : 'javascript'})
 call dein#add('davidhalter/jedi-vim', {'on_ft' : 'python'})
 call dein#add('fs111/pydoc.vim', {'on_ft' : 'python'})
 call dein#add('tmhedberg/SimpylFold', {'on_ft' : 'python'})
+call dein#add('fatih/vim-go', {'on_ft' : 'go'})
 
 call dein#end()
 
@@ -170,6 +173,9 @@ let g:jedi#rename_command = "None"
 
 " pydoc
 let g:pydoc_cmd = '/usr/bin/pydoc3'
+
+" vim-go
+let g:go_fmt_autosave = 0
 
 " Load plugin/indent settings when filetype changed
 filetype plugin indent on
