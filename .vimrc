@@ -26,6 +26,7 @@ augroup vimrc_filetype
   autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
   autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
   autocmd FileType xml setlocal shiftwidth=2 tabstop=2
+  autocmd FileType html setlocal shiftwidth=2 tabstop=2
 augroup END
 " }}}
 
@@ -76,6 +77,7 @@ call dein#add('Shougo/unite-outline')
 call dein#add('tpope/vim-fugitive')
 call dein#add('pearofducks/ansible-vim')
 call dein#add('leafgarland/typescript-vim')
+call dein#add('ryym/vim-riot')
 
 " lazy load
 call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
