@@ -163,7 +163,7 @@ function peco-cdr () {
     fi
 }
 zle -N peco-cdr
-bindkey '^Q' peco-cdr
+bindkey '^E' peco-cdr
 
 # pandoc
 pandoc_git () {
