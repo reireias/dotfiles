@@ -116,7 +116,7 @@ setopt share_history
 
 # go
 export GOROOT=/usr/lib/go
-export GOPATH=$HOME/go
+export GOPATH=$HOME/dev
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # peco
