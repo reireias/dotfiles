@@ -177,7 +177,7 @@ let g:jedi#rename_command = "None"
 let g:pydoc_cmd = '/usr/bin/pydoc3'
 
 " vim-go
-let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 1
 
 " Load plugin/indent settings when filetype changed
 filetype plugin indent on
