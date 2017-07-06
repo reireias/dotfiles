@@ -10,7 +10,7 @@ compinit -i
 # history
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
-SAVEHIST=100000
+SAVEHIST=1000000
 
 # cdr
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then

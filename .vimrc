@@ -46,6 +46,12 @@ nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
 " Show outline
 nnoremap <Leader>o :<C-u>Unite -vertical -winwidth=30 -no-quit outline<CR>
+
+" Buffer
+nnoremap <silent>bp :bprevious<CR>
+nnoremap <silent>bn :bnext<CR>
+nnoremap <silent>bb :b#<CR>
+nnoremap <silent>bd :bdelete<CR>
 " }}}
 
 
@@ -61,7 +67,7 @@ call dein#add('Shougo/dein.vim')
 call dein#add('tomasr/molokai')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
-call dein#add('Shougo/neocomplcache')
+call dein#add('Shougo/deoplete.nvim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('scrooloose/syntastic')
 call dein#add('miyakogi/seiya.vim')
@@ -103,23 +109,15 @@ let g:airline_section_z = '%3p%% %4l/%L:%3v'
 " Check whitespace at end of line
 let g:airline#extensions#whitespace#enabled = 1
 
-" neocomplcache
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+" deoplete
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 4
+let g:deoplete#auto_complete_start_length = 4
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : ''
-    \ }
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
-let g:neocomplcache_enable_caching_message = 0
 
 " vim-table-mode
 let g:table_mode_corner="|"
