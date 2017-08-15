@@ -106,6 +106,8 @@ let g:airline#extensions#branch#enabled = 1
 " Show buffer's filename
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_z = '%3p%% %4l/%L:%3v'
+let g:airline_section_error = ''
+let g:airline_section_warning = ''
 " Check whitespace at end of line
 let g:airline#extensions#whitespace#enabled = 1
 
@@ -113,7 +115,7 @@ let g:airline#extensions#whitespace#enabled = 1
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
 " Set minimum syntax keyword length.
-let g:deoplete#auto_complete_start_length = 4
+let g:deoplete#auto_complete_start_length = 3
 " Define dictionary.
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
@@ -137,7 +139,7 @@ let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 let g:seiya_auto_enable=1
 
 " Previm
-let g:previm_open_cmd = ''
+let g:previm_open_cmd = 'google-chrome'
 let g:previm_show_header = 0
 
 " vim-quickrun
