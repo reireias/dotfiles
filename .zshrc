@@ -1,5 +1,6 @@
 # Created by newuser for 5.0.6
 source ~/.bashrc
+source ~/.zplug/init.zsh
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions/src ~/.zsh/completion $fpath)
@@ -11,6 +12,10 @@ compinit -i
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
 SAVEHIST=1000000
+
+# zplug
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug load
 
 # cdr
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
