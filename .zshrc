@@ -16,6 +16,7 @@ SAVEHIST=1000000
 # zplug
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug load
+export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
 
 # cdr
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
