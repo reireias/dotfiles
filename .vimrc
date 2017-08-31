@@ -67,7 +67,6 @@ call dein#add('Shougo/dein.vim')
 call dein#add('tomasr/molokai')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
-call dein#add('Shougo/deoplete.nvim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('scrooloose/syntastic')
 call dein#add('miyakogi/seiya.vim')
@@ -84,6 +83,10 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('pearofducks/ansible-vim')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('ryym/vim-riot')
+
+if has('nvim')
+  call dein#add('Shougo/deoplete.nvim')
+endif
 
 " lazy load
 call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
