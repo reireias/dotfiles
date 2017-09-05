@@ -3,7 +3,7 @@ source ~/.bashrc
 source ~/.zplug/init.zsh
 
 # zsh-completions
-fpath=(/usr/local/share/zsh-completions/src ~/.zsh/completion $fpath)
+fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion $fpath)
 
 autoload -Uz compinit
 compinit -i
@@ -15,6 +15,7 @@ SAVEHIST=1000000
 
 # zplug
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-completions"
 zplug load
 export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
 
