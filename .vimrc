@@ -89,12 +89,19 @@ if has('nvim')
 endif
 
 " lazy load
+" sql
 call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
+" js
 call dein#add('jelera/vim-javascript-syntax', {'on_ft' : 'javascript'})
+" python
 call dein#add('davidhalter/jedi-vim', {'on_ft' : 'python'})
 call dein#add('fs111/pydoc.vim', {'on_ft' : 'python'})
 call dein#add('tmhedberg/SimpylFold', {'on_ft' : 'python'})
+" go
 call dein#add('fatih/vim-go', {'on_ft' : 'go'})
+" markdonw
+call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
+call dein#add('joker1007/vim-markdown-quote-syntax', {'on_ft' : 'markdown'})
 
 call dein#end()
 
@@ -182,6 +189,9 @@ let g:pydoc_cmd = '/usr/bin/pydoc3'
 " vim-go
 let g:go_fmt_autosave = 1
 
+" vim-markdown
+let g:vim_markdown_folding_level = 6
+
 " Load plugin/indent settings when filetype changed
 filetype plugin indent on
 
@@ -192,6 +202,10 @@ endif
 
 
 " Color {{{
+" Custom
+autocmd ColorScheme * highlight link mkdListItem Statement
+autocmd ColorScheme * highlight link htmlH1 PreProc
+
 " Color Scheme
 colorscheme molokai
 let g:rehash256 = 1
