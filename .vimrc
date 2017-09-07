@@ -65,7 +65,7 @@ call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/dein.vim')
 call dein#add('tomasr/molokai')
-"call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('scrooloose/syntastic')
