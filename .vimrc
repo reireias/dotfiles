@@ -65,7 +65,7 @@ call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/dein.vim')
 call dein#add('tomasr/molokai')
-call dein#add('vim-airline/vim-airline')
+"call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('scrooloose/syntastic')
@@ -83,6 +83,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('pearofducks/ansible-vim')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('ryym/vim-riot')
+call dein#add('reireias/vim-cheatsheet')
 
 if has('nvim')
   call dein#add('Shougo/deoplete.nvim')
@@ -191,6 +192,9 @@ let g:go_fmt_autosave = 1
 
 " vim-markdown
 let g:vim_markdown_folding_level = 6
+
+" vim-cheatsheet
+let g:cheat_sheet_file='~/dev/src/github.com/reireias/dotfiles/.cheatsheet.md'
 
 " Load plugin/indent settings when filetype changed
 filetype plugin indent on
