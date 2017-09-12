@@ -68,9 +68,12 @@ map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 
 " snippets
-imap <C-k>    <Plug>(neosnippet_expand_or_jump)
-smap <C-k>    <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>    <Plug>(neosnippet_expand_target)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+
+" NERDTree
+map <C-t> :NERDTreeToggle<CR>
 " }}}
 
 
@@ -104,7 +107,6 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tyru/open-browser.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
-call dein#add('vim-scripts/Align')
 
 if has('nvim')
   call dein#add('Shougo/deoplete.nvim')
