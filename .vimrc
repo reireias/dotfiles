@@ -65,7 +65,7 @@ nnoremap <silent>bd :bdelete<CR>
 
 " QuickFix
 map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
+map <C-p> :cprevious<CR>
 
 " snippets
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
