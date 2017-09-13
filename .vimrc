@@ -64,8 +64,8 @@ nnoremap <silent>bb :b#<CR>
 nnoremap <silent>bd :bdelete<CR>
 
 " QuickFix
-map <C-n> :cnext<CR>
-map <C-p> :cprevious<CR>
+noremap <C-n> :cnext<CR>
+noremap <C-p> :cprevious<CR>
 
 " snippets
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -73,7 +73,7 @@ smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " NERDTree
-map <C-t> :NERDTreeToggle<CR>
+noremap <C-t> :NERDTreeToggle<CR>
 " }}}
 
 
@@ -220,6 +220,7 @@ let g:jedi#rename_command = "None"
 let g:pydoc_cmd = '/usr/bin/pydoc3'
 
 " vim-go
+let g:go_def_mapping_enabled = 0
 let g:go_fmt_autosave = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
