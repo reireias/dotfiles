@@ -131,7 +131,6 @@ call dein#add('tmhedberg/SimpylFold', {'on_ft' : 'python'})
 call dein#add('fatih/vim-go', {'on_ft' : 'go'})
 " markdonw
 call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
-call dein#add('joker1007/vim-markdown-quote-syntax', {'on_ft' : 'markdown'})
 
 call dein#end()
 
