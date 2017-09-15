@@ -14,6 +14,9 @@ set listchars=tab:»-
 set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
+" Font
+set guifont=Ricty-Regular-nerd-Powerline\ 11
+
 " Clipboard
 set clipboard=unnamed,unnamedplus
 " }}}
@@ -103,10 +106,13 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('scrooloose/syntastic')
 call dein#add('simeji/winresizer')
 call dein#add('thinca/vim-quickrun')
+call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tyru/open-browser.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
+" finally load
+call dein#add('ryanoasis/vim-devicons')
 
 if has('nvim')
   call dein#add('Shougo/deoplete.nvim')
