@@ -2,6 +2,18 @@
 
 ## Install
 
+### zplug
+- Downlo and install
+```sh
+$ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+$ zplug install
+```
+
+- clear zcompdump
+```sh
+$ rm ~/.zcompdump ~/.zplug/zcompdump && compinit
+```
+
 ### dein.vim
 ```sh
 $ mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
