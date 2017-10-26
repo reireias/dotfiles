@@ -73,6 +73,7 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gdh='git diff HEAD'
 alias gds='git diff --stat'
+alias gdt='git difftool'
 alias gst='git status'
 alias gp='git pull'
 
