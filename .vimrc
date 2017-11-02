@@ -131,6 +131,8 @@ call dein#add('tmhedberg/SimpylFold', {'on_ft' : 'python'})
 call dein#add('fatih/vim-go', {'on_ft' : 'go'})
 " markdonw
 call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
+" vue
+call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
 
 call dein#end()
 
