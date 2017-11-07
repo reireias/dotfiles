@@ -78,6 +78,7 @@ alias gst='git status'
 alias gp='git pull'
 
 # docker
+alias d='docker'
 alias dps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
 
 # key bind
