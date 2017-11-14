@@ -66,6 +66,7 @@ alias fgrep='find ./ | grep'
 
 # git
 alias g='git'
+alias gb='git branch'
 alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(magenta)%ci%Creset%n%C(cyan)%an <%ae>%Creset%n%B"'
 alias glp='git log -p'
 alias glg='git log --graph --pretty=format:"%C(yellow)%h%Creset %C(magenta)%ci%Creset%n%C(cyan)%an <%ae>%Creset%n%B"'
