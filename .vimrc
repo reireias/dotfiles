@@ -236,6 +236,7 @@ let g:go_highlight_methods = 1
 
 " vim-markdown
 let g:vim_markdown_folding_level = 6
+set conceallevel=0
 
 " vim-cheatsheet
 let g:cheat_sheet_file='~/dev/src/github.com/reireias/dotfiles/.cheatsheet.md'
