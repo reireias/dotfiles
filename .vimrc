@@ -239,7 +239,7 @@ let g:vim_markdown_folding_level = 6
 set conceallevel=0
 
 " vim-cheatsheet
-let g:cheat_sheet_file='~/dev/src/github.com/reireias/dotfiles/.cheatsheet.md'
+let g:cheat_sheet_file='~/.cheatsheet.md'
 
 " Load plugin/indent settings when filetype changed
 filetype plugin indent on
