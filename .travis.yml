@@ -2,6 +2,10 @@ sudo: required
 language: c
 os:
   - linux
+addons:
+  apt:
+    packages:
+      - shellcheck
 install:
   - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
   - sudo ~/.dotfiles/initialize.sh
