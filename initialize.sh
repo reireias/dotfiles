@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ! type git > /dev/null 2>&1; then
+if ! which git > /dev/null 2>&1; then
     sudo apt-get install -y git
 fi
 
