@@ -2,6 +2,12 @@
 
 ## Install
 
+### dotfiles
+
+```sh
+$ curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
+```
+
 ### zplug
 - Downlo and install
 ```sh
