@@ -3,7 +3,7 @@ os:
   - linux
 install:
   - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
-  - cd .dotfiles
+  - cd ~/.dotfiles
   - ./initialize.sh
 script:
   - echo "TODO: shellcheck"
