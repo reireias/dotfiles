@@ -4,7 +4,7 @@ os:
   - linux
 install:
   - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
-  - sudo .dotfiles/initialize.sh
+  - sudo ~/.dotfiles/initialize.sh
 script:
   - test/test.sh
 
