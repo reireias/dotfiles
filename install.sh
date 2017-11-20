@@ -18,8 +18,7 @@ else
 fi
 
 if [ -d ~/.dotfiles ]; then
-    cd ~/.dotfiles
-    if [ $? -ne 0 ]; then
+    if ! cd ~/.dotfiles; then
         die "not found: $DOTPATH"
     fi
 

@@ -4,9 +4,12 @@ errors=()
 
 while IFS= read -r -d '' f
 do
-    shellcheck "$f" && echo "[OK]: $f"
+    
 
-    if [ $? -ne 0 ]; then
+    if shellcheck "$f"
+    then
+        echo "[OK]: $f"
+    else
         errors+=("$f")
     fi
 done < <(find ./ -type d -name ".git" -prune -o -type f -name "*.sh" -print0)
