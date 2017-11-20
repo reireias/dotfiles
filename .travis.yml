@@ -4,8 +4,7 @@ os:
   - linux
 install:
   - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
-  - cd ~/.dotfiles
-  - sudo ./initialize.sh
+  - sudo .dotfiles/initialize.sh
 script:
-  - echo "TODO: shellcheck"
+  - test/test.sh
 
