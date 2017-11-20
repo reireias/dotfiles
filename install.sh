@@ -2,19 +2,15 @@
 
 DOTPATH=~/.dotfiles
 GITHUB_URL="https://github.com/reireias/dotfiles.git"
+TARBALL="https://github.com/reireias/dotfiles/archive/master.tar.gz"
 
-if type git; then
+if type git > /dev/null 2>&1; then
     git clone --recursive "$GITHUB_URL" "$DOTPATH"
-elif type curl || type wget; then
-    tarball="https://github.com/reireias/dotfiles/archive/master.tar.gz"
-
-    if type curl; then
-        curl -L "$tarball" | tar xvzf -
-
-    elif type wget; then
-        wget -O - "$tarball" | tar xvzf -
-    fi
-
+elif type curl > /dev/null 2>&1; then
+    curl -L "$TARBALL" | tar xvzf -
+    mv -f dotfiles-master "$DOTPATH"
+elif type wget > /dev/null 2>&1; then
+    wget -O - "$TARBALL" | tar xvzf -
     mv -f dotfiles-master "$DOTPATH"
 else
     echo "git or curl or wget required"
