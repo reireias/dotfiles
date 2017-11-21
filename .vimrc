@@ -34,6 +34,7 @@ augroup vimrc_filetype
   autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
   autocmd FileType xml setlocal shiftwidth=2 tabstop=2
   autocmd FileType html setlocal shiftwidth=2 tabstop=2
+  autocmd FileType zsh setlocal foldmethod=marker
   " golang
   autocmd FileType go nmap <leader>b <Plug>(go-build)
   autocmd FileType go nmap <leader>r <Plug>(go-run)
