@@ -29,6 +29,6 @@ else
 fi
 
 if [ ! ${#errors[@]} -eq 0 ]; then
-    echo "These files failed shellcheck: ${errors[*]}"
+    echo "These files failed check: ${errors[*]}"
     exit 1
 fi
