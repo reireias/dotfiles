@@ -202,6 +202,6 @@ man() {
 }
 
 # Load local setting
-if [ -e ~/.env/.zshrc ]; then
-    source ~/.env/.zshrc
+if [ -e ~/.zshrc_local ]; then
+    source ~/.zshrc_local
 fi

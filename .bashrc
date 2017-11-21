@@ -10,6 +10,6 @@ eval `dircolors ${HOME}/.dircolors`
 export LESS='-R'
 
 # Load local setting
-if [ -e ~/.env/.bashrc ]; then
-    source ~/.env/.bashrc
+if [ -e ~/.bashrc_local ]; then
+    source ~/.bashrc_local
 fi
