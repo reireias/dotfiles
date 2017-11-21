@@ -11,14 +11,14 @@ chsh -s /usr/bin/zsh
 
 # zplug
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-zplug install
+zsh -c 'zplug install'
 if [ -e ~/.zcompdump ]; then
     rm ~/.zcompdump
 fi
 if [ -e ~/.zplug/zcompdump ]; then
     rm ~/.zplug/zcompdump
 fi
-compinit
+zsh -c 'compinit'
 
 
 # neovim

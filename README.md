@@ -10,37 +10,12 @@
 $ curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
 ```
 
-### zsh
-```sh
-$ sudo apt-get install zsh
-$ chsh -s /usr/bin/zsh
-```
+## Initialize
 
-### zplug
-- requires git and zsh
-- Downlo and install
-```sh
-$ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-$ zplug install
-```
+- Initialize tasks set up zsh and neovim
 
-- clear zcompdump
 ```sh
-$ rm ~/.zcompdump ~/.zplug/zcompdump && compinit
-```
-
-### dein.vim
-- requires vim
-```sh
-$ mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
-$ git clone https://github.com/Shougo/dein.vim.git ~/.vim/dein/repos/github.com/Shougo/dein.vim
-```
-
-### neovim
-```sh
-$ sudo apt-get install neovim
-$ ln -s ~/.vim ~/.config/nvim
-$ ln -s ~/.vimrc ~/.config/nvim/init.vim
+$ ~/.dotfiles/initialize.sh
 ```
 
 ### fonts
