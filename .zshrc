@@ -1,23 +1,33 @@
-# Created by newuser for 5.0.6
+# INPORTS {{{
 source ~/.bashrc
 source ~/.zplug/init.zsh
+# }}}
+
+
+# PLUGINS {{{
+# zplug
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-completions"
+zplug load
+export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
 
 # zsh-completions
 fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion $fpath)
 
 autoload -Uz compinit
 compinit -i
+# }}}
 
+
+# HISTORY {{{
 # history
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
 SAVEHIST=1000000
 
-# zplug
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-completions"
-zplug load
-export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
+# share .zshhistory
+setopt inc_append_history
+setopt share_history
 
 # cdr
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
@@ -28,10 +38,16 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
     zstyle ':chpwd:*' recent-dirs-max 1000
     zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
+# }}}
 
+
+# COLOR {{{
 # LS_COLORS
 eval `dircolors -b`
 eval `dircolors ${HOME}/.dircolors`
+
+# remove file mark
+unsetopt list_types
 
 # color at completion
 autoload colors
@@ -44,7 +60,27 @@ PROMPT=" %{[38;5;154m%}%~%{[0m%}
  %{[38;5;81m%}%(!.#.$)%{[0m%} "
 RPROMPT="%{[38;5;134m%}[%m]%{[0m%}"
 
-# alias
+# less
+export LESS='-R'
+
+# man
+export MANPAGER='less -R'
+man() {
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;33m") \
+        LESS_TERMCAP_md=$(printf "\e[1;36m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
+}
+# }}}
+
+
+# ALIAS {{{
+# general
 alias ls='ls -h --color=always'
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
@@ -81,10 +117,11 @@ alias gp='git pull'
 # docker
 alias d='docker'
 alias dps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
+# }}}
 
+
+# KEY {{{
 # key bind
-# create a zkbd compatible hash;
-# to add other keys to this hash, see: man 5 terminfo
 typeset -A key
 
 key[Home]=${terminfo[khome]}
@@ -114,32 +151,20 @@ key[PageDown]=${terminfo[knp]}
 bindkey "\e[1;5C" forward-word
 bindkey "\e[1;5D" backward-word
 
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-  function zle-line-init () {
-    printf '%s' "${terminfo[smkx]}"
-  }
-  function zle-line-finish () {
-    printf '%s' "${terminfo[rmkx]}"
-  }
-  zle -N zle-line-init
-  zle -N zle-line-finish
+    function zle-line-init () {
+        printf '%s' "${terminfo[smkx]}"
+    }
+    function zle-line-finish () {
+        printf '%s' "${terminfo[rmkx]}"
+    }
+    zle -N zle-line-init
+    zle -N zle-line-finish
 fi
+# }}}
 
-# file mark
-unsetopt list_types
 
-# history on screen
-# share .zshhistory
-setopt inc_append_history
-setopt share_history
-
-# go
-export GOROOT=/usr/lib/go
-export GOPATH=$HOME/dev
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
+# PECO {{{
 # peco
 function peco-history-selection() {
     BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
@@ -175,33 +200,28 @@ function peco-cdr () {
 }
 zle -N peco-cdr
 bindkey '^E' peco-cdr
+# }}}
 
+
+# OTHER {{{
 # pandoc
 pandoc_git () {
     pandoc -s --self-contained -t html5 -c ~/.pandoc/github.css $@
 }
 
-# NeoVim
+# neovim
 export XDG_CONFIG_HOME=~/.config
 
-# less
-export LESS='-R'
+# golang
+export GOROOT=/usr/lib/go
+export GOPATH=$HOME/dev
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# }}}
 
-# man
-export MANPAGER='less -R'
-man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;33m") \
-        LESS_TERMCAP_md=$(printf "\e[1;36m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;32m") \
-        man "$@"
-}
 
+# LOCAL {{{
 # Load local setting
 if [ -e ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
+# }}}
