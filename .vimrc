@@ -22,6 +22,7 @@ set foldlevel=100
 
 " Encoding
 set encoding=utf-8
+scriptencoding utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
 " Font
@@ -92,9 +93,6 @@ noremap <C-t> :NERDTreeToggle<CR>
 
 
 " Plugin {{{
-if &compatible
-  set nocompatible
-endif
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.vim/dein'))
@@ -122,6 +120,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tyru/open-browser.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
+call dein#add('vim-jp/vimdoc-ja')
 " finally load
 call dein#add('ryanoasis/vim-devicons')
 
@@ -183,7 +182,7 @@ endif
 let g:neosnippet#snippets_directory = '~/.vim/dein/repos/github.com/fatih/vim-go/gosnippets/snippets'
 
 " vim-table-mode
-let g:table_mode_corner="|"
+let g:table_mode_corner = '|'
 let g:table_mode_auto_align = 0
 
 " syntastic
@@ -192,9 +191,11 @@ let g:syntastic_javascript_gjslint_args = '--disable 0110,0120,0213'
 let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_vim_checkers = ['vint']
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+let g:syntastic_always_populate_loc_list = 1
 
 " seiya
 let g:seiya_auto_enable=1
@@ -205,9 +206,9 @@ let g:previm_show_header = 0
 
 " vim-quickrun
 let g:quickrun_config = {
-\   "_": {
-\       "outputter/buffer/close_on_empty": 1,
-\       "outputter/buffer/append": 1
+\   '_': {
+\       'outputter/buffer/close_on_empty': 1,
+\       'outputter/buffer/append': 1
 \   }
 \}
 
@@ -228,11 +229,11 @@ set completeopt=menu,menuone
 " Show function signature on command line (need 'set noshowmode')
 let g:jedi#show_call_signatures = 2
 " Go to definitions
-let g:jedi#goto_definitions_command = "<C-d>"
+let g:jedi#goto_definitions_command = '<C-d>'
 " Remove show document command
-let g:jedi#documentation_command = "None"
+let g:jedi#documentation_command = 'None'
 " Remove rename command (for vim-quickrun)
-let g:jedi#rename_command = "None"
+let g:jedi#rename_command = 'None'
 
 " pydoc
 let g:pydoc_cmd = '/usr/bin/pydoc3'
@@ -263,8 +264,11 @@ endif
 
 " Color {{{
 " Custom
-autocmd ColorScheme * highlight link mkdListItem Statement
-autocmd ColorScheme * highlight link htmlH1 PreProc
+augroup colorscheme
+  autocmd!
+  autocmd ColorScheme * highlight link mkdListItem Statement
+  autocmd ColorScheme * highlight link htmlH1 PreProc
+augroup END
 
 " Color Scheme
 colorscheme molokai
