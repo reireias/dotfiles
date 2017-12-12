@@ -186,16 +186,22 @@ let g:table_mode_corner = '|'
 let g:table_mode_auto_align = 0
 
 " syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_save = 1
+" syntastic-javascript
 let g:syntastic_javascript_checkers = ['gjslint']
 let g:syntastic_javascript_gjslint_args = '--disable 0110,0120,0213'
-let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+" syntastic-go
 set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
+let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+" syntastic-python
 let g:syntastic_python_checkers = ['pylint']
+" syntastic-vim
 let g:syntastic_vim_checkers = ['vint']
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_save = 1
-let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
-let g:syntastic_always_populate_loc_list = 1
+" syntastic-yaml
+let g:syntastic_yaml_checkers = ['yamllint']
+
 
 " seiya
 let g:seiya_auto_enable=1
