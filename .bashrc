@@ -20,3 +20,6 @@ export LESS='-R'
 if [ -e ~/.bashrc_local ]; then
     source ~/.bashrc_local
 fi
+
+# added by travis gem
+[ -f /home/fx30079/.travis/travis.sh ] && source /home/fx30079/.travis/travis.sh
