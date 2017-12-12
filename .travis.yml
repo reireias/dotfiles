@@ -6,8 +6,10 @@ addons:
   apt:
     packages:
       - shellcheck
+      - python3
+      - python3-pip
 install:
-  - pip install vim-vint
+  - pip3 install vim-vint
   - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
   - sudo ~/.dotfiles/initialize.sh
 script:
