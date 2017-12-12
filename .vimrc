@@ -57,7 +57,7 @@ augroup END
 
 
 " KeyMap {{{
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 " Home / End
 noremap <Leader>h ^
@@ -189,7 +189,7 @@ let g:table_mode_auto_align = 0
 let g:syntastic_javascript_checkers = ['gjslint']
 let g:syntastic_javascript_gjslint_args = '--disable 0110,0120,0213'
 let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_vim_checkers = ['vint']
 let g:syntastic_check_on_open = 0
