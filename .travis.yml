@@ -1,3 +1,4 @@
+---
 sudo: required
 language: sh
 os:
@@ -13,4 +14,3 @@ install:
 script:
   - test/test.sh
   - vint --color --style .vimrc
-
