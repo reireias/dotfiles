@@ -108,7 +108,6 @@ call dein#add('fatih/molokai')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('miyakogi/seiya.vim')
 call dein#add('pearofducks/ansible-vim')
-call dein#add('reireias/previm')
 call dein#add('reireias/vim-cheatsheet')
 call dein#add('ryym/vim-riot')
 call dein#add('scrooloose/nerdtree')
@@ -141,6 +140,7 @@ call dein#add('tmhedberg/SimpylFold', {'on_ft' : 'python'})
 call dein#add('fatih/vim-go', {'on_ft' : 'go'})
 " markdonw
 call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
+call dein#add('suan/vim-instant-markdown', {'on_ft' : 'markdown'})
 " vue
 call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
 
@@ -200,9 +200,8 @@ let g:syntastic_always_populate_loc_list = 1
 " seiya
 let g:seiya_auto_enable=1
 
-" Previm
-let g:previm_open_cmd = 'google-chrome'
-let g:previm_show_header = 0
+" vim-instant-markdown
+let g:instant_markdown_autostart = 0
 
 " vim-quickrun
 let g:quickrun_config = {
