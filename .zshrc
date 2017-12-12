@@ -225,6 +225,9 @@ export XDG_CONFIG_HOME=~/.config
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/dev
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# travis
+[ -f /home/fx30079/.travis/travis.sh ] && source /home/fx30079/.travis/travis.sh
 # }}}
 
 
