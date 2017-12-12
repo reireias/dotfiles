@@ -25,6 +25,7 @@ if [ -d ~/.dotfiles ]; then
     for f in .??*
     do
         [ "$f" = ".git" ] && continue
+        [ "$f" = ".travis.yml" ] && continue
 
         ln -snfv "$DOTPATH/$f" "$HOME/$f"
     done
