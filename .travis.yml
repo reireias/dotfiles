@@ -7,8 +7,7 @@ addons:
     packages:
       - shellcheck
 install:
-  - pip install pyyaml
-  - pip install vim-vint
+  - sudo pip install vim-vint
   - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
   - sudo ~/.dotfiles/initialize.sh
 script:
