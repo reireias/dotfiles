@@ -187,7 +187,7 @@ let g:table_mode_auto_align = 0
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
 " syntastic-javascript
 let g:syntastic_javascript_checkers = ['gjslint']
