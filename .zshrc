@@ -61,11 +61,7 @@ autoload colors
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# prompt
-colors
-PROMPT=" %{[38;5;154m%}%~%{[0m%}
- %{[38;5;81m%}%(!.#.$)%{[0m%} "
-RPROMPT="%{[38;5;134m%}[%m]%{[0m%}"
+
 
 # less
 export LESS='-R'
@@ -83,6 +79,26 @@ man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
+# }}}
+
+
+# PROMPT {{{
+# prompt
+colors
+PROMPT=" %{[38;5;154m%}%~%{[0m%}
+ %{[38;5;81m%}%(!.#.$)%{[0m%} "
+RPROMPT="%{[38;5;134m%}[%m]%{[0m%}"
+
+# vcs_info
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+RPROMPT='${vcs_info_msg_0_} '$RPROMPT
 # }}}
 
 
