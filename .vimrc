@@ -45,7 +45,6 @@ augroup vimrc_filetype
   autocmd FileType xml setlocal shiftwidth=2 tabstop=2
   autocmd FileType html setlocal shiftwidth=2 tabstop=2
   autocmd FileType zsh setlocal foldmethod=marker
-  " golang
   autocmd FileType go nmap <leader>b <Plug>(go-build)
   autocmd FileType go nmap <leader>r <Plug>(go-run)
   autocmd FileType go nmap <leader>t <Plug>(go-test)
@@ -95,6 +94,7 @@ noremap <C-t> :NERDTreeToggle<CR>
 
 
 " Plugin {{{
+" plugins {{{
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.vim/dein'))
@@ -111,6 +111,7 @@ call dein#add('leafgarland/typescript-vim')
 call dein#add('miyakogi/seiya.vim')
 call dein#add('pearofducks/ansible-vim')
 call dein#add('reireias/vim-cheatsheet')
+call dein#add('ryanoasis/vim-devicons')
 call dein#add('ryym/vim-riot')
 call dein#add('scrooloose/nerdtree')
 call dein#add('scrooloose/syntastic')
@@ -122,8 +123,6 @@ call dein#add('tyru/open-browser.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-jp/vimdoc-ja')
-" finally load
-call dein#add('ryanoasis/vim-devicons')
 
 if has('nvim')
   call dein#add('Shougo/deoplete.nvim')
@@ -147,11 +146,13 @@ call dein#add('suan/vim-instant-markdown', {'on_ft' : 'markdown'})
 call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
 
 call dein#end()
+" }}}
 
-" dein
+" dein {{{
 let g:dein#install_process_timeout = 300
+" }}}
 
-" airline
+" airline {{{
 let g:airline_theme = 'wombat'
 set laststatus=2
 " Show branch name
@@ -166,8 +167,9 @@ let g:airline_section_z = '%4l/%L:%3v'
 let g:airline#extensions#default#section_truncate_width = {}
 " Check whitespace at end of line
 let g:airline#extensions#whitespace#enabled = 1
+" }}}
 
-" deoplete
+" deoplete {{{
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
 " Set minimum syntax keyword length.
@@ -176,59 +178,66 @@ let g:deoplete#auto_complete_start_length = 3
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
+" }}}
 
-" neosnippet
+" neosnippet {{{
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 let g:neosnippet#snippets_directory = '~/.vim/dein/repos/github.com/fatih/vim-go/gosnippets/snippets'
+" }}}
 
-" vim-table-mode
+" vim-table-mode {{{
 let g:table_mode_corner = '|'
 let g:table_mode_auto_align = 0
+" }}}
 
-" syntastic
+" syntastic {{{
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
-" syntastic-javascript
+" javascript
 let g:syntastic_javascript_checkers = ['gjslint']
 let g:syntastic_javascript_gjslint_args = '--disable 0110,0120,0213'
-" syntastic-go
+" go
 set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
 let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-" syntastic-python
+" python
 let g:syntastic_python_checkers = ['pylint']
-" syntastic-vim
+" vim
 let g:syntastic_vim_checkers = ['vint']
-" syntastic-yaml
+" yaml
 let g:syntastic_yaml_checkers = ['yamllint']
+" }}}
 
-
-" seiya
+" seiya {{{
 let g:seiya_auto_enable=1
+" }}}
 
-" vim-instant-markdown
+" vim-instant-markdown {{{
 let g:instant_markdown_autostart = 0
+" }}}
 
-" vim-quickrun
+" vim-quickrun {{{
 let g:quickrun_config = {
-\   '_': {
-\       'outputter/buffer/close_on_empty': 1,
-\       'outputter/buffer/append': 1
-\   }
-\}
+      \   '_': {
+      \       'outputter/buffer/close_on_empty': 1,
+      \       'outputter/buffer/append': 1
+      \   }
+      \}
+" }}}
 
-" winresizer
+" winresizer {{{
 let g:winresizer_vert_resize = 1
 let g:winresizer_horiz_resize = 1
+" }}}
 
-" unite-outline
-" Display at bottom or right
+" unite-outline {{{
 let g:unite_split_rule = 'botright'
+" }}}
 
-" jedi-vim
-"   needs python3 and 'pip3 install neovim'
+" jedi-vim {{{
+" needs python3 and 'pip3 install neovim'
 " python version
 let g:jedi#force_py_version = 3
 " hide docstring
@@ -241,31 +250,38 @@ let g:jedi#goto_definitions_command = '<C-d>'
 let g:jedi#documentation_command = 'None'
 " Remove rename command (for vim-quickrun)
 let g:jedi#rename_command = 'None'
+" }}}
 
-" pydoc
+" pydoc {{{
 let g:pydoc_cmd = '/usr/bin/pydoc3'
+" }}}
 
-" vim-go
+" vim-go {{{
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_autosave = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
+" }}}
 
-" vim-markdown
+" vim-markdown {{{
 let g:vim_markdown_folding_level = 6
 set conceallevel=0
+" }}}
 
-" vim-cheatsheet
+" vim-cheatsheet {{{
 let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
+" }}}
 
+" finally {{{
 " Load plugin/indent settings when filetype changed
 filetype plugin indent on
 
 if dein#check_install()
   call dein#install()
 endif
+" }}}
 " }}}
 
 
