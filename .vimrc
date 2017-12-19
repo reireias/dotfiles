@@ -37,7 +37,9 @@ set clipboard=unnamed,unnamedplus
 augroup vimrc_filetype
   autocmd!
   autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd FileType vim setlocal shiftwidth=2 tabstop=2 fdm=marker
+  autocmd FileType vim setlocal shiftwidth=2 tabstop=2 foldmethod=marker
+  autocmd FileType vim :highlight link FoldComment SpecialComment
+  autocmd FileType vim :match FoldComment /^".*\({{{\|}}}\)/
   autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
   autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
   autocmd FileType xml setlocal shiftwidth=2 tabstop=2
@@ -269,7 +271,7 @@ endif
 
 " Color {{{
 " Custom
-augroup colorscheme
+augroup color_scheme
   autocmd!
   autocmd ColorScheme * highlight link mkdListItem Statement
   autocmd ColorScheme * highlight link htmlH1 PreProc
