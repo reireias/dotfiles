@@ -193,10 +193,11 @@ let g:table_mode_auto_align = 0
 " }}}
 
 " ale {{{
-let g:ale_sign_warning = '--'
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
 let g:airline#extensions#ale#open_lnum_symbol = '('
 let g:airline#extensions#ale#close_lnum_symbol = ')'
-highlight link ALEErrorSign ErrorMsg
+highlight link ALEErrorSign Tag
 highlight link ALEWarningSign StorageClass
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
