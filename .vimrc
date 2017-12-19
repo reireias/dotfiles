@@ -114,7 +114,6 @@ call dein#add('reireias/vim-cheatsheet')
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('ryym/vim-riot')
 call dein#add('scrooloose/nerdtree')
-call dein#add('scrooloose/syntastic')
 call dein#add('simeji/winresizer')
 call dein#add('thinca/vim-quickrun')
 call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
@@ -123,6 +122,7 @@ call dein#add('tyru/open-browser.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-jp/vimdoc-ja')
+call dein#add('w0rp/ale')
 
 if has('nvim')
   call dein#add('Shougo/deoplete.nvim')
@@ -163,7 +163,7 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 let g:airline_section_c = '%t'
 let g:airline_section_x = '%{&filetype}'
-let g:airline_section_z = '%4l/%L:%3v'
+let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
 let g:airline#extensions#default#section_truncate_width = {}
 " Check whitespace at end of line
 let g:airline#extensions#whitespace#enabled = 1
@@ -192,22 +192,14 @@ let g:table_mode_corner = '|'
 let g:table_mode_auto_align = 0
 " }}}
 
-" syntastic {{{
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_save = 1
-" javascript
-let g:syntastic_javascript_checkers = ['gjslint']
-let g:syntastic_javascript_gjslint_args = '--disable 0110,0120,0213'
-" go
-set runtimepath+=$GOPATH/src/github.com/golang/lint/misc/vim
-let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-" python
-let g:syntastic_python_checkers = ['pylint']
-" vim
-let g:syntastic_vim_checkers = ['vint']
-" yaml
-let g:syntastic_yaml_checkers = ['yamllint']
+" ale {{{
+let g:ale_sign_warning = '--'
+let g:airline#extensions#ale#open_lnum_symbol = '('
+let g:airline#extensions#ale#close_lnum_symbol = ')'
+highlight link ALEErrorSign ErrorMsg
+highlight link ALEWarningSign StorageClass
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " }}}
 
 " seiya {{{
