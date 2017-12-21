@@ -45,6 +45,8 @@ augroup vimrc_filetype
   autocmd FileType xml setlocal shiftwidth=2 tabstop=2
   autocmd FileType html setlocal shiftwidth=2 tabstop=2
   autocmd FileType zsh setlocal foldmethod=marker
+  autocmd FileType zsh :highlight link FoldComment SpecialComment
+  autocmd FileType zsh :match FoldComment /^#.*\({{{\|}}}\)/
   autocmd FileType go nmap <leader>b <Plug>(go-build)
   autocmd FileType go nmap <leader>r <Plug>(go-run)
   autocmd FileType go nmap <leader>t <Plug>(go-test)
