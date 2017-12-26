@@ -110,6 +110,7 @@ call dein#add('Shougo/unite.vim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('fatih/molokai')
 call dein#add('leafgarland/typescript-vim')
+call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
 call dein#add('pearofducks/ansible-vim')
 call dein#add('reireias/vim-cheatsheet')
@@ -273,6 +274,10 @@ set conceallevel=0
 
 " vim-cheatsheet {{{
 let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
+" }}}
+
+" sonictemplate {{{
+let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 " }}}
 
 " finally {{{
