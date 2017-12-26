@@ -30,6 +30,8 @@ sudo apt-get update -q
 sudo apt-get install -y neovim
 ln -s ~/.vim ~/.config/nvim
 ln -s ~/.vimrc ~/.config/nvim/init.vim
+ln -s ~/dev/src/github.com/reireias/dotfiles/vim/snippets snippets
+ln -s ~/dev/src/github.com/reireias/dotfiles/vim/template template
 
 
 # font
