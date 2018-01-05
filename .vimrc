@@ -76,10 +76,10 @@ nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 nnoremap <Leader>o :<C-u>Unite -vertical -winwidth=30 -no-quit outline<CR>
 
 " Buffer
-nnoremap <silent>bp :bprevious<CR>
-nnoremap <silent>bn :bnext<CR>
-nnoremap <silent>bb :b#<CR>
-nnoremap <silent>bd :bdelete<CR>
+nnoremap <Leader>bp :bprevious<CR>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bb :b#<CR>
+nnoremap <Leader>bd :bdelete<CR>
 
 " QuickFix
 noremap <C-n> :cnext<CR>
