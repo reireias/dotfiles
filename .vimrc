@@ -201,6 +201,7 @@ let g:table_mode_auto_align = 0
 " }}}
 
 " ale {{{
+let g:ale_lint_on_text_changed = 0
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:airline#extensions#ale#open_lnum_symbol = '('
