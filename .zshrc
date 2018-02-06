@@ -20,9 +20,6 @@ export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
 
 # zsh-completions
 fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion $fpath)
-
-autoload -Uz compinit
-compinit -i
 # }}}
 
 
