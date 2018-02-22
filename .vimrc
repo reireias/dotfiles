@@ -252,7 +252,7 @@ let g:jedi#goto_definitions_command = '<C-d>'
 " Remove show document command
 let g:jedi#documentation_command = 'None'
 " Remove rename command (for vim-quickrun)
-let g:jedi#rename_command = 'None'
+let g:jedi#rename_command = '<leader>pr'
 " }}}
 
 " pydoc {{{
