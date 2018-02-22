@@ -248,11 +248,13 @@ set completeopt=menu,menuone
 " Show function signature on command line (need 'set noshowmode')
 let g:jedi#show_call_signatures = 2
 " Go to definitions
-let g:jedi#goto_definitions_command = '<C-d>'
+let g:jedi#goto_definitions_command = 'None'
+command PyDef call jedi#goto_definitions()
 " Remove show document command
 let g:jedi#documentation_command = 'None'
 " Remove rename command (for vim-quickrun)
-let g:jedi#rename_command = '<leader>pr'
+let g:jedi#rename_command = 'None'
+command PyRename call jedi#rename()
 " }}}
 
 " pydoc {{{
