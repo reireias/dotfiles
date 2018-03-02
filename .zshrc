@@ -16,6 +16,7 @@ source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
 zplug load
+setopt nonomatch
 export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
 
 # zsh-completions
