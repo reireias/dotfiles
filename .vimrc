@@ -109,6 +109,7 @@ call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/unite.vim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('fatih/molokai')
+call dein#add('janko-m/vim-test')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
@@ -120,6 +121,7 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('simeji/winresizer')
 call dein#add('thinca/vim-quickrun')
 call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+call dein#add('tpope/vim-dispatch')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tyru/open-browser.vim')
 call dein#add('vim-airline/vim-airline')
@@ -281,6 +283,14 @@ let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
 
 " sonictemplate {{{
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
+" }}}
+
+" vim-test {{{
+let g:test#strategy = 'dispatch'
+
+function! test#python#pyunit#executable() abort
+  return 'python3 -m unittest'
+endfunction
 " }}}
 
 " finally {{{
