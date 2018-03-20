@@ -110,6 +110,7 @@ call dein#add('Shougo/unite.vim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('fatih/molokai')
 call dein#add('janko-m/vim-test')
+call dein#add('jlanzarotta/bufexplorer')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
@@ -164,6 +165,7 @@ set laststatus=2
 let g:airline#extensions#branch#enabled = 1
 " Show buffer's filename
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 let g:airline_section_c = '%t'
