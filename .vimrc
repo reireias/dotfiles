@@ -138,7 +138,7 @@ endif
 " sql
 call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
 " js
-call dein#add('jelera/vim-javascript-syntax', {'on_ft' : 'javascript'})
+call dein#add('pangloss/vim-javascript', {'on_ft' : 'javascript'})
 " python
 call dein#add('davidhalter/jedi-vim', {'on_ft' : 'python'})
 call dein#add('fs111/pydoc.vim', {'on_ft' : 'python'})
