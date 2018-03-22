@@ -11,7 +11,7 @@
 export LANG=ja_JP.utf8 
 
 # ls color settings
-eval `dircolors ${HOME}/.dircolors`
+eval "$(dircolors "${HOME}/.dircolors")"
 
 # less
 export LESS='-R'
