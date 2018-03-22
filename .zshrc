@@ -120,6 +120,7 @@ alias reload='source ~/.zshrc'
 alias ssh='TERM=xterm ssh'
 alias jgrep='grep --include="*.java"'
 alias fgrep='find ./ | grep'
+alias sudo='sudo '
 
 # git
 alias g='git'
