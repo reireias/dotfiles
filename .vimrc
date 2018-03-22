@@ -107,6 +107,7 @@ call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/unite.vim')
+call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('fatih/molokai')
 call dein#add('janko-m/vim-test')
@@ -294,6 +295,10 @@ let g:test#strategy = 'dispatch'
 function! test#python#pyunit#executable() abort
   return 'python3 -m unittest'
 endfunction
+" }}}
+
+" NERDTree {{{
+let g:NERDTreeShowHidden = 1
 " }}}
 
 " finally {{{
