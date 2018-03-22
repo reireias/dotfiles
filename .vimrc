@@ -92,6 +92,10 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " NERDTree
 noremap <C-t> :NERDTreeToggle<CR>
+
+" scroll
+noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 " }}}
 
 
@@ -131,6 +135,7 @@ call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-jp/vimdoc-ja')
 call dein#add('w0rp/ale')
+call dein#add('yuttie/comfortable-motion.vim')
 
 if has('nvim')
   call dein#add('Shougo/deoplete.nvim')
