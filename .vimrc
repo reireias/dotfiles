@@ -157,6 +157,8 @@ call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
 call dein#add('suan/vim-instant-markdown', {'on_ft' : 'markdown'})
 " vue
 call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
+" nginx
+call dein#add('chr4/nginx.vim', {'on_ft' : 'nginx'})
 
 call dein#end()
 " }}}
@@ -304,6 +306,10 @@ endfunction
 
 " NERDTree {{{
 let g:NERDTreeShowHidden = 1
+" }}}
+
+" nginx {{{
+command Nginx set filetype=nginx
 " }}}
 
 " finally {{{
