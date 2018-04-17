@@ -196,7 +196,6 @@ function peco-history-selection() {
     CURSOR=$#BUFFER
     zle reset-prompt
 }
-
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
@@ -212,7 +211,6 @@ function peco-ghq-look () {
         zle accept-line
     fi
 }
-
 zle -N peco-ghq-look
 bindkey '^G' peco-ghq-look
 
@@ -225,6 +223,16 @@ function peco-cdr () {
 }
 zle -N peco-cdr
 bindkey '^E' peco-cdr
+
+function peco-find () {
+    local selected=$(find ./ -type d -name '.git' -prune -o -type f -print | peco --prompt "find >")
+    if [ -n "$selected" ]; then
+        BUFFER="vi ${selected}"
+        zle accept-line
+    fi
+}
+zle -N peco-find
+bindkey '^F' peco-find
 # }}}
 
 # COMPLETION {{{
