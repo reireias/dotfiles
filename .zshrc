@@ -85,7 +85,7 @@ man() {
 colors
 PROMPT=" %{[38;5;154m%}%~%{[0m%}
  %{[38;5;81m%}%(!.#.$)%{[0m%} "
-RPROMPT="%{[38;5;134m%}[%m]%{[0m%}"
+RPROMPT="%{[38;5;013m%}[%m]%{[0m%}"
 
 # vcs_info
 autoload -Uz vcs_info
