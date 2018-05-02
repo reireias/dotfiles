@@ -120,6 +120,7 @@ alias reload='source ~/.zshrc'
 alias ssh='TERM=xterm ssh'
 alias jgrep='grep --include="*.java"'
 alias fgrep='find ./ | grep'
+alias ngrep='grep --exclude-dir={node_modules,.nuxt}'
 alias sudo='sudo '
 
 # git
