@@ -122,6 +122,7 @@ alias jgrep='grep --include="*.java"'
 alias fgrep='find ./ | grep'
 alias ngrep='grep --exclude-dir={node_modules,.nuxt}'
 alias sudo='sudo '
+alias vimdiff='nvim -d'
 
 # git
 alias g='git'
