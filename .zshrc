@@ -113,16 +113,19 @@ alias nvi='nvim'
 alias du='du -shc * | sort -h'
 alias open='gnome-open'
 alias caddy='ruby /opt/caddy/caddy/caddy.rb'
-alias grep='grep --color=always'
 alias terminal='gnome-terminal --hide-menubar'
 alias tm='terminal'
 alias reload='source ~/.zshrc'
 alias ssh='TERM=xterm ssh'
-alias jgrep='grep --include="*.java"'
-alias fgrep='find ./ | grep'
-alias ngrep='grep --exclude-dir={node_modules,.nuxt}'
 alias sudo='sudo '
 alias vimdiff='nvim -d'
+
+# grep
+alias grep='grep --color=always'
+alias jgrep='grep --include="*.java"'
+alias jsgrep='grep --include="*.js"'
+alias fgrep='find ./ | grep'
+alias ngrep='grep --exclude-dir={node_modules,.nuxt}'
 
 # git
 alias g='git'
