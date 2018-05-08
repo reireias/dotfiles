@@ -30,9 +30,9 @@ sudo apt-get update -q
 sudo apt-get install -y neovim
 ln -s ~/.vim ~/.config/nvim
 ln -s ~/.vimrc ~/.config/nvim/init.vim
-ln -s ~/.dotfiles/vim/snippets snippets
-ln -s ~/.dotfiles/vim/template template
-ln -s ~/.dotfiles/vim/ale_linters ale_linters
+ln -s ~/.dotfiles/vim/snippets ~/.vim/snippets
+ln -s ~/.dotfiles/vim/template ~/.vim/template
+ln -s ~/.dotfiles/vim/ale_linters ~/.vim/ale_linters
 
 
 # font
