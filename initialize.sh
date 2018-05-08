@@ -40,6 +40,8 @@ ln -s ~/.dotfiles/vim/ale_linters ~/.vim/ale_linters
 if ! which fontforge > /dev/null 2>&1; then
     sudo apt-get install -y fontforge
 fi
+sudo apt-get install -y python-pip
+sudo -E -H pip install configparser
 mkdir -p ~/.fonts
 curl -L http://levien.com/type/myfonts/Inconsolata.otf > ~/.fonts/Inconsolata.otf
 tmp=/tmp/dotfiles
