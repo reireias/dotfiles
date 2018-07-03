@@ -193,6 +193,9 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 fi
 # }}}
 
+# FZF {{{
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# }}}
 
 # PECO {{{
 # peco
@@ -332,5 +335,3 @@ if [ -e ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 # }}}
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
