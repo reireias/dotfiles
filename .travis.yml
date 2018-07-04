@@ -7,9 +7,9 @@ addons:
   apt:
     packages:
       - shellcheck
+      - python3-pip
 install:
-  - sudo pip install vim-vint
-  - sudo pip install pathlib
+  - sudo pip3 install vim-vint
   - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
   - sudo ~/.dotfiles/initialize.sh
 script:
