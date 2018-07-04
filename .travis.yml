@@ -8,7 +8,8 @@ addons:
     packages:
       - shellcheck
 install:
-  - sudo pip3 install vim-vint
+  - sudo pip install vim-vint
+  - sudo pip install pathlib
   - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
   - sudo ~/.dotfiles/initialize.sh
 script:
