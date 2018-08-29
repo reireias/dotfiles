@@ -58,6 +58,7 @@ augroup vimrc_filetype
   autocmd FileType go nmap <leader>i <Plug>(go-info)
   autocmd FileType go :highlight goErr ctermfg=208
   autocmd FileType go :match goErr /\<err\>/
+  autocmd BufRead,BufNewFile *.jenkinsfile set filetype=groovy
 augroup END
 " }}}
 
