@@ -11,7 +11,7 @@ addons:
       - python3-pip
 install:
   - sudo pip3 install setuptools --upgrade
-  - sudo pip3 install vim-vint
+  - sudo pip3 install vim-vint=0.3.18
   - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
   - sudo ~/.dotfiles/initialize.sh
 before_script:
