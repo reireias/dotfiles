@@ -117,6 +117,7 @@ alias terminal='gnome-terminal --hide-menubar'
 alias tm='terminal'
 alias reload='source ~/.zshrc'
 alias ssh='TERM=xterm ssh'
+alias pscp='parallel-scp'
 alias sudo='sudo '
 alias vimdiff='nvim -d'
 

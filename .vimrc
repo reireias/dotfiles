@@ -310,9 +310,10 @@ let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 " vim-test {{{
 let g:test#strategy = 'dispatch'
 
-function! test#python#pyunit#executable() abort
-  return 'python3 -m unittest'
-endfunction
+" not work in NVIM v0.3.2-dev
+" function! test#python#pyunit#executable() abort
+"   return 'python3 -m unittest'
+" endfunction
 " }}}
 
 " NERDTree {{{
