@@ -118,9 +118,8 @@ call dein#add('Shougo/unite.vim')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('fatih/molokai')
-call dein#add('janko-m/vim-test')
 call dein#add('jlanzarotta/bufexplorer')
-call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('junegunn/gv.vim')
 call dein#add('leafgarland/typescript-vim')
@@ -136,7 +135,6 @@ call dein#add('simeji/winresizer')
 call dein#add('thinca/vim-localrc')
 call dein#add('thinca/vim-quickrun')
 call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
-call dein#add('tpope/vim-dispatch')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tyru/open-browser.vim')
 call dein#add('vim-airline/vim-airline')
@@ -305,15 +303,6 @@ let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
 
 " sonictemplate {{{
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
-" }}}
-
-" vim-test {{{
-let g:test#strategy = 'dispatch'
-
-" not work in NVIM v0.3.2-dev
-" function! test#python#pyunit#executable() abort
-"   return 'python3 -m unittest'
-" endfunction
 " }}}
 
 " NERDTree {{{
