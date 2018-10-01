@@ -122,6 +122,7 @@ call dein#add('jlanzarotta/bufexplorer')
 call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('junegunn/gv.vim')
+call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
@@ -311,6 +312,12 @@ let g:NERDTreeShowHidden = 1
 
 " nginx {{{
 command Nginx set filetype=nginx
+" }}}
+
+" neoterm {{{
+let g:neoterm_autoinsert = 1
+let g:neoterm_autoscroll = 1
+let g:neoterm_default_mod='belowright'
 " }}}
 
 " finally {{{
