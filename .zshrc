@@ -18,6 +18,7 @@ fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion $fpath)
 # zplug
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
+zplug "b4b4r07/enhancd", use:init.sh
 zplug load
 setopt nonomatch
 export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
@@ -327,6 +328,11 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # travis
 [ -f /home/fx30079/.travis/travis.sh ] && source /home/fx30079/.travis/travis.sh
+
+# enhancd
+export ENHANCD_FILTER=peco
+export ENHANCD_DISABLE_DOT=1
+export ENHANCD_DISABLE_HOME=1
 # }}}
 
 
