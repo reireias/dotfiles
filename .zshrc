@@ -234,12 +234,21 @@ function peco-cdr () {
 zle -N peco-cdr
 bindkey '^E' peco-cdr
 
+export EDITOR=vi
 function peco-find () {
-    local selected=$(find ./ -type d -name '.git' -prune -o -type f -print | peco --prompt "find >")
-    if [ -n "$selected" ]; then
-        BUFFER="vi ${selected}"
+    local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
+    [ -z "$filepath" ] && return
+    if [ -n "$LBUFFER" ]; then
+        BUFFER="$LBUFFER$filepath"
+    else
+        if [ -d "$filepath" ]; then
+            BUFFER="cd $filepath"
+        elif [ -f "$filepath" ]; then
+            BUFFER="$EDITOR $filepath"
+        fi
         zle accept-line
     fi
+    CURSOR=$#BUFFER
 }
 zle -N peco-find
 bindkey '^F' peco-find
