@@ -236,10 +236,21 @@ bindkey '^E' peco-cdr
 
 export EDITOR=vi
 function peco-find () {
-    local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
+    local base="."
+    if [ -n "$LBUFFER" ] && [ ! "$LBUFFER" =~ " $" ]; then
+        local last_path="$(echo $LBUFFER | sed -e 's/^.*\ //g')"
+        if [ -d "$last_path" ]; then
+            base="$last_path"
+        fi
+    fi
+    local filepath="$(find $base | grep -v '/\.' | peco --prompt 'PATH>')"
     [ -z "$filepath" ] && return
     if [ -n "$LBUFFER" ]; then
-        BUFFER="$LBUFFER$filepath"
+        if [ "$base" = "." ]; then
+            BUFFER="$LBUFFER$filepath"
+        else
+            BUFFER="$(echo $LBUFFER | sed -e "s#${base}\$##g")$filepath"
+        fi
     else
         if [ -d "$filepath" ]; then
             BUFFER="cd $filepath"
