@@ -116,6 +116,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/unite.vim')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
+call dein#add('alvan/vim-closetag')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('fatih/molokai')
 call dein#add('jlanzarotta/bufexplorer')
@@ -318,6 +319,10 @@ command Nginx set filetype=nginx
 let g:neoterm_autoinsert = 1
 let g:neoterm_autoscroll = 1
 let g:neoterm_default_mod='belowright'
+" }}}
+
+" closetag {{{
+let g:closetag_filenames = '*.html,*.vue'
 " }}}
 
 " finally {{{
