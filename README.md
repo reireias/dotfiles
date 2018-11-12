@@ -8,6 +8,12 @@
 $ curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
 ```
 
+or
+
+```sh
+for f in .??*; do [[ $f =~ ^\.(git|travis) ]] && continue; ln -snfv "$(pwd)/$f" "$HOME/$f" ; done
+```
+
 ## Initialize
 
 ```sh
