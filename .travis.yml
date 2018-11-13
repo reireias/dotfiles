@@ -20,5 +20,6 @@ before_script:
   - shellcheck --version
 script:
   - bash deploy.sh
-  - test/test.sh
+  - bash initialize.sh
+  - bash test.sh
   - vint --color --style .vimrc
