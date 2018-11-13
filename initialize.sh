@@ -87,7 +87,7 @@ fi
 
 if $flag_font; then
     print_white_bold "Install font"
-    apt_install fontforge python-pip
+    apt_install fontforge python-pip unzip
     pip_install configparser
     # Ricty
     mkdir -p ~/.fonts
