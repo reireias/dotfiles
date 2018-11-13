@@ -1,9 +1,5 @@
 #!/bin/sh
 
-if ! which git > /dev/null 2>&1; then
-    sudo apt-get install -y git
-fi
-
 # zsh
 sudo apt-get install -y zsh
 chsh -s /usr/bin/zsh
