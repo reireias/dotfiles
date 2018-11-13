@@ -2,6 +2,25 @@
 
 # dotfiles
 
+reireias's dotfiles.
+
+## Deploy
+Deploy dotfiles to your home directory.
+
+```sh
+cd /path/to/dotfiles
+./deploy.sh
+```
+
+## Initialize
+Install packages and fonts.
+
+```sh
+cd /path/to/dotfiles
+./initialize.sh
+```
+
+
 ## Install
 
 ```sh

@@ -9,14 +9,14 @@ addons:
       - shellcheck
       - python3
       - python3-pip
+      - git
 install:
   - sudo pip3 install setuptools --upgrade
   - sudo pip3 install vim-vint==0.3.18
-  - curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
-  - sudo ~/.dotfiles/initialize.sh
 before_script:
   - python3 --version
   - vint --version
 script:
+  - bash deploy.sh
   - test/test.sh
   - vint --color --style .vimrc
