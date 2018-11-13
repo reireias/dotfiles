@@ -21,9 +21,9 @@ apt_install() {
 
 pip_install() {
     if [[ "$(whoami)" = "root" ]]; then
-        pip install -y "$@"
+        pip install "$@"
     else
-        sudo -E -H pip install -y "$@"
+        sudo -E -H pip install "$@"
     fi
 }
 
