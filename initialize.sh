@@ -58,7 +58,7 @@ fi
 if $flag_zsh; then
     print_white_bold "Install zsh"
     # chek LANG and LANGUAGE
-    if [[ ! $LANG =~ ^(ja_JP.utf8|en_US.utf8) ]] || [[ ! $LANGUAGE =~ ^(ja_JP.utf8|en_US.utf8) ]]; then
+    if [[ ! $LANG =~ ^(ja_JP|en_US)\.(utf8|UTF-8) ]] || [[ ! $LANGUAGE =~ ^(ja_JP|en_US)\.(utf8|UTF-8) ]]; then
         echo "LANG and LANGUAGE must be 'ja_JP.utf8' or 'en_US.utf8'."
         exit 1
     fi
