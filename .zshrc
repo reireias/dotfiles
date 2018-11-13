@@ -49,6 +49,9 @@ fi
 
 # COLOR {{{
 # LS_COLORS
+if [[ -z "$SHELL" ]]; then
+    export SHELL="$(which zsh)"
+fi
 eval `dircolors -b`
 eval `dircolors ${HOME}/.dircolors`
 

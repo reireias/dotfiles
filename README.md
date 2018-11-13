@@ -19,23 +19,3 @@ Install packages and fonts.
 cd /path/to/dotfiles
 ./initialize.sh
 ```
-
-
-## Install
-
-```sh
-$ curl -L raw.github.com/reireias/dotfiles/master/install.sh | bash
-```
-
-or
-
-```sh
-for f in .??*; do [[ $f =~ ^\.(git|travis) ]] && continue; ln -snfv "$(pwd)/$f" "$HOME/$f" ; done
-```
-
-## Initialize
-
-```sh
-$ ~/.dotfiles/initialize.sh
-```
-
