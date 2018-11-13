@@ -19,6 +19,14 @@ apt_install() {
     fi
 }
 
+pip_install() {
+    if [[ "$(whoami)" = "root" ]]; then
+        pip install -y "$@"
+    else
+        sudo -E -H pip install -y "$@"
+    fi
+}
+
 if [[ $# -eq 0 ]]; then
     flag_zsh=true
     flag_font=true
@@ -54,32 +62,34 @@ if $flag_zsh; then
         echo "LANG and LANGUAGE must be 'ja_JP.utf8' or 'en_US.utf8'."
         exit 1
     fi
-    apt_install zsh curl
+    apt_install zsh curl gawk
+    mkdir -p "${HOME}/.cache"
 
     print_white_bold "Install zplug"
     if [[ ! -e ${HOME}/.zplug ]]; then
-        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+        curl -sL --proto-redir -all,https \
+            https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
     fi
 
     print_white_bold "Install plugins"
-    zsh -c 'source ~/.zshrc; zplug install'
-    if [ -e ~/.zcompdump ]; then
-        rm ~/.zcompdump
+    # check instaled
+    if ! zsh -c 'source ~/.zshrc; zplug check'; then
+        zsh -c 'source ~/.zshrc; zplug install'
+        if [[ -e ~/.zcompdump ]]; then
+            rm ~/.zcompdump
+        fi
+        if [[ -e ~/.zplug/zcompdump ]]; then
+            rm ~/.zplug/zcompdump
+        fi
+        zsh -c 'source ~/.zshrc; compinit'
     fi
-    if [ -e ~/.zplug/zcompdump ]; then
-        rm ~/.zplug/zcompdump
-    fi
-    zsh -c 'source ~/.zshrc; compinit'
 fi
 
 if $flag_font; then
     print_white_bold "Install font"
+    apt_install fontforge python-pip
+    pip_install configparser
     # Ricty
-    if ! which fontforge > /dev/null 2>&1; then
-        sudo apt-get install -y fontforge
-    fi
-    sudo apt-get install -y python-pip
-    sudo -E -H pip install configparser
     mkdir -p ~/.fonts
     curl -L http://levien.com/type/myfonts/Inconsolata.otf > ~/.fonts/Inconsolata.otf
     tmp=/tmp/dotfiles
@@ -109,12 +119,11 @@ fi
 
 if $flag_neovim; then
     print_white_bold "Install neovim"
-    sudo apt-get install -y vim
     mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
     git clone https://github.com/Shougo/dein.vim.git ~/.vim/dein/repos/github.com/Shougo/dein.vim
     sudo add-apt-repository -y ppa:neovim-ppa/unstable
     sudo apt-get update -q
-    sudo apt-get install -y neovim
+    apt_install vim neovim
     ln -s ~/.vim ~/.config/nvim
     ln -s ~/.vimrc ~/.config/nvim/init.vim
 fi
