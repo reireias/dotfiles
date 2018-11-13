@@ -16,6 +16,7 @@ install:
 before_script:
   - python3 --version
   - vint --version
+  - shellcheck --version
 script:
   - bash deploy.sh
   - test/test.sh
