@@ -4,8 +4,6 @@ errors=()
 
 while IFS= read -r -d '' f
 do
-    
-
     if shellcheck "$f"
     then
         echo "[OK]: $f"
