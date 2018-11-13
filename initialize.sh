@@ -101,7 +101,7 @@ if $flag_font; then
     curl -L raw.github.com/metalefty/Ricty/master/ricty_generator.sh > "$tmp"/ricty_generator.sh
     chmod +x "$tmp"/ricty_generator.sh
     "$tmp"/ricty_generator.sh ~/.fonts/Inconsolata.otf ~/.fonts/migu-1m-regular.ttf ~/.fonts/migu-1m-bold.ttf
-    mv Ricty-Bold.ttf Ricty-Regular.ttf .fonts
+    mv Ricty-Bold.ttf Ricty-Regular.ttf ~/.fonts
 
     # NERD
     git clone --depth=1 https://github.com/ryanoasis/nerd-fonts.git "$tmp"/nerd-fonts
