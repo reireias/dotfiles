@@ -165,6 +165,8 @@ call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
 call dein#add('suan/vim-instant-markdown', {'on_ft' : 'markdown'})
 " vue
 call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
+" stylus
+call dein#add('wavded/vim-stylus', {'on_ft' : 'stylus'})
 " nginx
 call dein#add('chr4/nginx.vim', {'on_ft' : 'nginx'})
 
