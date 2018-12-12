@@ -68,6 +68,7 @@ let g:mapleader = "\<Space>"
 
 " Home / End
 noremap <Leader>h ^
+noremap <Leader>H 0
 noremap <Leader>l $
 
 " Move to next window
