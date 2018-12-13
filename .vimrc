@@ -26,7 +26,7 @@ scriptencoding utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
 " Font
-set guifont=Ricty-Regular-nerd-Powerline\ 11
+" set guifont=Ricty-Regular-nerd-Powerline\ 11
 
 " Clipboard
 set clipboard=unnamed,unnamedplus
@@ -131,7 +131,9 @@ call dein#add('miyakogi/seiya.vim')
 call dein#add('pearofducks/ansible-vim')
 call dein#add('prettier/vim-prettier')
 call dein#add('reireias/vim-cheatsheet')
-call dein#add('ryanoasis/vim-devicons')
+if filereadable(expand('~/.fonts/Ricty-Regular-nerd-Powerline.ttf'))
+  call dein#add('ryanoasis/vim-devicons')
+endif
 call dein#add('ryym/vim-riot')
 call dein#add('scrooloose/nerdtree')
 call dein#add('simeji/winresizer')
