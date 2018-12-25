@@ -4,6 +4,7 @@ usage() {
     echo "${0} [--zsh]"
     echo "  no_option  install all"
     echo "  --zsh      install zsh, zplug, plugins"
+    echo "  --font     install fonts"
     echo "  --neovim   install neovim"
 }
 
@@ -32,6 +33,9 @@ if [[ $# -eq 0 ]]; then
     flag_font=true
     flag_neovim=true
 else
+    flag_zsh=false
+    flag_font=false
+    flag_neovim=false
     for arg in "$@"; do
         case "$arg" in
             --help)
@@ -92,7 +96,7 @@ if $flag_font; then
     # Ricty
     mkdir -p ~/.fonts
     curl -L http://levien.com/type/myfonts/Inconsolata.otf > ~/.fonts/Inconsolata.otf
-    tmp=/tmp/dotfiles
+    tmp=$(mktemp -d)
     mkdir -p "$tmp"
     curl -L "https://ja.osdn.net/frs/redir.php?m=iij&f=%2Fmix-mplus-ipa%2F63545%2Fmigu-1m-20150712.zip" > "$tmp"/migu-1m-20150712.zip
     unzip "$tmp"/migu-1m-20150712.zip -d "$tmp"
