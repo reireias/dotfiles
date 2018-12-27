@@ -107,6 +107,9 @@ noremap <C-t> :NERDTreeToggle<CR>
 " scroll
 noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
 noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+
+" paste
+map R <Plug>(operator-replace)
 " }}}
 
 
@@ -131,6 +134,8 @@ call dein#add('jlanzarotta/bufexplorer')
 call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('junegunn/gv.vim')
+call dein#add('kana/vim-operator-replace')
+call dein#add('kana/vim-operator-user')
 call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('mattn/sonictemplate-vim')
