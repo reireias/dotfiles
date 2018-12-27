@@ -131,13 +131,11 @@ call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
-call dein#add('pearofducks/ansible-vim')
 call dein#add('prettier/vim-prettier')
 call dein#add('reireias/vim-cheatsheet')
 if filereadable(expand('~/.fonts/Ricty-Regular-nerd-Powerline.ttf'))
   call dein#add('ryanoasis/vim-devicons')
 endif
-call dein#add('ryym/vim-riot')
 call dein#add('scrooloose/nerdtree')
 call dein#add('simeji/winresizer')
 call dein#add('thinca/vim-localrc')
@@ -175,6 +173,8 @@ call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
 call dein#add('wavded/vim-stylus', {'on_ft' : 'stylus'})
 " nginx
 call dein#add('chr4/nginx.vim', {'on_ft' : 'nginx'})
+" ansible
+call dein#add('pearofducks/ansible-vim', {'on_ft' : 'yaml.ansible'})
 
 call dein#end()
 " }}}
