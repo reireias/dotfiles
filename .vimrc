@@ -119,6 +119,7 @@ call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('alvan/vim-closetag')
 call dein#add('dhruvasagar/vim-table-mode')
@@ -254,12 +255,15 @@ let g:instant_markdown_autostart = 0
 " }}}
 
 " vim-quickrun {{{
-let g:quickrun_config = {
-      \   '_': {
-      \       'outputter/buffer/close_on_empty': 1,
-      \       'outputter/buffer/append': 1
-      \   }
-      \}
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config._ = {
+      \ 'runner'    : 'vimproc',
+      \ 'runner/vimproc/updatetime' : 60,
+      \ 'outputter' : 'error',
+      \ 'outputter/error/success' : 'buffer',
+      \ 'outputter/error/error'   : 'buffer',
+      \ 'outputter/buffer/close_on_empty' : 1,
+      \ }
 " }}}
 
 " winresizer {{{
