@@ -374,6 +374,7 @@ augroup color_scheme
   autocmd!
   autocmd ColorScheme * highlight link mkdListItem Statement
   autocmd ColorScheme * highlight link htmlH1 PreProc
+  autocmd ColorScheme * highlight Search ctermfg=255 ctermbg=24
 augroup END
 
 " Color Scheme
