@@ -124,6 +124,7 @@ call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/neoyank.vim')
 call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
@@ -233,6 +234,29 @@ call deoplete#custom#var('omni', 'input_patterns', {
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
+" }}}
+
+" denite {{{
+call denite#custom#var('file/rec', 'command',
+    \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
+    \ [ '.git/', '.ropeproject/', '__pycache__/',
+    \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+" Ag command on grep source
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+" grep
+command! Dgrep execute(":Denite grep -buffer-name=grep-buffer-denite")
+" show Denite grep results
+command! Dresume execute(":Denite -resume -buffer-name=grep-buffer-denite")
+" next Denite grep result
+command! Dnext execute(":Denite -resume -buffer-name=grep-buffer-denite -select=+1 -immediately")
+" previous Denite grep result
+command! Dprev execute(":Denite -resume -buffer-name=grep-buffer-denite -select=-1 -immediately")
 " }}}
 
 " neosnippet {{{
