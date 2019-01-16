@@ -404,7 +404,6 @@ let g:rehash256 = 1
 
 syntax on
 set cursorline
-hi clear CursorLine
 " }}}
 
 
