@@ -110,6 +110,11 @@ noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 
 " paste
 map R <Plug>(operator-replace)
+
+" Denite
+nnoremap [denite] <Nop>
+nmap <Leader>d [denite]
+nnoremap <silent> [denite]f :<C-u>Denite file/rec<CR>
 " }}}
 
 
@@ -254,6 +259,9 @@ command! Dresume execute(":Denite -resume -buffer-name=grep-buffer-denite")
 command! Dnext execute(":Denite -resume -buffer-name=grep-buffer-denite -select=+1 -immediately")
 " previous Denite grep result
 command! Dprev execute(":Denite -resume -buffer-name=grep-buffer-denite -select=-1 -immediately")
+" keymap
+call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
 " }}}
 
 " neosnippet {{{
