@@ -130,7 +130,6 @@ call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('alvan/vim-closetag')
-call dein#add('autozimu/LanguageClient-neovim', {'rev' : 'next', 'build' : 'bash install.sh'})
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('fatih/molokai')
 call dein#add('jlanzarotta/bufexplorer')
@@ -224,9 +223,6 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:deoplete#enable_at_startup = 1
 " Set minimum syntax keyword length.
 let g:deoplete#auto_complete_start_length = 3
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['solargraph', 'stdio'],
-\}
 call deoplete#custom#var('omni', 'input_patterns', {
     \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
 \})
