@@ -1,3 +1,6 @@
 snippet test
-    test('${1}', await t => {
+    test('${1}', async t => {
     })
+
+snippet supertest
+    const res = await supertest(app).get('${1}')
