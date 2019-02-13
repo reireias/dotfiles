@@ -19,6 +19,7 @@ fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion $fpath)
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "b4b4r07/enhancd", use:init.sh
+zplug "zsh-users/zsh-autosuggestions"
 zplug load
 setopt nonomatch
 export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
