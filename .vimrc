@@ -186,6 +186,7 @@ call dein#add('uplus/deoplete-solargraph', {'on_ft' : 'ruby'})
 call dein#add('thinca/vim-ref', {'on_ft' : 'ruby'})
 call dein#add('itmammoth/run-rspec.vim', {'on_ft' : 'ruby'})
 call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
+call dein#add('rlue/vim-fold-rspec', {'on_ft' : 'ruby'})
 " go
 call dein#add('fatih/vim-go', {'on_ft' : 'go'})
 " markdonw
