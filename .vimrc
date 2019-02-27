@@ -200,6 +200,8 @@ call dein#add('wavded/vim-stylus', {'on_ft' : 'stylus'})
 call dein#add('chr4/nginx.vim', {'on_ft' : 'nginx'})
 " ansible
 call dein#add('pearofducks/ansible-vim', {'on_ft' : 'yaml.ansible'})
+" terraform
+call dein#add('hashivim/vim-terraform', {'on_ft' : 'tf'})
 
 call dein#end()
 " }}}

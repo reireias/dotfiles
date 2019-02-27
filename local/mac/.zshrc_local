@@ -1,0 +1,25 @@
+export GOROOT=/usr/local/opt/go/libexec
+
+# rbenv
+eval "$(rbenv init -)"
+
+# alias for mac
+alias grep='ggrep --color=always'
+alias jgrep='ggrep --include="*.java"'
+alias jsgrep='ggrep --include="*.js"'
+alias fgrep='find ./ | ggrep'
+alias ngrep='ggrep --exclude-dir={node_modules,.nuxt}'
+alias sed='gsed'
+alias top='htop'
+
+alias tweet='~/scripts/kotoriotoko/BIN/tweet.sh'
+alias tl='~/scripts/kotoriotoko/BIN/twtl.sh'
+
+alias dc='docker-compose'
+
+# key for mac
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+
+export PATH="/Users/satoshi.takumi/dev/src/github.medpeer.co.jp/medpeer-inc/medpeer-toolbox/bin:$PATH"
