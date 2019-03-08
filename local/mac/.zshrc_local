@@ -15,7 +15,8 @@ alias top='htop'
 alias tweet='~/scripts/kotoriotoko/BIN/tweet.sh'
 alias tl='~/scripts/kotoriotoko/BIN/twtl.sh'
 
-alias dc='docker-compose'
+unalias open
+alias chrome='open -a /Applications/Google\ Chrome.app'
 
 # key for mac
 bindkey -e
