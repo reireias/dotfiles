@@ -197,7 +197,7 @@ call dein#add('rlue/vim-fold-rspec', {'on_ft' : 'ruby'})
 call dein#add('fatih/vim-go', {'on_ft' : 'go'})
 " markdonw
 call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
-call dein#add('suan/vim-instant-markdown', {'on_ft' : 'markdown'})
+call dein#add('kannokanno/previm', {'on_ft' : 'markdown'})
 " vue
 call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
 " stylus
@@ -208,6 +208,8 @@ call dein#add('chr4/nginx.vim', {'on_ft' : 'nginx'})
 call dein#add('pearofducks/ansible-vim', {'on_ft' : 'yaml.ansible'})
 " terraform
 call dein#add('hashivim/vim-terraform', {'on_ft' : 'tf'})
+" PlantUML
+call dein#add('aklt/plantuml-syntax', {'on_ft' : 'plantuml'})
 
 call dein#end()
 " }}}

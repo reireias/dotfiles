@@ -5,3 +5,5 @@ let g:airline_right_sep = ' '
 let g:python_host_prog = '/usr/local/bin/python2'
 let g:python3_host_prog = '/usr/local/var/pyenv/shims/python3'
 let g:ruby_host_prog = '/Users/satoshi.takumi/.rbenv/shims/neovim-ruby-host'
+
+command! OpenCurrentFile !open -a /Applications/Google\ Chrome.app %
