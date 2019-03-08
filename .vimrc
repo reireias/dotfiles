@@ -44,6 +44,7 @@ augroup vimrc_filetype
   autocmd FileType vim :highlight link FoldComment SpecialComment
   autocmd FileType vim :match FoldComment /^".*\({{{\|}}}\)/
   autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+  autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
   autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
   autocmd FileType xml setlocal shiftwidth=2 tabstop=2
   autocmd FileType html setlocal shiftwidth=2 tabstop=2
@@ -77,8 +78,12 @@ noremap <Leader>h ^
 noremap <Leader>H 0
 noremap <Leader>l $
 
-" Move to next window
+" Move windows
 nnoremap <Leader><Tab> <C-w>w
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
 
 " Unhighlight search result
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
@@ -138,6 +143,7 @@ call dein#add('alvan/vim-closetag')
 call dein#add('basyura/TweetVim')
 call dein#add('basyura/twibill.vim')
 call dein#add('dhruvasagar/vim-table-mode')
+call dein#add('editorconfig/editorconfig-vim')
 call dein#add('fatih/molokai')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
