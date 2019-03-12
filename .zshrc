@@ -64,8 +64,6 @@ autoload colors
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-
-
 # less
 export LESS='-R'
 
@@ -239,10 +237,9 @@ function peco-cdr () {
 zle -N peco-cdr
 bindkey '^E' peco-cdr
 
-export EDITOR=vi
 function peco-find () {
     local base="."
-    if [ -n "$LBUFFER" ] && [ ! "$LBUFFER" =~ " $" ]; then
+    if [ -n "$LBUFFER" ] && [[ ! "$LBUFFER" =~ " $" ]]; then
         local last_path="$(echo $LBUFFER | sed -e 's/^.*\ //g')"
         if [ -d "$last_path" ]; then
             base="$last_path"
@@ -260,7 +257,7 @@ function peco-find () {
         if [ -d "$filepath" ]; then
             BUFFER="cd $filepath"
         elif [ -f "$filepath" ]; then
-            BUFFER="$EDITOR $filepath"
+            BUFFER="vi $filepath"
         fi
         zle accept-line
     fi
