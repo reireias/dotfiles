@@ -17,6 +17,7 @@ fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion $fpath)
 
 # zplug
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "b4b4r07/zsh-vimode-visual", defer:3
 zplug "zsh-users/zsh-completions"
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "zsh-users/zsh-autosuggestions"
@@ -60,7 +61,8 @@ eval `dircolors ${HOME}/.dircolors`
 unsetopt list_types
 
 # color at completion
-autoload colors
+autoload -Uz colors
+colors
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
@@ -85,10 +87,29 @@ man() {
 
 # PROMPT {{{
 # prompt
-colors
 PROMPT=" %{[38;5;154m%}%~%{[0m%}
  %{[38;5;81m%}%(!.#.$)%{[0m%} "
-RPROMPT="%{[38;5;013m%}[%m]%{[0m%}"
+RPROMPT="%{[33m%}[INS]%{[0m%} %{[38;5;013m%}[%m]%{[0m%}"
+
+function zle-keymap-select zle-line-init zle-line-finish {
+    case $KEYMAP in
+        vicmd)
+            PROMPT_MODE="%{[32m%}[NOR]%{[0m%}"
+            ;;
+        main|viins)
+            PROMPT_MODE="%{[33m%}[INS]%{[0m%}"
+            ;;
+        vivis|vivli)
+            PROMPT_MODE="%{[34m%}[VIS]%{[0m%}"
+            ;;
+    esac
+    RPROMPT="$PROMPT_MODE %{[38;5;013m%}[%m]%{[0m%}"
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+zle -N edit-command-line
 
 # vcs_info
 autoload -Uz vcs_info
@@ -154,6 +175,7 @@ alias dc='docker-compose'
 
 # KEY {{{
 # key bind
+bindkey -v
 typeset -A key
 
 if [[ -n "${terminfo}" ]]; then
@@ -356,7 +378,6 @@ export ENHANCD_FILTER=peco
 export ENHANCD_DISABLE_DOT=1
 export ENHANCD_DISABLE_HOME=1
 # }}}
-
 
 # LOCAL {{{
 # Load local setting
