@@ -19,7 +19,6 @@ unalias open
 alias chrome='open -a /Applications/Google\ Chrome.app'
 
 # key for mac
-bindkey -e
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
 
