@@ -103,7 +103,7 @@ function zle-keymap-select zle-line-init zle-line-finish {
             PROMPT_MODE="%{[34m%}[VIS]%{[0m%}"
             ;;
     esac
-    RPROMPT="$PROMPT_MODE %{[38;5;013m%}[%m]%{[0m%}"
+    RPROMPT="${vcs_info_msg_0_} $PROMPT_MODE %{[38;5;013m%}[%m]%{[0m%}"
     zle reset-prompt
 }
 zle -N zle-line-init
