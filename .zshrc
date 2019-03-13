@@ -89,27 +89,7 @@ man() {
 # prompt
 PROMPT=" %{[38;5;154m%}%~%{[0m%}
  %{[38;5;81m%}%(!.#.$)%{[0m%} "
-RPROMPT="%{[33m%}[INS]%{[0m%} %{[38;5;013m%}[%m]%{[0m%}"
-
-function zle-keymap-select zle-line-init zle-line-finish {
-    case $KEYMAP in
-        vicmd)
-            PROMPT_MODE="%{[32m%}[NOR]%{[0m%}"
-            ;;
-        main|viins)
-            PROMPT_MODE="%{[33m%}[INS]%{[0m%}"
-            ;;
-        vivis|vivli)
-            PROMPT_MODE="%{[34m%}[VIS]%{[0m%}"
-            ;;
-    esac
-    RPROMPT="${vcs_info_msg_0_} $PROMPT_MODE %{[38;5;013m%}[%m]%{[0m%}"
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-line-finish
-zle -N zle-keymap-select
-zle -N edit-command-line
+RPROMPT="%{[38;5;013m%}[%m]%{[0m%}"
 
 # vcs_info
 autoload -Uz vcs_info
