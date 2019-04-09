@@ -127,26 +127,39 @@ RPROMPT='${vcs_info_msg_0_} '$RPROMPT
 
 # ALIAS {{{
 # general
-alias ls='ls -h --color=always'
-alias dir='ls --color=auto --format=vertical'
-alias vdir='ls --color=auto --format=long'
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
-alias vi='nvim'
-alias nvi='nvim'
-alias du='du -shc * | sort -h'
-alias open='gnome-open'
 alias caddy='ruby /opt/caddy/caddy/caddy.rb'
-alias terminal='gnome-terminal --hide-menubar'
-alias tm='terminal'
+alias du='du -shc * | sort -h'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -l'
+alias ls='ls -h --color=always'
+alias m='mkdir'
+alias open='gnome-open'
+alias pscp='parallel-scp'
 alias reload='source ~/.zshrc'
 alias ssh='TERM=xterm ssh'
-alias pscp='parallel-scp'
 alias sudo='sudo '
+alias terminal='gnome-terminal --hide-menubar'
+alias tm='terminal'
+alias vdir='ls --color=auto --format=long'
+
+# cd
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias ..4='cd ../../../..'
+
+# vim
+alias vi='nvim'
+alias nvi='nvim'
 alias vimdiff='nvim -d'
 
+# dotfiles
+alias dot='cd ~/dev/src/github.com/reireias/dotfiles'
+alias zshconfig='nvim ~/.zshrc'
+alias vimconfig='nvim ~/.vimrc'
+
 # grep
+alias g='grep --color=always'
 alias grep='grep --color=always'
 alias jgrep='grep --include="*.java"'
 alias jsgrep='grep --include="*.js"'
