@@ -7,3 +7,4 @@ let g:python3_host_prog = '/usr/local/var/pyenv/shims/python3'
 let g:ruby_host_prog = '/Users/satoshi.takumi/.rbenv/shims/neovim-ruby-host'
 
 command! OpenCurrentFile !open -a /Applications/Google\ Chrome.app %
+command! Rspec execute(":T pushd ../.. && docker-compose exec web /usr/local/rbenv/shims/ruby bin/rspec %; popd")

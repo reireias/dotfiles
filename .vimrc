@@ -328,6 +328,7 @@ let g:quickrun_config._ = {
       \ 'outputter/error/error'   : 'buffer',
       \ 'outputter/buffer/close_on_empty' : 1,
       \ }
+nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 " }}}
 
 " winresizer {{{
@@ -394,7 +395,8 @@ command Nginx set filetype=nginx
 " neoterm {{{
 let g:neoterm_autoinsert = 1
 let g:neoterm_autoscroll = 1
-let g:neoterm_default_mod='belowright'
+let g:neoterm_default_mod = 'belowright'
+let g:neoterm_use_relative_path = 1
 " }}}
 
 " closetag {{{
