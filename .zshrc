@@ -129,6 +129,7 @@ RPROMPT='${vcs_info_msg_0_} '$RPROMPT
 # general
 alias caddy='ruby /opt/caddy/caddy/caddy.rb'
 alias du='du -shc * | sort -h'
+alias h='tldr'
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -l'
