@@ -103,9 +103,6 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 
-" NERDTree
-noremap <C-t> :NERDTreeToggle<CR>
-
 " scroll
 noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
 noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
@@ -145,7 +142,6 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/neoyank.vim')
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('alvan/vim-closetag')
 call dein#add('basyura/TweetVim')
 call dein#add('basyura/twibill.vim')
@@ -167,11 +163,9 @@ call dein#add('reireias/vim-cheatsheet')
 if filereadable(expand('~/.fonts/Ricty-Regular-nerd-Powerline.ttf'))
   call dein#add('ryanoasis/vim-devicons')
 endif
-call dein#add('scrooloose/nerdtree')
 call dein#add('simeji/winresizer')
 call dein#add('thinca/vim-localrc')
 call dein#add('thinca/vim-quickrun')
-call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-endwise')
 call dein#add('tpope/vim-fugitive')
