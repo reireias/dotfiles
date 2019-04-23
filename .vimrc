@@ -11,6 +11,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+set cursorline
 set title
 set number
 set noshowmode
@@ -419,8 +420,11 @@ endif
 " Custom
 augroup color_scheme
   autocmd!
+  " change list symbol color
   autocmd ColorScheme * highlight link mkdListItem Statement
+  " change header color
   autocmd ColorScheme * highlight link htmlH1 PreProc
+  " change search result color
   autocmd ColorScheme * highlight Search ctermfg=255 ctermbg=24
 augroup END
 
@@ -428,8 +432,8 @@ augroup END
 colorscheme molokai
 let g:rehash256 = 1
 
+" finally
 syntax on
-set cursorline
 " }}}
 
 
