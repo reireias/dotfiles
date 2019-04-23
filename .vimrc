@@ -136,7 +136,6 @@ call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/neoyank.vim')
-call dein#add('Shougo/unite-outline')
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Xuyuanp/nerdtree-git-plugin')
@@ -217,45 +216,11 @@ call dein#add('aklt/plantuml-syntax', {'on_ft' : 'plantuml'})
 call dein#end()
 " }}}
 
-" dein {{{
+" Shougo/dein.vim {{{
 let g:dein#install_process_timeout = 300
 " }}}
 
-" airline {{{
-let g:airline_theme = 'wombat'
-set laststatus=2
-" Show branch name
-let g:airline#extensions#branch#enabled = 1
-" Show buffer's filename
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-let g:airline_section_c = '%t'
-let g:airline_section_x = '%{&filetype}'
-let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
-let g:airline#extensions#ale#error_symbol = ' '
-let g:airline#extensions#ale#warning_symbol = ' '
-let g:airline#extensions#default#section_truncate_width = {}
-" Check whitespace at end of line
-let g:airline#extensions#whitespace#enabled = 1
-" }}}
-
-" deoplete {{{
-" Use deoplete
-let g:deoplete#enable_at_startup = 1
-" Set minimum syntax keyword length.
-let g:deoplete#auto_complete_start_length = 3
-call deoplete#custom#var('omni', 'input_patterns', {
-    \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
-\})
-" Define dictionary.
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
-" }}}
-
-" denite {{{
+" Shougo/denite.nvim {{{
 call denite#custom#var('file/rec', 'command',
     \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
@@ -281,7 +246,21 @@ call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap
 call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
 " }}}
 
-" neosnippet {{{
+" Shougo/deoplete.nvim {{{
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
+" Set minimum syntax keyword length.
+let g:deoplete#auto_complete_start_length = 3
+call deoplete#custom#var('omni', 'input_patterns', {
+    \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
+\})
+" Define dictionary.
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
+" }}}
+
+" Shougo/neosnippet {{{
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
@@ -291,58 +270,15 @@ let g:neosnippet#snippets_directory = [
       \]
 " }}}
 
-" vim-table-mode {{{
-let g:table_mode_corner = '|'
-let g:table_mode_auto_align = 0
+" alvan/vim-closetag {{{
+let g:closetag_filenames = '*.html,*.vue'
 " }}}
 
-" ale {{{
-let g:ale_lint_on_text_changed = 0
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:airline#extensions#ale#open_lnum_symbol = '('
-let g:airline#extensions#ale#close_lnum_symbol = ')'
-let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-highlight link ALEErrorSign Tag
-highlight link ALEWarningSign StorageClass
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_fixers = {
-      \'javascript': ['eslint']
-      \}
+" chr4/nginx.vim {{{
+command Nginx set filetype=nginx
 " }}}
 
-" seiya {{{
-let g:seiya_auto_enable=1
-" }}}
-
-" vim-instant-markdown {{{
-let g:instant_markdown_autostart = 0
-" }}}
-
-" vim-quickrun {{{
-let g:quickrun_config = get(g:, 'quickrun_config', {})
-let g:quickrun_config._ = {
-      \ 'runner'    : 'vimproc',
-      \ 'runner/vimproc/updatetime' : 60,
-      \ 'outputter' : 'error',
-      \ 'outputter/error/success' : 'buffer',
-      \ 'outputter/error/error'   : 'buffer',
-      \ 'outputter/buffer/close_on_empty' : 1,
-      \ }
-nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
-" }}}
-
-" winresizer {{{
-let g:winresizer_vert_resize = 1
-let g:winresizer_horiz_resize = 1
-" }}}
-
-" unite-outline {{{
-let g:unite_split_rule = 'botright'
-" }}}
-
-" jedi-vim {{{
+" davidhalter/jedi-vim {{{
 " needs python3 and 'pip3 install neovim'
 " python version
 let g:jedi#force_py_version = 3
@@ -360,11 +296,12 @@ let g:jedi#rename_command = 'None'
 command PyRename call jedi#rename()
 " }}}
 
-" pydoc {{{
-let g:pydoc_cmd = '/usr/bin/pydoc3'
+" dhruvasagar/vim-table-mode {{{
+let g:table_mode_corner = '|'
+let g:table_mode_auto_align = 0
 " }}}
 
-" vim-go {{{
+" fatih/vim-go {{{
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_autosave = 1
 let g:go_highlight_types = 1
@@ -373,36 +310,86 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 " }}}
 
-" vim-markdown {{{
-let g:vim_markdown_folding_level = 6
-set conceallevel=0
+" fs111/pydoc.vim {{{
+let g:pydoc_cmd = '/usr/bin/pydoc3'
 " }}}
 
-" vim-cheatsheet {{{
-let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
-" }}}
-
-" sonictemplate {{{
-let g:sonictemplate_vim_template_dir = ['~/.vim/template']
-" }}}
-
-" NERDTree {{{
-let g:NERDTreeShowHidden = 1
-" }}}
-
-" nginx {{{
-command Nginx set filetype=nginx
-" }}}
-
-" neoterm {{{
+" kassio/neoterm {{{
 let g:neoterm_autoinsert = 1
 let g:neoterm_autoscroll = 1
 let g:neoterm_default_mod = 'belowright'
 let g:neoterm_use_relative_path = 1
 " }}}
 
-" closetag {{{
-let g:closetag_filenames = '*.html,*.vue'
+" mattn/sonictemplate-vim {{{
+let g:sonictemplate_vim_template_dir = ['~/.vim/template']
+" }}}
+
+" miyakogi/seiya.vim {{{
+let g:seiya_auto_enable=1
+" }}}
+
+" rcmdnk/vim-markdown {{{
+let g:vim_markdown_folding_level = 6
+set conceallevel=0
+" }}}
+
+" reireias/vim-cheatsheet {{{
+let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
+" }}}
+
+" simeji/winresizer {{{
+let g:winresizer_vert_resize = 1
+let g:winresizer_horiz_resize = 1
+" }}}
+
+" thinca/vim-quickrun {{{
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config._ = {
+      \ 'runner'    : 'vimproc',
+      \ 'runner/vimproc/updatetime' : 60,
+      \ 'outputter' : 'error',
+      \ 'outputter/error/success' : 'buffer',
+      \ 'outputter/error/error'   : 'buffer',
+      \ 'outputter/buffer/close_on_empty' : 1,
+      \ }
+nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
+" }}}
+
+" vim-airline/vim-airline {{{
+let g:airline_theme = 'wombat'
+set laststatus=2
+" Show branch name
+let g:airline#extensions#branch#enabled = 1
+" Show buffer's filename
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+let g:airline_section_c = '%t'
+let g:airline_section_x = '%{&filetype}'
+let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+let g:airline#extensions#ale#error_symbol = ' '
+let g:airline#extensions#ale#warning_symbol = ' '
+let g:airline#extensions#default#section_truncate_width = {}
+" Check whitespace at end of line
+let g:airline#extensions#whitespace#enabled = 1
+" }}}
+
+" w0rp/ale {{{
+let g:ale_lint_on_text_changed = 0
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:airline#extensions#ale#open_lnum_symbol = '('
+let g:airline#extensions#ale#close_lnum_symbol = ')'
+let g:ale_echo_msg_format = '[%linter%]%code: %%s'
+highlight link ALEErrorSign Tag
+highlight link ALEWarningSign StorageClass
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_fixers = {
+      \'javascript': ['eslint']
+      \}
 " }}}
 
 " finally {{{
