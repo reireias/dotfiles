@@ -10,11 +10,6 @@
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
-set cursorline
-set title
-set number
-set noshowmode
 set list
 set listchars=tab:»-
 
@@ -29,11 +24,17 @@ set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,
 " Font
 set guifont=Ricty-Regular-nerd-Powerline\ 11
 
-" search
+" Search
 set inccommand=split
 
 " Clipboard
 set clipboard=unnamed,unnamedplus
+
+" Other
+set cursorline
+set title
+set number
+set noshowmode
 " }}}
 
 
