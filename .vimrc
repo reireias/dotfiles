@@ -42,29 +42,24 @@ set noshowmode
 augroup vimrc_filetype
   autocmd!
   autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.jenkinsfile set filetype=groovy
+  autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
+
+  autocmd FileType go :highlight goErr ctermfg=208
+  autocmd FileType go :match goErr /\<err\>/
+  autocmd FileType html setlocal shiftwidth=2 tabstop=2
+  autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+  autocmd FileType json setlocal shiftwidth=2 tabstop=2
+  autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
   autocmd FileType vim setlocal shiftwidth=2 tabstop=2 foldmethod=marker
   autocmd FileType vim :highlight link FoldComment SpecialComment
   autocmd FileType vim :match FoldComment /^".*\({{{\|}}}\)/
-  autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
-  autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
-  autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
-  autocmd FileType xml setlocal shiftwidth=2 tabstop=2
-  autocmd FileType html setlocal shiftwidth=2 tabstop=2
   autocmd FileType vue setlocal shiftwidth=2 tabstop=2
-  autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-  autocmd FileType json setlocal shiftwidth=2 tabstop=2
+  autocmd FileType xml setlocal shiftwidth=2 tabstop=2
+  autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
   autocmd FileType zsh setlocal foldmethod=marker
   autocmd FileType zsh :highlight link FoldComment SpecialComment
   autocmd FileType zsh :match FoldComment /^#.*\({{{\|}}}\)/
-  autocmd FileType go nmap <leader>b <Plug>(go-build)
-  autocmd FileType go nmap <leader>r <Plug>(go-run)
-  autocmd FileType go nmap <leader>t <Plug>(go-test)
-  autocmd FileType go nmap <leader>tf <Plug>(go-test-func)
-  autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
-  autocmd FileType go nmap <leader>i <Plug>(go-info)
-  autocmd FileType go :highlight goErr ctermfg=208
-  autocmd FileType go :match goErr /\<err\>/
-  autocmd BufRead,BufNewFile *.jenkinsfile set filetype=groovy
 augroup END
 " }}}
 
@@ -122,6 +117,17 @@ map R <Plug>(operator-replace)
 nnoremap [denite] <Nop>
 nmap <Leader>d [denite]
 nnoremap <silent> [denite]f :<C-u>Denite file/rec<CR>
+
+" Go
+augroup key_map
+  autocmd!
+  autocmd FileType go nmap <leader>b <Plug>(go-build)
+  autocmd FileType go nmap <leader>r <Plug>(go-run)
+  autocmd FileType go nmap <leader>t <Plug>(go-test)
+  autocmd FileType go nmap <leader>tf <Plug>(go-test-func)
+  autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <leader>i <Plug>(go-info)
+augroup END
 " }}}
 
 
