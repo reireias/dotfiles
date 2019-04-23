@@ -181,10 +181,19 @@ if has('nvim')
 endif
 
 " lazy load
-" sql
-call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
+" ansible
+call dein#add('pearofducks/ansible-vim', {'on_ft' : 'yaml.ansible'})
+" go
+call dein#add('fatih/vim-go', {'on_ft' : 'go'})
 " js
 call dein#add('pangloss/vim-javascript', {'on_ft' : 'javascript'})
+" markdonw
+call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
+call dein#add('kannokanno/previm', {'on_ft' : 'markdown'})
+" nginx
+call dein#add('chr4/nginx.vim', {'on_ft' : 'nginx'})
+" plantuml
+call dein#add('aklt/plantuml-syntax', {'on_ft' : 'plantuml'})
 " python
 call dein#add('davidhalter/jedi-vim', {'on_ft' : 'python'})
 call dein#add('fs111/pydoc.vim', {'on_ft' : 'python'})
@@ -195,23 +204,14 @@ call dein#add('thinca/vim-ref', {'on_ft' : 'ruby'})
 call dein#add('itmammoth/run-rspec.vim', {'on_ft' : 'ruby'})
 call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
 call dein#add('rlue/vim-fold-rspec', {'on_ft' : 'ruby'})
-" go
-call dein#add('fatih/vim-go', {'on_ft' : 'go'})
-" markdonw
-call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
-call dein#add('kannokanno/previm', {'on_ft' : 'markdown'})
-" vue
-call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
+" sql
+call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
 " stylus
 call dein#add('wavded/vim-stylus', {'on_ft' : 'stylus'})
-" nginx
-call dein#add('chr4/nginx.vim', {'on_ft' : 'nginx'})
-" ansible
-call dein#add('pearofducks/ansible-vim', {'on_ft' : 'yaml.ansible'})
 " terraform
 call dein#add('hashivim/vim-terraform', {'on_ft' : 'tf'})
-" PlantUML
-call dein#add('aklt/plantuml-syntax', {'on_ft' : 'plantuml'})
+" vue
+call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
 
 call dein#end()
 " }}}
