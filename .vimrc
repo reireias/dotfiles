@@ -60,6 +60,10 @@ augroup vimrc_filetype
   autocmd FileType zsh setlocal foldmethod=marker
   autocmd FileType zsh :highlight link FoldComment SpecialComment
   autocmd FileType zsh :match FoldComment /^#.*\({{{\|}}}\)/
+  " disable deoplete for lsp
+  autocmd FileType ruby call deoplete#custom#buffer_option('auto_complete', v:false)
+  autocmd FileType python call deoplete#custom#buffer_option('auto_complete', v:false)
+  autocmd FileType python ALEDisable
 augroup END
 " }}}
 
@@ -158,6 +162,7 @@ call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
+call dein#add('neoclide/coc.nvim', { 'build': './install.sh nightly' })
 call dein#add('prettier/vim-prettier')
 call dein#add('reireias/vim-cheatsheet')
 if filereadable(expand('~/.fonts/Ricty-Regular-nerd-Powerline.ttf'))
@@ -196,12 +201,8 @@ call dein#add('chr4/nginx.vim', {'on_ft' : 'nginx'})
 " plantuml
 call dein#add('aklt/plantuml-syntax', {'on_ft' : 'plantuml'})
 " python
-call dein#add('davidhalter/jedi-vim', {'on_ft' : 'python'})
-call dein#add('fs111/pydoc.vim', {'on_ft' : 'python'})
 call dein#add('tmhedberg/SimpylFold', {'on_ft' : 'python'})
 " ruby
-call dein#add('uplus/deoplete-solargraph', {'on_ft' : 'ruby'})
-call dein#add('thinca/vim-ref', {'on_ft' : 'ruby'})
 call dein#add('itmammoth/run-rspec.vim', {'on_ft' : 'ruby'})
 call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
 call dein#add('rlue/vim-fold-rspec', {'on_ft' : 'ruby'})
@@ -277,24 +278,6 @@ let g:closetag_filenames = '*.html,*.vue'
 
 " chr4/nginx.vim {{{
 command Nginx set filetype=nginx
-" }}}
-
-" davidhalter/jedi-vim {{{
-" needs python3 and 'pip3 install neovim'
-" python version
-let g:jedi#force_py_version = 3
-" hide docstring
-set completeopt=menu,menuone
-" Show function signature on command line (need 'set noshowmode')
-let g:jedi#show_call_signatures = 2
-" Go to definitions
-let g:jedi#goto_definitions_command = 'None'
-command PyDef call jedi#goto_definitions()
-" Remove show document command
-let g:jedi#documentation_command = 'None'
-" Remove rename command (for vim-quickrun)
-let g:jedi#rename_command = 'None'
-command PyRename call jedi#rename()
 " }}}
 
 " dhruvasagar/vim-table-mode {{{
