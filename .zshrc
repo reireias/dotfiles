@@ -185,6 +185,9 @@ alias gp='git pull'
 alias d='docker'
 alias dps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
 alias dc='docker-compose'
+
+# scripts
+alias nuxt-init='~/.scripts/nuxt-init.sh'
 # }}}
 
 
