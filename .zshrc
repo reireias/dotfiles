@@ -187,6 +187,7 @@ alias dps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Stat
 alias dc='docker-compose'
 
 # scripts
+alias molokai='open http://monokai.9x4.net/'
 alias nuxt-init='~/.scripts/nuxt-init.sh'
 # }}}
 
