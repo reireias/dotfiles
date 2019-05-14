@@ -55,6 +55,7 @@ augroup vimrc_filetype
   autocmd FileType vim :highlight link FoldComment SpecialComment
   autocmd FileType vim :match FoldComment /^".*\({{{\|}}}\)/
   autocmd FileType vue setlocal shiftwidth=2 tabstop=2
+  autocmd FileType vue syntax sync fromstart
   autocmd FileType xml setlocal shiftwidth=2 tabstop=2
   autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
   autocmd FileType zsh setlocal foldmethod=marker
@@ -64,6 +65,7 @@ augroup vimrc_filetype
   autocmd FileType ruby call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType python call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType python ALEDisable
+  autocmd FileType vue call deoplete#custom#buffer_option('auto_complete', v:false)
 augroup END
 " }}}
 
@@ -138,6 +140,7 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.vim/dein'))
 
+call dein#add('Shougo/context_filetype.vim')
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neomru.vim')
