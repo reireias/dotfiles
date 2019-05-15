@@ -37,6 +37,11 @@ set number
 set noshowmode
 " }}}
 
+" Commands {{{
+command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+command! VimShowHlItem echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+" }}}
+
 
 " File Types {{{
 augroup vimrc_filetype
@@ -195,7 +200,7 @@ call dein#add('pearofducks/ansible-vim', {'on_ft' : 'yaml.ansible'})
 " go
 call dein#add('fatih/vim-go', {'on_ft' : 'go'})
 " js
-call dein#add('pangloss/vim-javascript', {'on_ft' : 'javascript'})
+call dein#add('pangloss/vim-javascript', {'on_ft' : ['javascript', 'vue']})
 " markdonw
 call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
 call dein#add('kannokanno/previm', {'on_ft' : 'markdown'})
