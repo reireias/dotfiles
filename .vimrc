@@ -71,6 +71,7 @@ augroup vimrc_filetype
   autocmd FileType python call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType python ALEDisable
   autocmd FileType vue call deoplete#custom#buffer_option('auto_complete', v:false)
+  autocmd FileType dockerfile call deoplete#custom#buffer_option('auto_complete', v:false)
 augroup END
 " }}}
 
