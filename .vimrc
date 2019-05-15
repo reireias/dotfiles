@@ -72,6 +72,9 @@ augroup vimrc_filetype
   autocmd FileType python ALEDisable
   autocmd FileType vue call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType dockerfile call deoplete#custom#buffer_option('auto_complete', v:false)
+  autocmd FileType yaml call deoplete#custom#buffer_option('auto_complete', v:false)
+  autocmd FileType yaml ALEDisable
+  autocmd FileType css call deoplete#custom#buffer_option('auto_complete', v:false)
 augroup END
 " }}}
 
@@ -320,6 +323,17 @@ let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 
 " miyakogi/seiya.vim {{{
 let g:seiya_auto_enable=1
+" }}}
+
+" neoclide/coc.nvim {{{
+let g:coc_global_extensions = [
+      \ 'coc-yaml',
+      \ 'coc-pyls',
+      \ 'coc-vetur',
+      \ 'coc-solargraph',
+      \ 'coc-json',
+      \ 'coc-css'
+      \]
 " }}}
 
 " rcmdnk/vim-markdown {{{
