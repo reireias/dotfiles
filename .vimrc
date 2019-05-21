@@ -75,6 +75,7 @@ augroup vimrc_filetype
   autocmd FileType yaml call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType yaml ALEDisable
   autocmd FileType css call deoplete#custom#buffer_option('auto_complete', v:false)
+  autocmd FileType javascript call deoplete#custom#buffer_option('auto_complete', v:false)
 augroup END
 " }}}
 
