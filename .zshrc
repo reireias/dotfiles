@@ -194,7 +194,7 @@ alias nuxt-init='~/.scripts/nuxt-init.sh'
 
 # KEY {{{
 # key bind
-bindkey -v
+bindkey -e
 typeset -A key
 
 if [[ -n "${terminfo}" ]]; then
