@@ -33,7 +33,10 @@ function pr-open {
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
 
-export PATH="/Users/satoshi.takumi/dev/src/github.medpeer.co.jp/medpeer-inc/medpeer-toolbox/bin:$PATH"
+export PATH="$HOME/dev/src/github.medpeer.co.jp/medpeer-inc/medpeer-toolbox/bin:$PATH"
 
 source "$(pyenv which aws_zsh_completer.sh)"
 eval "$(direnv hook zsh)"
+
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
