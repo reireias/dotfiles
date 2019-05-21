@@ -396,6 +396,16 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export ENHANCD_FILTER=peco
 export ENHANCD_DISABLE_DOT=1
 export ENHANCD_DISABLE_HOME=1
+
+# hub
+function pr-open {
+    local url=$(hub pr list -h $(git symbolic-ref --short HEAD) -f "%U")
+    if [ -z "$url" ]; then
+        echo "The PR based this branch not found."
+        return 1
+    fi
+    open $url
+}
 # }}}
 
 # LOCAL {{{

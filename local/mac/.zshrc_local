@@ -20,6 +20,15 @@ alias tl='~/scripts/kotoriotoko/BIN/twtl.sh'
 unalias open
 alias chrome='open -a /Applications/Google\ Chrome.app'
 
+function pr-open {
+    local url=$(hub pr list -h $(git symbolic-ref --short HEAD) -f "%U")
+    if [ -z "$url" ]; then
+        echo "The PR based this branch not found."
+        return 1
+    fi
+    open $url
+}
+
 # key for mac
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
