@@ -333,7 +333,8 @@ let g:coc_global_extensions = [
       \ 'coc-vetur',
       \ 'coc-solargraph',
       \ 'coc-json',
-      \ 'coc-css'
+      \ 'coc-css',
+      \ 'coc-tsserver'
       \]
 " }}}
 
