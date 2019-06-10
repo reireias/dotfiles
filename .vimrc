@@ -228,6 +228,7 @@ call dein#add('wavded/vim-stylus', {'on_ft' : 'stylus'})
 call dein#add('hashivim/vim-terraform', {'on_ft' : 'tf'})
 " vue
 call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
+call dein#add('digitaltoad/vim-pug', {'on_ft' : 'vue'})
 
 call dein#end()
 " }}}
