@@ -20,6 +20,8 @@ alias tl='~/scripts/kotoriotoko/BIN/twtl.sh'
 unalias open
 alias chrome='open -a /Applications/Google\ Chrome.app'
 
+alias dewb="docker-compose exec web bash"
+
 function pr-open {
     local url=$(hub pr list -h $(git symbolic-ref --short HEAD) -f "%U")
     if [ -z "$url" ]; then
