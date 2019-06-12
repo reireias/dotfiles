@@ -133,6 +133,7 @@ map R <Plug>(operator-replace)
 nnoremap [denite] <Nop>
 nmap <Leader>d [denite]
 nnoremap <silent> [denite]f :<C-u>Denite file/rec<CR>
+nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
 
 " Go
 augroup key_map
@@ -377,6 +378,7 @@ let g:airline#extensions#branch#enabled = 1
 " Show buffer's filename
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 let g:airline_section_c = '%t'
