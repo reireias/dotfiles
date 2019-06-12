@@ -5,10 +5,9 @@
 reireias's dotfiles.
 
 ## Deploy
-Deploy dotfiles to your home directory.
+Create symbolic link dotfiles to your home directory.
 
 ```sh
-cd /path/to/dotfiles
 ./deploy.sh
 ```
 
@@ -16,8 +15,16 @@ cd /path/to/dotfiles
 Install packages and fonts.
 
 ```sh
-cd /path/to/dotfiles
 ./initialize.sh
+
+# only zsh, zplug, plugins
+./initialize.sh --zsh
+
+# only font
+./initialize.sh --font
+
+# only neovim
+./initialize.sh --neovim
 ```
 
 ### Initialize tmux
