@@ -21,6 +21,7 @@ unalias open
 alias chrome='open -a /Applications/Google\ Chrome.app'
 
 alias dewb="docker-compose exec web bash"
+alias drspec="docker exec -it medpeer-dev_web_1 /usr/local/rbenv/shims/ruby bin/rspec "
 
 function pr-open {
     local url=$(hub pr list -h $(git symbolic-ref --short HEAD) -f "%U")
