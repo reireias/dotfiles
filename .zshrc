@@ -91,27 +91,6 @@ PROMPT=" %{[38;5;154m%}%~%{[0m%}
  %{[38;5;81m%}%(!.#.$)%{[0m%} "
 RPROMPT="%{[38;5;013m%}[%m]%{[0m%}"
 
-function zle-keymap-select zle-line-init zle-line-finish {
-    case $KEYMAP in
-        vicmd)
-            PROMPT_LEFT="%{[32m%}%(!.#.$)%{[0m%}"
-            ;;
-        main|viins)
-            PROMPT_LEFT="%{[38;5;81m%}%(!.#.$)%{[0m%}"
-            ;;
-        vivis|vivli)
-            PROMPT_LEFT="%{[34m%}%(!.#.$)%{[0m%}"
-            ;;
-    esac
-    PROMPT=" %{[38;5;154m%}%~%{[0m%}
- $PROMPT_LEFT "
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-line-finish
-zle -N zle-keymap-select
-zle -N edit-command-line
-
 # vcs_info
 autoload -Uz vcs_info
 setopt prompt_subst
