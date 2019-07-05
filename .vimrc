@@ -25,7 +25,9 @@ set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,
 set guifont=Ricty-Regular-nerd-Powerline\ 11
 
 " Search
-set inccommand=split
+if has('nvim')
+  set inccommand=split
+endif
 
 " Clipboard
 set clipboard=unnamed,unnamedplus
@@ -145,6 +147,11 @@ augroup key_map
   autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
   autocmd FileType go nmap <leader>i <Plug>(go-info)
 augroup END
+
+if has('nvim')
+  " terminal
+  tnoremap <silent> <ESC> <C-\><C-n>
+endif
 " }}}
 
 
@@ -267,17 +274,19 @@ call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'nor
 " }}}
 
 " Shougo/deoplete.nvim {{{
-" Use deoplete
-let g:deoplete#enable_at_startup = 1
-" Set minimum syntax keyword length.
-let g:deoplete#auto_complete_start_length = 3
-call deoplete#custom#var('omni', 'input_patterns', {
-    \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
-\})
-" Define dictionary.
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
+if has('nvim')
+  " Use deoplete
+  let g:deoplete#enable_at_startup = 1
+  " Set minimum syntax keyword length.
+  let g:deoplete#auto_complete_start_length = 3
+  call deoplete#custom#var('omni', 'input_patterns', {
+      \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
+  \})
+  " Define dictionary.
+  " <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+  inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
+endif
 " }}}
 
 " Shougo/neosnippet {{{
@@ -444,11 +453,6 @@ syntax on
 
 
 " Environment {{{
-" neovim
-if has('nvim')
-  tnoremap <silent> <ESC> <C-\><C-n>
-endif
-
 " Load local settings
 if filereadable(expand($HOME.'/.vimrc_local'))
   source $HOME/.vimrc_local
