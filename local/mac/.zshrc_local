@@ -43,3 +43,6 @@ eval "$(direnv hook zsh)"
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+# fix mysql2 install error
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
