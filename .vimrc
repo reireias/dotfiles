@@ -261,7 +261,14 @@ call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 " grep
-command! Dgrep execute(":Denite grep -buffer-name=grep-buffer-denite")
+command! -nargs=? Dgrep call s:Dgrep(<f-args>)
+function s:Dgrep(...)
+  if a:0 > 0
+    execute(':Denite -buffer-name=grep-buffer-denite grep -path='.a:1)
+  else
+    execute(':Denite -buffer-name=grep-buffer-denite grep')
+  endif
+endfunction
 " show Denite grep results
 command! Dresume execute(":Denite -resume -buffer-name=grep-buffer-denite")
 " next Denite grep result
