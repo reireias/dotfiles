@@ -164,6 +164,7 @@ alias gp='git pull'
 alias d='docker'
 alias dps='docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
 alias dc='docker-compose'
+alias kc='kubectl'
 
 # scripts
 alias molokai='open http://monokai.9x4.net/'
