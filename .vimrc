@@ -279,8 +279,8 @@ let s:denite_default_options = {
     \ 'start_filter': v:true,
     \ }
 let s:denite_option_array = []
-for [key, value] in items(s:denite_default_options)
-  call add(s:denite_option_array, '-'.key.'='.value)
+for [s:key, s:value] in items(s:denite_default_options)
+  call add(s:denite_option_array, '-'.s:key.'='.s:value)
 endfor
 call denite#custom#option('default', s:denite_default_options)
 
