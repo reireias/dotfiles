@@ -308,9 +308,9 @@ endfunction
 " show Denite grep results
 command! Dresume execute(':Denite -resume -buffer-name=grep-buffer-denite '.join(s:denite_option_array, ' ').'')
 " next Denite grep result
-command! Dnext execute(':Denite -resume -buffer-name=grep-buffer-denite -select=+1 -immediately '.join(s:denite_option_array, ' ').'')
+command! Dnext execute(':Denite -resume -buffer-name=grep-buffer-denite -cursor-pos=+1 -immediately '.join(s:denite_option_array, ' ').'')
 " previous Denite grep result
-command! Dprev execute(':Denite -resume -buffer-name=grep-buffer-denite -select=-1 -immediately '.join(s:denite_option_array, ' ').'')
+command! Dprev execute(':Denite -resume -buffer-name=grep-buffer-denite -cursor-pos=-1 -immediately '.join(s:denite_option_array, ' ').'')
 " keymap
 call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
