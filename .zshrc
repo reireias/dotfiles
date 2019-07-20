@@ -21,9 +21,37 @@ zplug "b4b4r07/zsh-vimode-visual", defer:3
 zplug "zsh-users/zsh-completions"
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "zsh-users/zsh-autosuggestions"
+zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 zplug load
 setopt nonomatch
 export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
+
+# powerlevel10k
+typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir)
+typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time vcs)
+typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=' %F{cyan}$ '
+typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='<'
+
+typeset -g POWERLEVEL9K_MODE='nerdfont-fontconfig'
+
+typeset -g POWERLEVEL9K_DIR_FOREGROUND='green'
+typeset -g POWERLEVEL9K_DIR_BACKGROUND='black'
+
+typeset -g POWERLEVEL9K_VCS_{CLEAN,UNTRACKED,MODIFIED,LOADING}_BACKGROUND='none'
+typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='green'
+typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='yellow'
+typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='red'
+typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND='blue'
+typeset -g POWERLEVEL9K_VCS_STAGEDFORMAT_FOREGROUND='green'
+typeset -g POWERLEVEL9K_VCS_UNSTAGEDFORMAT_FOREGROUND='red'
+typeset -g POWERLEVEL9K_VCS_STASHFORMAT_FOREGROUND='cyan'
+typeset -g POWERLEVEL9K_VCS_OUTGOING_CHANGESFORMAT_FOREGROUND='red'
+typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED}_MAX_NUM=99
+typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON=$'\uF059 ' # 
+typeset -g POWERLEVEL9K_VCS_UNSTAGED_ICON=$'\uF06A ' # 
+typeset -g POWERLEVEL9K_VCS_STAGED_ICON=$'\uF055 ' # 
 # }}}
 
 
