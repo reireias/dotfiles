@@ -151,6 +151,7 @@ alias reload='source ~/.zshrc'
 alias ssh='TERM=xterm ssh'
 alias sudo='sudo '
 alias terminal='gnome-terminal --hide-menubar'
+alias tf='terraform'
 alias tm='terminal'
 alias vdir='ls --color=auto --format=long'
 
