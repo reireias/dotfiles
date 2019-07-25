@@ -12,5 +12,6 @@
       "ignoredRootPaths": ["~"]
     }
   },
-  "javascript.suggestionActions.enabled": false
+  "javascript.suggestionActions.enabled": false,
+  "vetur.experimental.templateInterpolationService": false
 }
