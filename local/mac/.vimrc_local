@@ -13,19 +13,3 @@ command! OpenCurrentFile !open -a /Applications/Google\ Chrome.app %
 command! Rspec execute(":T drspec %")
 
 let g:cheatsheet#float_window = 0
-
-" denite v2
-command! -nargs=? Dgrep call s:Dgrep(<f-args>)
-function s:Dgrep(...)
-  if a:0 > 0
-    execute(':Denite -buffer-name=grep-buffer-denite grep -path='.a:1)
-  else
-    execute(':Denite -buffer-name=grep-buffer-denite grep')
-  endif
-endfunction
-" show Denite grep results
-command! Dresume execute(':Denite -resume -buffer-name=grep-buffer-denite')
-" next Denite grep result
-command! Dnext execute(':Denite -resume -buffer-name=grep-buffer-denite -cursor-pos=+1 -immediately')
-" previous Denite grep result
-command! Dprev execute(':Denite -resume -buffer-name=grep-buffer-denite -cursor-pos=-1 -immediately')
