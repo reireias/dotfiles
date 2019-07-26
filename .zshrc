@@ -178,6 +178,7 @@ alias jsgrep='grep --include="*.js"'
 alias fgrep='find ./ | grep'
 alias ngrep='grep --exclude-dir={node_modules,.nuxt}'
 alias ag='ag --color-match "1;31" --color-line-number "0;32" --color-path "0;35"'
+alias agn='ag --nogroup --color-match "1;31" --color-line-number "0;32" --color-path "0;35"'
 
 # git
 alias g='git'
