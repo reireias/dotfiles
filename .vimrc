@@ -235,7 +235,7 @@ call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
 " stylus
 call dein#add('wavded/vim-stylus', {'on_ft' : 'stylus'})
 " terraform
-call dein#add('hashivim/vim-terraform', {'on_ft' : 'tf'})
+call dein#add('hashivim/vim-terraform', {'on_ft' : 'terraform'})
 " vue
 call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
 call dein#add('digitaltoad/vim-pug', {'on_ft' : 'vue'})
