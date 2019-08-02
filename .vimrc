@@ -48,14 +48,14 @@ function s:IDE()
   :vs
   :exe "normal \<C-W>l"
   let s:line = float2nr(&lines * 0.7)
-  execute(s:line.":sp")
+  execute(s:line.':sp')
   :vs
   :exe "normal \<C-W>h"
 endfunction
 command! IDEMini call s:IDEMini()
 function s:IDEMini()
   let s:line = float2nr(&lines * 0.7)
-  execute(s:line.":sp")
+  execute(s:line.':sp')
   :vs
 endfunction
 " }}}
