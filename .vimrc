@@ -42,6 +42,22 @@ set noshowmode
 " Commands {{{
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 command! VimShowHlItem echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+
+command! IDE call s:IDE()
+function s:IDE()
+  :vs
+  :exe "normal \<C-W>l"
+  let s:line = float2nr(&lines * 0.7)
+  execute(s:line.":sp")
+  :vs
+  :exe "normal \<C-W>h"
+endfunction
+command! IDEMini call s:IDEMini()
+function s:IDEMini()
+  let s:line = float2nr(&lines * 0.7)
+  execute(s:line.":sp")
+  :vs
+endfunction
 " }}}
 
 
