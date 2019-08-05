@@ -33,10 +33,6 @@ function pr-open {
     open $url
 }
 
-# key for mac
-bindkey '^[[1;9C' forward-word
-bindkey '^[[1;9D' backward-word
-
 export PATH="$HOME/dev/src/github.medpeer.co.jp/medpeer-inc/medpeer-toolbox/bin:$PATH"
 
 source "$(pyenv which aws_zsh_completer.sh)"
