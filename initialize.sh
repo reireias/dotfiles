@@ -6,6 +6,7 @@ usage() {
     echo "  --zsh      install zsh, zplug, plugins"
     echo "  --font     install fonts"
     echo "  --neovim   install neovim"
+    echo "  --tmux     install tmux"
 }
 
 print_white_bold() {
@@ -32,10 +33,12 @@ if [[ $# -eq 0 ]]; then
     flag_zsh=true
     flag_font=true
     flag_neovim=true
+    flag_tmux=true
 else
     flag_zsh=false
     flag_font=false
     flag_neovim=false
+    flag_tmux=false
     for arg in "$@"; do
         case "$arg" in
             --help)
@@ -50,6 +53,9 @@ else
                 ;;
             --neovim)
                 flag_neovim=true
+                ;;
+            --tmux)
+                flag_tmux=true
                 ;;
             *)
                 usage
@@ -130,4 +136,15 @@ if $flag_neovim; then
     apt_install vim neovim
     ln -s ~/.vim ~/.config/nvim
     ln -s ~/.vimrc ~/.config/nvim/init.vim
+fi
+
+if $flag_tmux; then
+    print_white_bold "Install tmux"
+    sudo apt-get update -q
+    apt_install tmux
+    mkdir -p ~/.tmux/plugins/tpm
+    # clone tpm
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    # install tmux plugins automatically
+    ~/.tmux/plugins/tpm/bin/./install_plugins
 fi
