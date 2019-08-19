@@ -32,9 +32,7 @@ Install packages and fonts.
 
 # only neovim
 ./initialize.sh --neovim
-```
 
-### Initialize tmux
-- Install [tmux](https://github.com/tmux/tmux) 2.8 or higher.
-- Install [tpm](https://github.com/tmux-plugins/tpm) to ~/.tmux/plugins/tpm.
-- Start tmux and input `prefix I` for install plugins.
+# only tmux
+./initialize.sh --tmux
+```
