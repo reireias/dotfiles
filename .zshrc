@@ -397,6 +397,7 @@ pandoc_git () {
 
 # neovim
 export XDG_CONFIG_HOME=~/.config
+export BUNDLER_EDITOR=vi
 
 # golang
 export GOROOT=/usr/lib/go
