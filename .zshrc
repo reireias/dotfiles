@@ -193,6 +193,8 @@ alias gds='git diff --stat'
 alias gdt='git difftool'
 alias gst='git status'
 alias gp='git pull'
+alias gs='git switch'
+alias gr='git restore'
 
 # docker
 alias d='docker'
