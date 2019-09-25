@@ -249,7 +249,6 @@ call dein#add('tmhedberg/SimpylFold', {'on_ft' : 'python'})
 call dein#add('itmammoth/run-rspec.vim', {'on_ft' : 'ruby'})
 call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
 call dein#add('rlue/vim-fold-rspec', {'on_ft' : 'ruby'})
-call dein#add('pocke/iro.vim', {'on_ft' : 'ruby'})
 " sql
 call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
 " stylus
