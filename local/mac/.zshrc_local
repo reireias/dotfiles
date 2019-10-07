@@ -43,3 +43,15 @@ eval "$(direnv hook zsh)"
 
 # fix mysql2 install error
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
+
+export PATH=$PATH:/opt/nvim-osx64/bin
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f ${HOME}/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . ${HOME}/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f ${HOME}/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . ${HOME}/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f ${HOME}/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh ]] && . ${HOME}/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh
