@@ -55,3 +55,5 @@ export PATH=$PATH:/opt/nvim-osx64/bin
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f ${HOME}/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh ]] && . ${HOME}/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh
+
+export EDITOR=nvim
