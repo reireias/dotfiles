@@ -3,6 +3,9 @@ sudo: required
 language: sh
 os:
   - linux
+  - osx
+dist: bionic
+osx_image: xcode11.2
 addons:
   apt:
     packages:
