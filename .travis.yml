@@ -11,11 +11,15 @@ addons:
     update: true
     packages:
       - shellcheck
+      - python3
+      - python-pip3
       - zsh
   homebrew:
     update: true
     packages:
       - shellcheck
+      - python3
+      - python-pip3
       - zsh
 install:
   - sudo pip3 install setuptools --upgrade
