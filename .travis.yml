@@ -30,9 +30,9 @@ before_script:
   - shellcheck --version
   - locale
 script:
-  - bash deploy.sh
-  - bash initialize.sh
-  - bash test.sh
+  - make dotfiles
+  - make dependencies
+  - make test
   - vint --color --style .vimrc
 notifications:
   email: false

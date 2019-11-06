@@ -14,24 +14,15 @@ reireias's dotfiles.
 ## Deploy
 Create symbolic link dotfiles to your home directory.
 
-```sh
-./deploy.sh
+```console
+$ make dotfiles
 ```
 
 ## Initialize
 Install packages and fonts.
 
-```sh
-./initialize.sh
-
-# only zsh, zplug, plugins
-./initialize.sh --zsh
-
-# only font
-./initialize.sh --font
-
-# only neovim
-./initialize.sh --neovim
+```console
+$ make dependencies
 ```
 
 ### Initialize tmux
