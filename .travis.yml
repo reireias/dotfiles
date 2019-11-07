@@ -23,9 +23,7 @@ addons:
       - zsh
 install:
   - sudo pip3 install setuptools --upgrade
-  - sudo pip3 install vim-vint==0.3.18
-  - sudo pip3 install ansible
-  - sudo pip3 install ansible-lint
+  - sudo pip3 install vim-vint==0.3.18 ansible ansible-lint
 before_script:
   - python3 --version
   - vint --version
