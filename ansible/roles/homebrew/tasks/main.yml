@@ -1,5 +1,4 @@
 ---
----
 - name: download homebrew install script
   get_url:
     url: https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh
@@ -8,5 +7,5 @@
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: install homebrew
-  shell: /tmp/homebrew_install.sh
+  script: /tmp/homebrew_install.sh
   when: ansible_facts['os_family'] == 'Debian'
