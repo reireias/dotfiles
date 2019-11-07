@@ -5,7 +5,8 @@ dotfiles:
 
 .PHONY: dependencies
 dependencies:
-	@bash initialize.sh
+	@cd ansible; \
+	ansible-playbook -i localhost, dependencies.yml
 
 .PHONY: test
 test:

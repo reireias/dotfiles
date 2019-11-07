@@ -35,6 +35,7 @@ script:
   - make dotfiles
   - make dependencies
   - make test
+  - bash initialize.sh
   - vint --color --style .vimrc
   - ansible-lint ansible/dotfiles.yml
 notifications:
