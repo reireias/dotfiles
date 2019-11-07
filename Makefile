@@ -1,11 +1,11 @@
 .PHONY: dotfiles
 dotfiles:
-	bash ./deploy.sh
+	@bash deploy.sh
 
 .PHONY: dependencies
 dependencies:
-	bash initialize.sh
+	@bash initialize.sh
 
 .PHONY: test
 test:
-	bash test.sh
+	@bash test.sh
