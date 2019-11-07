@@ -9,3 +9,8 @@
 - name: install homebrew
   script: /tmp/homebrew_install.sh
   when: ansible_facts['os_family'] == 'Debian'
+
+- name: set temporary homebrew env
+  environment:
+    PATH: "~/.linuxbrew/bin:{{ ansible_env.PATH }}"
+  when: ansible_facts['os_family'] == 'Debian'
