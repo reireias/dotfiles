@@ -13,6 +13,7 @@
     src: "{{ item.path }}"
     dest: "~/{{ item.path | basename }}"
     state: "link"
+    force: yes
   with_items: "{{ dotfiles.files }}"
 
 - name: list dotdirs
