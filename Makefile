@@ -1,6 +1,7 @@
 .PHONY: dotfiles
 dotfiles:
-	@bash deploy.sh
+	@cd ansible; \
+	ansible-playbook -i localhost, dotfiles.yml
 
 .PHONY: dependencies
 dependencies:

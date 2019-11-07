@@ -1,0 +1,45 @@
+---
+- name: list dotfiles
+  find:
+    path: "{{ playbook_dir }}/../"
+    patterns: "^\\.(?!gitignore|travis).*$"
+    file_type: "file"
+    use_regex: yes
+    hidden: yes
+  register: dotfiles
+
+- name: create symbolic link
+  file:
+    src: "{{ item.path }}"
+    dest: "~/{{ item.path | basename }}"
+    state: "link"
+  with_items: "{{ dotfiles.files }}"
+
+- name: list dotdirs
+  find:
+    path: "{{ playbook_dir }}/../"
+    patterns: "^\\.(?!git).*$"
+    file_type: "directory"
+    use_regex: yes
+    hidden: yes
+  register: dotdirs
+
+- name: list files
+  find:
+    paths: "{{ dotdirs.files | map(attribute='path') | list }}"
+    file_type: "file"
+    recurse: yes
+  register: files
+
+- name: create directory
+  file:
+    path: "~/{{ item.path | regex_replace(playbook_dir | dirname + '/') | dirname }}"
+    state: directory
+  with_items: "{{ files.files }}"
+
+- name: create symbolic link
+  file:
+    src: "{{ item.path }}"
+    dest: "~/{{ item.path | regex_replace(playbook_dir | dirname + '/') }}"
+    state: "link"
+  with_items: "{{ files.files }}"
