@@ -11,5 +11,5 @@
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: set temporary homebrew env
-  command: /home/linuxbrew/.linuxbrew/bin/brew shellenv
+  shell: eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
   when: ansible_facts['os_family'] == 'Debian'
