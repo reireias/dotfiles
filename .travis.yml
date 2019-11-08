@@ -33,6 +33,7 @@ script:
   - make dotfiles
   - make dependencies
   - make test
+  - zsh -lc "zplug check"
   - vint --color --style .vimrc
   - ansible-lint ansible/dotfiles.yml
 notifications:
