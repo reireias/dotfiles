@@ -1,14 +1,26 @@
 ---
-- name: download homebrew install script
-  get_url:
-    url: https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh
-    dest: /tmp/homebrew_install.sh
-    mode: 0755
-  when: ansible_facts['os_family'] == 'Debian'
+- block:
+  - name: check brew command
+    command: /bin/bash -lc "type brew"
+    register: type_brew_result
+    failed_when: false
+    changed_when: false
 
-- name: install homebrew
-  script: /tmp/homebrew_install.sh
-  when: ansible_facts['os_family'] == 'Debian'
+  - name: set brew_exist
+    set_fact:
+      brew_exist: "{{ type_brew_result.rc == 0 }}"
 
-- name: write linuxbrew envs
-  shell: /home/linuxbrew/.linuxbrew/bin/brew shellenv > ~/.linuxbrewrc
+  - block:
+    - name: download homebrew install script
+      get_url:
+        url: https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh
+        dest: /tmp/homebrew_install.sh
+        mode: 0755
+
+    - name: install homebrew
+      script: /tmp/homebrew_install.sh
+
+    - name: write linuxbrew envs
+      shell: /home/linuxbrew/.linuxbrew/bin/brew shellenv > ~/.linuxbrewrc
+    when: not brew_exist
+  when: ansible_facts['os_family'] == 'Debian'
