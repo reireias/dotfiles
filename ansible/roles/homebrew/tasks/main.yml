@@ -10,6 +10,5 @@
   script: /tmp/homebrew_install.sh
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: set temporary homebrew env
-  shell: eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-  when: ansible_facts['os_family'] == 'Debian'
+- name: write linuxbrew envs
+  shell: /home/linuxbrew/.linuxbrew/bin/brew shellenv > ~/.linuxbrewrc

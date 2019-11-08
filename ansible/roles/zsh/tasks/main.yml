@@ -20,3 +20,5 @@
 - name: install zplug
   homebrew:
     name: zplug
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
