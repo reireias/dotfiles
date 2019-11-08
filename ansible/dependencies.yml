@@ -4,3 +4,4 @@
   roles:
     - homebrew
     - zsh
+    - neovim
