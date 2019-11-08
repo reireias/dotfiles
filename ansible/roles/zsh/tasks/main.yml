@@ -22,3 +22,13 @@
     name: zplug
   environment:
     PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+
+- name: create symbolic link for zplug
+  file:
+    src: /home/linuxbrew/.linuxbrew/opt/zplug
+    dest: ~/.zplug
+    state: link
+
+# TODO: zplug install when not docker
+- name: install zplug
+  command: /bin/zsh -lc "zplug install"
