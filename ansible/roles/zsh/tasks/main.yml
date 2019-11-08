@@ -29,6 +29,4 @@
     dest: ~/.zplug
     state: link
 
-# TODO: zplug install when not docker
-- name: install zplug
-  command: /bin/zsh -lc "zplug install"
+# TODO: show after command in handler
