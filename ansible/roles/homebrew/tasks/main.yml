@@ -3,6 +3,7 @@
   - name: check brew command
     command: /bin/bash -lc "type brew"
     register: type_brew_result
+    check_mode: false
     failed_when: false
     changed_when: false
 

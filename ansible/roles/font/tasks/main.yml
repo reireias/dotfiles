@@ -1,0 +1,147 @@
+---
+- name: install packages for Debian
+  apt:
+    name:
+      - fontforge
+      - unzip
+      - python
+      - python-configparser
+    update_cache: yes
+  become: yes
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: install packages for Darwin
+  homebrew:
+    name:
+      - fontforge
+      - unzip
+      - python
+      - python-configparser
+  when: ansible_facts['os_family'] == 'Darwin'
+
+# - name: install configparser
+#   pip:
+#     name: configparser
+
+- name: create ~/.fonts
+  file:
+    path: ~/.fonts
+    state: directory
+
+- name: download Inconsolata
+  get_url:
+    url: http://levien.com/type/myfonts/Inconsolata.otf
+    dest: ~/.fonts/Inconsolata.otf
+
+- name: create temp directory
+  tempfile:
+    state: directory
+    suffix: font
+  register: tempdir
+
+- name: check migu-1m exist
+  stat:
+    path: ~/.fonts/migu-1m-regular.ttf
+  register: migu1m
+
+- name: download mig-1m
+  get_url:
+    url: https://ja.osdn.net/frs/redir.php?m=iij&f=%2Fmix-mplus-ipa%2F63545%2Fmigu-1m-20150712.zip
+    dest: "{{ tempdir.path }}/migu-1m-20150712.zip"
+  when: not migu1m.stat.exists
+
+- name: unzip
+  unarchive:
+    src: "{{ tempdir.path }}/migu-1m-20150712.zip"
+    dest: "{{ tempdir.path }}/"
+  when: not migu1m.stat.exists
+
+- name: copy fonts
+  copy:
+    src: "{{ tempdir.path }}/migu-1m-20150712/{{ item }}"
+    dest: ~/.fonts
+  with_items:
+    - migu-1m-regular.ttf
+    - migu-1m-bold.ttf
+  when: not migu1m.stat.exists
+
+- name: check ricty exist
+  stat:
+    path: ~/.fonts/Ricty-Regular.ttf
+  register: ricty
+
+- name: download ricty_generator
+  get_url:
+    url: https://raw.github.com/metalefty/Ricty/master/ricty_generator.sh
+    dest: "{{ tempdir.path }}/ricty_generator.sh"
+    mode: 0755
+  when: not ricty.stat.exists
+
+- name: exec ricty_generator
+  script: "{{ tempdir.path }}/ricty_generator.sh ~/.fonts/Inconsolata.otf ~/.fonts/migu-1m-regular.ttf ~/.fonts/migu-1m-bold.ttf"
+  args:
+    chdir: "{{ tempdir.path }}"
+  when: not ricty.stat.exists
+
+- name: copy generated fonts
+  copy:
+    src: "{{ tempdir.path }}/{{ item }}"
+    dest: ~/.fonts
+  with_items:
+    - Ricty-Regular.ttf
+    - Ricty-Bold.ttf
+  when: not ricty.stat.exists
+
+- name: check nerd exist
+  stat:
+    path: ~/.fonts/Ricty-Regular-nerd.ttf
+  register: nerd
+
+- name: clone nerd-fonts
+  git:
+    repo: https://github.com/ryanoasis/nerd-fonts.git
+    depth: 1
+    update: no
+    dest: /tmp/nerd-fonts
+  when: not nerd.stat.exists
+
+- name: exec font patch
+  command: fontforge -script /tmp/nerd-fonts/font-patcher ~/.fonts/Ricty-Regular.ttf --fontawesome --fontlinux --octicons --pomicons --powerline --powerlineextra --no-progressbars --quiet
+  args:
+    chdir: /tmp/nerd-fonts
+  when: not nerd.stat.exists
+
+- name: copy nerd-font
+  copy:
+    src: "/tmp/nerd-fonts/Ricty Regular Nerd Font Plus Font Awesome Plus Octicons Plus Pomicons Plus Font Logos (Font Linux).ttf"
+    dest: ~/.fonts/Ricty-Regular-nerd.ttf
+  when: not nerd.stat.exists
+
+- name: check powerline exist
+  stat:
+    path: ~/.fonts/Ricty-Regular-nerd-Powerline.ttf
+  register: powerline
+
+- name: clone powerline
+  git:
+    repo: https://github.com/Lokaltog/vim-powerline.git
+    depth: 1
+    update: no
+    dest: /tmp/vim-powerline
+  when: not powerline.stat.exists
+
+- name: exec font patch
+  command: fontforge -lang=py -script /tmp/vim-powerline/fontpatcher/fontpatcher ~/.fonts/Ricty-Regular-nerd.ttf
+  args:
+    chdir: /tmp/vim-powerline
+  when: not powerline.stat.exists
+
+- name: copy powerline font
+  copy:
+    src: /tmp/vim-powerline/Ricty-Regular-nerd-Powerline.ttf
+    dest: ~/.fonts/Ricty-Regular-nerd-Powerline.ttf
+  when: not powerline.stat.exists
+
+# TODO: move to handler
+- name: exec fc-cache
+  command: fc-cache -vf
