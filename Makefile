@@ -1,13 +1,24 @@
+PYENV := $(shell which python | grep -o pyenv)
+ifeq ($(PYENV),pyenv)
+	ANSIBLE_ARG := --extra-vars ansible_python_interpreter=/usr/bin/python
+endif
+
+CHECK_SUDO := $(shell sudo -n true 2>&1 && echo OK)
+ifeq ($(CHECK_SUDO),OK)
+	ANSIBLE_SUDO_ARG :=
+else
+	ANSIBLE_SUDO_ARG := -K
+endif
+
 .PHONY: dotfiles
 dotfiles:
 	@cd ansible; \
-	ansible-playbook -i localhost, dotfiles.yml
+	ansible-playbook -i localhost, dotfiles.yml $(ANSIBLE_ARG)
 
 .PHONY: dependencies
 dependencies:
 	@cd ansible; \
-	ansible-playbook -i localhost, dependencies.yml
-	# TODO: set ansible_python_interpreter=/usr/bin/python if use pyenv
+	ansible-playbook -i localhost, dependencies.yml $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
 	@$(MAKE) zplug
 
 .PHONY: zplug
