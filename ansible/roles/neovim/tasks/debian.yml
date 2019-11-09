@@ -1,7 +1,7 @@
 ---
 - name: create directory for dein
   file:
-    path: "~/.vim/dein/repos/github.com/Shougo/dein.vim"
+    path: ~/.vim/dein/repos/github.com/Shougo/dein.vim
     state: directory
 
 - name: clone dein
@@ -15,9 +15,15 @@
     id: 9DBB0BE9366964F134855E2255F96FCF8231B6DD
   become: yes
 
+- name: get codename for Linux Mint
+  shell: grep --color=none UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//g'
+  changed_when: no
+  register: codename
+
 - name: add neovim repository
   apt_repository:
     repo: ppa:neovim-ppa/unstable
+    codename: "{{ codename.stdout }}"
   become: yes
 
 - name: install neovim
