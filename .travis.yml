@@ -31,7 +31,7 @@ before_script:
   - locale
 script:
   - make dotfiles
-  - make dependencies
+  - make dependencies --debug
   - make test
   - zsh -ic "zplug check"
   - vint --color --style .vimrc
