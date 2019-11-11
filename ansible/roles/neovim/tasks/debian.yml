@@ -8,6 +8,7 @@
   git:
     repo: https://github.com/Shougo/dein.vim.git
     dest: ~/.vim/dein/repos/github.com/Shougo/dein.vim
+    version: 2.0
 
 - name: add gpg-key
   apt_key:
@@ -16,7 +17,11 @@
   become: yes
 
 - name: get codename for Linux Mint
-  shell: grep --color=none UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//g'
+  shell: |
+    set -o pipefail
+    grep --color=none UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//g'
+  args:
+    executable: /bin/bash
   changed_when: no
   register: codename
 
