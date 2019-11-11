@@ -16,12 +16,12 @@
       - fontforge
       - unzip
       - python
-      - python-configparser
   when: ansible_facts['os_family'] == 'Darwin'
 
-# - name: install configparser
-#   pip:
-#     name: configparser
+- name: install configparser for Darwin
+  pip:
+    name: configparser
+  when: ansible_facts['os_family'] == 'Darwin'
 
 - name: create ~/.fonts
   file:
