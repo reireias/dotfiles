@@ -23,8 +23,15 @@
   environment:
     PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
 
+- name: get brew prefix
+  command: brew --prefix
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+  changed_when: no
+  register: prefix
+
 - name: create symbolic link for zplug
   file:
-    src: /home/linuxbrew/.linuxbrew/opt/zplug
+    src: "{{ prefix.stdout }}/opt/zplug"
     dest: ~/.zplug
     state: link
