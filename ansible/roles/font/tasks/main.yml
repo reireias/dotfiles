@@ -64,6 +64,7 @@
     - migu-1m-regular.ttf
     - migu-1m-bold.ttf
   when: not migu1m.stat.exists
+  notify: font_reload
 
 - name: check ricty exist
   stat:
@@ -91,6 +92,7 @@
     - Ricty-Regular.ttf
     - Ricty-Bold.ttf
   when: not ricty.stat.exists
+  notify: font_reload
 
 - name: check nerd exist
   stat:
@@ -119,6 +121,7 @@
     src: "/tmp/nerd-fonts/Ricty Regular Nerd Font Plus Font Awesome Plus Octicons Plus Pomicons Plus Font Logos (Font Linux).ttf"
     dest: ~/.fonts/Ricty-Regular-nerd.ttf
   when: not nerd.stat.exists
+  notify: font_reload
 
 - name: check powerline exist
   stat:
@@ -145,8 +148,4 @@
     src: /tmp/vim-powerline/Ricty-Regular-nerd-Powerline.ttf
     dest: ~/.fonts/Ricty-Regular-nerd-Powerline.ttf
   when: not powerline.stat.exists
-
-# TODO: move to handler
-- name: exec fc-cache
-  command: fc-cache -vf
-  changed_when: false
+  notify: font_reload
