@@ -8,7 +8,7 @@
   git:
     repo: https://github.com/Shougo/dein.vim.git
     dest: ~/.vim/dein/repos/github.com/Shougo/dein.vim
-    version: 2.0
+    version: "2.0"
 
 - name: add gpg-key
   apt_key:
