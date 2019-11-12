@@ -29,6 +29,8 @@ before_script:
   - vint --version
   - shellcheck --version
   - locale
+  - brew --repository
+  - cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/ && git log
 script:
   - make dotfiles
   - make dependencies --debug
