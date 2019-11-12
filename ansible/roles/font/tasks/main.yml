@@ -10,17 +10,28 @@
   become: yes
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: install packages for Darwin
-  homebrew:
-    name:
-      - fontforge
-      - unzip
-      - python
-  when: ansible_facts['os_family'] == 'Darwin'
+- block:
+  - name: install packages for Darwin
+    homebrew:
+      name:
+        - unzip
+        - python
 
-- name: install configparser for Darwin
-  pip:
-    name: configparser
+  - name: set old version fontforge brew file
+    command: git checkout 5f5a31a89 fontforge.rb
+    args:
+      chdir: /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+    tags:
+      - skip_ansible_lint
+
+  - name: install fonrforge for Darwin
+    homebrew:
+      name: fontforge
+
+  - name: install configparser for Darwin
+    pip:
+      name: configparser
+      executable: /usr/local/bin/pip
   when: ansible_facts['os_family'] == 'Darwin'
 
 - name: create ~/.fonts
