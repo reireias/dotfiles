@@ -11,21 +11,34 @@ reireias's dotfiles.
 ### vim
 ![dotfiles-vim](https://user-images.githubusercontent.com/24800246/59351009-686b1f00-8d58-11e9-8b0a-585e65a4a31c.png)
 
-## Deploy
+## deploy dotfiles
 Create symbolic link dotfiles to your home directory.
 
 ```console
 $ make dotfiles
 ```
 
-## Initialize
+## install dependencies
 Install packages and fonts.
+
+- Ricty + Nerd Font + powerline font
+- neovim
+- zsh and zsh plugins
+- some packages to use .zshrc
 
 ```console
 $ make dependencies
 ```
 
-### Initialize tmux
-- Install [tmux](https://github.com/tmux/tmux) 2.8 or higher.
-- Install [tpm](https://github.com/tmux-plugins/tpm) to ~/.tmux/plugins/tpm.
-- Start tmux and input `prefix I` for install plugins.
+## for developer
+Run lint (shellcheck, ansible-lint, vint)
+
+```console
+$ make lint
+```
+
+Test .bashrc and .zshrc, check zsh plugin installed.
+
+```console
+$ make test
+```
