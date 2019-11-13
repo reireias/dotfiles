@@ -18,11 +18,9 @@
         - python
 
   - name: set old version fontforge brew file
-    command: git checkout 5f5a31a89 fontforge.rb
-    args:
-      chdir: /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
-    tags:
-      - skip_ansible_lint
+    get_url:
+      url: https://raw.githubusercontent.com/Homebrew/homebrew-core/5f5a31a893433285ebc3d0ad67081c43121af832/Formula/fontforge.rb
+      dest: /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/fontforge.rb
 
   - name: install fonrforge for Darwin
     homebrew:
