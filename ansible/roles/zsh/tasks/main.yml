@@ -15,6 +15,7 @@
       - zsh
       - curl
       - gawk
+      - coreutils
   when: ansible_facts['os_family'] == 'Darwin'
 
 - name: install zplug

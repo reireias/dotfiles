@@ -46,4 +46,4 @@ lint:
 test:
 	bash -n ~/.bashrc
 	zsh -n ~/.zshrc
-	zsh -ic "zplug check"
+	zsh -lc "zplug check"
