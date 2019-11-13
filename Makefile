@@ -35,6 +35,15 @@ zplug:
 		zsh -lc "compinit"; \
 	fi
 
+.PHONY: lint
+lint:
+	find -type f -name "*.sh" -exec shellcheck {} \;
+	ansible-lint ansible/dotfiles.yml
+	ansible-lint ansible/dependencies.yml
+	vint --color --style .vimrc
+
 .PHONY: test
 test:
-	@bash test.sh
+	bash -n ~/.bashrc
+	zsh -n ~/.zshrc
+	zsh -ic "zplug check"
