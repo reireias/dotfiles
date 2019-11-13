@@ -30,7 +30,7 @@ before_script:
   - shellcheck --version
   - locale
   - brew --repository
-  - cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/ && git log
+  - cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/ && git log | grep 5f5a31a89
 script:
   - make dotfiles
   - make dependencies --debug
