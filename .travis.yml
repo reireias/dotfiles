@@ -29,7 +29,7 @@ before_script:
   - vint --version
   - shellcheck --version
   - locale
-  - cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/ && git log | head -n 500; true
+  - cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/ && git log fontforge.rb | head -n 500; true
 script:
   - make dotfiles
   - make dependencies --debug
