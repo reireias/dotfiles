@@ -139,6 +139,7 @@ man() {
 # general
 alias caddy='ruby /opt/caddy/caddy/caddy.rb'
 alias du='du -shc * | sort -h'
+alias fzf='fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}"'
 alias h='tldr'
 alias l='ls -CF'
 alias la='ls -A'
