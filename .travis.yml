@@ -1,29 +1,40 @@
 ---
 sudo: required
-language: sh
+language: minimal
 os:
   - linux
+  - osx
+dist: bionic
+osx_image: xcode11.2
 addons:
   apt:
+    update: true
     packages:
       - shellcheck
       - python3
       - python3-pip
-      - git
-      - zsh
+  homebrew:
+    update: true
+    packages:
+      - shellcheck
+      - python3
+      - python3-pip
+      - findutils
 install:
   - sudo pip3 install setuptools --upgrade
-  - sudo pip3 install vim-vint==0.3.18
+  - sudo pip3 install vim-vint==0.3.18 ansible ansible-lint
 before_script:
   - python3 --version
+  - ansible --version
+  - ansible-lint --version
   - vint --version
   - shellcheck --version
   - locale
 script:
-  - bash deploy.sh
-  - bash initialize.sh
-  - bash test.sh
-  - vint --color --style .vimrc
+  - make dotfiles
+  - make dependencies
+  - make lint
+  - make test
 notifications:
   email: false
   slack:
