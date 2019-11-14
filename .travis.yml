@@ -19,6 +19,7 @@ addons:
       - shellcheck
       - python3
       - python3-pip
+      - findutils
 install:
   - sudo pip3 install setuptools --upgrade
   - sudo pip3 install vim-vint==0.3.18 ansible ansible-lint
