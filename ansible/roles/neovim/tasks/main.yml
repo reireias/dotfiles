@@ -1,0 +1,4 @@
+---
+- name: include debian
+  include: debian.yml
+  when: ansible_facts['os_family'] == 'Debian'

@@ -1,0 +1,38 @@
+---
+- name: install dependency packages for Debian
+  apt:
+    name:
+      - zsh
+      - curl
+      - gawk
+    update_cache: yes
+  become: yes
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: install dependency packages for Mac
+  homebrew:
+    name:
+      - zsh
+      - curl
+      - gawk
+      - coreutils
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- name: install zplug
+  homebrew:
+    name: zplug
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+
+- name: get brew prefix
+  command: brew --prefix
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+  changed_when: no
+  register: prefix
+
+- name: create symbolic link for zplug
+  file:
+    src: "{{ prefix.stdout }}/opt/zplug"
+    dest: ~/.zplug
+    state: link

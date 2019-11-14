@@ -24,7 +24,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 zplug load
 setopt nonomatch
-export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
+# export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
 
 # powerlevel10k
 typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable)
