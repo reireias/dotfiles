@@ -1,0 +1,14 @@
+---
+- name: install dependency packages for Debian
+  apt:
+    name:
+      - peco
+    update_cache: yes
+  become: yes
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: install dependency packages for Mac
+  homebrew:
+    name:
+      - peco
+  when: ansible_facts['os_family'] == 'Darwin'

@@ -53,3 +53,4 @@ test:
 	bash -n ~/.bashrc
 	zsh -n ~/.zshrc
 	zsh -lc "zplug check"
+	peco --version
