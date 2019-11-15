@@ -3,6 +3,7 @@
   connection: local
   roles:
     - homebrew
+    - tools
     - zsh
     - neovim
     - font
