@@ -110,11 +110,11 @@
 
 - name: clone nerd-fonts
   git:
-    repo: https://github.com/ryanoasis/nerd-fonts.git
+    repo: https://github.com/reireias/nerd-fonts.git
     depth: 1
     update: no
     dest: /tmp/nerd-fonts
-    version: v2.0.0
+    version: patch
   when: not nerd.stat.exists
 
 - name: exec font patch
