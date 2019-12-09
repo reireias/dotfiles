@@ -24,6 +24,7 @@ Install packages and fonts.
 - Ricty + Nerd Font + powerline font
 - neovim
 - zsh and zsh plugins
+- asdf-vm
 - some packages to use .zshrc
 
 ```console
