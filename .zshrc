@@ -389,10 +389,10 @@ fi
 # }}}
 
 # DEVELOPMENT {{{
-# pyenv
-export PYENV_ROOT=$HOME/.pyenv
-if [[ $(command -v pyenv) ]]; then
-    eval "$(pyenv init -)"
+# asdf-vm
+if [[ $(command -v brew) ]]; then
+    source $(brew --prefix asdf)/asdf.sh
+    source $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 fi
 # }}}
 
