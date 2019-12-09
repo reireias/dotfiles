@@ -2,5 +2,4 @@
 - name: install asdf
   homebrew:
     name: asdf
-  environment:
-    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+    path: /home/linuxbrew/.linuxbrew/bin:/usr/local/bin
