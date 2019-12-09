@@ -1,0 +1,4 @@
+---
+- name: install asdf
+  homebrew:
+    name: asdf
