@@ -108,16 +108,13 @@
     path: ~/.fonts/Ricty-Regular-nerd.ttf
   register: nerd
 
-- name: create tmp dir
-  file:
-    path: /tmp/nerd-fonts
-    state: directory
-  when: not nerd.stat.exists
-
-- name: download nerd-fonts patch script
-  get_url:
-    url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v2.0.0/font-patcher
-    dest: /tmp/nerd-fonts/font-patcher
+- name: clone nerd-fonts
+  git:
+    repo: https://github.com/ryanoasis/nerd-fonts.git
+    depth: 1
+    update: no
+    dest: /tmp/nerd-fonts
+    version: v2.0.0
   when: not nerd.stat.exists
 
 - name: exec font patch
