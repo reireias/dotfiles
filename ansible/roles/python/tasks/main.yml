@@ -1,4 +1,11 @@
 ---
+- name: install zlib
+  apt:
+    name: zlib1g-dev
+    update_cache: yes
+  become: yes
+  when: ansible_facts['os_family'] == 'Debian'
+
 - name: install pyenv
   homebrew:
     name: pyenv
