@@ -388,6 +388,13 @@ elif type compctl &>/dev/null; then
 fi
 # }}}
 
+# DEVELOPMENT {{{
+# pyenv
+export PYENV_ROOT=$HOME/.pyenv
+if [[ $(command -v pyenv) ]]; then
+    eval "$(pyenv init -)"
+fi
+# }}}
 
 # OTHER {{{
 # pandoc
