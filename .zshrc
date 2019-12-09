@@ -390,9 +390,9 @@ fi
 
 # DEVELOPMENT {{{
 # asdf-vm
-if [[ $(command -v brew) ]]; then
-    source $(brew --prefix asdf)/asdf.sh
-    source $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+if [[ -e ${HOME}/.asdf ]]; then
+    source ${HOME}/.asdf/asdf.sh
+    source ${HOME}/.asdf/completions/asdf.bash
 fi
 # }}}
 
