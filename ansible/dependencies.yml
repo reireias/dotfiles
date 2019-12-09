@@ -3,7 +3,7 @@
   connection: local
   roles:
     - homebrew
-    # - development
+    - development
     - tools
     - zsh
     - neovim
