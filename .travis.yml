@@ -33,6 +33,7 @@ before_script:
 script:
   - make dotfiles
   - make dependencies
+  - /home/linuxbrew/.linuxbrew/bin/brew install perl
   - /home/linuxbrew/.linuxbrew/bin/brew install asdf
   - make lint
   - make test
