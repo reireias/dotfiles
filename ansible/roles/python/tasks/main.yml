@@ -1,0 +1,6 @@
+---
+- name: install pyenv
+  homebrew:
+    name: pyenv
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
