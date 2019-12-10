@@ -30,6 +30,8 @@ dependencies:
 .PHONY: zplug
 zplug:
 	env
+	awk --version
+	git --version
 	zsh --version
 	zsh -lc "zplug --version"
 	zsh -lc "zplug install"
