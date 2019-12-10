@@ -21,7 +21,5 @@ jobs:
         run: make dotfiles
       - name: install dependencies
         run: make dependencies
-        env:
-          LANG: en_US.UTF-8
       - name: run test
         run: make test
