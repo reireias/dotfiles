@@ -20,6 +20,6 @@ jobs:
       - name: install dotfiles
         run: make dotfiles
       - name: install dependencies
-        run: make dependencies
+        run: bash -c "make dependencies"
       - name: run test
         run: make test
