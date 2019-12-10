@@ -31,6 +31,7 @@ dependencies:
 
 .PHONY: zplug
 zplug:
+	sed -i -e 's/case/ps -o comm= $PPID; case/g' ~/.zplug/autoload/zplug
 	zsh -lc "setopt"
 	@zsh -lc "zplug list"
 	@if ! zsh -lc "zplug check"; then \
