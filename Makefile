@@ -29,14 +29,8 @@ dependencies:
 
 .PHONY: zplug
 zplug:
-	env
-	awk --version
-	git --version
-	zsh --version
-	zsh -lc "zplug --version"
-	zsh -lc "zplug install"
-	zsh -ic "zplug install"
-	zsh -lc "zplug list"
+	zsh -lcx "zplug list"
+	@zsh -lc "zplug list"
 	@if ! zsh -lc "zplug check"; then \
 		zsh -lc "zplug install"; \
 		if [ -e ~/.zcompdump ]; then \
