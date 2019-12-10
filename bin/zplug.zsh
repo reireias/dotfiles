@@ -8,6 +8,6 @@ if ! zplug check; then
         rm ~/.zcompdump
     fi
     if [ -e ~/.zplug/zcompdump ]; then
-        rm ~/.zplug/zcompdump; \
+        rm ~/.zplug/zcompdump
     fi
 fi
