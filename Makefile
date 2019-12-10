@@ -25,7 +25,7 @@ dotfiles:
 dependencies:
 	@cd ansible; \
 	ansible-playbook -i localhost, dependencies.yml $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
-	@zsh -l bin/zplug.zsh
+	@zsh -l bin/zplug.zsh < /dev/null
 
 .PHONY: lint
 lint:
