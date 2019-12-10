@@ -25,21 +25,8 @@ dotfiles:
 dependencies:
 	@cd ansible; \
 	ansible-playbook -i localhost, dependencies.yml $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
-	$(MAKE) zplug
-
-.PHONY: zplug
-zplug:
-	@zsh -lc "zplug list"
-	@if ! zsh -lc "zplug check"; then \
-		zsh -lc "zplug install"; \
-		if [ -e ~/.zcompdump ]; then \
-			rm ~/.zcompdump; \
-		fi; \
-		if [ -e ~/.zplug/zcompdump ]; then \
-			rm ~/.zplug/zcompdump; \
-		fi; \
-		zsh -lc "compinit"; \
-	fi
+	# NOTE: ignore pipe error setting in GitHub Actions
+	@zsh -l bin/zplug.zsh < /dev/null
 
 .PHONY: lint
 lint:
@@ -52,5 +39,6 @@ lint:
 test:
 	bash -n ~/.bashrc
 	zsh -n ~/.zshrc
-	zsh -lc "zplug check"
+	# NOTE: ignore pipe error setting in GitHub Actions
+	zsh -lc "zplug check" < /dev/null
 	peco --version
