@@ -29,7 +29,8 @@ dependencies:
 
 .PHONY: zplug
 zplug:
-	zsh -lcx "zplug list"
+	env
+	sed -i -e 's/zplug "/# zplug "/g' ~/.zshrc
 	@zsh -lc "zplug list"
 	@if ! zsh -lc "zplug check"; then \
 		zsh -lc "zplug install"; \
