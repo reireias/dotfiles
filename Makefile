@@ -38,5 +38,5 @@ lint:
 test:
 	bash -n ~/.bashrc
 	zsh -n ~/.zshrc
-	zsh -lc "zplug check"
+	zsh -lc "zplug check" < /dev/null
 	peco --version

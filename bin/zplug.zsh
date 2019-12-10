@@ -10,5 +10,4 @@ if ! zplug check; then
     if [ -e ~/.zplug/zcompdump ]; then
         rm ~/.zplug/zcompdump; \
     fi
-    compinit
 fi
