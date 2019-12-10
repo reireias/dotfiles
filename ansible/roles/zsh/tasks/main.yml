@@ -1,4 +1,5 @@
 ---
+# zsh
 - name: install dependency packages for Debian
   apt:
     name:
@@ -18,21 +19,18 @@
       - coreutils
   when: ansible_facts['os_family'] == 'Darwin'
 
-- name: install zplug
-  homebrew:
-    name: zplug
-  environment:
-    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+# zplug
+- name: check zplug exist
+  stat:
+    path: ~/.zplug
+  register: zplug
 
-- name: get brew prefix
-  command: brew --prefix
-  environment:
-    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
-  changed_when: no
-  register: prefix
+- block:
+  - name: download zplug install script
+    get_url:
+      url: https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
+      dest: /tmp/zplug-installer.zsh
 
-- name: create symbolic link for zplug
-  file:
-    src: "{{ prefix.stdout }}/opt/zplug"
-    dest: ~/.zplug
-    state: link
+  - name: install zplug
+    command: zsh /tmp/zplug-installer.zsh
+  when: not zplug.stat.exists
