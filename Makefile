@@ -25,21 +25,7 @@ dotfiles:
 dependencies:
 	@cd ansible; \
 	ansible-playbook -i localhost, dependencies.yml $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
-	# $(MAKE) zplug
-
-.PHONY: zplug
-zplug:
-	@zsh -lc "zplug list" < /dev/null
-	@if ! zsh -lc "zplug check" < /dev/null; then \
-		zsh -lc "zplug install" < /dev/null; \
-		if [ -e ~/.zcompdump ]; then \
-			rm ~/.zcompdump; \
-		fi; \
-		if [ -e ~/.zplug/zcompdump ]; then \
-			rm ~/.zplug/zcompdump; \
-		fi; \
-		zsh -lc "compinit" < /dev/null; \
-	fi
+	@zsh -l bin/zplug.zsh
 
 .PHONY: lint
 lint:
