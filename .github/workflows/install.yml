@@ -5,15 +5,24 @@ on: [push]
 
 jobs:
   install:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+      fail-fast: true
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v1
         with:
           python-version: '3.7'
-      - name: install dependencies
+      - name: install shellcheck
+        run: sudo apt install shellcheck
+        if: matrix.os == 'ubuntu-latest'
+      - name: install shellcheck
+        run: brew install shellcheck
+        if: matrix.os == 'macOS-latest'
+      - name: install python dependencies
         run: |
-          sudo apt install shellcheck
           python -m pip install --upgrade pip
           pip install --upgrade setuptools
           pip install ansible
