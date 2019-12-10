@@ -29,9 +29,11 @@ dependencies:
 
 .PHONY: zplug
 zplug:
-	find ~/.zplug
+	env
 	zsh --version
 	zsh -lc "zplug --version"
+	zsh -lc "zplug install"
+	zsh -ic "zplug install"
 	zsh -lc "zplug list"
 	@if ! zsh -lc "zplug check"; then \
 		zsh -lc "zplug install"; \
