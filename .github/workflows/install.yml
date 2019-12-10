@@ -21,6 +21,10 @@ jobs:
         run: make dotfiles
       - name: install dependencies
         run: make dependencies
+      - run: |
+          zsh -lc "which compinit" < /dev/null
+          zsh -lc "zplug install" < /dev/null
+          zsh -lc "compinit" < /dev/null
         env:
           TERM: xterm
       - name: run test
