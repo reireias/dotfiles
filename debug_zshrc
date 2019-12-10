@@ -1,3 +1,9 @@
+setopt extendedglob
+setopt nohashdirs
+setopt kshglob
+setopt login
+setopt nonomatch
+
 source ~/.zplug/init.zsh
 fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion $fpath)
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
