@@ -25,7 +25,7 @@ dotfiles:
 dependencies:
 	@cd ansible; \
 	ansible-playbook -i localhost, dependencies.yml $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
-	# $(MAKE) zplug
+	$(MAKE) zplug
 
 .PHONY: zplug
 zplug:
