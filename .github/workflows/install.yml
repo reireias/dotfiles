@@ -21,11 +21,5 @@ jobs:
         run: make dotfiles
       - name: install dependencies
         run: make dependencies
-        env:
-          TERM: xterm
-          LANG: en_US.UTF-8
-          LANGUAGE: en_US.UTF-8
-          LC_ALL: en_US.UTF-8
-          LC_CTYPE: en_US.UTF-8
       - name: run test
         run: make test
