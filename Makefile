@@ -30,9 +30,10 @@ dependencies:
 .PHONY: zplug
 zplug:
 	find ~/.zplug
+	zsh --version
+	zsh -lc "zplug --version"
 	zsh -lc "zplug list"
-	find ~/.zplug
-	if ! zsh -lc "zplug check"; then \
+	@if ! zsh -lc "zplug check"; then \
 		zsh -lc "zplug install"; \
 		if [ -e ~/.zcompdump ]; then \
 			rm ~/.zcompdump; \
