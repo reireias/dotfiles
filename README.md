@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/reireias/dotfiles/workflows/main/badge.svg)](https://github.com/reireias/dotfiles/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Actions Status](https://github.com/reireias/dotfiles/workflows/install/badge.svg)](https://github.com/reireias/dotfiles/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # dotfiles
 
