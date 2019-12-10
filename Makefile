@@ -31,7 +31,7 @@ dependencies:
 
 .PHONY: zplug
 zplug:
-	ls -la ~
+	zsh -lc "setopt"
 	@zsh -lc "zplug list"
 	@if ! zsh -lc "zplug check"; then \
 		zsh -lc "zplug install"; \
