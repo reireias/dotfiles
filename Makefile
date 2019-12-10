@@ -23,18 +23,12 @@ dotfiles:
 
 .PHONY: dependencies
 dependencies:
-	# debug
-	cp ./debug_zshrc ./.zshrc
 	@cd ansible; \
 	ansible-playbook -i localhost, dependencies.yml $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
-	$(MAKE) zplug
+	# $(MAKE) zplug
 
 .PHONY: zplug
 zplug:
-	ps aux
-	sed -i -e 's/case/ps aux; case/g' ~/.zplug/autoload/zplug
-	sed -i -e 's/return $$status/# return $$status/g' ~/.zplug/base/core/add.zsh
-	zsh -lc "setopt"
 	@zsh -lc "zplug list"
 	@if ! zsh -lc "zplug check"; then \
 		zsh -lc "zplug install"; \
