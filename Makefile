@@ -38,6 +38,7 @@ zplug:
 		if [ -e ~/.zplug/zcompdump ]; then \
 			rm ~/.zplug/zcompdump; \
 		fi; \
+		zsh -lc "which compinit" < /dev/null; \
 		zsh -lc "compinit" < /dev/null; \
 	fi
 
