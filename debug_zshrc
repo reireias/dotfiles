@@ -6,11 +6,18 @@ setopt nonomatch
 
 source ~/.zplug/init.zsh
 fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion $fpath)
+echo "1"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+echo "2"
 zplug "b4b4r07/zsh-vimode-visual", defer:3
+echo "3"
 zplug "zsh-users/zsh-completions"
+echo "4"
 zplug "b4b4r07/enhancd", use:init.sh
+echo "5"
 zplug "zsh-users/zsh-autosuggestions"
+echo "6"
 zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
+echo "7"
 zplug load
 setopt nonomatch
