@@ -21,5 +21,7 @@ jobs:
         run: make dotfiles
       - name: install dependencies
         run: make dependencies
+        env:
+          TERM: xterm
       - name: run test
         run: make test
