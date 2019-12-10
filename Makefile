@@ -29,16 +29,16 @@ dependencies:
 
 .PHONY: zplug
 zplug:
-	@zsh -lc "zplug list"
-	@if ! zsh -lc "zplug check"; then \
-		zsh -lc "zplug install"; \
+	@zsh -lc "zplug list" < /dev/null
+	@if ! zsh -lc "zplug check" < /dev/null; then \
+		zsh -lc "zplug install" < /dev/null; \
 		if [ -e ~/.zcompdump ]; then \
 			rm ~/.zcompdump; \
 		fi; \
 		if [ -e ~/.zplug/zcompdump ]; then \
 			rm ~/.zplug/zcompdump; \
 		fi; \
-		zsh -lc "compinit"; \
+		zsh -lc "compinit" < /dev/null; \
 	fi
 
 .PHONY: lint

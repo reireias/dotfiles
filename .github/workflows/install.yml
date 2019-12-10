@@ -21,7 +21,5 @@ jobs:
         run: make dotfiles
       - name: install dependencies
         run: make dependencies
-      - run: zsh -lc "zplug list < /dev/null"
-      - run: zsh -lc "zplug install"
       - name: run test
         run: make test
