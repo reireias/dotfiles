@@ -13,7 +13,7 @@ jobs:
           python-version: '3.7'
       - name: install dependencies
         run: |
-          sudo apt install shellcheck git awk
+          sudo apt install shellcheck git gawk
           python -m pip install --upgrade pip
           pip install --upgrade setuptools
           pip install ansible
