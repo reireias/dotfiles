@@ -3,6 +3,9 @@
   apt:
     name:
       - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libssl-dev
   become: yes
   when: ansible_facts['os_family'] == 'Debian'
 
