@@ -39,6 +39,6 @@ lint:
 test:
 	bash -n ~/.bashrc
 	zsh -n ~/.zshrc
-	# NOTE: ignore pipe error setting in GitHub Actions
+	@# NOTE: ignore pipe error setting in GitHub Actions
 	zsh -lc "zplug check" < /dev/null
 	peco --version
