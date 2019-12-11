@@ -25,7 +25,7 @@ dotfiles:
 dependencies:
 	@cd ansible; \
 	ansible-playbook -i localhost, dependencies.yml $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
-	# NOTE: ignore pipe error setting in GitHub Actions
+	@# NOTE: ignore pipe error setting in GitHub Actions
 	@zsh -l bin/zplug.zsh < /dev/null
 
 .PHONY: lint
