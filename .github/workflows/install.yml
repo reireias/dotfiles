@@ -32,3 +32,5 @@ jobs:
         run: make dependencies
       - name: run test
         run: make test
+      - name: test asdf
+        run: zsh -lc "asdf plugin-add python && asdf install python 3.7.5" < /dev/null
