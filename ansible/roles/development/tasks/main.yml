@@ -1,4 +1,11 @@
 ---
+- name: install packages for asdf
+  apt:
+    name:
+      - zlib1g-dev
+  become: yes
+  when: ansible_facts['os_family'] == 'Debian'
+
 - name: clone asdf
   git:
     repo: "https://github.com/asdf-vm/asdf.git"
