@@ -11,6 +11,11 @@ reireias's dotfiles.
 ### vim
 ![dotfiles-vim](https://user-images.githubusercontent.com/24800246/59351009-686b1f00-8d58-11e9-8b0a-585e65a4a31c.png)
 
+## Quick Start
+
+- clone this repository
+- `make dotfiles && make dependencies`
+
 ## deploy dotfiles
 Create symbolic link dotfiles to your home directory.
 
