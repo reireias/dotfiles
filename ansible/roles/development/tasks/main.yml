@@ -7,6 +7,7 @@
       - libreadline-dev
       - libssl-dev
       - libsqlite3-dev
+      - libffi-dev
   become: yes
   when: ansible_facts['os_family'] == 'Debian'
 
