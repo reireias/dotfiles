@@ -412,7 +412,7 @@ export GOPATH=$HOME/dev
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # travis
-[ -f /home/fx30079/.travis/travis.sh ] && source /home/fx30079/.travis/travis.sh
+[ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
 
 # enhancd
 export ENHANCD_FILTER=peco
