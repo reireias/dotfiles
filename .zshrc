@@ -208,6 +208,17 @@ alias molokai='open http://monokai.9x4.net/'
 alias nuxt-init='~/.scripts/nuxt-init.sh'
 # }}}
 
+# FUNCTION {{{
+function pr-open {
+    local url=$(hub pr list -h $(git symbolic-ref --short HEAD) -f "%U")
+    if [ -z "$url" ]; then
+        echo "The PR based this branch not found."
+        return 1
+    fi
+    open $url
+}
+# }}}
+
 
 # KEY {{{
 # key bind
