@@ -420,7 +420,6 @@ export XDG_CONFIG_HOME=~/.config
 export BUNDLER_EDITOR=vi
 
 # golang
-export GOROOT=/usr/lib/go
 export GOPATH=$HOME/dev
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
