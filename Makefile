@@ -31,7 +31,6 @@ dependencies:
 .PHONY: lint
 lint:
 	$(FIND) -type f -name "*.sh" -exec shellcheck {} \;
-	shellcheck .zshrc
 	ansible-lint ansible/dotfiles.yml
 	ansible-lint ansible/dependencies.yml
 	vint --color --style .vimrc
