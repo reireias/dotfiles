@@ -12,11 +12,11 @@
 export LESS='-R'
 
 # Load .linuxbrewrc
-if [ -e ~/.linuxbrewrc ]; then
+if [[ -e ~/.linuxbrewrc ]]; then
     source ~/.linuxbrewrc
 fi
 
 # Load local setting
-if [ -e ~/.bashrc_local ]; then
+if [[ -e ~/.bashrc_local ]]; then
     source ~/.bashrc_local
 fi
