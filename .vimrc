@@ -110,6 +110,9 @@ let g:mapleader = "\<Space>"
 " jj is Esc
 inoremap <silent> jj <ESC>
 
+" save
+nnoremap <Leader>w :w<CR>
+
 " Home / End
 noremap <Leader>h ^
 noremap <Leader>H 0
