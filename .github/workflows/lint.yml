@@ -21,4 +21,4 @@ jobs:
       - name: lint .zshrc
         uses: azohra/shell-linter@v0.1.0
         with:
-          path: ".zshrc,.zsh"
+          path: ".zshrc,.zsh/*.zsh"
