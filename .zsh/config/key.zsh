@@ -2,6 +2,7 @@
 bindkey -e
 typeset -A key
 
+# shellcheck disable=SC2154
 if [[ -n "${terminfo}" ]]; then
     key[Home]="${terminfo[khome]}"
     key[End]="${terminfo[kend]}"
@@ -30,7 +31,7 @@ fi
 # word
 bindkey "\e[1;5C" forward-word
 bindkey "\e[1;5D" backward-word
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     function zle-line-init () {

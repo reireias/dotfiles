@@ -1,7 +1,8 @@
+# shellcheck disable=SC2034
 source ~/.zplug/init.zsh
 
 # zsh-completions
-fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion $fpath)
+fpath=(~/.zplug/repos/zsh-users/zsh-completions/src ~/.zsh/completion "${fpath[@]}")
 
 # zplug
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -13,7 +14,7 @@ zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 zplug load
 setopt nonomatch
 if [[ ${#ZSH_HIGHLIGHT_STYLES[@]} -ne 0 ]]; then
-    export ZSH_HIGHLIGHT_STYLES[path]='fg=081'
+    export ZSH_HIGHLIGHT_STYLES['path']='fg=081'
 fi
 
 # powerlevel10k
