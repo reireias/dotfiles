@@ -6,13 +6,13 @@
 #
 
 # INPORTS {{{
-source "${HOME}/.bashrc"
+source ~/.bashrc
 # }}}
 
 
 # HISTORY {{{
 # history
-export HISTFILE=$HOME/.zsh-history
+export HISTFILE=~/.zsh-history
 export HISTSIZE=100000
 export SAVEHIST=1000000
 
@@ -26,7 +26,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':completion:*' recent-dirs-insert both
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-max 1000
-zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
+zstyle ':chpwd:*' recent-dirs-file ~/.cache/chpwd-recent-dirs
 # }}}
 
 
@@ -37,7 +37,7 @@ if [[ -z "$SHELL" ]]; then
     export SHELL
 fi
 eval "$(dircolors -b)"
-eval "$(dircolors "${HOME}/.dircolors")"
+eval "$(dircolors ~/.dircolors)"
 
 # remove file mark
 unsetopt list_types
@@ -81,23 +81,23 @@ function pr-open {
 
 
 # FZF {{{
-if [[ -f ${HOME}/.fzf.zsh ]]; then
-    source "${HOME}/.fzf.zsh"
+if [[ -f ~/.fzf.zsh ]]; then
+    source ~/.fzf.zsh
 fi
 # }}}
 
 
 # DEVELOPMENT {{{
 # asdf-vm
-if [[ -e ${HOME}/.asdf ]]; then
-    source "${HOME}/.asdf/asdf.sh"
+if [[ -e ~/.asdf ]]; then
+    source ~/.asdf/asdf.sh
 fi
 # }}}
 
 
 # OTHER {{{
 # neovim
-export XDG_CONFIG_HOME=${HOME}/.config
+export XDG_CONFIG_HOME=~/.config
 export BUNDLER_EDITOR=vi
 
 # golang
@@ -108,22 +108,22 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # SUB FILES {{{
 # plugin
-source "${HOME}/.zsh/config/plugin.zsh"
+source ~/.zsh/config/plugin.zsh
 
 # key
-source "${HOME}/.zsh/config/key.zsh"
+source ~/.zsh/config/key.zsh
 
 # alias
-source "${HOME}/.zsh/config/alias.zsh"
+source ~/.zsh/config/alias.zsh
 
 # completion
-source "${HOME}/.zsh/config/completion.zsh"
+source ~/.zsh/config/completion.zsh
 
 # peco
-source "${HOME}/.zsh/config/search.zsh"
+source ~/.zsh/config/search.zsh
 
 # local setting
-if [[ -e ${HOME}/.zshrc_local ]]; then
-    source "${HOME}/.zshrc_local"
+if [[ -e ~/.zshrc_local ]]; then
+    source ~/.zshrc_local
 fi
 # }}}

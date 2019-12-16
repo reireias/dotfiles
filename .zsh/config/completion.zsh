@@ -1,15 +1,15 @@
 # travis
-if [[ -f ${HOME}/.travis/travis.sh ]]; then
-    source ${HOME}/.travis/travis.sh
+if [[ -f ~/.travis/travis.sh ]]; then
+    source ~/.travis/travis.sh
 fi
 
 # asdf-vm
-if [[ -f ${HOME}/.asdf/completions/asdf.bash ]]; then
-    source ${HOME}/.asdf/completions/asdf.bash
+if [[ -f ~/.asdf/completions/asdf.bash ]]; then
+    source ~/.asdf/completions/asdf.bash
 fi
 
 # aws
-if [[ -f ${HOME}/.asdf/shims/aws_zsh_completer.sh ]]; then
+if [[ -f ~/.asdf/shims/aws_zsh_completer.sh ]]; then
     source $(asdf which aws_zsh_completer.sh)
 fi
 
