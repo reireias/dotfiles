@@ -1,0 +1,3 @@
+shell=bash
+disable=SC1090 # following file not found
+disable=SC2148 # no shebang
