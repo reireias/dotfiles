@@ -30,8 +30,8 @@ alias vimdiff='nvim -d'
 
 # dotfiles
 alias dot='cd ~/dev/src/github.com/reireias/dotfiles'
-alias zshconfig='nvim ~/.zshrc'
-alias vimconfig='nvim ~/.vimrc'
+alias zshconfig='nvim $(readlink -f ~/.zshrc)'
+alias vimconfig='nvim $(readlink -f ~/.vimrc)'
 
 # grep
 alias g='grep --color=always'
