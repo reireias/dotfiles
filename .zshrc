@@ -7,8 +7,10 @@
 
 # INPORTS {{{
 source ~/.bashrc
-# }}}
 
+# plugin
+source ~/.zsh/config/plugin.zsh
+# }}}
 
 # HISTORY {{{
 # history
@@ -107,9 +109,6 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 
 # SUB FILES {{{
-# plugin
-source ~/.zsh/config/plugin.zsh
-
 # key
 source ~/.zsh/config/key.zsh
 
