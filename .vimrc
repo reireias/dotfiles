@@ -367,7 +367,7 @@ let g:neosnippet#snippets_directory = [
 " }}}
 
 " alvan/vim-closetag {{{
-let g:closetag_filenames = '*.html,*.vue'
+let g:closetag_filenames = '*.html,*.vue,*.html.erb'
 " }}}
 
 " chr4/nginx.vim {{{
