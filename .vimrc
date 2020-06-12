@@ -343,9 +343,7 @@ call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'nor
 " Shougo/deoplete.nvim {{{
 if has('nvim')
   " Use deoplete
-  let g:deoplete#enable_at_startup = 1
-  " Set minimum syntax keyword length.
-  let g:deoplete#auto_complete_start_length = 3
+  let g:deoplete#enable_at_startup = 0
   call deoplete#custom#var('omni', 'input_patterns', {
       \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
   \})
