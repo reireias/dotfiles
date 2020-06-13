@@ -208,6 +208,7 @@ call dein#add('kana/vim-operator-replace')
 call dein#add('kana/vim-operator-user')
 call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
+call dein#add('machakann/vim-highlightedyank')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
 call dein#add('neoclide/coc.nvim', { 'build': './install.sh nightly' })
@@ -509,6 +510,8 @@ augroup color_scheme
   autocmd ColorScheme * highlight link htmlH1 PreProc
   " change search result color
   autocmd ColorScheme * highlight Search ctermfg=255 ctermbg=24
+  " vim-highlightedyank
+  autocmd ColorScheme * highlight link HighlightedyankRegion Search
 augroup END
 
 " Color Scheme
