@@ -19,6 +19,6 @@ jobs:
       - name: lint
         run: make lint
       - name: lint .zshrc
-        uses: azohra/shell-linter@v0.1.0
+        uses: azohra/shell-linter@latest
         with:
           path: ".zshrc,.zsh/*.zsh"
