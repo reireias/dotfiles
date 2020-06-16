@@ -375,7 +375,7 @@ let g:closetag_filenames = '*.html,*.vue,*.html.erb'
 " }}}
 
 " chr4/nginx.vim {{{
-command Nginx set filetype=nginx
+command! Nginx set filetype=nginx
 " }}}
 
 " dhruvasagar/vim-table-mode {{{
