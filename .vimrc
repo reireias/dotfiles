@@ -164,13 +164,18 @@ nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
 " Go
 augroup key_map
   autocmd!
-  autocmd FileType go nmap <leader>b <Plug>(go-build)
-  autocmd FileType go nmap <leader>r <Plug>(go-run)
-  autocmd FileType go nmap <leader>t <Plug>(go-test)
-  autocmd FileType go nmap <leader>tf <Plug>(go-test-func)
-  autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
-  autocmd FileType go nmap <leader>i <Plug>(go-info)
+  autocmd FileType go nmap <Leader>gb <Plug>(go-build)
+  autocmd FileType go nmap <Leader>gr <Plug>(go-run)
+  autocmd FileType go nmap <Leader>gt <Plug>(go-test)
+  autocmd FileType go nmap <Leader>gtf <Plug>(go-test-func)
+  autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <Leader>gi <Plug>(go-info)
 augroup END
+
+" coc.nvim
+nmap <silent> <Leader>cd <Plug>(coc-definition)
+nmap <silent> <Leader>cr <Plug>(coc-references)
+nmap <silent> <Leader>cre <Plug>(coc-rename)
 
 if has('nvim')
   " terminal
