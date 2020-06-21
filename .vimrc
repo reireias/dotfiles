@@ -398,7 +398,7 @@ let g:seiya_auto_enable=1
 " neoclide/coc.nvim {{{
 let g:coc_global_extensions = [
       \ 'coc-yaml',
-      \ 'coc-pyls',
+      \ 'coc-python',
       \ 'coc-vetur',
       \ 'coc-solargraph',
       \ 'coc-json',
