@@ -2,7 +2,7 @@
 - name: list dotfiles
   find:
     path: "{{ playbook_dir }}/../"
-    patterns: "^\\.(?!gitignore|travis|shellcheckrc).*$"
+    patterns: "^\\.(?!gitignore|travis|shellcheckrc|ansible-lint).*$"
     file_type: "file"
     use_regex: yes
     hidden: yes
