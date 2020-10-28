@@ -1,0 +1,3 @@
+skip_list:
+  # File permissions unset or incorrect
+  - '208'

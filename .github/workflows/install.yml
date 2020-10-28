@@ -15,12 +15,6 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: '3.7'
-      - name: install shellcheck
-        run: sudo apt install shellcheck
-        if: matrix.os == 'ubuntu-latest'
-      - name: install shellcheck
-        run: brew install shellcheck
-        if: matrix.os == 'macOS-latest'
       - name: install python dependencies
         run: |
           python -m pip install --upgrade pip
