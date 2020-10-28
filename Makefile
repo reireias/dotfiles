@@ -10,12 +10,6 @@ else
 	ANSIBLE_SUDO_ARG := -K
 endif
 
-ifeq ($(shell uname),Darwin)
-	FIND := gfind
-else
-	FIND := find
-endif
-
 .PHONY: dotfiles
 dotfiles:
 	@cd ansible; \
@@ -30,7 +24,6 @@ dependencies:
 
 .PHONY: lint
 lint:
-	$(FIND) -type f -name "*.sh" -exec shellcheck {} \;
 	ansible-lint ansible/dotfiles.yml
 	ansible-lint ansible/dependencies.yml
 	vint --color --style .vimrc
