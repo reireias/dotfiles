@@ -22,3 +22,5 @@ jobs:
         uses: azohra/shell-linter@latest
         with:
           path: ".zshrc,.zsh/*.zsh"
+      - name: shellchecl
+        uses: ludeeus/action-shellcheck@master
