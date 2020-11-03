@@ -33,7 +33,7 @@ function peco-cdr () {
     fi
 }
 zle -N peco-cdr
-bindkey '^E' peco-cdr
+# bindkey '^E' peco-cdr
 
 
 # Ctrl + F = find and open
