@@ -1,0 +1,29 @@
+---
+name: dryrun
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 1 * *'
+
+jobs:
+  dryrun:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      - name: install python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade setuptools
+          pip install ansible
+      - name: dryrun dotfiles
+        run: make check-dotfiles
+      - name: dryrun dependencies
+        run: make check-dependencies
