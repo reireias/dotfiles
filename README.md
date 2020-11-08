@@ -5,11 +5,11 @@
 reireias's dotfiles.
 
 ## Screenshot
-### zsh
-![dotfiles-zsh](https://user-images.githubusercontent.com/24800246/59350904-29d56480-8d58-11e9-9aa7-f943aa470bb9.png)
+### terminal(tmux + zsh)
+![dotfiles-terminal](https://user-images.githubusercontent.com/24800246/98457020-b9d64280-21c6-11eb-85d9-c122969b30d1.png)
 
 ### vim
-![dotfiles-vim](https://user-images.githubusercontent.com/24800246/59351009-686b1f00-8d58-11e9-8b0a-585e65a4a31c.png)
+![dotfiles-vim](https://user-images.githubusercontent.com/24800246/98457050-09b50980-21c7-11eb-8d99-2f3183e60b6e.png)
 
 ## Quick Start
 
