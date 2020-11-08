@@ -24,6 +24,7 @@
     copy:
       src: /usr/local/opt/ricty/share/fonts/{{ item }}
       dest: ~/.fonts
+      mode: 0644
     with_items:
       - Ricty-Regular.ttf
       - Ricty-Bold.ttf
@@ -33,6 +34,7 @@
     copy:
       src: /usr/local/opt/ricty/share/fonts/Ricty Regular for Powerline.ttf
       dest: ~/.fonts/Ricty-Regular-Powerline.ttf
+      mode: 0644
     notify: font_reload
 
   - name: check nerd exist
@@ -61,6 +63,7 @@
     copy:
       src: "/tmp/nerd-fonts/Ricty Regular Nerd Font Plus Font Awesome Plus Octicons Plus Pomicons Plus Font Logos (Font Linux).ttf"
       dest: ~/.fonts/Ricty-Regular-nerd-Powerline.ttf
+      mode: 0644
     when: not nerd.stat.exists
     notify: font_reload
   when: not ansible_check_mode

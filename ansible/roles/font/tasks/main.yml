@@ -3,6 +3,7 @@
   file:
     path: ~/.fonts
     state: directory
+    mode: 0755
 
 - name: include debian
   include: debian.yml

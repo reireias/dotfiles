@@ -13,6 +13,7 @@
   file:
     path: ~/.fonts
     state: directory
+    mode: 0755
 
 - block:
   - name: download Inconsolata
@@ -47,6 +48,7 @@
     copy:
       src: "{{ tempdir.path }}/migu-1m-20150712/{{ item }}"
       dest: ~/.fonts
+      mode: 0644
     with_items:
       - migu-1m-regular.ttf
       - migu-1m-bold.ttf
@@ -75,6 +77,7 @@
     copy:
       src: "{{ tempdir.path }}/{{ item }}"
       dest: ~/.fonts
+      mode: 0644
     with_items:
       - Ricty-Regular.ttf
       - Ricty-Bold.ttf
@@ -107,6 +110,7 @@
     copy:
       src: "/tmp/nerd-fonts/Ricty Regular Nerd Font Plus Font Awesome Plus Octicons Plus Pomicons Plus Font Logos (Font Linux).ttf"
       dest: ~/.fonts/Ricty-Regular-nerd.ttf
+      mode: 0644
     when: not nerd.stat.exists
     notify: font_reload
 
@@ -133,6 +137,7 @@
     copy:
       src: /tmp/vim-powerline/Ricty-Regular-nerd-Powerline.ttf
       dest: ~/.fonts/Ricty-Regular-nerd-Powerline.ttf
+      mode: 0644
     when: not powerline.stat.exists
     notify: font_reload
   when: not ansible_check_mode
