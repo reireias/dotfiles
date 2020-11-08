@@ -10,34 +10,19 @@
     dest: ~/.vim/dein/repos/github.com/Shougo/dein.vim
     version: "2.0"
 
-- name: add gpg-key
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 9DBB0BE9366964F134855E2255F96FCF8231B6DD
-  become: yes
-
-- name: get codename for Linux Mint
-  shell: |
-    set -o pipefail
-    grep --color=none UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//g'
-  args:
-    executable: /bin/bash
-  changed_when: no
-  register: codename
-
-- name: add neovim repository
-  apt_repository:
-    repo: ppa:neovim-ppa/unstable
-    codename: "{{ codename.stdout }}"
-  become: yes
-
 - name: install neovim
   apt:
     name: neovim
   become: yes
+
+- name: check ~/.config/nvim
+  stat:
+    path: ~/.config/nvim
+  register: nvim
 
 - name: create symbolic link for init.vim
   file:
     src: ~/.vimrc
     dest: ~/.config/nvim/init.vim
     state: link
+  when: nvim.stat.exists
