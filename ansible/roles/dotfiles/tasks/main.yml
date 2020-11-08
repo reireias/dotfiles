@@ -36,6 +36,7 @@
   file:
     path: "~/{{ item.path | regex_replace(playbook_dir | dirname + '/') | dirname }}"
     state: directory
+    mode: 0755
   with_items: "{{ files.files }}"
 
 - name: create symbolic link
