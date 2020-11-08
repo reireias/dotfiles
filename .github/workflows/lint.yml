@@ -18,7 +18,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install --upgrade setuptools
-          pip install vim-vint==0.3.18 ansible ansible-lint
+          pip install vim-vint ansible ansible-lint
       - name: lint
         run: make lint
       - name: lint .zshrc
