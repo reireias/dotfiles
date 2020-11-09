@@ -1,6 +1,12 @@
 # Ansible apt module doesn't work if you use pyenv, asdf, etc.
 # Therefore, you need to specify the system installed python path.
-ANSIBLE_ARG := -e ansible_python_interpreter=/usr/bin/python3
+OS := $(shell uname)
+ifeq ($(OS),Linux)
+	ANSIBLE_ARG := -e ansible_python_interpreter=/usr/bin/python3
+else
+	# Darwin
+	ANSIBLE_ARG :=
+endif
 
 CHECK_SUDO := $(shell sudo -n true 2>&1 && echo OK)
 ifeq ($(CHECK_SUDO),OK)
