@@ -5,11 +5,7 @@
 reireias's dotfiles.
 
 ## Screenshot
-### terminal(tmux + zsh)
-![dotfiles-terminal](https://user-images.githubusercontent.com/24800246/98457020-b9d64280-21c6-11eb-85d9-c122969b30d1.png)
-
-### vim
-![dotfiles-vim](https://user-images.githubusercontent.com/24800246/98457050-09b50980-21c7-11eb-8d99-2f3183e60b6e.png)
+![terminal](https://user-images.githubusercontent.com/24800246/98963316-d4a01280-254a-11eb-962a-42fa758e44b5.png)
 
 ## Quick Start
 
@@ -27,7 +23,7 @@ $ make dotfiles
 Install packages and fonts.
 
 - Ricty + Nerd Font + powerline font
-- neovim
+- neovim + coc.nvim
 - zsh and zsh plugins
 - asdf-vm
 - some packages to use .zshrc
