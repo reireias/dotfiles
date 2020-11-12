@@ -1,6 +1,6 @@
-export FZF_DEFAULT_OPTS='--no-height --reverse'
-
 # shellcheck disable=SC2034
+export FZF_DEFAULT_OPTS='--no-height --reverse --ansi'
+
 function is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
 }
@@ -45,3 +45,11 @@ function fzf-find () {
 }
 zle -N fzf-find
 bindkey '^F' fzf-find
+
+
+function fgs() {
+  local branches branch
+  branches=$(git --no-pager branch -vv --color=always) &&
+  branch=$(echo "$branches" | fzf --preview=) &&
+  git switch "$(echo "$branch" | awk '{print $1}' | sed "s/.* //")"
+}
