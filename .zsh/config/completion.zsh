@@ -4,8 +4,8 @@ if [[ -f ~/.travis/travis.sh ]]; then
 fi
 
 # asdf-vm
-if [[ -f ~/.asdf/completions/asdf.bash ]]; then
-    source ~/.asdf/completions/asdf.bash
+if [[ -e ~/.asdf ]]; then
+    fpath=(~/.asdf/completions $fpath)
 fi
 
 # aws
