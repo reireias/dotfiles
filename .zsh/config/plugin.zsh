@@ -19,7 +19,7 @@ fi
 
 # powerlevel10k
 typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable)
-typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs newline pyenv rbenv aws)
+typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs newline asdf aws)
 typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=' %F{cyan}$ '
 typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -62,6 +62,9 @@ typeset -g POWERLEVEL9K_PYTHON_ICON=$'\uE606' # 
 
 typeset -g POWERLEVEL9K_RBENV_FOREGROUND='red3'
 typeset -g POWERLEVEL9K_RBENV_BACKGROUND='none'
+
+typeset -g POWERLEVEL9K_ASDF_FOREGROUND='red3'
+typeset -g POWERLEVEL9K_ASDF_BACKGROUND='none'
 
 typeset -g POWERLEVEL9K_AWS_FOREGROUND='orange1'
 typeset -g POWERLEVEL9K_AWS_BACKGROUND='none'
