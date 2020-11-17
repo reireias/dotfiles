@@ -5,6 +5,7 @@ fi
 
 # asdf-vm
 if [[ -e ~/.asdf ]]; then
+    # shellcheck disable=SC2206
     fpath=(~/.asdf/completions $fpath)
 fi
 
