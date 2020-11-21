@@ -11,5 +11,6 @@
       dest: /tmp/rustup.sh
       mode: 0755
   - name: run rustup script
+    # noqa 305
     shell: /tmp/rustup.sh -y
   when: not cargo.stat.exists
