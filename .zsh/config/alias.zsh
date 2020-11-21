@@ -3,10 +3,6 @@ alias caddy='ruby /opt/caddy/caddy/caddy.rb'
 alias du='du -shc * | sort -h'
 alias fzf='fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}"'
 alias h='tldr'
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -l'
-alias ls='ls -h --color=always'
 alias m='mkdir'
 alias open='gnome-open'
 alias pscp='parallel-scp'
@@ -17,6 +13,19 @@ alias terminal='gnome-terminal --hide-menubar'
 alias tf='terraform'
 alias tm='terminal'
 alias vdir='ls --color=auto --format=long'
+
+# ls
+if type "exa" > /dev/null 2>&1; then
+    alias ls='exa'
+    alias l='exa -F'
+    alias la='exa -a'
+    alias ll='exa -l'
+else
+    alias ls='ls -h --color=always'
+    alias l='ls -CF'
+    alias la='ls -A'
+    alias ll='ls -l'
+fi
 
 # cd
 alias ..2='cd ../..'
