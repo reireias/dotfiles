@@ -98,6 +98,9 @@ export BUNDLER_EDITOR=vi
 export GOPATH=$HOME/dev
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
+# rust
+export PATH=$PATH:$HOME/.cargo/bin
+
 # tmux
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
