@@ -1,0 +1,16 @@
+---
+- name: check cargo dir
+  stat:
+    path: ~/.cargo
+  register: cargo
+
+- block:
+  - name: download rustup script
+    get_url:
+      url: https://sh.rustup.rs
+      dest: /tmp/rustup.sh
+      mode: 0755
+  - name: run rustup script
+    # noqa 305
+    shell: /tmp/rustup.sh -y
+  when: not cargo.stat.exists
