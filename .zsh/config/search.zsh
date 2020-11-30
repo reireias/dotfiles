@@ -8,7 +8,7 @@ function is_in_git_repo() {
 
 # Ctrl + R = history search
 function fzf-history-selection() {
-    BUFFER=$(history -n 1 | tac  | awk '!a[$0]++' | fzf --sort --preview=)
+    BUFFER=$(history -n 1 | tac  | awk '!a[$0]++' | fzf --preview=)
     CURSOR=$#BUFFER
     zle reset-prompt
 }
