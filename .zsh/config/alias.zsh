@@ -65,6 +65,7 @@ alias gds='git diff --stat'
 alias gdt='git difftool'
 alias gst='git status'
 alias gp='git pull'
+alias gf='git fetch'
 alias gs='git switch'
 alias gr='git restore'
 
