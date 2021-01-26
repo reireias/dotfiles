@@ -67,6 +67,7 @@ alias gst='git status'
 alias gp='git pull'
 alias gf='git fetch'
 alias gs='git switch'
+alias gm='git merge'
 alias gr='git restore'
 
 # docker
