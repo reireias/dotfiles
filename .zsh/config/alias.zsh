@@ -1,4 +1,5 @@
 # general
+alias au='awsume -u'
 alias caddy='ruby /opt/caddy/caddy/caddy.rb'
 alias du='du -shc * | sort -h'
 alias fzf='fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}"'
