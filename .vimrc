@@ -42,6 +42,12 @@ set noshowmode
 " Commands {{{
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 command! VimShowHlItem echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+
+set errorformat+=%f\\,%l\\,%*\\d\\,%*[^\\,]\\,%t\\,%m\\,%*[^\\,]
+command! Tfsec call <SID>tfsec()
+function! s:tfsec() abort
+  cgetexpr system('tfsec --format csv --no-color --no-colour \| sed -e "1d" -e "s/,ERROR,/,e,/g" -e "s/,WARNING,/,w,/g"') | cw
+endfunction
 " }}}
 
 
