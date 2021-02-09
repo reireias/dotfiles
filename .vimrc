@@ -46,7 +46,7 @@ command! VimShowHlItem echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 set errorformat+=%f\\,%l\\,%t\\,%m
 command! Tfsec call <SID>tfsec()
 function! s:tfsec() abort
-  cgetexpr system('tfsec --format csv --no-color --no-colour \| sed -e "1d" -e "s/,ERROR,/,e,/g" -e "s/,WARNING,/,w,/g" \| sort -k 4 -t , \| awk -F, ''{print $1","$2","$5","$4": "$6}''') | cw
+  cgetexpr system('tfsec --format csv --no-color --no-colour \| sed -e "1d" -e "s/,ERROR,/,e,/g" -e "s/,WARNING,/,w,/g" \| sort -t , -k 4,4 -k 1,1 \| awk -F, ''{print $1","$2","$5","$4": "$6}''') | cw
 endfunction
 " }}}
 
