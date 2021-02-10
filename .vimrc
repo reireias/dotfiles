@@ -42,12 +42,6 @@ set noshowmode
 " Commands {{{
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 command! VimShowHlItem echo synIDattr(synID(line('.'), col('.'), 1), 'name')
-
-set errorformat+=%f\\,%l\\,%t\\,%m
-command! Tfsec call <SID>tfsec()
-function! s:tfsec() abort
-  cgetexpr system('tfsec --format csv --no-color --no-colour \| sed -e "1d" -e "s/,ERROR,/,e,/g" -e "s/,WARNING,/,w,/g" \| sort -t , -k 4,4 -k 1,1 \| awk -F, ''{print $1","$2","$5","$4": "$6}''') | cw
-endfunction
 " }}}
 
 
@@ -209,6 +203,7 @@ call dein#add('miyakogi/seiya.vim')
 call dein#add('neoclide/coc.nvim', {'branch': 'release'})
 call dein#add('prettier/vim-prettier')
 call dein#add('reireias/vim-cheatsheet')
+call dein#add('reireias/vim-tfsec')
 if filereadable(expand('~/.fonts/Ricty-Regular-nerd-Powerline.ttf'))
   call dein#add('ryanoasis/vim-devicons')
 endif
