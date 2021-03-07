@@ -81,6 +81,8 @@ augroup vimrc_filetype
   autocmd FileType sh call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType typescript call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType typescript ALEDisable
+  autocmd FileType cpp call deoplete#custom#buffer_option('auto_complete', v:false)
+  autocmd FileType cpp ALEDisable
   " disable coc
   autocmd FileType denite-filter let b:coc_suggest_disable = 1
   autocmd FileType denite-filter call deoplete#custom#buffer_option('auto_complete', v:false)
@@ -406,7 +408,7 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-css',
       \ 'coc-tsserver',
-      \ 'coc-tslint'
+      \ 'coc-tslint',
       \]
 " }}}
 
