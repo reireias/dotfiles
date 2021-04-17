@@ -257,6 +257,8 @@ call dein#add('hashivim/vim-terraform', {'on_ft' : 'terraform'})
 " vue
 call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
 call dein#add('digitaltoad/vim-pug', {'on_ft' : 'vue'})
+" cpp
+call dein#add('rhysd/vim-clang-format', { 'on_ft' : 'cpp' })
 
 call dein#end()
 " }}}
