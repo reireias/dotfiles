@@ -192,6 +192,7 @@ call dein#add('basyura/twibill.vim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('fatih/molokai')
+call dein#add('hashivim/vim-terraform')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
@@ -253,8 +254,6 @@ call dein#add('rlue/vim-fold-rspec', {'on_ft' : 'ruby'})
 call dein#add('vim-scripts/SQLUtilities', {'on_ft' : 'sql'})
 " stylus
 call dein#add('wavded/vim-stylus', {'on_ft' : 'stylus'})
-" terraform
-call dein#add('hashivim/vim-terraform', {'on_ft' : 'terraform'})
 " vue
 call dein#add('posva/vim-vue', {'on_ft' : 'vue'})
 call dein#add('digitaltoad/vim-pug', {'on_ft' : 'vue'})
