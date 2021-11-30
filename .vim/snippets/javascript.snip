@@ -4,3 +4,19 @@ snippet test
 
 snippet supertest
     const res = await supertest(app).get('${1}')
+
+snippet args
+    args[0].split(' ').map(x => parseInt(x))
+
+snippet reduce
+    reduce((s, e) => s + e, 0)
+
+snippet fori
+  for (let i = 0; i < ${1}; i++) {
+  }
+
+snippet forarg
+  for (let i = 0; i < n; i++) {
+    const line = args[i + 1].split(' ').map(x => parseInt(x))
+    ${1}
+  }
