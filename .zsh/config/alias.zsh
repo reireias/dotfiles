@@ -82,7 +82,7 @@ alias molokai='open http://monokai.9x4.net/'
 alias nuxt-init='~/.scripts/nuxt-init.sh'
 
 # atcoder
-alias acc-n='acc new -c next --template node'
-alias acc-a='acc add -c next --template node'
-alias acc-t='oj test -c "node main.js" -d tests'
-alias acc-s='acc s main.js -- -y'
+alias acc-new='acc new -c next --template node'
+alias acc-add='acc add -c next --template node'
+alias acc-test='oj test -c "node main.js" -d tests'
+alias acc-ssubmit='acc s main.js -- -y'
