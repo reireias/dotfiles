@@ -21,6 +21,13 @@ snippet forij
       }
     }
 
+snippet map
+    const map = {}
+    for (let i = 0; i < n; i++) {
+      if (!map[s[i]]) map[s[i]] = 0
+      map[s[i]]++
+    }
+
 snippet yes
     console.log('Yes')
 
