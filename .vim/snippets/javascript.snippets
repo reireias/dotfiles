@@ -28,6 +28,10 @@ snippet reduce "sum of array" i
 reduce((s, e) => s + e, 0)
 endsnippet
 
+snippet sort "sort array" i
+sort((a, b) => a-b)
+endsnippet
+
 snippet yes "output 'Yes'" b
 console.log('Yes')
 endsnippet
@@ -41,25 +45,36 @@ args[0].split(' ').map(x => parseInt(x))
 endsnippet
 
 snippet fori "for loop with i" b
-for (let i = 0; i < n; i++) {
+for (let i = 0; i < ${1:n}; i++) {
+  $0
 }
 endsnippet
 
 snippet forij "for loop with i, j" b
-for (let i = 0; i < n; i++) {
-  for (let j = 0; j < m; j++) {
+for (let i = 0; i < ${1:n}; i++) {
+  for (let j = 0; j < ${2:m}; j++) {
+    $0
   }
 }
 endsnippet
 
 snippet map "count with map" b
 const map = {}
-for (let i = 0; i < n; i++) {
-  if (!map[s[i]]) map[s[i]] = 0
-  map[s[i]]++
+for (let i = 0; i < ${1:n}; i++) {
+  if (!map[${2:s}[i]]) map[$2[i]] = 0
+  map[$2[i]]++
 }
 endsnippet
 
 snippet block "split same charactor block" b
 const block = s.match(/(.)\1*/g)
+endsnippet
+
+snippet array "initialize n * m array" b
+const tmp = new Array(${1:n}).fille(new Array(${2:m}).fill(${3:0}))
+const array = JSON.parse(JSON.stringify(tmp))
+endsnippet
+
+snippet atoz "a to z" b
+const atoz = 'abcdefghijklmnopqrstuvwxyz'
 endsnippet
