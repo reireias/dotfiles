@@ -69,24 +69,13 @@ augroup vimrc_filetype
   autocmd FileType zsh setlocal foldmethod=marker
   autocmd FileType zsh :highlight link FoldComment SpecialComment
   autocmd FileType zsh :match FoldComment /^#.*\({{{\|}}}\)/
-  " disable deoplete for lsp
-  autocmd FileType ruby call deoplete#custom#buffer_option('auto_complete', v:false)
-  autocmd FileType python call deoplete#custom#buffer_option('auto_complete', v:false)
+  " disable ALE for lsp
   autocmd FileType python ALEDisable
-  autocmd FileType vue call deoplete#custom#buffer_option('auto_complete', v:false)
-  autocmd FileType dockerfile call deoplete#custom#buffer_option('auto_complete', v:false)
-  autocmd FileType yaml call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType yaml ALEDisable
-  autocmd FileType css call deoplete#custom#buffer_option('auto_complete', v:false)
-  autocmd FileType javascript call deoplete#custom#buffer_option('auto_complete', v:false)
-  autocmd FileType sh call deoplete#custom#buffer_option('auto_complete', v:false)
-  autocmd FileType typescript call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType typescript ALEDisable
-  autocmd FileType cpp call deoplete#custom#buffer_option('auto_complete', v:false)
   autocmd FileType cpp ALEDisable
   " disable coc
   autocmd FileType denite-filter let b:coc_suggest_disable = 1
-  autocmd FileType denite-filter call deoplete#custom#buffer_option('auto_complete', v:false)
 augroup END
 " }}}
 
@@ -114,6 +103,10 @@ nnoremap sl <C-w>l
 nnoremap st <C-w>t
 nnoremap sb <C-w>b
 
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
+
 " Unhighlight search result
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
@@ -129,11 +122,6 @@ nnoremap <Leader>bd :bdelete<CR>
 " QuickFix
 noremap <C-n> :cnext<CR>
 noremap <C-p> :cprevious<CR>
-
-" snippets
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " scroll
 noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
@@ -181,8 +169,6 @@ call dein#add('Shougo/context_filetype.vim')
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/neosnippet')
-call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/neoyank.vim')
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
@@ -225,10 +211,6 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-jp/vimdoc-ja')
 call dein#add('w0rp/ale')
 call dein#add('yuttie/comfortable-motion.vim')
-
-if has('nvim')
-  call dein#add('Shougo/deoplete.nvim')
-endif
 
 " lazy load
 " ansible
@@ -336,30 +318,6 @@ call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap
 call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
 " }}}
 
-" Shougo/deoplete.nvim {{{
-if has('nvim')
-  " Use deoplete
-  let g:deoplete#enable_at_startup = 0
-  call deoplete#custom#var('omni', 'input_patterns', {
-      \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
-  \})
-  " Define dictionary.
-  " <TAB>: completion.
-  inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-  inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
-endif
-" }}}
-
-" Shougo/neosnippet {{{
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-let g:neosnippet#snippets_directory = [
-      \'~/.vim/snippets',
-      \'~/.vim/dein/repos/github.com/fatih/vim-go/gosnippets/snippets'
-      \]
-" }}}
-
 " alvan/vim-closetag {{{
 let g:closetag_filenames = '*.html,*.vue,*.html.erb'
 " }}}
@@ -410,7 +368,8 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-css',
       \ 'coc-tsserver',
-      \ 'coc-tslint'
+      \ 'coc-tslint',
+      \ 'coc-snippets'
       \]
 " }}}
 
