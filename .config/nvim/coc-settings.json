@@ -17,5 +17,6 @@
     }
   },
   "javascript.suggestionActions.enabled": false,
-  "vetur.experimental.templateInterpolationService": false
+  "vetur.experimental.templateInterpolationService": false,
+  "snippets.userSnippetsDirectory": "$HOME/.vim/snippets"
 }

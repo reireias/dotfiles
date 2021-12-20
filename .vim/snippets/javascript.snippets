@@ -1,0 +1,65 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet reduce "sum of array" i
+reduce((s, e) => s + e, 0)
+endsnippet
+
+snippet yes "output 'Yes'" b
+console.log('Yes')
+endsnippet
+
+snippet no "output 'No'" b
+console.log('No')
+endsnippet
+
+snippet args "split and parseInt" b
+args[0].split(' ').map(x => parseInt(x))
+endsnippet
+
+snippet fori "for loop with i" b
+for (let i = 0; i < n; i++) {
+}
+endsnippet
+
+snippet forij "for loop with i, j" b
+for (let i = 0; i < n; i++) {
+  for (let j = 0; j < m; j++) {
+  }
+}
+endsnippet
+
+snippet map "count with map" b
+const map = {}
+for (let i = 0; i < n; i++) {
+  if (!map[s[i]]) map[s[i]] = 0
+  map[s[i]]++
+}
+endsnippet
+
+snippet block "split same charactor block" b
+const block = s.match(/(.)\1*/g)
+endsnippet

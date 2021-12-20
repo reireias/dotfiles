@@ -107,6 +107,9 @@ nnoremap sb <C-w>b
 inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
 
+" snippets
+imap <C-k> <Plug>(coc-snippets-expand-jump)
+
 " Unhighlight search result
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
