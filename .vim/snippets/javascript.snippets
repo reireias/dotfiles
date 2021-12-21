@@ -77,7 +77,7 @@ const block = s.match(/(.)\1*/g)
 endsnippet
 
 snippet array "initialize n * m array" b
-const tmp = new Array(${1:n}).fille(new Array(${2:m}).fill(${3:0}))
+const tmp = new Array(${1:n}).fill(new Array(${2:m}).fill(${3:0}))
 const array = JSON.parse(JSON.stringify(tmp))
 endsnippet
 
