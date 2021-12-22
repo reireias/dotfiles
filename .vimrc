@@ -130,6 +130,9 @@ noremap <C-p> :cprevious<CR>
 noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
 noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 
+" select
+snoremap <CR> <BS>i
+
 " paste
 map R <Plug>(operator-replace)
 
