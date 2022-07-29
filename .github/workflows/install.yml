@@ -39,4 +39,4 @@ jobs:
       - name: run test
         run: make test
       - name: test asdf
-        run: zsh -lc "asdf plugin-add python && asdf install python 3.7.5" < /dev/null
+        run: zsh -lc "asdf plugin-add ruby && asdf install ruby 3.1.2" < /dev/null
