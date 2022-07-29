@@ -48,6 +48,7 @@ unsetopt list_types
 autoload -Uz colors
 colors
 zstyle ':completion:*' verbose yes
+# shellcheck disable=SC2296
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # less
