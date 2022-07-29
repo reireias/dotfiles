@@ -3,8 +3,8 @@
   apt:
     name:
       - peco
-    update_cache: yes
-  become: yes
+    update_cache: true
+  become: true
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: install dependency packages for Mac

@@ -14,7 +14,7 @@
 - name: install neovim
   apt:
     name: neovim
-  become: yes
+  become: true
 
 - name: check ~/.config/nvim
   stat:

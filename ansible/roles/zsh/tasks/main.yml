@@ -6,8 +6,8 @@
       - zsh
       - curl
       - gawk
-    update_cache: yes
-  become: yes
+    update_cache: true
+  become: true
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: install dependency packages for Mac
@@ -25,12 +25,16 @@
     path: ~/.zplug
   register: zplug
 
-- block:
+- name: zplug install block
+  block:
   - name: download zplug install script
     get_url:
       url: https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
       dest: /tmp/zplug-installer.zsh
+      mode: 0644
 
   - name: install zplug
     command: zsh /tmp/zplug-installer.zsh
+    register: zplug
+    changed_when: zplug.rc != 0
   when: not zplug.stat.exists
