@@ -1,5 +1,6 @@
 ---
-- block:
+- name: debian block
+  block:
   - name: check brew command
     command: /bin/bash -lc "type brew"
     register: type_brew_result
@@ -11,7 +12,8 @@
     set_fact:
       brew_exist: "{{ type_brew_result.rc == 0 }}"
 
-  - block:
+  - name: install block
+    block:
     - name: download homebrew install script
       get_url:
         url: https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh
@@ -23,5 +25,7 @@
 
     - name: write linuxbrew envs
       shell: /home/linuxbrew/.linuxbrew/bin/brew shellenv > ~/.linuxbrewrc
+      register: write_env
+      changed_when: write_env.rc != 0
     when: not brew_exist
   when: ansible_facts['os_family'] == 'Debian'

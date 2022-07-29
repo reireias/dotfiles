@@ -4,7 +4,8 @@
     path: ~/.cargo
   register: cargo
 
-- block:
+- name: intall block
+  block:
   - name: download rustup script
     get_url:
       url: https://sh.rustup.rs
@@ -13,4 +14,6 @@
   - name: run rustup script
     # noqa 305
     shell: /tmp/rustup.sh -y
+    register: rustup
+    changed_when: rustup.rc != 0
   when: not cargo.stat.exists

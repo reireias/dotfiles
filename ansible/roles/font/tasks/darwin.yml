@@ -19,7 +19,8 @@
     name: configparser
     executable: /usr/local/bin/pip
 
-- block:
+- name: block
+  block:
   - name: copy fonts
     copy:
       src: /usr/local/opt/ricty/share/fonts/{{ item }}
@@ -46,7 +47,7 @@
     git:
       repo: https://github.com/reireias/nerd-fonts.git
       depth: 1
-      update: no
+      update: false
       dest: /tmp/nerd-fonts
       version: patch
     when: not nerd.stat.exists

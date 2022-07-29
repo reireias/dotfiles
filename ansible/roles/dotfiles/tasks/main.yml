@@ -4,8 +4,8 @@
     path: "{{ playbook_dir }}/../"
     patterns: "^\\.(?!gitignore|travis|shellcheckrc|ansible-lint).*$"
     file_type: "file"
-    use_regex: yes
-    hidden: yes
+    use_regex: true
+    hidden: true
   register: dotfiles
 
 - name: create symbolic link
@@ -13,7 +13,7 @@
     src: "{{ item.path }}"
     dest: "~/{{ item.path | basename }}"
     state: "link"
-    force: yes
+    force: true
   with_items: "{{ dotfiles.files }}"
 
 - name: list dotdirs
@@ -21,15 +21,15 @@
     path: "{{ playbook_dir }}/../"
     patterns: "^\\.(?!git).*$"
     file_type: "directory"
-    use_regex: yes
-    hidden: yes
+    use_regex: true
+    hidden: true
   register: dotdirs
 
 - name: list files
   find:
     paths: "{{ dotdirs.files | map(attribute='path') | list }}"
     file_type: "file"
-    recurse: yes
+    recurse: true
   register: files
 
 - name: create directory

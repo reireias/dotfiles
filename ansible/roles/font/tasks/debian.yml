@@ -6,8 +6,8 @@
       - unzip
       - python
       - python-configparser
-    update_cache: yes
-  become: yes
+    update_cache: true
+  become: true
 
 - name: create ~/.fonts
   file:
@@ -15,11 +15,13 @@
     state: directory
     mode: 0755
 
-- block:
+- name: block
+  block:
   - name: download Inconsolata
     get_url:
       url: http://levien.com/type/myfonts/Inconsolata.otf
       dest: ~/.fonts/Inconsolata.otf
+      mode: 0644
 
   - name: create temp directory
     tempfile:
@@ -36,6 +38,7 @@
     get_url:
       url: https://ja.osdn.net/frs/redir.php?m=iij&f=%2Fmix-mplus-ipa%2F63545%2Fmigu-1m-20150712.zip
       dest: "{{ tempdir.path }}/migu-1m-20150712.zip"
+      mode: 0644
     when: not migu1m.stat.exists
 
   - name: unzip
@@ -93,7 +96,7 @@
     git:
       repo: https://github.com/reireias/nerd-fonts.git
       depth: 1
-      update: no
+      update: false
       dest: /tmp/nerd-fonts
       version: patch
     when: not nerd.stat.exists
