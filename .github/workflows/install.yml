@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       # NOTE: Using setup-python in ubuntu, the fontforge script is giving me an error. Therefore, use the default python.
-      - uses: actions/setup-python@v2.2.2
+      - uses: actions/setup-python@v4.2.0
         with:
           python-version: '3.8'
         if: matrix.os == 'macOS-latest'
