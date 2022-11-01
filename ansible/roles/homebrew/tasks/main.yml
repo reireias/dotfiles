@@ -16,16 +16,20 @@
     block:
     - name: download homebrew install script
       get_url:
-        url: https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh
+        url: https://raw.githubusercontent.com/Homebrew/install/master/install.sh
         dest: /tmp/homebrew_install.sh
         mode: 0755
 
     - name: install homebrew
-      script: /tmp/homebrew_install.sh
+      command: /tmp/homebrew_install.sh
+      environment:
+        CI: "true"
+      when: not ansible_check_mode
 
     - name: write linuxbrew envs
       shell: /home/linuxbrew/.linuxbrew/bin/brew shellenv > ~/.linuxbrewrc
       register: write_env
       changed_when: write_env.rc != 0
+      when: not ansible_check_mode
     when: not brew_exist
   when: ansible_facts['os_family'] == 'Debian'
