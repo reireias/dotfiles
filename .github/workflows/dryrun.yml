@@ -6,12 +6,12 @@ on:
     branches:
       - master
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
   schedule:
     - cron: '0 0 1 * *'
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
 
 jobs:
   dryrun:
@@ -22,9 +22,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3.1.0
-      - uses: actions/setup-python@v2.2.2
+      # NOTE: Using setup-python in ubuntu, the fontforge script is giving me an error. Therefore, use the default python.
+      - uses: actions/setup-python@v4.3.0
+        id: python
         with:
           python-version: '3.8'
+        if: matrix.os == 'macOS-latest'
+      - name: set python path
+        run: echo -e "[defaults]\ninterpreter_python=${{ steps.python.outputs.python-path }}" > ansible/ansible.cfg
+        if: matrix.os == 'macOS-latest'
       - name: install python dependencies
         run: |
           python -m pip install --upgrade pip

@@ -45,11 +45,11 @@
 
   - name: clone nerd-fonts
     git:
-      repo: https://github.com/reireias/nerd-fonts.git
+      repo: https://github.com/ryanoasis/nerd-fonts.git
       depth: 1
       update: false
       dest: /tmp/nerd-fonts
-      version: patch
+      version: 2.1.0
     when: not nerd.stat.exists
 
   - name: exec font patch
