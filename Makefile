@@ -29,8 +29,6 @@ check-dotfiles:
 dependencies:
 	@cd ansible; \
 	ansible-playbook -i localhost, dependencies.yml $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
-	@# NOTE: ignore pipe error setting in GitHub Actions
-	@zsh -l bin/zplug.zsh < /dev/null
 
 .PHONY: check-dependencies
 check-dependencies:
@@ -47,6 +45,4 @@ lint:
 test:
 	bash -n ~/.bashrc
 	zsh -n ~/.zshrc
-	@# NOTE: ignore pipe error setting in GitHub Actions
-	zsh -lc "zplug check" < /dev/null
 	peco --version

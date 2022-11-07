@@ -19,7 +19,7 @@
       - coreutils
   when: ansible_facts['os_family'] == 'Darwin'
 
-# zplug
+# zinit
 - name: check zinit exist
   stat:
     path: ~/.local/share/zinit
