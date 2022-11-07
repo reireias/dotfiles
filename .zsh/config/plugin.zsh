@@ -15,10 +15,10 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # zsh-completions
-fpath=(~/.local/share/zinit/plugins/zsh-users---zsh-completions/src ~/.zsh/completion "${fpath[@]}")
+fpath=(~/.local/share/zinit/plugins/zsh-users---zsh-completions/src $fpath)
+fpath=(~/.zsh/completion $fpath)
 
 # zinit
-zinit light "zsh-users/zsh-syntax-highlighting"
 zinit ice wait lucid
 zinit light "b4b4r07/zsh-vimode-visual"
 zinit ice wait lucid
@@ -29,6 +29,8 @@ zinit ice wait lucid
 zinit light "zsh-users/zsh-autosuggestions"
 zinit ice depth=1
 zinit light "romkatv/powerlevel10k"
+zinit light "zsh-users/zsh-syntax-highlighting"
+zinit ice wait"!0" atinit"zpcompinit; zpcdreplay"
 setopt nonomatch
 if [[ ${#ZSH_HIGHLIGHT_STYLES[@]} -ne 0 ]]; then
     export ZSH_HIGHLIGHT_STYLES['path']='fg=081'
