@@ -1,36 +1,37 @@
 # shellcheck disable=SC2034
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
+  print -P "%F{33}▓▒░ %F{160}Installing (%F{33}z-shell/zi%F{160})…%f"
+  command mkdir -p "$HOME/.zi" && command chmod go-rwX "$HOME/.zi"
     # shellcheck disable=SC2015
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+  command git clone -q --depth=1 --branch "main" https://github.com/z-shell/zi "$HOME/.zi/bin" && \
+    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+    print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
-
 # shellcheck disable=SC1091
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
+source "$HOME/.zi/bin/zi.zsh"
+autoload -Uz _zi
 # shellcheck disable=SC2154
-(( ${+_comps} )) && _comps[zinit]=_zinit
+(( ${+_comps} )) && _comps[zi]=_zi
+# examples here -> https://wiki.zshell.dev/ecosystem/category/-annexes
+# zicompinit # <- https://wiki.zshell.dev/docs/guides/commands
 
 # zsh-completions
-fpath=(~/.local/share/zinit/plugins/zsh-users---zsh-completions/src $fpath)
-fpath=(~/.zsh/completion $fpath)
+fpath=(~/.zi/plugins/zsh-users---zsh-completions/src "${fpath[@]}")
+fpath=(~/.zsh/completion "${fpath[@]}")
 
-# zinit
-zinit ice wait lucid
-zinit light "b4b4r07/zsh-vimode-visual"
-zinit ice wait lucid
-zinit light "zsh-users/zsh-completions"
-zinit ice wait'!0'
-zinit light "b4b4r07/enhancd"
-zinit ice wait lucid
-zinit light "zsh-users/zsh-autosuggestions"
-zinit ice depth=1
-zinit light "romkatv/powerlevel10k"
-zinit light "zsh-users/zsh-syntax-highlighting"
-zinit ice wait"!0" atinit"zpcompinit; zpcdreplay"
+# zi
+zi ice wait lucid
+zi light "b4b4r07/zsh-vimode-visual"
+zi ice wait lucid
+zi light "zsh-users/zsh-completions"
+zi ice wait'!0'
+zi light "b4b4r07/enhancd"
+zi ice wait lucid
+zi light "zsh-users/zsh-autosuggestions"
+zi ice depth=1
+zi light "romkatv/powerlevel10k"
+zi light "zsh-users/zsh-syntax-highlighting"
+zi ice wait"!0" atinit"zicompinit; zicdreplay"
 setopt nonomatch
 if [[ ${#ZSH_HIGHLIGHT_STYLES[@]} -ne 0 ]]; then
     export ZSH_HIGHLIGHT_STYLES['path']='fg=081'
