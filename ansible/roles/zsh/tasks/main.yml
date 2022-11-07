@@ -39,10 +39,4 @@
     changed_when: install.rc != 0
     environment:
       NO_EDIT: "1"
-
-  - name: compile
-    command: zsh -c "zinit self-update"
-    register: compile
-    changed_when: compile.rc != 0
-
   when: not zinit.stat.exists
