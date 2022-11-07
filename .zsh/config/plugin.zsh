@@ -12,26 +12,24 @@ source "$HOME/.zi/bin/zi.zsh"
 autoload -Uz _zi
 # shellcheck disable=SC2154
 (( ${+_comps} )) && _comps[zi]=_zi
-# examples here -> https://wiki.zshell.dev/ecosystem/category/-annexes
-# zicompinit # <- https://wiki.zshell.dev/docs/guides/commands
 
 # zsh-completions
 fpath=(~/.zi/plugins/zsh-users---zsh-completions/src "${fpath[@]}")
 fpath=(~/.zsh/completion "${fpath[@]}")
 
 # zi
-zi ice wait lucid
-zi light "b4b4r07/zsh-vimode-visual"
-zi ice wait lucid
-zi light "zsh-users/zsh-completions"
-zi ice wait'!0'
-zi light "b4b4r07/enhancd"
-zi ice wait lucid
-zi light "zsh-users/zsh-autosuggestions"
-zi ice depth=1
-zi light "romkatv/powerlevel10k"
-zi light "zsh-users/zsh-syntax-highlighting"
-zi ice wait"!0" atinit"zicompinit; zicdreplay"
+zi wait lucid light-mode for \
+    "b4b4r07/zsh-vimode-visual" \
+    "b4b4r07/enhancd" \
+    "zsh-users/zsh-autosuggestions"
+zi wait lucid atload"zicompinit; zicdreplay" blockf for \
+    "zsh-users/zsh-completions"
+zi depth=1 light-mode for \
+    "romkatv/powerlevel10k"
+zi light-mode for \
+    "zsh-users/zsh-syntax-highlighting"
+zi wait lucid atload"source $(asdf which aws_zsh_completer.sh)" light-mode for \
+    "z-shell/0"
 setopt nonomatch
 if [[ ${#ZSH_HIGHLIGHT_STYLES[@]} -ne 0 ]]; then
     export ZSH_HIGHLIGHT_STYLES['path']='fg=081'
