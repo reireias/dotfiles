@@ -28,6 +28,7 @@ setopt inc_append_history
 setopt share_history
 
 # cdr
+autoload -Uz compinit && compinit
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':completion:*' recent-dirs-insert both
