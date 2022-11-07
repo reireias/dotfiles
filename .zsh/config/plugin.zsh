@@ -73,3 +73,23 @@ typeset -g POWERLEVEL9K_AWS_BACKGROUND='none'
 export ENHANCD_FILTER=peco
 export ENHANCD_DISABLE_DOT=1
 export ENHANCD_DISABLE_HOME=1
+
+# functions
+function zsh-startuptime() {
+    local total_msec=0
+    local msec
+    local i
+    for i in $(seq 1 5); do
+        msec=$( (TIMEFMT='%mE'; time zsh -i -c exit) 2>/dev/stdout >/dev/null)
+        msec=$(echo "$msec" | tr -d "ms")
+        echo " ${i}: ${msec} [ms]"
+        total_msec=$(( total_msec + msec ))
+    done
+    local average_msec
+    average_msec=$(( total_msec / 10 ))
+    echo -e "\naverage: ${average_msec} [ms]"
+}
+
+function zsh-profiler() {
+    ZSHRC_PROFILE=1 zsh -i -c zprof
+}

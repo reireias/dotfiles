@@ -6,6 +6,11 @@
 #
 
 # INPORTS {{{
+# profile
+if [ "$ZSHRC_PROFILE" != "" ]; then
+  zmodload zsh/zprof && zprof > /dev/null
+fi
+
 source ~/.bashrc
 
 # plugin
