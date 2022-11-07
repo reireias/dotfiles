@@ -1,16 +1,15 @@
 # asdf-vm
 if [[ -e ~/.asdf ]]; then
     # shellcheck disable=SC2206
-    fpath=(~/.asdf/completions $fpath)
+    fpath=(~/.asdf/completions "${fpath[@]}")
 fi
 
 # aws
-if [[ -f ~/.asdf/shims/aws_zsh_completer.sh ]]; then
-    # shellcheck disable=SC2206
+# if [[ -f ~/.asdf/shims/aws_zsh_completer.sh ]]; then
     # fpath=($(asdf which aws_zsh_completer.sh) $fpath)
     # fpath=(/home/reireias/.asdf/installs/python/3.7.5/bin/aws_zsh_completer.sh $fpath)
     # source "$(asdf which aws_zsh_completer.sh)"
-fi
+# fi
 
 # # kubectl
 # if command -v kubectl > /dev/null; then
