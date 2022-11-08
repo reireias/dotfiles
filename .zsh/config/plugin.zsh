@@ -28,8 +28,6 @@ zi depth=1 light-mode for \
     "romkatv/powerlevel10k"
 zi light-mode for \
     "zsh-users/zsh-syntax-highlighting"
-zi wait lucid atload"source $(asdf which aws_zsh_completer.sh)" light-mode for \
-    "z-shell/0"
 setopt nonomatch
 if [[ ${#ZSH_HIGHLIGHT_STYLES[@]} -ne 0 ]]; then
     export ZSH_HIGHLIGHT_STYLES['path']='fg=081'
