@@ -109,3 +109,21 @@ function zsh-startuptime() {
 function zsh-profiler() {
     ZSHRC_PROFILE=1 zsh -i -c zprof
 }
+
+function splitcd() {
+    if [[ $# -eq 0 ]]; then
+        return
+    fi
+    first=$1
+    shift
+    for dir in "$@"; do
+        if [[ -d $dir ]]; then
+            tmux split-window
+            tmux select-layout tiled
+            tmux send-keys "cd $dir" C-m
+        fi
+    done
+    tmux select-pane -t 1
+    tmux send-keys "cd $first" C-m
+    tmux set-window-option synchronize-panes on
+}
