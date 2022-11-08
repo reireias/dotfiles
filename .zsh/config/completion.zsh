@@ -9,7 +9,7 @@ if type aws > /dev/null 2>&1; then
     aws () {
         unset -f aws
         # lazy load
-        source $(asdf which aws_zsh_completer.sh)
+        source "$(asdf which aws_zsh_completer.sh)"
         aws "$@"
     }
 fi
