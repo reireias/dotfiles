@@ -104,8 +104,11 @@ nnoremap st <C-w>t
 nnoremap sb <C-w>b
 
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<Up>" : "\<S-TAB>"
+inoremap <silent><expr> <TAB>  coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
+inoremap <silent><expr> <S-TAB>  coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
+inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(1) : "\<down>"
+inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(1) : "\<up>"
+inoremap <silent><expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " snippets
 imap <C-k> <Plug>(coc-snippets-expand-jump)
@@ -377,6 +380,7 @@ let g:coc_global_extensions = [
       \ 'coc-tslint-plugin',
       \ 'coc-snippets'
       \]
+highlight link CocMenuSel PmenuSel
 " }}}
 
 " rcmdnk/vim-markdown {{{

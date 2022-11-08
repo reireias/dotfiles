@@ -19,5 +19,6 @@
   "javascript.suggestionActions.enabled": false,
   "vetur.experimental.templateInterpolationService": false,
   "snippets.userSnippetsDirectory": "$HOME/.vim/snippets",
-  "deno.enable": true
+  "deno.enable": true,
+  "suggest.noselect": true
 }
