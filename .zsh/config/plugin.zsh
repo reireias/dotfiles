@@ -21,17 +21,13 @@ fpath=(~/.zsh/completion "${fpath[@]}")
 zi wait lucid light-mode for \
     "b4b4r07/zsh-vimode-visual" \
     "b4b4r07/enhancd" \
-    "zsh-users/zsh-autosuggestions"
-zi wait lucid atload"zicompinit; zicdreplay" blockf for \
-    "zsh-users/zsh-completions"
+    "zsh-users/zsh-autosuggestions" \
+    atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+        "z-shell/F-Sy-H" \
+    blockf \
+        "zsh-users/zsh-completions"
 zi depth=1 light-mode for \
     "romkatv/powerlevel10k"
-zi light-mode for \
-    "zsh-users/zsh-syntax-highlighting"
-setopt nonomatch
-if [[ ${#ZSH_HIGHLIGHT_STYLES[@]} -ne 0 ]]; then
-    export ZSH_HIGHLIGHT_STYLES['path']='fg=081'
-fi
 
 # powerlevel10k
 typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable)
