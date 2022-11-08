@@ -110,14 +110,6 @@ export PATH=$PATH:$HOME/.cargo/bin
 # tmux
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
-
-precmd () {
-    LANG=en_US.UTF-8 vcs_info
-    # shellcheck disable=SC2154
-    if [[ -z ${vcs_info_msg_0_} ]] || [[ -e .git ]]; then
-        tmux rename-window "$(basename "$(pwd)")"
-    fi
-}
 # }}}
 
 

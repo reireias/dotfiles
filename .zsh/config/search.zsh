@@ -23,6 +23,9 @@ function fzf-ghq-look () {
     selected_dir=$(ghq list | fzf --preview=)
     if [ -n "$selected_dir" ]; then
         BUFFER="cd $(ghq list --full-path | grep --color=never -E "/$selected_dir$")"
+        if [[ "$TERM_PROGRAM" == "tmux" ]]; then
+            tmux rename-window "$(basename "$selected_dir")"
+        fi
         zle accept-line
     fi
 }
