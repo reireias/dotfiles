@@ -374,7 +374,7 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-css',
       \ 'coc-tsserver',
-      \ 'coc-tslint',
+      \ 'coc-tslint-plugin',
       \ 'coc-snippets'
       \]
 " }}}

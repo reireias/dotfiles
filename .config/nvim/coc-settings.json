@@ -18,5 +18,6 @@
   },
   "javascript.suggestionActions.enabled": false,
   "vetur.experimental.templateInterpolationService": false,
-  "snippets.userSnippetsDirectory": "$HOME/.vim/snippets"
+  "snippets.userSnippetsDirectory": "$HOME/.vim/snippets",
+  "deno.enable": true
 }
