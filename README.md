@@ -61,3 +61,19 @@ Test .bashrc and .zshrc, check zsh plugin installed.
 ```console
 $ make test
 ```
+
+## Test on Docker
+
+```console
+$ docker run --rm -it -u ubuntu reireias/non-root-user-ubuntu:20.04 bash
+$ sudo apt update
+$ cd
+$ git clone https://github.com/reireias/dotfiles.git
+$ cd dotfiles
+$ make dotfiles
+$ make dependencies
+$ zsh
+
+# onliner
+$ sudo apt update && cd && git clone https://github.com/reireias/dotfiles.git && cd dotfiles && make dotfiles && make dependencies && zsh
+```
