@@ -43,6 +43,7 @@ language messages C
 " Commands {{{
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 command! VimShowHlItem echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+command! LspFormat lua vim.lsp.buf.format()
 " }}}
 
 
