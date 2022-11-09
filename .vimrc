@@ -178,6 +178,7 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/context_filetype.vim')
+call dein#add('Shougo/ddc-file')
 call dein#add('Shougo/ddc-matcher_head')
 call dein#add('Shougo/ddc-sorter_rank')
 call dein#add('Shougo/ddc-source-around')
@@ -486,7 +487,7 @@ lua <<EOF
 EOF
 
 call ddc#custom#patch_global('ui', 'native')
-call ddc#custom#patch_global('sources', ['vsnip', 'nvim-lsp', 'around'])
+call ddc#custom#patch_global('sources', ['vsnip', 'nvim-lsp', 'file', 'around'])
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'matchers': ['matcher_head'],
@@ -495,6 +496,10 @@ call ddc#custom#patch_global('sourceOptions', {
       \   'mark': 'L',
       \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
       \ 'vsnip': {'mark': 'S'},
+      \ 'file': {
+      \   'mark': 'F',
+      \   'isVolatile': v:true,
+      \   'forceCompletionPattern': '\S/\S*'},
       \ })
 call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {'mark': 'A'},
