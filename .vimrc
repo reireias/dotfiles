@@ -176,6 +176,12 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/context_filetype.vim')
+call dein#add('Shougo/ddc-matcher_head')
+call dein#add('Shougo/ddc-sorter_rank')
+call dein#add('Shougo/ddc-source-around')
+call dein#add('Shougo/ddc-source-nvim-lsp')
+call dein#add('Shougo/ddc-ui-native')
+call dein#add('Shougo/ddc.vim')
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neomru.vim')
@@ -197,8 +203,10 @@ call dein#add('kana/vim-operator-user')
 call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('machakann/vim-highlightedyank')
+call dein#add('matsui54/denops-popup-preview.vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
+call dein#add('neovim/nvim-lspconfig')
 " call dein#add('neoclide/coc.nvim', {'branch': 'release'})
 call dein#add('prettier/vim-prettier')
 call dein#add('reireias/molokai')
@@ -218,8 +226,11 @@ call dein#add('tpope/vim-surround')
 call dein#add('tyru/open-browser.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
+call dein#add('vim-denops/denops.vim')
 call dein#add('vim-jp/vimdoc-ja')
 call dein#add('w0rp/ale')
+call dein#add('williamboman/mason.nvim')
+call dein#add('williamboman/mason-lspconfig.nvim')
 call dein#add('yuttie/comfortable-motion.vim')
 
 " lazy load
@@ -451,6 +462,46 @@ let g:ale_fixers = {
       \ 'javascript': ['eslint']
       \ }
 " }}}
+
+" TODO
+lua <<EOF
+  require'mason'.setup{}
+  require'mason-lspconfig'.setup{}
+  require'lspconfig'.terraformls.setup{}
+  require'lspconfig'.tsserver.setup{}
+  require'lspconfig'.yamlls.setup{}
+  require'lspconfig'.jedi_language_server.setup{}
+  require'lspconfig'.vuels.setup{}
+  require'lspconfig'.solargraph.setup{}
+  require'lspconfig'.jsonls.setup{}
+  require'lspconfig'.cssls.setup{}
+EOF
+
+call ddc#custom#patch_global('ui', 'native')
+call ddc#custom#patch_global('sources', ['nvim-lsp', 'around'])
+call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \   'matchers': ['matcher_head'],
+      \   'sorters': ['sorter_rank']},
+      \ 'nvim-lsp': {
+      \   'mark': 'L',
+      \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
+      \ })
+call ddc#custom#patch_global('sourceOptions', {
+      \ 'around': {'mark': 'A'},
+      \ })
+call ddc#custom#patch_global('sourceParams', {
+      \ 'around': {'maxSize': 500},
+      \ })
+
+inoremap <silent><expr> <TAB>  pumvisible() ? '<Down>' : "\<TAB>"
+inoremap <silent><expr> <S-TAB>  pumvisible() ? '<Up>' : "\<S-TAB>"
+inoremap <silent><expr> <CR>  pumvisible() ? '<C-y>' : "\<CR>"
+" set completeopt=menuone,preview,noinsert,noselect
+set completeopt-=preview
+
+call ddc#enable()
+call popup_preview#enable()
 
 " finally {{{
 " Load plugin/indent settings when filetype changed
