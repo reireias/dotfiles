@@ -37,7 +37,7 @@ set cursorline
 set title
 set number
 set mouse=
-language C
+language messages C
 " }}}
 
 " Commands {{{
