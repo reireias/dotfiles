@@ -43,7 +43,6 @@ language C
 " Commands {{{
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 command! VimShowHlItem echo synIDattr(synID(line('.'), col('.'), 1), 'name')
-" command! CocFmt :call CocAction('format')
 " }}}
 
 
@@ -75,8 +74,6 @@ augroup vimrc_filetype
   autocmd FileType yaml ALEDisable
   autocmd FileType typescript ALEDisable
   autocmd FileType cpp ALEDisable
-  " disable coc
-  autocmd FileType denite-filter let b:coc_suggest_disable = 1
 augroup END
 " }}}
 
@@ -105,14 +102,11 @@ nnoremap st <C-w>t
 nnoremap sb <C-w>b
 
 " <TAB>: completion.
-" inoremap <silent><expr> <TAB>  coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
-" inoremap <silent><expr> <S-TAB>  coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
-" inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(1) : "\<down>"
-" inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(1) : "\<up>"
-" inoremap <silent><expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <TAB>  pumvisible() ? '<Down>' : '<TAB>'
+inoremap <silent><expr> <S-TAB>  pumvisible() ? '<Up>' : '<S-TAB>'
+inoremap <silent><expr> <CR>  pumvisible() ? '<C-y>' : '<CR>'
 
 " snippets
-" imap <C-k> <Plug>(coc-snippets-expand-jump)
 inoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
 snoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
 
@@ -158,11 +152,6 @@ augroup key_map
   autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
   autocmd FileType go nmap <Leader>gi <Plug>(go-info)
 augroup END
-
-" coc.nvim
-" nmap <silent> <Leader>cd <Plug>(coc-definition)
-" nmap <silent> <Leader>cr <Plug>(coc-references)
-" nmap <silent> <Leader>cre <Plug>(coc-rename)
 
 if has('nvim')
   " terminal
@@ -212,7 +201,6 @@ call dein#add('matsui54/denops-popup-preview.vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
 call dein#add('neovim/nvim-lspconfig')
-" call dein#add('neoclide/coc.nvim', {'branch': 'release'})
 call dein#add('prettier/vim-prettier')
 call dein#add('reireias/molokai')
 call dein#add('reireias/vim-cheatsheet')
@@ -385,20 +373,6 @@ let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 let g:seiya_auto_enable=1
 " }}}
 
-" neoclide/coc.nvim {{{
-" let g:coc_global_extensions = [
-"       \ 'coc-yaml',
-"       \ 'coc-jedi',
-"       \ 'coc-vetur',
-"       \ 'coc-solargraph',
-"       \ 'coc-json',
-"       \ 'coc-css',
-"       \ 'coc-tsserver',
-"       \ 'coc-tslint-plugin',
-"       \ 'coc-snippets'
-"       \]
-" }}}
-
 " rcmdnk/vim-markdown {{{
 let g:vim_markdown_folding_level = 6
 set conceallevel=0
@@ -468,7 +442,7 @@ let g:ale_fixers = {
       \ }
 " }}}
 
-" TODO
+" lsp + ddc.vim {{{
 let g:vsnip_filetypes = {}
 let g:vsnip_filetypes.typescript = ['javascript']
 let g:vsnip_snippet_dir = '~/.vim/snippets'
@@ -508,14 +482,11 @@ call ddc#custom#patch_global('sourceParams', {
       \ 'around': {'maxSize': 500},
       \ })
 
-inoremap <silent><expr> <TAB>  pumvisible() ? '<Down>' : "\<TAB>"
-inoremap <silent><expr> <S-TAB>  pumvisible() ? '<Up>' : "\<S-TAB>"
-inoremap <silent><expr> <CR>  pumvisible() ? '<C-y>' : "\<CR>"
-" set completeopt=menuone,preview,noinsert,noselect
 set completeopt-=preview
 
 call ddc#enable()
 call popup_preview#enable()
+" }}}
 
 " finally {{{
 " Load plugin/indent settings when filetype changed
@@ -540,8 +511,6 @@ augroup color_scheme
   autocmd ColorScheme * highlight Search ctermfg=255 ctermbg=24
   " vim-highlightedyank
   autocmd ColorScheme * highlight link HighlightedyankRegion Search
-  " Coc completion color
-  " autocmd ColorScheme * highlight link CocMenuSel PmenuSel
 augroup END
 
 " Color Scheme
