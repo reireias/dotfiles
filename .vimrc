@@ -36,8 +36,8 @@ set clipboard=unnamed,unnamedplus
 set cursorline
 set title
 set number
-set noshowmode
 set mouse=
+language C
 " }}}
 
 " Commands {{{
