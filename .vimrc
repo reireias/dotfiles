@@ -380,7 +380,6 @@ let g:coc_global_extensions = [
       \ 'coc-tslint-plugin',
       \ 'coc-snippets'
       \]
-highlight link CocMenuSel PmenuSel
 " }}}
 
 " rcmdnk/vim-markdown {{{
@@ -475,6 +474,8 @@ augroup color_scheme
   autocmd ColorScheme * highlight Search ctermfg=255 ctermbg=24
   " vim-highlightedyank
   autocmd ColorScheme * highlight link HighlightedyankRegion Search
+  " Coc completion color
+  autocmd ColorScheme * highlight link CocMenuSel PmenuSel
 augroup END
 
 " Color Scheme
