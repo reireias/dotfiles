@@ -187,7 +187,6 @@ call dein#add('basyura/TweetVim')
 call dein#add('basyura/twibill.vim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('editorconfig/editorconfig-vim')
-call dein#add('fatih/molokai')
 call dein#add('hashivim/vim-terraform')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
@@ -202,6 +201,7 @@ call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
 call dein#add('neoclide/coc.nvim', {'branch': 'release'})
 call dein#add('prettier/vim-prettier')
+call dein#add('reireias/molokai')
 call dein#add('reireias/vim-cheatsheet')
 call dein#add('reireias/vim-tfsec')
 if filereadable(expand('~/.fonts/Ricty-Regular-nerd-Powerline.ttf'))
@@ -480,8 +480,8 @@ augroup color_scheme
 augroup END
 
 " Color Scheme
-colorscheme molokai
 let g:rehash256 = 1
+colorscheme molokai2
 
 " finally
 syntax on
