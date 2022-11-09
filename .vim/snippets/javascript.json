@@ -1,0 +1,87 @@
+{
+  "console.log": {
+    "prefix": ["cl"],
+    "body": ["console.log($0)"],
+    "description": "console.log()"
+  },
+  "reduce": {
+    "prefix": ["reduce"],
+    "description": "sum of array",
+    "body": ["reduce((s, e) => s + e, 0)"]
+  },
+  "sort": {
+    "prefix": ["sort"],
+    "description": "sort array",
+    "body": ["sort((a, b) => a-b)"]
+  },
+  "yes": {
+    "prefix": ["yes"],
+    "description": "output 'Yes'",
+    "body": ["console.log('Yes')"]
+  },
+  "no": {
+    "prefix": ["no"],
+    "description": "output 'No'",
+    "body": ["console.log('No')"]
+  },
+  "args": {
+    "prefix": ["args"],
+    "description": "split and parseInt",
+    "body": ["args[0].split(' ').map(x => parseInt(x))"]
+  },
+  "fori": {
+    "prefix": ["fori"],
+    "description": "for loop with i",
+    "body": [
+      "for (let i = 0; i < ${1:n}; i++) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "forj": {
+    "prefix": ["forj"],
+    "description": "for loop with j",
+    "body": [
+      "for (let j = 0; j < ${1:n}; j++) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "forij": {
+    "prefix": ["forij"],
+    "description": "for loop with i, j",
+    "body": [
+      "for (let i = 0; i < ${1:n}; i++) {",
+      "  for (let j = 0; j < ${2:m}; j++) {",
+      "    $0",
+      "  }",
+      "}"
+    ]
+  },
+  "map": {
+    "prefix": ["map"],
+    "description": "count with map",
+    "body": [
+      "const map = {}",
+      "for (let i = 0; i < ${1:n}; i++) {",
+      "  if (!map[${2:s}[i]]) map[$2[i]] = 0",
+      "  map[$2[i]]++",
+      "}"
+    ]
+  },
+  "block": {
+    "prefix": ["block"],
+    "description": "split same charactor block",
+    "body": ["const block = s.match(/(.)\\1*/g)"]
+  },
+  "array": {
+    "prefix": ["array"],
+    "description": "initialize n * m array",
+    "body": ["const array = Array.from(new Array(${1:n}), _ => new Array(${2:m}).fill(${3:0}))"]
+  },
+  "atoz": {
+    "prefix": ["atoz"],
+    "description": "a to z",
+    "body": ["const atoz = 'abcdefghijklmnopqrstuvwxyz'"]
+  }
+}

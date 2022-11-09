@@ -113,6 +113,8 @@ nnoremap sb <C-w>b
 
 " snippets
 " imap <C-k> <Plug>(coc-snippets-expand-jump)
+inoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
+snoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
 
 " Unhighlight search result
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
@@ -194,6 +196,8 @@ call dein#add('basyura/twibill.vim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('hashivim/vim-terraform')
+call dein#add('hrsh7th/vim-vsnip')
+call dein#add('hrsh7th/vim-vsnip-integ')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
@@ -464,6 +468,9 @@ let g:ale_fixers = {
 " }}}
 
 " TODO
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.typescript = ['javascript']
+let g:vsnip_snippet_dir = '~/.vim/snippets'
 lua <<EOF
   require'mason'.setup{}
   require'mason-lspconfig'.setup{}
@@ -479,7 +486,7 @@ lua <<EOF
 EOF
 
 call ddc#custom#patch_global('ui', 'native')
-call ddc#custom#patch_global('sources', ['nvim-lsp', 'around'])
+call ddc#custom#patch_global('sources', ['vsnip', 'nvim-lsp', 'around'])
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'matchers': ['matcher_head'],
@@ -487,6 +494,7 @@ call ddc#custom#patch_global('sourceOptions', {
       \ 'nvim-lsp': {
       \   'mark': 'L',
       \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
+      \ 'vsnip': {'mark': 'S'},
       \ })
 call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {'mark': 'A'},
