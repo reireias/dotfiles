@@ -475,6 +475,7 @@ lua <<EOF
   require'lspconfig'.solargraph.setup{}
   require'lspconfig'.jsonls.setup{}
   require'lspconfig'.cssls.setup{}
+  require'lspconfig'.denols.setup{}
 EOF
 
 call ddc#custom#patch_global('ui', 'native')
