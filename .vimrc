@@ -37,6 +37,7 @@ set cursorline
 set title
 set number
 set noshowmode
+set mouse=
 " }}}
 
 " Commands {{{
