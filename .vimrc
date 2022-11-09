@@ -43,7 +43,7 @@ set mouse=
 " Commands {{{
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 command! VimShowHlItem echo synIDattr(synID(line('.'), col('.'), 1), 'name')
-command! CocFmt :call CocAction('format')
+" command! CocFmt :call CocAction('format')
 " }}}
 
 
@@ -105,14 +105,14 @@ nnoremap st <C-w>t
 nnoremap sb <C-w>b
 
 " <TAB>: completion.
-inoremap <silent><expr> <TAB>  coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
-inoremap <silent><expr> <S-TAB>  coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
-inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(1) : "\<down>"
-inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(1) : "\<up>"
-inoremap <silent><expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" inoremap <silent><expr> <TAB>  coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
+" inoremap <silent><expr> <S-TAB>  coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
+" inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(1) : "\<down>"
+" inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(1) : "\<up>"
+" inoremap <silent><expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " snippets
-imap <C-k> <Plug>(coc-snippets-expand-jump)
+" imap <C-k> <Plug>(coc-snippets-expand-jump)
 
 " Unhighlight search result
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
@@ -158,9 +158,9 @@ augroup key_map
 augroup END
 
 " coc.nvim
-nmap <silent> <Leader>cd <Plug>(coc-definition)
-nmap <silent> <Leader>cr <Plug>(coc-references)
-nmap <silent> <Leader>cre <Plug>(coc-rename)
+" nmap <silent> <Leader>cd <Plug>(coc-definition)
+" nmap <silent> <Leader>cr <Plug>(coc-references)
+" nmap <silent> <Leader>cre <Plug>(coc-rename)
 
 if has('nvim')
   " terminal
@@ -199,7 +199,7 @@ call dein#add('leafgarland/typescript-vim')
 call dein#add('machakann/vim-highlightedyank')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
-call dein#add('neoclide/coc.nvim', {'branch': 'release'})
+" call dein#add('neoclide/coc.nvim', {'branch': 'release'})
 call dein#add('prettier/vim-prettier')
 call dein#add('reireias/molokai')
 call dein#add('reireias/vim-cheatsheet')
@@ -370,17 +370,17 @@ let g:seiya_auto_enable=1
 " }}}
 
 " neoclide/coc.nvim {{{
-let g:coc_global_extensions = [
-      \ 'coc-yaml',
-      \ 'coc-jedi',
-      \ 'coc-vetur',
-      \ 'coc-solargraph',
-      \ 'coc-json',
-      \ 'coc-css',
-      \ 'coc-tsserver',
-      \ 'coc-tslint-plugin',
-      \ 'coc-snippets'
-      \]
+" let g:coc_global_extensions = [
+"       \ 'coc-yaml',
+"       \ 'coc-jedi',
+"       \ 'coc-vetur',
+"       \ 'coc-solargraph',
+"       \ 'coc-json',
+"       \ 'coc-css',
+"       \ 'coc-tsserver',
+"       \ 'coc-tslint-plugin',
+"       \ 'coc-snippets'
+"       \]
 " }}}
 
 " rcmdnk/vim-markdown {{{
@@ -476,7 +476,7 @@ augroup color_scheme
   " vim-highlightedyank
   autocmd ColorScheme * highlight link HighlightedyankRegion Search
   " Coc completion color
-  autocmd ColorScheme * highlight link CocMenuSel PmenuSel
+  " autocmd ColorScheme * highlight link CocMenuSel PmenuSel
 augroup END
 
 " Color Scheme
