@@ -36,14 +36,13 @@ set clipboard=unnamed,unnamedplus
 set cursorline
 set title
 set number
-set noshowmode
 set mouse=
+language C
 " }}}
 
 " Commands {{{
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 command! VimShowHlItem echo synIDattr(synID(line('.'), col('.'), 1), 'name')
-command! CocFmt :call CocAction('format')
 " }}}
 
 
@@ -75,8 +74,6 @@ augroup vimrc_filetype
   autocmd FileType yaml ALEDisable
   autocmd FileType typescript ALEDisable
   autocmd FileType cpp ALEDisable
-  " disable coc
-  autocmd FileType denite-filter let b:coc_suggest_disable = 1
 augroup END
 " }}}
 
@@ -105,14 +102,13 @@ nnoremap st <C-w>t
 nnoremap sb <C-w>b
 
 " <TAB>: completion.
-inoremap <silent><expr> <TAB>  coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
-inoremap <silent><expr> <S-TAB>  coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
-inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(1) : "\<down>"
-inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(1) : "\<up>"
-inoremap <silent><expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <TAB>  pumvisible() ? '<Down>' : '<TAB>'
+inoremap <silent><expr> <S-TAB>  pumvisible() ? '<Up>' : '<S-TAB>'
+inoremap <silent><expr> <CR>  pumvisible() ? '<C-y>' : '<CR>'
 
 " snippets
-imap <C-k> <Plug>(coc-snippets-expand-jump)
+inoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
+snoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
 
 " Unhighlight search result
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
@@ -157,11 +153,6 @@ augroup key_map
   autocmd FileType go nmap <Leader>gi <Plug>(go-info)
 augroup END
 
-" coc.nvim
-nmap <silent> <Leader>cd <Plug>(coc-definition)
-nmap <silent> <Leader>cr <Plug>(coc-references)
-nmap <silent> <Leader>cre <Plug>(coc-rename)
-
 if has('nvim')
   " terminal
   tnoremap <silent> <ESC> <C-\><C-n>
@@ -176,6 +167,13 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/context_filetype.vim')
+call dein#add('Shougo/ddc-file')
+call dein#add('Shougo/ddc-matcher_head')
+call dein#add('Shougo/ddc-sorter_rank')
+call dein#add('Shougo/ddc-source-around')
+call dein#add('Shougo/ddc-source-nvim-lsp')
+call dein#add('Shougo/ddc-ui-native')
+call dein#add('Shougo/ddc.vim')
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neomru.vim')
@@ -188,6 +186,8 @@ call dein#add('basyura/twibill.vim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('hashivim/vim-terraform')
+call dein#add('hrsh7th/vim-vsnip')
+call dein#add('hrsh7th/vim-vsnip-integ')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
@@ -197,9 +197,10 @@ call dein#add('kana/vim-operator-user')
 call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('machakann/vim-highlightedyank')
+call dein#add('matsui54/denops-popup-preview.vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
-call dein#add('neoclide/coc.nvim', {'branch': 'release'})
+call dein#add('neovim/nvim-lspconfig')
 call dein#add('prettier/vim-prettier')
 call dein#add('reireias/molokai')
 call dein#add('reireias/vim-cheatsheet')
@@ -218,8 +219,11 @@ call dein#add('tpope/vim-surround')
 call dein#add('tyru/open-browser.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
+call dein#add('vim-denops/denops.vim')
 call dein#add('vim-jp/vimdoc-ja')
 call dein#add('w0rp/ale')
+call dein#add('williamboman/mason.nvim')
+call dein#add('williamboman/mason-lspconfig.nvim')
 call dein#add('yuttie/comfortable-motion.vim')
 
 " lazy load
@@ -369,20 +373,6 @@ let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 let g:seiya_auto_enable=1
 " }}}
 
-" neoclide/coc.nvim {{{
-let g:coc_global_extensions = [
-      \ 'coc-yaml',
-      \ 'coc-jedi',
-      \ 'coc-vetur',
-      \ 'coc-solargraph',
-      \ 'coc-json',
-      \ 'coc-css',
-      \ 'coc-tsserver',
-      \ 'coc-tslint-plugin',
-      \ 'coc-snippets'
-      \]
-" }}}
-
 " rcmdnk/vim-markdown {{{
 let g:vim_markdown_folding_level = 6
 set conceallevel=0
@@ -452,6 +442,52 @@ let g:ale_fixers = {
       \ }
 " }}}
 
+" lsp + ddc.vim {{{
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.typescript = ['javascript']
+let g:vsnip_snippet_dir = '~/.vim/snippets'
+lua <<EOF
+  require'mason'.setup{}
+  require'mason-lspconfig'.setup{}
+  require'lspconfig'.terraformls.setup{}
+  require'lspconfig'.tsserver.setup{}
+  require'lspconfig'.yamlls.setup{}
+  require'lspconfig'.jedi_language_server.setup{}
+  require'lspconfig'.vuels.setup{}
+  require'lspconfig'.solargraph.setup{}
+  require'lspconfig'.jsonls.setup{}
+  require'lspconfig'.cssls.setup{}
+  require'lspconfig'.denols.setup{}
+EOF
+
+call ddc#custom#patch_global('ui', 'native')
+call ddc#custom#patch_global('sources', ['vsnip', 'nvim-lsp', 'file', 'around'])
+call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \   'matchers': ['matcher_head'],
+      \   'sorters': ['sorter_rank']},
+      \ 'nvim-lsp': {
+      \   'mark': 'L',
+      \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
+      \ 'vsnip': {'mark': 'S'},
+      \ 'file': {
+      \   'mark': 'F',
+      \   'isVolatile': v:true,
+      \   'forceCompletionPattern': '\S/\S*'},
+      \ })
+call ddc#custom#patch_global('sourceOptions', {
+      \ 'around': {'mark': 'A'},
+      \ })
+call ddc#custom#patch_global('sourceParams', {
+      \ 'around': {'maxSize': 500},
+      \ })
+
+set completeopt-=preview
+
+call ddc#enable()
+call popup_preview#enable()
+" }}}
+
 " finally {{{
 " Load plugin/indent settings when filetype changed
 filetype plugin indent on
@@ -475,8 +511,6 @@ augroup color_scheme
   autocmd ColorScheme * highlight Search ctermfg=255 ctermbg=24
   " vim-highlightedyank
   autocmd ColorScheme * highlight link HighlightedyankRegion Search
-  " Coc completion color
-  autocmd ColorScheme * highlight link CocMenuSel PmenuSel
 augroup END
 
 " Color Scheme
