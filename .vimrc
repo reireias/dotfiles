@@ -470,7 +470,20 @@ nvim_lsp.denols.setup{
   on_attach = on_attach,
   root_dir = nvim_lsp.util.root_pattern{'deno.json', 'deno.jsonc'},
 }
+
+vim.diagnostic.config{
+  virtual_text = false,
+  float = {
+    source = 'always'
+  }
+}
 EOF
+
+set updatetime=500
+augroup diagnostic
+  autocmd!
+  autocmd CursorHold * lua vim.diagnostic.open_float()
+augroup END
 
 call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('sources', ['vsnip', 'nvim-lsp', 'file', 'around'])
@@ -527,6 +540,8 @@ augroup color_scheme
   autocmd ColorScheme * highlight Search ctermfg=255 ctermbg=24
   " vim-highlightedyank
   autocmd ColorScheme * highlight link HighlightedyankRegion Search
+  " float background
+  autocmd ColorScheme * highlight NormalFloat ctermbg=238
 augroup END
 
 " Color Scheme
