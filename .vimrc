@@ -204,6 +204,7 @@ call dein#add('kana/vim-operator-replace')
 call dein#add('kana/vim-operator-user')
 call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
+call dein#add('lukas-reineke/lsp-format.nvim')
 call dein#add('machakann/vim-highlightedyank')
 call dein#add('matsui54/denops-popup-preview.vim')
 call dein#add('mattn/sonictemplate-vim')
@@ -457,6 +458,7 @@ let g:vsnip_snippet_dir = '~/.vim/snippets'
 lua <<EOF
 require'mason'.setup{}
 require'mason-lspconfig'.setup{}
+require'lsp-format'.setup{}
 nvim_lsp = require'lspconfig'
 nvim_lsp.terraformls.setup{}
 nvim_lsp.tsserver.setup{
@@ -470,7 +472,7 @@ nvim_lsp.solargraph.setup{}
 nvim_lsp.jsonls.setup{}
 nvim_lsp.cssls.setup{}
 nvim_lsp.denols.setup{
-  on_attach = on_attach,
+  on_attach = require'lsp-format'.on_attach,
   root_dir = nvim_lsp.util.root_pattern{'deno.json', 'deno.jsonc'},
 }
 
