@@ -451,17 +451,24 @@ let g:vsnip_filetypes = {}
 let g:vsnip_filetypes.typescript = ['javascript']
 let g:vsnip_snippet_dir = '~/.vim/snippets'
 lua <<EOF
-  require'mason'.setup{}
-  require'mason-lspconfig'.setup{}
-  require'lspconfig'.terraformls.setup{}
-  require'lspconfig'.tsserver.setup{}
-  require'lspconfig'.yamlls.setup{}
-  require'lspconfig'.jedi_language_server.setup{}
-  require'lspconfig'.vuels.setup{}
-  require'lspconfig'.solargraph.setup{}
-  require'lspconfig'.jsonls.setup{}
-  require'lspconfig'.cssls.setup{}
-  require'lspconfig'.denols.setup{}
+require'mason'.setup{}
+require'mason-lspconfig'.setup{}
+nvim_lsp = require'lspconfig'
+nvim_lsp.terraformls.setup{}
+nvim_lsp.tsserver.setup{
+  on_attach = on_attach,
+  root_dir = nvim_lsp.util.root_pattern{'package.json'},
+}
+nvim_lsp.yamlls.setup{}
+nvim_lsp.jedi_language_server.setup{}
+nvim_lsp.vuels.setup{}
+nvim_lsp.solargraph.setup{}
+nvim_lsp.jsonls.setup{}
+nvim_lsp.cssls.setup{}
+nvim_lsp.denols.setup{
+  on_attach = on_attach,
+  root_dir = nvim_lsp.util.root_pattern{'deno.json', 'deno.jsonc'},
+}
 EOF
 
 call ddc#custom#patch_global('ui', 'native')
