@@ -158,6 +158,9 @@ augroup key_map
   autocmd FileType go nmap <Leader>gi <Plug>(go-info)
 augroup END
 
+" LSP
+noremap <silent><Leader>e :lua vim.lsp.buf.hover()<CR>
+
 if has('nvim')
   " terminal
   tnoremap <silent> <ESC> <C-\><C-n>
