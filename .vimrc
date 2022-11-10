@@ -37,6 +37,8 @@ set cursorline
 set title
 set number
 set mouse=
+set noshowmode
+set shortmess+=c
 language messages C
 " }}}
 
