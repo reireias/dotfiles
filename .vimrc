@@ -206,6 +206,7 @@ call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('lukas-reineke/lsp-format.nvim')
 call dein#add('machakann/vim-highlightedyank')
+call dein#add('matsui54/ddc-buffer')
 call dein#add('matsui54/denops-popup-preview.vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
@@ -491,7 +492,7 @@ augroup diagnostic
 augroup END
 
 call ddc#custom#patch_global('ui', 'native')
-call ddc#custom#patch_global('sources', ['vsnip', 'nvim-lsp', 'file', 'around'])
+call ddc#custom#patch_global('sources', ['vsnip', 'nvim-lsp', 'file', 'around', 'buffer'])
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'matchers': ['matcher_head'],
@@ -504,6 +505,7 @@ call ddc#custom#patch_global('sourceOptions', {
       \   'mark': 'F',
       \   'isVolatile': v:true,
       \   'forceCompletionPattern': '\S/\S*'},
+      \ 'buffer': {'mark': 'B'},
       \ })
 call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {'mark': 'A'},
@@ -511,6 +513,14 @@ call ddc#custom#patch_global('sourceOptions', {
 call ddc#custom#patch_global('sourceParams', {
       \ 'around': {'maxSize': 500},
       \ })
+call ddc#custom#patch_global('sourceParams', {
+    \ 'buffer': {
+    \   'requireSameFiletype': v:false,
+    \   'limitBytes': 5000000,
+    \   'fromAltBuf': v:true,
+    \   'forceCollect': v:true,
+    \ },
+    \ })
 
 set completeopt-=preview
 sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
