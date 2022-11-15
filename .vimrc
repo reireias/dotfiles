@@ -467,7 +467,16 @@ nvim_lsp.tsserver.setup{
   on_attach = on_attach,
   root_dir = nvim_lsp.util.root_pattern{'package.json'},
 }
-nvim_lsp.yamlls.setup{}
+nvim_lsp.yamlls.setup{
+  on_attach = on_attach,
+  settings = {
+    yaml = {
+      schemas = {
+        ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*'
+      }
+    }
+  }
+}
 nvim_lsp.jedi_language_server.setup{}
 nvim_lsp.vuels.setup{}
 nvim_lsp.solargraph.setup{}
