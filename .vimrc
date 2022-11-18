@@ -451,7 +451,6 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \ 'javascript': ['eslint']
       \ }
-let g:ale_terraform_tfsec_options = '--config-file .tfsec/config.yml'
 " }}}
 
 " lsp + ddc.vim {{{
