@@ -56,6 +56,7 @@ augroup vimrc_filetype
   autocmd BufRead,BufNewFile *.jenkinsfile set filetype=groovy
   autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
 
+  autocmd FileType gitcommit set textwidth=0
   autocmd FileType go :highlight goErr ctermfg=208
   autocmd FileType go :match goErr /\<err\>/
   autocmd FileType html setlocal shiftwidth=2 tabstop=2
