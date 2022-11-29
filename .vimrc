@@ -247,6 +247,7 @@ call dein#add('pangloss/vim-javascript', {'on_ft' : ['javascript', 'vue']})
 " markdonw
 call dein#add('rcmdnk/vim-markdown', {'on_ft' : 'markdown'})
 call dein#add('kannokanno/previm', {'on_ft' : 'markdown'})
+call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'], 'build': 'sh -c "cd app && yarn install"' })
 " nginx
 call dein#add('chr4/nginx.vim', {'on_ft' : 'nginx'})
 " plantuml
