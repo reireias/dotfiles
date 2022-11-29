@@ -387,7 +387,11 @@ let g:seiya_auto_enable=1
 
 " rcmdnk/vim-markdown {{{
 let g:vim_markdown_folding_level = 6
-set conceallevel=0
+set conceallevel=2
+" }}}
+
+" iamcco/markdown-preview.nvim {{{
+let g:mkdp_port = 8089
 " }}}
 
 " reireias/vim-cheatsheet {{{
