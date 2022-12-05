@@ -64,6 +64,7 @@ augroup vimrc_filetype
   autocmd FileType typescript setlocal shiftwidth=2 tabstop=2
   autocmd FileType json setlocal shiftwidth=2 tabstop=2
   autocmd FileType jsonc setlocal shiftwidth=2 tabstop=2
+  autocmd FileType markdown setlocal conceallevel=2
   autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
   autocmd FileType vim setlocal shiftwidth=2 tabstop=2 foldmethod=marker
   autocmd FileType vim :highlight link FoldComment SpecialComment
@@ -387,7 +388,6 @@ let g:seiya_auto_enable=1
 
 " rcmdnk/vim-markdown {{{
 let g:vim_markdown_folding_level = 6
-set conceallevel=2
 " }}}
 
 " iamcco/markdown-preview.nvim {{{
