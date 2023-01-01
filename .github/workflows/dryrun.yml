@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3.1.0
       # NOTE: Using setup-python in ubuntu, the fontforge script is giving me an error. Therefore, use the default python.
-      - uses: actions/setup-python@v4.3.0
+      - uses: actions/setup-python@v4.4.0
         id: python
         with:
           python-version: '3.8'
