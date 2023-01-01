@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3.1.0
+      - uses: actions/checkout@v3.2.0
       # NOTE: Using setup-python in ubuntu, the fontforge script is giving me an error. Therefore, use the default python.
       - uses: actions/setup-python@v4.3.0
         id: python
