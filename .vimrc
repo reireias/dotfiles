@@ -59,6 +59,7 @@ augroup vimrc_filetype
   autocmd FileType gitcommit set textwidth=0
   autocmd FileType go :highlight goErr ctermfg=208
   autocmd FileType go :match goErr /\<err\>/
+  autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
   autocmd FileType html setlocal shiftwidth=2 tabstop=2
   autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
   autocmd FileType typescript setlocal shiftwidth=2 tabstop=2
@@ -149,17 +150,6 @@ nmap <Leader>d [denite]
 nnoremap <silent> [denite]f :<C-u>Denite file/rec<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
 
-" Go
-augroup key_map
-  autocmd!
-  autocmd FileType go nmap <Leader>gb <Plug>(go-build)
-  autocmd FileType go nmap <Leader>gr <Plug>(go-run)
-  autocmd FileType go nmap <Leader>gt <Plug>(go-test)
-  autocmd FileType go nmap <Leader>gtf <Plug>(go-test-func)
-  autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
-  autocmd FileType go nmap <Leader>gi <Plug>(go-info)
-augroup END
-
 " LSP
 noremap <silent><Leader>e :lua vim.lsp.buf.hover()<CR>
 
@@ -241,8 +231,6 @@ call dein#add('yuttie/comfortable-motion.vim')
 " lazy load
 " ansible
 call dein#add('pearofducks/ansible-vim', {'on_ft' : 'yaml.ansible'})
-" go
-call dein#add('fatih/vim-go', {'on_ft' : 'go'})
 " js
 call dein#add('pangloss/vim-javascript', {'on_ft' : ['javascript', 'vue']})
 " markdonw
@@ -487,6 +475,7 @@ nvim_lsp.vuels.setup{}
 nvim_lsp.solargraph.setup{}
 nvim_lsp.jsonls.setup{}
 nvim_lsp.cssls.setup{}
+nvim_lsp.gopls.setup{}
 nvim_lsp.denols.setup{
   on_attach = require'lsp-format'.on_attach,
   root_dir = nvim_lsp.util.root_pattern{'deno.json', 'deno.jsonc'},
