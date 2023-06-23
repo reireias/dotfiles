@@ -439,7 +439,8 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_linters = {
       \ 'ruby': ['rubocop', 'ruby', 'solargraph'],
-      \ 'zsh': ['shellcheck']
+      \ 'zsh': ['shellcheck'],
+      \ 'vue': ['volar', 'eslint']
       \ }
 let g:ale_fixers = {
       \ 'javascript': ['eslint']
@@ -471,7 +472,8 @@ nvim_lsp.yamlls.setup{
   }
 }
 nvim_lsp.jedi_language_server.setup{}
-nvim_lsp.vuels.setup{}
+nvim_lsp.eslint.setup{}
+nvim_lsp.volar.setup{}
 nvim_lsp.solargraph.setup{}
 nvim_lsp.jsonls.setup{}
 nvim_lsp.cssls.setup{}
