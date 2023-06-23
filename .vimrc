@@ -63,6 +63,7 @@ augroup vimrc_filetype
   autocmd FileType html setlocal shiftwidth=2 tabstop=2
   autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
   autocmd FileType typescript setlocal shiftwidth=2 tabstop=2
+  " autocmd FileType typescript syntax clear typescriptMessage
   autocmd FileType json setlocal shiftwidth=2 tabstop=2
   autocmd FileType jsonc setlocal shiftwidth=2 tabstop=2
   autocmd FileType markdown setlocal conceallevel=2
@@ -563,6 +564,8 @@ augroup color_scheme
   autocmd ColorScheme * highlight link HighlightedyankRegion Search
   " float background
   autocmd ColorScheme * highlight NormalFloat ctermbg=238
+  " change ts status keyword to white
+  autocmd ColorScheme * highlight typescriptMessage ctermfg=252
 augroup END
 
 " Color Scheme
