@@ -116,8 +116,8 @@ inoremap <silent><expr> <S-TAB>  pumvisible() ? '<Up>' : '<S-TAB>'
 inoremap <silent><expr> <CR>  pumvisible() ? '<C-y>' : '<CR>'
 
 " snippets
-inoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
-snoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
+" inoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
+" snoremap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
 
 " Unhighlight search result
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
@@ -187,8 +187,8 @@ call dein#add('basyura/twibill.vim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('hashivim/vim-terraform')
-call dein#add('hrsh7th/vim-vsnip')
-call dein#add('hrsh7th/vim-vsnip-integ')
+" call dein#add('hrsh7th/vim-vsnip')
+" call dein#add('hrsh7th/vim-vsnip-integ')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
@@ -220,7 +220,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-rhubarb')
 call dein#add('tpope/vim-surround')
 call dein#add('tyru/open-browser.vim')
-call dein#add('uga-rosa/ddc-source-vsnip')
+" call dein#add('uga-rosa/ddc-source-vsnip')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-denops/denops.vim')
@@ -450,9 +450,9 @@ let g:ale_fixers = {
 " }}}
 
 " lsp + ddc.vim {{{
-let g:vsnip_filetypes = {}
-let g:vsnip_filetypes.typescript = ['javascript']
-let g:vsnip_snippet_dir = '~/.vim/snippets'
+" let g:vsnip_filetypes = {}
+" let g:vsnip_filetypes.typescript = ['javascript']
+" let g:vsnip_snippet_dir = '~/.vim/snippets'
 lua <<EOF
 require'mason'.setup{}
 require'mason-lspconfig'.setup{}
@@ -500,7 +500,7 @@ augroup diagnostic
 augroup END
 
 call ddc#custom#patch_global('ui', 'native')
-call ddc#custom#patch_global('sources', ['vsnip', 'nvim-lsp', 'file', 'around', 'buffer'])
+call ddc#custom#patch_global('sources', ['nvim-lsp', 'file', 'around', 'buffer'])
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'matchers': ['matcher_head'],
@@ -529,6 +529,15 @@ call ddc#custom#patch_global('sourceParams', {
     \   'forceCollect': v:true,
     \ },
     \ })
+" call ddc#custom#patch_global('sourceParams', {
+"       \   'nvim-lsp': {
+"       \     'snippetEngine': denops#callback#register({
+"       \           body -> vsnip#anonymous(body)
+"       \     }),
+"       \     'enableResolveItem': v:true,
+"       \     'enableAdditionalTextEdit': v:true,
+"       \   }
+"       \ })
 
 set completeopt-=preview
 sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
