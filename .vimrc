@@ -187,8 +187,6 @@ call dein#add('basyura/twibill.vim')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('hashivim/vim-terraform')
-" call dein#add('hrsh7th/vim-vsnip')
-" call dein#add('hrsh7th/vim-vsnip-integ')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
@@ -220,7 +218,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-rhubarb')
 call dein#add('tpope/vim-surround')
 call dein#add('tyru/open-browser.vim')
-" call dein#add('uga-rosa/ddc-source-vsnip')
+call dein#add('uga-rosa/ddc-nvim-lsp-setup')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-denops/denops.vim')
@@ -450,15 +448,18 @@ let g:ale_fixers = {
 " }}}
 
 " lsp + ddc.vim {{{
-" let g:vsnip_filetypes = {}
-" let g:vsnip_filetypes.typescript = ['javascript']
-" let g:vsnip_snippet_dir = '~/.vim/snippets'
 lua <<EOF
 require'mason'.setup{}
 require'mason-lspconfig'.setup{}
 require'lsp-format'.setup{}
+require'ddc_nvim_lsp_setup'.setup{}
 nvim_lsp = require'lspconfig'
-nvim_lsp.terraformls.setup{}
+local on_attach = function(client, bufnr)
+  client.server_capabilities.semanticTokensProvider = nil
+end
+nvim_lsp.terraformls.setup{
+  on_attach = on_attach,
+}
 nvim_lsp.tsserver.setup{
   on_attach = on_attach,
   root_dir = nvim_lsp.util.root_pattern{'package.json'},
@@ -475,13 +476,15 @@ nvim_lsp.yamlls.setup{
 }
 nvim_lsp.jedi_language_server.setup{}
 nvim_lsp.eslint.setup{}
-nvim_lsp.volar.setup{}
+nvim_lsp.volar.setup{
+  on_attach = on_attach,
+}
 nvim_lsp.solargraph.setup{}
 nvim_lsp.jsonls.setup{}
 nvim_lsp.cssls.setup{}
 nvim_lsp.gopls.setup{}
 nvim_lsp.denols.setup{
-  on_attach = require'lsp-format'.on_attach,
+  on_attach = on_attach,
   root_dir = nvim_lsp.util.root_pattern{'deno.json', 'deno.jsonc'},
 }
 
@@ -508,7 +511,6 @@ call ddc#custom#patch_global('sourceOptions', {
       \ 'nvim-lsp': {
       \   'mark': 'L',
       \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
-      \ 'vsnip': {'mark': 'S'},
       \ 'file': {
       \   'mark': 'F',
       \   'isVolatile': v:true,
@@ -529,15 +531,6 @@ call ddc#custom#patch_global('sourceParams', {
     \   'forceCollect': v:true,
     \ },
     \ })
-" call ddc#custom#patch_global('sourceParams', {
-"       \   'nvim-lsp': {
-"       \     'snippetEngine': denops#callback#register({
-"       \           body -> vsnip#anonymous(body)
-"       \     }),
-"       \     'enableResolveItem': v:true,
-"       \     'enableAdditionalTextEdit': v:true,
-"       \   }
-"       \ })
 
 set completeopt-=preview
 sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
