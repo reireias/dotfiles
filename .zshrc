@@ -15,6 +15,8 @@ source ~/.bashrc
 
 # plugin
 source ~/.zsh/config/plugin.zsh
+export ENHANCD_ENABLE_DOUBLE_DOT=false
+export ENHANCD_ENABLE_HOME=false
 # }}}
 
 # HISTORY {{{
