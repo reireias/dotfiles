@@ -83,8 +83,8 @@ typeset -g POWERLEVEL9K_AWS_BACKGROUND='none'
 
 # enhancd
 export ENHANCD_FILTER=peco
-export ENHANCD_DISABLE_DOT=1
-export ENHANCD_DISABLE_HOME=1
+export ENHANCD_ENABLE_DOUBLE_DOT=false
+export ENHANCD_ENABLE_HOME=false
 
 # functions
 function zsh-startuptime() {
