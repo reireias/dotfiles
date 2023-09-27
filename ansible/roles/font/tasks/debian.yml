@@ -4,10 +4,18 @@
     name:
       - fontforge
       - unzip
-      - python-configparser
       - python3-fontforge
     update_cache: true
   become: true
+
+- name: tap font
+  homebrew_tap:
+    name: sanemat/font
+
+- name: install Ricty
+  homebrew:
+    name: ricty
+    install_options: with-powerline
 
 - name: create ~/.fonts
   file:
@@ -17,74 +25,20 @@
 
 - name: block
   block:
-  - name: download Inconsolata
-    get_url:
-      url: http://levien.com/type/myfonts/Inconsolata.otf
-      dest: ~/.fonts/Inconsolata.otf
-      mode: 0644
-
   - name: create temp directory
     tempfile:
       state: directory
       suffix: font
     register: tempdir
 
-  - name: check migu-1m exist
-    stat:
-      path: ~/.fonts/migu-1m-regular.ttf
-    register: migu1m
-
-  - name: download mig-1m
-    get_url:
-      url: https://ja.osdn.net/frs/redir.php?m=iij&f=%2Fmix-mplus-ipa%2F63545%2Fmigu-1m-20150712.zip
-      dest: "{{ tempdir.path }}/migu-1m-20150712.zip"
-      mode: 0644
-    when: not migu1m.stat.exists
-
-  - name: unzip
-    unarchive:
-      src: "{{ tempdir.path }}/migu-1m-20150712.zip"
-      dest: "{{ tempdir.path }}/"
-    when: not migu1m.stat.exists
-
-  - name: copy fonts
-    copy:
-      src: "{{ tempdir.path }}/migu-1m-20150712/{{ item }}"
-      dest: ~/.fonts
-      mode: 0644
-    with_items:
-      - migu-1m-regular.ttf
-      - migu-1m-bold.ttf
-    when: not migu1m.stat.exists
-    notify: font_reload
-
-  - name: check ricty exist
-    stat:
-      path: ~/.fonts/Ricty-Regular.ttf
-    register: ricty
-
-  - name: download ricty_generator
-    get_url:
-      url: https://raw.github.com/metalefty/Ricty/master/ricty_generator.sh
-      dest: "{{ tempdir.path }}/ricty_generator.sh"
-      mode: 0755
-    when: not ricty.stat.exists
-
-  - name: exec ricty_generator
-    script: "{{ tempdir.path }}/ricty_generator.sh ~/.fonts/Inconsolata.otf ~/.fonts/migu-1m-regular.ttf ~/.fonts/migu-1m-bold.ttf"
-    args:
-      chdir: "{{ tempdir.path }}"
-    when: not ricty.stat.exists
-
   - name: copy generated fonts
     copy:
-      src: "{{ tempdir.path }}/{{ item }}"
+      src: /home/linuxbrew/.linuxbrew/opt/ricty/share/fonts/{{ item }}
       dest: ~/.fonts
       mode: 0644
     with_items:
       - Ricty-Regular.ttf
       - Ricty-Bold.ttf
-    when: not ricty.stat.exists
     notify: font_reload
 
   - name: check nerd exist
@@ -94,7 +48,7 @@
 
   - name: clone nerd-fonts
     git:
-      repo: https://github.com/reireias/nerd-fonts.git
+      repo: https://github.com/ryanoasis/nerd-fonts.git
       depth: 1
       update: false
       dest: /tmp/nerd-fonts
@@ -103,7 +57,7 @@
 
   - name: exec font patch
     command: >
-      fontforge -script /tmp/nerd-fonts/font-patcher ~/.fonts/Ricty-Regular.ttf
+      python3 /tmp/nerd-fonts/font-patcher ~/.fonts/Ricty-Regular.ttf
       --fontawesome --fontlinux --octicons --pomicons --powerline --powerlineextra --no-progressbars --quiet
     args:
       chdir: /tmp/nerd-fonts

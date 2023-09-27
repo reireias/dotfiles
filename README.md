@@ -65,7 +65,7 @@ $ make test
 ## Test on Docker
 
 ```console
-$ docker run --rm -it -u ubuntu reireias/non-root-user-ubuntu:20.04 bash
+$ docker run --rm -it -u ubuntu reireias/non-root-user-ubuntu:22.04 bash
 $ sudo apt update
 $ cd
 $ git clone https://github.com/reireias/dotfiles.git

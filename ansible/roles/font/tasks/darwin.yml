@@ -54,7 +54,7 @@
 
   - name: exec font patch
     command: >
-      fontforge -script /tmp/nerd-fonts/font-patcher ~/.fonts/Ricty-Regular-Powerline.ttf
+      python3 /tmp/nerd-fonts/font-patcher ~/.fonts/Ricty-Regular-Powerline.ttf
       --fontawesome --fontlinux --octicons --pomicons --powerline --powerlineextra --no-progressbars --quiet
     args:
       chdir: /tmp/nerd-fonts
