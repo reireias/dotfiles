@@ -4,7 +4,6 @@
     name:
       - fontforge
       - unzip
-      - python
       - python-configparser
       - python3-fontforge
     update_cache: true
