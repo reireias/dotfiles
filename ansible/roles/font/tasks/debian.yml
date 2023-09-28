@@ -11,11 +11,13 @@
 - name: tap font
   homebrew_tap:
     name: sanemat/font
+    path: /usr/local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin
 
 - name: install Ricty
   homebrew:
     name: ricty
     install_options: with-powerline
+    path: /usr/local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin
 
 - name: create ~/.fonts
   file:
