@@ -8,6 +8,7 @@
     name:
       - unzip
       - python
+      - forntforge
 
 - name: install Ricty
   homebrew:
@@ -49,7 +50,7 @@
       depth: 1
       update: false
       dest: /tmp/nerd-fonts
-      version: 2.1.0
+      version: v3.0.2
     when: not nerd.stat.exists
 
   - name: exec font patch

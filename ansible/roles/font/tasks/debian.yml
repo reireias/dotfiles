@@ -52,7 +52,7 @@
       depth: 1
       update: false
       dest: /tmp/nerd-fonts
-      version: patch
+      version: v3.0.2
     when: not nerd.stat.exists
 
   - name: exec font patch

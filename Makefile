@@ -28,7 +28,7 @@ check-dotfiles:
 .PHONY: dependencies
 dependencies:
 	@cd ansible; \
-	ansible-playbook -i localhost, dependencies.yml $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
+	ansible-playbook -i localhost, dependencies.yml -vvv $(ANSIBLE_ARG) $(ANSIBLE_SUDO_ARG)
 
 .PHONY: check-dependencies
 check-dependencies:
