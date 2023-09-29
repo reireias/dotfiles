@@ -46,7 +46,7 @@
 
   - name: clone nerd-fonts
     git:
-      repo: https://github.com/ryanoasis/nerd-fonts.git
+      repo: https://github.com/reireias/nerd-fonts.git
       depth: 1
       update: false
       dest: /tmp/nerd-fonts
@@ -55,7 +55,7 @@
 
   - name: exec font patch
     command: >
-      python3 /tmp/nerd-fonts/font-patcher ~/.fonts/Ricty-Regular-Powerline.ttf
+      fontforge -script /tmp/nerd-fonts/font-patcher ~/.fonts/Ricty-Regular-Powerline.ttf
       --fontawesome --fontlinux --octicons --pomicons --powerline --powerlineextra --no-progressbars --quiet
     args:
       chdir: /tmp/nerd-fonts
@@ -63,7 +63,7 @@
 
   - name: copy nerd-font
     copy:
-      src: "/tmp/nerd-fonts/Ricty Regular Nerd Font Plus Font Awesome Plus Octicons Plus Pomicons Plus Font Logos (Font Linux).ttf"
+      src: "/tmp/nerd-fonts/RictyNerdFontPlusFontAwesomePlusOcticonsPlusPomiconsPlusFontLogos-Regular.ttf"
       dest: ~/.fonts/Ricty-Regular-nerd-Powerline.ttf
       mode: 0644
     when: not nerd.stat.exists
