@@ -441,7 +441,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_linters = {
       \ 'ruby': ['rubocop', 'ruby', 'solargraph'],
       \ 'zsh': ['shellcheck'],
-      \ 'vue': ['volar', 'eslint']
+      \ 'vue': ['volar', 'eslint'],
+      \ 'terraform': ['terraform', 'terraform_ls', 'terraform_lsp', 'tflint']
       \ }
 let g:ale_fixers = {
       \ 'javascript': ['eslint']
