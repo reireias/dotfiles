@@ -135,10 +135,6 @@ nnoremap <Leader>bd :bdelete<CR>
 noremap <C-n> :cnext<CR>
 noremap <C-p> :cprevious<CR>
 
-" scroll
-noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
-
 " select
 snoremap <CR> <BS>i
 
@@ -150,6 +146,9 @@ nnoremap [denite] <Nop>
 nmap <Leader>d [denite]
 nnoremap <silent> [denite]f :<C-u>Denite file/rec<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+
+" fzf
+noremap <C-f> :GFiles<CR>
 
 " LSP
 noremap <silent><Leader>e :lua vim.lsp.buf.hover()<CR>
@@ -227,7 +226,6 @@ call dein#add('vim-jp/vimdoc-ja')
 call dein#add('w0rp/ale')
 call dein#add('williamboman/mason-lspconfig.nvim')
 call dein#add('williamboman/mason.nvim')
-call dein#add('yuttie/comfortable-motion.vim')
 
 " lazy load
 " ansible
