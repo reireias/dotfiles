@@ -166,12 +166,12 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.vim/dein'))
 
+call dein#add('LumaKernel/ddc-source-file')
 call dein#add('Shougo/context_filetype.vim')
-call dein#add('Shougo/ddc-file')
 call dein#add('Shougo/ddc-matcher_head')
 call dein#add('Shougo/ddc-sorter_rank')
 call dein#add('Shougo/ddc-source-around')
-call dein#add('Shougo/ddc-source-nvim-lsp')
+call dein#add('Shougo/ddc-source-lsp')
 call dein#add('Shougo/ddc-ui-native')
 call dein#add('Shougo/ddc.vim')
 call dein#add('Shougo/dein.vim')
@@ -218,7 +218,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-rhubarb')
 call dein#add('tpope/vim-surround')
 call dein#add('tyru/open-browser.vim')
-call dein#add('uga-rosa/ddc-nvim-lsp-setup')
+call dein#add('uga-rosa/ddc-source-lsp-setup')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-denops/denops.vim')
@@ -452,7 +452,7 @@ lua <<EOF
 require'mason'.setup{}
 require'mason-lspconfig'.setup{}
 require'lsp-format'.setup{}
-require'ddc_nvim_lsp_setup'.setup{}
+require'ddc_source_lsp_setup'.setup{}
 nvim_lsp = require'lspconfig'
 local on_attach = function(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
@@ -503,7 +503,7 @@ augroup diagnostic
 augroup END
 
 call ddc#custom#patch_global('ui', 'native')
-call ddc#custom#patch_global('sources', ['nvim-lsp', 'file', 'around', 'buffer'])
+call ddc#custom#patch_global('sources', ['lsp', 'file', 'around', 'buffer'])
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'matchers': ['matcher_head'],
