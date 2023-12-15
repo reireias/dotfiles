@@ -1,3 +1,0 @@
----
-- name: font_reload
-  command: fc-cache -vf
