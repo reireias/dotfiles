@@ -34,7 +34,7 @@ This dotfiles installation is managed by [Ansible](https://docs.ansible.com/) an
 `make dotfiles` create symbolic links in home directory.  
 Files are created as symbolic links and directories are created as directories.
 
-`make dependencies` installs packages, fonts and plugins.
+`make dependencies` installs packages and plugins.
 
 These implementations can be found in the [ansible](ansible) directory.
 
