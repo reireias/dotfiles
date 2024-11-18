@@ -460,7 +460,7 @@ end
 nvim_lsp.terraformls.setup{
   on_attach = on_attach,
 }
-nvim_lsp.tsserver.setup{
+nvim_lsp.ts_ls.setup{
   on_attach = on_attach,
   root_dir = nvim_lsp.util.root_pattern{'package.json'},
 }
