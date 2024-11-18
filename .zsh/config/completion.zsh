@@ -2,6 +2,10 @@
 if [[ -e ~/.asdf ]]; then
     # shellcheck disable=SC2206
     fpath=(~/.asdf/completions "${fpath[@]}")
+
+    # compinit with zi turbo mode
+    # https://wiki.zshell.dev/ja/docs/guides/commands
+    zicompinit
 fi
 
 # aws
