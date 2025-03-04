@@ -166,6 +166,7 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.vim/dein'))
 
+call dein#add('CopilotC-Nvim/CopilotChat.nvim', { 'build': 'make tiktoken' })
 call dein#add('LumaKernel/ddc-source-file')
 call dein#add('Shougo/context_filetype.vim')
 call dein#add('Shougo/ddc-matcher_head')
@@ -202,6 +203,7 @@ call dein#add('matsui54/denops-popup-preview.vim')
 call dein#add('mattn/sonictemplate-vim')
 call dein#add('miyakogi/seiya.vim')
 call dein#add('neovim/nvim-lspconfig')
+call dein#add('nvim-lua/plenary.nvim')
 call dein#add('prettier/vim-prettier')
 call dein#add('reireias/molokai')
 call dein#add('reireias/vim-cheatsheet')
@@ -449,6 +451,7 @@ let g:ale_fixers = {
 
 " lsp + ddc.vim {{{
 lua <<EOF
+require'CopilotChat'.setup{}
 require'mason'.setup{}
 require'mason-lspconfig'.setup{}
 require'lsp-format'.setup{}
