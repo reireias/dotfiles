@@ -575,6 +575,8 @@ augroup color_scheme
   " change completion menu color
   autocmd ColorScheme * highlight Pmenu cterm=NONE
   autocmd ColorScheme * highlight PmenuSel cterm=underline
+  " change Visual bg color
+  autocmd ColorScheme * highlight Visual ctermfg=255
 augroup END
 
 " Color Scheme
