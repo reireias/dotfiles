@@ -572,6 +572,9 @@ augroup color_scheme
   autocmd ColorScheme * highlight NormalFloat ctermbg=238
   " change ts status keyword to white
   autocmd ColorScheme * highlight typescriptMessage ctermfg=252
+  " change completion menu color
+  autocmd ColorScheme * highlight Pmenu cterm=NONE
+  autocmd ColorScheme * highlight PmenuSel cterm=underline
 augroup END
 
 " Color Scheme
