@@ -148,7 +148,7 @@ nnoremap <silent> [denite]f :<C-u>Denite file/rec<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
 
 " fzf
-noremap <C-f> :GFiles<CR>
+noremap <C-f> :GFiles --cached --others --exclude-standard<CR>
 
 " LSP
 noremap <silent><Leader>e :lua vim.lsp.buf.hover()<CR>
