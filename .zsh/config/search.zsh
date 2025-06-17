@@ -37,7 +37,7 @@ bindkey '^G' fzf-ghq-look
 function fzf-find () {
     local selected
     if is_in_git_repo; then
-        selected=$(git ls-files | fzf)
+        selected=$(git ls-files --cached --others --exclude-standard | fzf)
     else
         selected=$(ag -g "" | fzf)
     fi
