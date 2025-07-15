@@ -494,7 +494,16 @@ nvim_lsp.denols.setup{
 vim.diagnostic.config{
   virtual_text = false,
   float = {
+    focusable = false,
     source = 'always'
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '', -- Error
+      [vim.diagnostic.severity.WARN]  = '', -- Warn
+      [vim.diagnostic.severity.INFO]  = '', -- Info
+      [vim.diagnostic.severity.HINT]  = '💡', -- Hint
+    }
   }
 }
 EOF
@@ -536,10 +545,6 @@ call ddc#custom#patch_global('sourceParams', {
     \ })
 
 set completeopt-=preview
-sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
-sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
-sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
-sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
 
 call ddc#enable()
 call popup_preview#enable()
