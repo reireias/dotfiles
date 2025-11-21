@@ -1,4 +1,9 @@
 ---
+- name: set default asdf version
+  set_fact:
+    asdf_version: "v0.14.1"
+  when: ansible_facts['os_family'] == 'Debian'
+
 - name: install packages for asdf
   apt:
     name:
@@ -22,12 +27,17 @@
     executable: /bin/bash
   register: asdf_version_result
   changed_when: false
+  failed_when: false
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: set asdf version
+- name: set asdf version from API
   set_fact:
     asdf_version: "{{ asdf_version_result.stdout }}"
-  when: ansible_facts['os_family'] == 'Debian'
+  when:
+    - ansible_facts['os_family'] == 'Debian'
+    - asdf_version_result is defined
+    - asdf_version_result.stdout is defined
+    - asdf_version_result.stdout | length > 0
 
 - name: check if asdf is already installed
   stat:
