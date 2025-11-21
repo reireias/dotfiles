@@ -8,10 +8,51 @@
       - libssl-dev
       - libsqlite3-dev
       - libffi-dev
+      - git
+      - bash
+      - curl
   become: true
   when: ansible_facts['os_family'] == 'Debian'
 
-# TODO: install asdf for Debian
+- name: get latest asdf version
+  uri:
+    url: https://api.github.com/repos/asdf-vm/asdf/releases/latest
+    return_content: true
+  register: asdf_latest_release
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: set asdf version
+  set_fact:
+    asdf_version: "{{ asdf_latest_release.json.tag_name }}"
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: check if asdf is already installed
+  stat:
+    path: /usr/local/bin/asdf
+  register: asdf_binary
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: download asdf pre-compiled binary
+  get_url:
+    url: "https://github.com/asdf-vm/asdf/releases/download/{{ asdf_version }}/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+    dest: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+    mode: '0644'
+  when: ansible_facts['os_family'] == 'Debian' and not asdf_binary.stat.exists
+
+- name: extract asdf binary
+  unarchive:
+    src: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+    dest: /usr/local/bin
+    remote_src: true
+    creates: /usr/local/bin/asdf
+  become: true
+  when: ansible_facts['os_family'] == 'Debian' and not asdf_binary.stat.exists
+
+- name: cleanup asdf tarball
+  file:
+    path: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+    state: absent
+  when: ansible_facts['os_family'] == 'Debian' and not asdf_binary.stat.exists
 
 - name: install asdf for Mac
   homebrew:
