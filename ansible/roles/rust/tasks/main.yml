@@ -1,19 +1,18 @@
 ---
-- name: check cargo dir
+- name: Check cargo dir
   stat:
     path: ~/.cargo
-  register: cargo
+  register: rust_cargo
 
-- name: intall block
+- name: Install block
+  when: not rust_cargo.stat.exists
   block:
-  - name: download rustup script
+  - name: Download rustup script
     get_url:
       url: https://sh.rustup.rs
       dest: /tmp/rustup.sh
-      mode: 0755
-  - name: run rustup script
-    # noqa 305
+      mode: "0755"
+  - name: Run rustup script  # noqa: command-instead-of-shell
     shell: /tmp/rustup.sh -y
-    register: rustup
-    changed_when: rustup.rc != 0
-  when: not cargo.stat.exists
+    register: rust_rustup
+    changed_when: rust_rustup.rc != 0

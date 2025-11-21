@@ -1,34 +1,34 @@
 ---
-- name: debian block
+- name: Debian block
+  when: ansible_facts['os_family'] == 'Debian'
   block:
-  - name: check brew command
+  - name: Check brew command
     command: /bin/bash -lc "type brew"
-    register: type_brew_result
+    register: homebrew_type_brew_result
     check_mode: false
     failed_when: false
     changed_when: false
 
-  - name: set brew_exist
+  - name: Set brew_exist
     set_fact:
-      brew_exist: "{{ type_brew_result.rc == 0 }}"
+      homebrew_brew_exist: "{{ homebrew_type_brew_result.rc == 0 }}"
 
-  - name: install block
+  - name: Install block
+    when: not homebrew_brew_exist
     block:
-    - name: download homebrew install script  # noqa: command-instead-of-module
-      shell: curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh -o /tmp/homebrew_install.sh && chmod 0755 /tmp/homebrew_install.sh
+    - name: Download homebrew install script  # noqa: command-instead-of-module
+      shell: curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh -o /tmp/homebrew_install.sh && chmod "0755" /tmp/homebrew_install.sh
       args:
         creates: /tmp/homebrew_install.sh
 
-    - name: install homebrew
+    - name: Install homebrew
       command: /tmp/homebrew_install.sh
       environment:
         CI: "true"
       when: not ansible_check_mode
 
-    - name: write linuxbrew envs
+    - name: Write linuxbrew envs
       shell: /home/linuxbrew/.linuxbrew/bin/brew shellenv > ~/.linuxbrewrc
-      register: write_env
-      changed_when: write_env.rc != 0
+      register: homebrew_write_env
+      changed_when: homebrew_write_env.rc != 0
       when: not ansible_check_mode
-    when: not brew_exist
-  when: ansible_facts['os_family'] == 'Debian'

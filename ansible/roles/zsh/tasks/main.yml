@@ -1,6 +1,6 @@
 ---
 # zsh
-- name: install dependency packages for Debian
+- name: Install dependency packages for Debian
   apt:
     name:
       - zsh
@@ -10,8 +10,8 @@
   become: true
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: install dependency packages for Mac
-  homebrew:
+- name: Install dependency packages for Mac
+  community.general.homebrew:
     name:
       - zsh
       - curl

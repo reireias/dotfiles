@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Setup dependencies
+  hosts: localhost
   connection: local
   roles:
     - homebrew
