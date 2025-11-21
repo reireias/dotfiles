@@ -1,7 +1,7 @@
 ---
 - name: set default asdf version
   set_fact:
-    asdf_version: "v0.14.1"
+    asdf_version: "v0.18.0"
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: install packages for asdf
@@ -47,10 +47,10 @@
 
 - name: download asdf pre-compiled binary  # noqa: command-instead-of-module
   shell: |
-    curl -L -o "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz" \
-      "https://github.com/asdf-vm/asdf/releases/download/{{ asdf_version }}/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+    curl -L -o "/tmp/asdf-{{ asdf_version }}-linux-amd64.tar.gz" \
+      "https://github.com/asdf-vm/asdf/releases/download/{{ asdf_version }}/asdf-{{ asdf_version }}-linux-amd64.tar.gz"
   args:
-    creates: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+    creates: "/tmp/asdf-{{ asdf_version }}-linux-amd64.tar.gz"
     executable: /bin/bash
   when:
     - ansible_facts['os_family'] == 'Debian'
@@ -59,7 +59,7 @@
 
 - name: extract asdf binary
   unarchive:
-    src: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+    src: "/tmp/asdf-{{ asdf_version }}-linux-amd64.tar.gz"
     dest: /usr/local/bin
     remote_src: true
     creates: /usr/local/bin/asdf
@@ -71,7 +71,7 @@
 
 - name: cleanup asdf tarball
   file:
-    path: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+    path: "/tmp/asdf-{{ asdf_version }}-linux-amd64.tar.gz"
     state: absent
   when:
     - ansible_facts['os_family'] == 'Debian'
