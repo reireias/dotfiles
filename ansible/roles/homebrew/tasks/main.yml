@@ -17,7 +17,9 @@
     when: not homebrew_brew_exist
     block:
     - name: Download homebrew install script  # noqa: command-instead-of-module
-      shell: curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh -o /tmp/homebrew_install.sh && chmod "0755" /tmp/homebrew_install.sh
+      shell: >
+        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
+        -o /tmp/homebrew_install.sh && chmod "0755" /tmp/homebrew_install.sh
       args:
         creates: /tmp/homebrew_install.sh
 
@@ -26,6 +28,7 @@
       environment:
         CI: "true"
       when: not ansible_check_mode
+      changed_when: true
 
     - name: Write linuxbrew envs
       shell: /home/linuxbrew/.linuxbrew/bin/brew shellenv > ~/.linuxbrewrc
