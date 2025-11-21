@@ -52,7 +52,10 @@
   args:
     creates: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
     executable: /bin/bash
-  when: ansible_facts['os_family'] == 'Debian' and not asdf_binary.stat.exists
+  when:
+    - ansible_facts['os_family'] == 'Debian'
+    - not asdf_binary.stat.exists
+    - not ansible_check_mode
 
 - name: extract asdf binary
   unarchive:
@@ -61,13 +64,19 @@
     remote_src: true
     creates: /usr/local/bin/asdf
   become: true
-  when: ansible_facts['os_family'] == 'Debian' and not asdf_binary.stat.exists
+  when:
+    - ansible_facts['os_family'] == 'Debian'
+    - not asdf_binary.stat.exists
+    - not ansible_check_mode
 
 - name: cleanup asdf tarball
   file:
     path: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
     state: absent
-  when: ansible_facts['os_family'] == 'Debian' and not asdf_binary.stat.exists
+  when:
+    - ansible_facts['os_family'] == 'Debian'
+    - not asdf_binary.stat.exists
+    - not ansible_check_mode
 
 - name: install asdf for Mac
   homebrew:
