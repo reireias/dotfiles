@@ -17,7 +17,9 @@ jobs:
   install:
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest]
+        os:
+          - ubuntu-latest
+          - macOS-latest
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -41,4 +43,5 @@ jobs:
       - name: run test
         run: make test
       - name: test asdf
-        run: zsh -lc "asdf plugin-add ruby && asdf install ruby 3.1.2" < /dev/null
+        run: zsh -lc "asdf plugin add ruby && asdf install ruby 3.1.2" < /dev/null
+        if: matrix.os == 'macOS-latest'
