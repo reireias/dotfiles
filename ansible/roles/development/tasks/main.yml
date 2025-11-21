@@ -15,15 +15,14 @@
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: get latest asdf version
-  uri:
-    url: https://api.github.com/repos/asdf-vm/asdf/releases/latest
-    return_content: true
-  register: asdf_latest_release
+  shell: curl -s https://api.github.com/repos/asdf-vm/asdf/releases/latest | grep -oP '"tag_name":\s*"\K[^"]+'
+  register: asdf_version_result
+  changed_when: false
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: set asdf version
   set_fact:
-    asdf_version: "{{ asdf_latest_release.json.tag_name }}"
+    asdf_version: "{{ asdf_version_result.stdout }}"
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: check if asdf is already installed
