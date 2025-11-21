@@ -14,8 +14,12 @@
   become: true
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: get latest asdf version
-  shell: curl -s https://api.github.com/repos/asdf-vm/asdf/releases/latest | grep -oP '"tag_name":\s*"\K[^"]+'
+- name: get latest asdf version  # noqa: command-instead-of-module
+  shell: |
+    set -o pipefail
+    curl -s https://api.github.com/repos/asdf-vm/asdf/releases/latest | grep -oP '"tag_name":\s*"\K[^"]+'
+  args:
+    executable: /bin/bash
   register: asdf_version_result
   changed_when: false
   when: ansible_facts['os_family'] == 'Debian'
