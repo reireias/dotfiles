@@ -1,47 +1,47 @@
 ---
-- name: list dotfiles
+- name: List dotfiles
   find:
     path: "{{ playbook_dir }}/../"
     patterns: "^\\.(?!gitignore|travis|shellcheckrc|ansible-lint).*$"
     file_type: "file"
     use_regex: true
     hidden: true
-  register: dotfiles
+  register: dotfiles_list
 
-- name: create symbolic link
+- name: Create symbolic link
   file:
     src: "{{ item.path }}"
     dest: "~/{{ item.path | basename }}"
     state: "link"
     force: true
-  with_items: "{{ dotfiles.files }}"
+  with_items: "{{ dotfiles_list.files }}"
 
-- name: list dotdirs
+- name: List dotdirs
   find:
     path: "{{ playbook_dir }}/../"
     patterns: "^\\.(?!git).*$"
     file_type: "directory"
     use_regex: true
     hidden: true
-  register: dotdirs
+  register: dotfiles_dotdirs
 
-- name: list files
+- name: List files
   find:
-    paths: "{{ dotdirs.files | map(attribute='path') | list }}"
+    paths: "{{ dotfiles_dotdirs.files | map(attribute='path') | list }}"
     file_type: "file"
     recurse: true
-  register: files
+  register: dotfiles_files
 
-- name: create directory
+- name: Create directory
   file:
     path: "~/{{ item.path | regex_replace(playbook_dir | dirname + '/') | dirname }}"
     state: directory
-    mode: 0755
-  with_items: "{{ files.files }}"
+    mode: "0755"
+  with_items: "{{ dotfiles_files.files }}"
 
-- name: create symbolic link
+- name: Create symbolic link
   file:
     src: "{{ item.path }}"
     dest: "~/{{ item.path | regex_replace(playbook_dir | dirname + '/') }}"
     state: "link"
-  with_items: "{{ files.files }}"
+  with_items: "{{ dotfiles_files.files }}"
