@@ -14,13 +14,10 @@
 
   - name: install block
     block:
-    - name: download homebrew install script
-      uri:
-        url: https://raw.githubusercontent.com/Homebrew/install/master/install.sh
-        dest: /tmp/homebrew_install.sh
-        mode: '0755'
-        force: false
-        validate_certs: true
+    - name: download homebrew install script  # noqa: command-instead-of-module
+      shell: curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh -o /tmp/homebrew_install.sh && chmod 0755 /tmp/homebrew_install.sh
+      args:
+        creates: /tmp/homebrew_install.sh
 
     - name: install homebrew
       command: /tmp/homebrew_install.sh
