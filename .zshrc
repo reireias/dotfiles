@@ -86,15 +86,6 @@ if [[ -f ~/.fzf.zsh ]]; then
 fi
 # }}}
 
-
-# DEVELOPMENT {{{
-# asdf-vm
-if [[ -e ~/.asdf ]]; then
-    source ~/.asdf/asdf.sh
-fi
-# }}}
-
-
 # OTHER {{{
 # neovim
 export XDG_CONFIG_HOME=~/.config

@@ -11,8 +11,10 @@
   become: true
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: clone asdf
-  git:
-    repo: "https://github.com/asdf-vm/asdf.git"
-    dest: "~/.asdf"
-    version: "v0.7.5"
+# TODO: install asdf for Debian
+
+- name: install asdf for Mac
+  homebrew:
+    name:
+      - asdf
+  when: ansible_facts['os_family'] == 'Darwin'
