@@ -45,11 +45,13 @@
   register: asdf_binary
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: download asdf pre-compiled binary
-  get_url:
-    url: "https://github.com/asdf-vm/asdf/releases/download/{{ asdf_version }}/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
-    dest: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
-    mode: '0644'
+- name: download asdf pre-compiled binary  # noqa: command-instead-of-module
+  shell: |
+    curl -L -o "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz" \
+      "https://github.com/asdf-vm/asdf/releases/download/{{ asdf_version }}/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+  args:
+    creates: "/tmp/asdf_{{ asdf_version }}_linux_amd64.tar.gz"
+    executable: /bin/bash
   when: ansible_facts['os_family'] == 'Debian' and not asdf_binary.stat.exists
 
 - name: extract asdf binary
