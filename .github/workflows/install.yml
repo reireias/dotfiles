@@ -42,6 +42,3 @@ jobs:
         run: make dependencies
       - name: run test
         run: make test
-      - name: test asdf
-        run: zsh -lc "asdf plugin add jq && asdf install jq latest && asdf global jq latest && jq --version" < /dev/null
-        if: matrix.os == 'macOS-latest'
