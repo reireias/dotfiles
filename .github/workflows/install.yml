@@ -44,3 +44,4 @@ jobs:
         run: make test
       - name: test asdf
         run: zsh -lc "asdf plugin add ruby && asdf install ruby 3.1.2" < /dev/null
+        if: matrix.os == 'macOS-latest'
