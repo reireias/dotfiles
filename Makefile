@@ -46,3 +46,24 @@ test:
 	bash -n ~/.bashrc
 	zsh -n ~/.zshrc
 	peco --version
+
+.PHONY: test-on-docker
+test-on-docker:
+	@DOCKER_IMAGE=$${DOCKER_IMAGE:-reireias/non-root-user-ubuntu:22.04}; \
+	echo "Starting Docker container: $$DOCKER_IMAGE"; \
+	docker run --rm -u ubuntu "$$DOCKER_IMAGE" bash -c " \
+		set -euo pipefail; \
+		echo 'Updating apt packages...'; \
+		sudo apt update; \
+		echo 'Cloning dotfiles repository...'; \
+		cd; \
+		git clone https://github.com/reireias/dotfiles.git; \
+		cd dotfiles; \
+		echo 'Creating dotfiles...'; \
+		make dotfiles; \
+		echo 'Installing dependencies...'; \
+		make dependencies; \
+		echo 'Verifying installation...'; \
+		zsh --version; \
+		echo 'Installation test completed successfully!'; \
+	"

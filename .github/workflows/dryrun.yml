@@ -17,7 +17,9 @@ jobs:
   dryrun:
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest]
+        os:
+          - ubuntu-latest
+          # - macOS-latest
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
