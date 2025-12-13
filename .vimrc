@@ -212,7 +212,6 @@ if filereadable(expand('~/.fonts/Ricty-Regular-nerd-Powerline.ttf'))
   call dein#add('ryanoasis/vim-devicons')
 endif
 call dein#add('simeji/winresizer')
-call dein#add('thinca/vim-localrc')
 call dein#add('thinca/vim-quickrun')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-endwise')
