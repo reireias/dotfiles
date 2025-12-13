@@ -20,7 +20,6 @@ fpath=(~/.zsh/completion "${fpath[@]}")
 # zi
 zi wait lucid light-mode for \
     "b4b4r07/zsh-vimode-visual" \
-    "b4b4r07/enhancd" \
     "zsh-users/zsh-autosuggestions" \
     atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
         "z-shell/F-Sy-H" \
@@ -80,11 +79,6 @@ typeset -g POWERLEVEL9K_ASDF_BACKGROUND='none'
 
 typeset -g POWERLEVEL9K_AWS_FOREGROUND='yellow'
 typeset -g POWERLEVEL9K_AWS_BACKGROUND='none'
-
-# enhancd
-export ENHANCD_FILTER=peco
-export ENHANCD_ENABLE_DOUBLE_DOT=false
-export ENHANCD_ENABLE_HOME=false
 
 # functions
 function zsh-startuptime() {
