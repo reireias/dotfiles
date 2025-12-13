@@ -440,7 +440,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_linters = {
       \ 'ruby': ['rubocop', 'ruby', 'solargraph'],
       \ 'zsh': ['shellcheck'],
-      \ 'vue': ['volar', 'eslint'],
+      \ 'vue': ['vue_ls', 'eslint'],
       \ 'terraform': ['terraform', 'terraform_ls', 'terraform_lsp', 'tflint']
       \ }
 let g:ale_fixers = {
@@ -459,14 +459,15 @@ nvim_lsp = require'lspconfig'
 local on_attach = function(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
 end
-nvim_lsp.terraformls.setup{
+vim.lsp.config.terraformls = {
   on_attach = on_attach,
 }
-nvim_lsp.ts_ls.setup{
+vim.lsp.enable('terraformls')
+vim.lsp.config.ts_ls = {
   on_attach = on_attach,
-  root_dir = nvim_lsp.util.root_pattern{'package.json'},
 }
-nvim_lsp.yamlls.setup{
+vim.lsp.enable('ts_ls')
+vim.lsp.config.yamlls = {
   on_attach = on_attach,
   settings = {
     yaml = {
@@ -476,19 +477,28 @@ nvim_lsp.yamlls.setup{
     }
   }
 }
-nvim_lsp.jedi_language_server.setup{}
-nvim_lsp.eslint.setup{}
-nvim_lsp.volar.setup{
+vim.lsp.enable('yamlls')
+vim.lsp.config.jedi_language_server = {}
+vim.lsp.enable('jedi_language_server')
+vim.lsp.config.eslint = {}
+vim.lsp.enable('eslint')
+vim.lsp.config.vue_ls = {
   on_attach = on_attach,
 }
-nvim_lsp.solargraph.setup{}
-nvim_lsp.jsonls.setup{}
-nvim_lsp.cssls.setup{}
-nvim_lsp.gopls.setup{}
-nvim_lsp.denols.setup{
+vim.lsp.enable('vue_ls')
+vim.lsp.config.solargraph = {}
+vim.lsp.enable('solargraph')
+vim.lsp.config.jsonls = {}
+vim.lsp.enable('jsonls')
+vim.lsp.config.cssls = {}
+vim.lsp.enable('cssls')
+vim.lsp.config.gopls = {}
+vim.lsp.enable('gopls')
+vim.lsp.config.denols = {
   on_attach = on_attach,
-  root_dir = nvim_lsp.util.root_pattern{'deno.json', 'deno.jsonc'},
+  root_markers = { 'deno.json', 'deno.jsonc' }
 }
+vim.lsp.enable('denols')
 
 vim.diagnostic.config{
   virtual_text = false,
