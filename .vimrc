@@ -12,6 +12,7 @@ set shiftwidth=4
 set expandtab
 set list
 set listchars=tab:»-
+let $XDG_STATE_HOME = '/tmp'
 
 " Fold
 set foldlevel=100
