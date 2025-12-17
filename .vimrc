@@ -199,6 +199,8 @@ call dein#add('kassio/neoterm')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('lukas-reineke/lsp-format.nvim')
 call dein#add('machakann/vim-highlightedyank')
+call dein#add('mason-org/mason-lspconfig.nvim')
+call dein#add('mason-org/mason.nvim')
 call dein#add('matsui54/ddc-buffer')
 call dein#add('matsui54/denops-popup-preview.vim')
 call dein#add('mattn/sonictemplate-vim')
@@ -209,9 +211,6 @@ call dein#add('prettier/vim-prettier')
 call dein#add('reireias/molokai')
 call dein#add('reireias/vim-cheatsheet')
 call dein#add('reireias/vim-tfsec')
-if filereadable(expand('~/.fonts/Ricty-Regular-nerd-Powerline.ttf'))
-  call dein#add('ryanoasis/vim-devicons')
-endif
 call dein#add('simeji/winresizer')
 call dein#add('thinca/vim-quickrun')
 call dein#add('tpope/vim-commentary')
@@ -226,8 +225,10 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-denops/denops.vim')
 call dein#add('vim-jp/vimdoc-ja')
 call dein#add('w0rp/ale')
-call dein#add('williamboman/mason-lspconfig.nvim')
-call dein#add('williamboman/mason.nvim')
+
+if filereadable(expand('~/.fonts/Ricty-Regular-nerd-Powerline.ttf'))
+  call dein#add('ryanoasis/vim-devicons')
+endif
 
 " lazy load
 " ansible
@@ -453,13 +454,16 @@ let g:ale_fixers = {
 lua <<EOF
 require'CopilotChat'.setup{}
 require'mason'.setup{}
-require'mason-lspconfig'.setup{}
+require'mason-lspconfig'.setup{
+  automatic_enable = true,
+}
 require'lsp-format'.setup{}
 require'ddc_source_lsp_setup'.setup{}
 nvim_lsp = require'lspconfig'
 local on_attach = function(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
 end
+
 vim.lsp.config.terraformls = {
   on_attach = on_attach,
 }
