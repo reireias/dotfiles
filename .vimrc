@@ -67,6 +67,7 @@ augroup vimrc_filetype
   " autocmd FileType typescript syntax clear typescriptMessage
   autocmd FileType json setlocal shiftwidth=2 tabstop=2
   autocmd FileType jsonc setlocal shiftwidth=2 tabstop=2
+  autocmd FileType lua setlocal shiftwidth=2 tabstop=2
   autocmd FileType markdown setlocal conceallevel=2
   autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
   autocmd FileType vim setlocal shiftwidth=2 tabstop=2 foldmethod=marker

@@ -1,6 +1,0 @@
-extends: google
-parserOptions:
-  installedESLint: true
-  ecmaVersion: 9
-rules:
-  linebreak-style: 0
