@@ -84,8 +84,7 @@ return {
         options = {
           theme = airline_wombat,
           icons_enabled = true,
-          -- TODO: Dot misalignment
-          section_separators = { left = "", right = " " },
+          section_separators = { left = "", right = "" },
           globalstatus = false,
         },
         sections = {
