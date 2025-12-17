@@ -20,6 +20,13 @@ return {
             highlight Pmenu cterm=NONE
             highlight PmenuSel cterm=underline
             highlight Visual ctermfg=255
+
+            " seiya.vim like background
+            highlight Normal ctermbg=NONE guibg=NONE
+            highlight NonText ctermbg=NONE guibg=NONE
+            highlight LineNr ctermbg=NONE guibg=NONE
+            highlight Folded ctermbg=NONE guibg=NONE
+            highlight EndOfBuffer ctermbg=NONE guibg=NONE
           ]])
         end,
       })

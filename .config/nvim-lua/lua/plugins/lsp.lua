@@ -1,7 +1,6 @@
 -- LSP
 return {
   "mason-org/mason-lspconfig.nvim",
-  opts = {},
   dependencies = {
     { "mason-org/mason.nvim", opts = {} },
     "neovim/nvim-lspconfig",
@@ -23,27 +22,33 @@ return {
     },
   },
 
-  handlers = {
-    function(server_name)
-      require("lspconfig")[server_name].setup({})
-    end,
-
-    ["eslint"] = function()
-      require("lspconfig").eslint.setup({
-        root_dir = require("lspconfig.util").root_pattern(
-          ".eslintrc.js",
-          ".eslintrc.cjs",
-          ".eslintrc.json",
-          ".eslintrc.yaml",
-          ".eslintrc.yml",
-          "package.json"
-        ),
-      })
-    end,
-  },
-
   config = function(_, opts)
     require("mason-lspconfig").setup(opts)
+
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN]  = " ",
+          [vim.diagnostic.severity.HINT]  = "💡",
+          [vim.diagnostic.severity.INFO]  = " ",
+        },
+      },
+      virtual_text = true,
+    })
+
+    vim.opt.updatetime = 500
+    vim.api.nvim_create_autocmd("CursorHold", {
+      callback = function()
+        vim.diagnostic.open_float(nil, {
+          focusable = false,
+          scope = "cursor",
+          border = "rounded",
+          source = "always",
+          close_events = { "CursorMoved", "CursorMovedI", "BufHidden", "InsertCharPre" },
+        })
+      end,
+    })
 
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
