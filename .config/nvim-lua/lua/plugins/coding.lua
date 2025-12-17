@@ -85,8 +85,11 @@ return {
       end, { "c" })
 
       cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        completion = { autocomplete = false },
+        mapping = cmdline_mapping,
+        completion = {
+          autocomplete = false,
+          completeopt = "menu,menuone,noinsert",
+        },
         sources = cmp.config.sources({
           { name = "path" }
         }, {
