@@ -12,12 +12,12 @@ miyakogi/seiya.vim             移行済み (ui.lua)          本体 highlight �
 vim-airline / themes           移行済み (ui.lua)          lualine.nvim へ移行
 kana/vim-operator-replace      移行済み (editor.lua)      そのまま継続（依存関係含む）
 machakann/vim-highlightedyank  本体実装済み               移行済み (autocmds.lua) vim.highlight.on_yank
-tpope/vim-surround             移行完了 (editor.lua)      そのまま継続
+tpope/vim-surround             移行完了 (editor.lua)      廃止
 tpope/vim-commentary           本体実装済み               Neovim 0.10+ で gc 等が標準搭載
 editorconfig/editorconfig-vim  本体実装済み               Neovim 0.9+ で標準搭載
 shougo/dein.vim                不要                       lazy.nvim へ移行済み
-shougo/denite / unite / fzf    置換推奨                   telescope.nvim (未着手)
-neomru.vim / neoyank.vim       置換推奨                   telescope.nvim の拡張機能で対応可能
+shougo/denite / unite / fzf    移行済み                   telescope.nvim (完了)
+neomru.vim / neoyank.vim       移行済み                   telescope.nvim へ移行(neoyankのみ)
 ddc.vim / ddc-* 関連一式       置換推奨                   nvim-cmp へ移行 (coding.lua / 未着手)
 github/copilot.vim             継続または置換             copilot.lua (Lua版) への移行が一般的
 CopilotChat.nvim               継続                       そのまま継続可能 (coding.lua / 未着手)

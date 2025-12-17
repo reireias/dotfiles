@@ -41,11 +41,24 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     tag = "v0.2.0",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "gbprod/yanky.nvim",
+    },
     config = function()
+      local telescope = require("telescope")
       local builtin = require("telescope.builtin")
       local actions = require("telescope.actions")
       local map = vim.keymap.set
+
+      require("yanky").setup({})
+      telescope.setup({
+        extensions = {
+          yank_history = {},
+        },
+      })
+
+      telescope.load_extension("yank_history")
 
       -- found .git: git_files
       -- not found .git: find_files
@@ -61,6 +74,7 @@ return {
       map("n", "<Leader>fb", builtin.buffers, { desc = "Find Buffers" })
       map("n", "<Leader>fh", builtin.help_tags, { desc = "Find Help" })
       map("n", "<Leader>o", builtin.treesitter, { desc = "Outline (Treesitter)" })
+      map("n", "<Leader>y", "<cmd>Telescope yank_history<cr>", { desc = "Yank History" })
 
       -- Conflicts with EscEsc, so it is overwritten
       vim.api.nvim_create_autocmd("FileType", {
