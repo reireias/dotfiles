@@ -28,6 +28,10 @@ return {
           lsp_fallback = true,
         })
       end, { desc = "Format file with conform" })
+
+      vim.api.nvim_create_user_command("F", "Format", {
+        desc = "Alias for :Format",
+      })
     end,
   },
 }

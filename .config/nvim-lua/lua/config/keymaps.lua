@@ -34,12 +34,6 @@ map("s", "<CR>", "<BS>i")
 map("t", "<Esc>", "<C-\\><C-n>", { silent = true })
 
 -- TODO: プラグイン側に記述予定
--- LSP Hover (とりあえずここに配置。後で lsp.lua に移しても良い)
--- map("n", "<Leader>e", function() vim.lsp.buf.hover() end, { silent = true })
-
--- 補完関係 (<TAB> pumvisible...) 
--- → 今後導入する `nvim-cmp` (lua/plugins/completion.lua) で設定します。
-
 -- 置換 (operator-replace)
 -- → プラグイン `vim-operator-replace` を入れたら有効化します。
 -- map("n", "R", "<Plug>(operator-replace)")

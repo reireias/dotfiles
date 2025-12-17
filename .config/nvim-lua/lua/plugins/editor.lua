@@ -72,4 +72,11 @@ return {
       })
     end,
   },
+  {
+    "kana/vim-operator-replace",
+    dependencies = { "kana/vim-operator-user" },
+    config = function()
+      vim.keymap.set("n", "R", "<Plug>(operator-replace)", { silent = true })
+    end,
+  },
 }

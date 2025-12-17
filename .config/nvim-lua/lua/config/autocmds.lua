@@ -56,3 +56,13 @@ autocmd("FileType", {
     vim.cmd([[match FoldComment /^#.*\({{{\|}}}\)/]])
   end,
 })
+
+autocmd("TextYankPost", {
+  group = augroup_yank,
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "HighlightedyankRegion",
+      timeout = 1000,
+    })
+  end,
+})
