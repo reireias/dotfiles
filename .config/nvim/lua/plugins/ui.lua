@@ -128,4 +128,12 @@ return {
       })
     end,
   },
+  {
+    "nvim-mini/mini.pick",
+    version = false,
+    config = function()
+      require("mini.pick").setup()
+      vim.ui.select = MiniPick.ui_select
+    end,
+  },
 }
