@@ -23,7 +23,7 @@ return {
         format_on_save = nil,
       })
 
-      vim.api.nvim_create_user_command("Format", function(args)
+      vim.api.nvim_create_user_command("Format", function()
         conform.format({
           async = true,
           lsp_fallback = true,

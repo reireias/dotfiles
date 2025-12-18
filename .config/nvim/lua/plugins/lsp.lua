@@ -4,6 +4,7 @@ return {
   dependencies = {
     { "mason-org/mason.nvim", opts = {} },
     "neovim/nvim-lspconfig",
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
   opts = {
     ensure_installed = {
@@ -51,15 +52,15 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
-        local opts = { buffer = ev.buf, silent = true }
+        local _opts = { buffer = ev.buf, silent = true }
         local map = vim.keymap.set
 
         -- Go to Definition
-        map("n", "gd", vim.lsp.buf.definition, opts)
+        map("n", "gd", vim.lsp.buf.definition, _opts)
         -- Show Documentation
-        map("n", "K", vim.lsp.buf.hover, opts)
+        map("n", "K", vim.lsp.buf.hover, _opts)
         -- Rename
-        map("n", "<Leader>rn", vim.lsp.buf.rename, opts)
+        map("n", "<Leader>rn", vim.lsp.buf.rename, _opts)
       end,
     })
   end,
