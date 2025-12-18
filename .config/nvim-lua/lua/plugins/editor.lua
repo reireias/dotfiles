@@ -117,4 +117,39 @@ return {
   },
   { "tpope/vim-fugitive" },
   { 'tpope/vim-rhubarb' },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function()
+      require("toggleterm").setup({
+        start_in_insert = true,
+      })
+
+      vim.keymap.set({ 'n', 't' }, '<C-t>', '<cmd>ToggleTerm<cr>', { desc = "Toggle Terminal" })
+
+      vim.keymap.set('n', '<leader>r', function()
+        local file = vim.fn.expand('%')
+        local cmd = ""
+        if vim.bo.filetype == 'python' then
+          cmd = "python3 " .. file
+        elseif vim.bo.filetype == 'javascript' then
+          cmd = "node " .. file
+        elseif vim.bo.filetype == 'sh' then
+          cmd = "bash " .. file
+        end
+        if cmd ~= "" then
+          vim.cmd("TermExec cmd='" .. cmd .. "'")
+        end
+      end, { desc = "Run current file" })
+    end,
+  },
 }

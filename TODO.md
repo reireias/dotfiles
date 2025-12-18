@@ -14,12 +14,12 @@
 - tpope/vim-fugitive (Git操作)
 - tpope/vim-rhubarb (GitHub連携、fugitiveと併用)
 - simeji/winresizer (ウィンドウリサイズ)
+- iamcco/markdown-preview.nvim (Markdownプレビュー)
+- thinca/vim-quickrun (コード実行)
 
 #### 未着手 (8項目)
 
 ##### editor.lua に追加すべきもの (6項目)
-- iamcco/markdown-preview.nvim (Markdownプレビュー)
-- thinca/vim-quickrun (コード実行)
 - kassio/neoterm → toggleterm.nvim (akinsho/toggleterm.nvim)
 
 #### 不要 (8項目)
