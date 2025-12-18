@@ -2,14 +2,13 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = "InsertEnter",
     dependencies = {
       -- Sources
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      
+
       -- Snippet Engine
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
@@ -64,36 +63,6 @@ return {
           { name = "path" },
         }, {
           { name = "buffer" },
-        }),
-      })
-
-      -- Behavior of up and down keys when completion menu is not displayed
-      local cmdline_mapping = cmp.mapping.preset.cmdline()
-      cmdline_mapping["<Up>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        else
-          fallback()
-        end
-      end, { "c" })
-      cmdline_mapping["<Down>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        else
-          fallback()
-        end
-      end, { "c" })
-
-      cmp.setup.cmdline(":", {
-        mapping = cmdline_mapping,
-        completion = {
-          autocomplete = false,
-          completeopt = "menu,menuone,noinsert",
-        },
-        sources = cmp.config.sources({
-          { name = "path" }
-        }, {
-          { name = "cmdline" }
         }),
       })
     end,
