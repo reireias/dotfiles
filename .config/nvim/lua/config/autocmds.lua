@@ -31,7 +31,7 @@ autocmd("FileType", {
 })
 
 autocmd("FileType", {
-  pattern = { "html", "javascript", "typescript", "json", "jsonc", "ruby", "xml", "yaml", "vim", "vue" },
+  pattern = { "html", "javascript", "typescript", "json", "jsonc", "ruby", "xml", "yaml", "vim", "vue", "lua" },
   group = augroup,
   command = "setlocal shiftwidth=2 tabstop=2",
 })
