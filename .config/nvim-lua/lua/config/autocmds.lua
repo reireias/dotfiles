@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup("vimrc_filetype", { clear = true })
+local augroup_general = vim.api.nvim_create_augroup("vimrc_general", { clear = true })
 
 autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.jenkinsfile",
@@ -58,11 +59,17 @@ autocmd("FileType", {
 })
 
 autocmd("TextYankPost", {
-  group = augroup_yank,
+  group = augroup_general,
   callback = function()
     vim.highlight.on_yank({
       higroup = "HighlightedyankRegion",
       timeout = 1000,
     })
   end,
+})
+
+autocmd("VimResized", {
+  group = augroup_general,
+  pattern = "*",
+  command = "wincmd =",
 })

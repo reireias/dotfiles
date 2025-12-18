@@ -115,4 +115,6 @@ return {
       vim.keymap.set("n", "R", "<Plug>(operator-replace)", { silent = true })
     end,
   },
+  { "tpope/vim-fugitive" },
+  { 'tpope/vim-rhubarb' },
 }

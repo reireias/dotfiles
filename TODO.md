@@ -11,15 +11,13 @@
 - CopilotChat.nvim → CopilotChat.nvim (Lua版: CopilotC-Nvim/CopilotChat.nvim)
 - alvan/vim-closetag → nvim-ts-autotag (windwp/nvim-ts-autotag)
 - tpope/vim-endwise → nvim-autopairs (windwp/nvim-autopairs) で代替
-
-#### 未着手 (8項目)
-
-##### coding.lua に追加すべきもの (4項目)
-
-##### editor.lua に追加すべきもの (6項目)
 - tpope/vim-fugitive (Git操作)
 - tpope/vim-rhubarb (GitHub連携、fugitiveと併用)
 - simeji/winresizer (ウィンドウリサイズ)
+
+#### 未着手 (8項目)
+
+##### editor.lua に追加すべきもの (6項目)
 - iamcco/markdown-preview.nvim (Markdownプレビュー)
 - thinca/vim-quickrun (コード実行)
 - kassio/neoterm → toggleterm.nvim (akinsho/toggleterm.nvim)
