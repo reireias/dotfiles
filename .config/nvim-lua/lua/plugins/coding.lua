@@ -98,4 +98,36 @@ return {
       })
     end,
   },
+  {
+    "zbirenbaum/copilot.lua",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<Tab>",
+          },
+        },
+        panel = { enabled = true },
+      })
+    end,
+    vim.keymap.set('i', '<C-l>', function()
+      if require("copilot.suggestion").is_visible() then
+        require("copilot.suggestion").accept()
+      else
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Right>", true, false, true), "n", false)
+      end
+    end, { desc = "Copilot Accept (Alternative to Tab)" })
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", branch = "master" },
+    },
+    build = "make tiktoken",
+  },
 }
