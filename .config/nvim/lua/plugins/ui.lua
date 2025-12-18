@@ -21,6 +21,7 @@ return {
             highlight PmenuSel cterm=underline
             highlight Visual ctermfg=255
             highlight link EndOfBuffer NonText
+            highlight CopilotSuggestion guifg=#6272a4
 
             " seiya.vim like background
             highlight Normal ctermbg=NONE guibg=NONE
