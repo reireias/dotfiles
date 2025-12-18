@@ -37,12 +37,12 @@ bindkey '^G' fzf-ghq-look
 function fzf-find () {
     local selected
     if is_in_git_repo; then
-        selected=$(git ls-files --cached --others --exclude-standard | fzf)
+        selected=$(git ls-files --cached --others --exclude-standard | fzf -m)
     else
-        selected=$(ag -g "" | fzf)
+        selected=$(ag -g "" | fzf -m)
     fi
     if [ -n "$selected" ]; then
-        BUFFER="vi ${selected}"
+        BUFFER="vi ${selected//$'\n'/ }"
         zle accept-line
     fi
 }
