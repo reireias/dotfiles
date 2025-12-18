@@ -1,4 +1,4 @@
--- コード書き込み支援 (Completion/Cmp, Snippets, Copilot, Pairs)
+-- Coding (Completion/Cmp, Snippets, Copilot, Pairs)
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -23,7 +23,7 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        
+
         window = {
           documentation = cmp.config.window.bordered(),
         },
@@ -53,7 +53,7 @@ return {
           end, { "i", "s" }),
 
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          
+
           ["<C-Space>"] = cmp.mapping.complete(),
         }),
 
@@ -84,13 +84,13 @@ return {
         panel = { enabled = true },
       })
     end,
-    vim.keymap.set('i', '<C-l>', function()
+    vim.keymap.set("i", "<C-l>", function()
       if require("copilot.suggestion").is_visible() then
         require("copilot.suggestion").accept()
       else
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Right>", true, false, true), "n", false)
       end
-    end, { desc = "Copilot Accept (Alternative to Tab)" })
+    end, { desc = "Copilot Accept (Alternative to Tab)" }),
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",

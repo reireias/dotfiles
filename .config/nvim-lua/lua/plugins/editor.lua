@@ -1,4 +1,4 @@
--- 操作・移動 (Tree Sitter, Telescope)
+-- Edit/Move (Tree Sitter, Telescope)
 return {
   {
     "nvim-treesitter/nvim-treesitter",

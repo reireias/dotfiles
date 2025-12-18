@@ -4,7 +4,7 @@
 
 ### 移行状況サマリー
 
-#### 完了 (19項目)
+#### 完了 (20項目)
 - 基本設定: LSP, Formatter, UI, Completion, File Finder, Yank History
 - プラグイン: nvim-cmp, telescope.nvim, lualine.nvim, conform.nvim 等
 - github/copilot.vim → copilot.lua (zbirenbaum/copilot.lua)
@@ -13,20 +13,19 @@
 - tpope/vim-endwise → nvim-autopairs (windwp/nvim-autopairs) で代替
 - tpope/vim-fugitive (Git操作)
 - tpope/vim-rhubarb (GitHub連携、fugitiveと併用)
-- simeji/winresizer (ウィンドウリサイズ)
 - iamcco/markdown-preview.nvim (Markdownプレビュー)
-- thinca/vim-quickrun (コード実行)
-
-#### 未着手 (8項目)
-
-##### editor.lua に追加すべきもの (6項目)
+- thinca/vim-quickrun → toggleterm.nvim で代替 (`<leader>r` で実行機能を実装)
 - kassio/neoterm → toggleterm.nvim (akinsho/toggleterm.nvim)
 
-#### 不要 (8項目)
+#### 未着手 (0項目)
+なし
+
+#### 不要 (9項目)
 - Neovim本体に統合済み: vim-surround, vim-commentary, editorconfig
 - Tree-sitter/LSPで代替: typescript-vim等の言語別プラグイン
 - 旧パッケージマネージャー: dein.vim, vimproc.vim
-- その他: open-browser.vim, lsp-format.nvim
+- 標準機能で代替可能: winresizer (自動リサイズ), open-browser.vim (gx)
+- その他: lsp-format.nvim (conform.nvimで代替)
 
 ---
 
@@ -49,20 +48,20 @@ shougo/dein.vim                不要                       lazy.nvim へ移行�
 shougo/denite / unite / fzf    移行済み (editor.lua)      telescope.nvim へ移行
 neomru.vim / neoyank.vim       移行済み (editor.lua)      yanky.nvim (telescope拡張) へ移行
 ddc.vim / ddc-* 関連一式       移行済み (coding.lua)      nvim-cmp + LuaSnip へ移行完了
-github/copilot.vim             未着手                     copilot.lua (Lua版) への移行が推奨
-CopilotChat.nvim               未着手                     そのまま継続可能 or CopilotChat.nvim (Lua版)
-tpope/vim-fugitive / rhubarb   未着手                     Git操作の定番としてそのまま継続推奨
-tpope/vim-endwise              未着手                     nvim-autopairs 等で代替可能だが継続も可
-simeji/winresizer              未着手                     代替がないためそのまま継続推奨
-alvan/vim-closetag             未着手                     nvim-ts-autotag (Tree-sitter利用) が強力
+github/copilot.vim             移行済み (coding.lua)      zbirenbaum/copilot.lua へ移行完了
+CopilotChat.nvim               移行済み (coding.lua)      CopilotC-Nvim/CopilotChat.nvim (Lua版) へ移行完了
+tpope/vim-fugitive / rhubarb   移行済み (editor.lua)      そのまま継続、Git操作の定番
+tpope/vim-endwise              移行済み (coding.lua)      windwp/nvim-autopairs で代替完了
+simeji/winresizer              不要                       標準機能の自動リサイズで代替
+alvan/vim-closetag             移行済み (editor.lua)      windwp/nvim-ts-autotag へ移行完了
 nvim-treesitter                移行済み (editor.lua)      Tree-sitter本体 + 各種パーサー導入済み
 leafgarland/typescript-vim等   不要                       Tree-sitter により構文解析は本体で完結
 rcmdnk/vim-markdown            移行済み (editor.lua)      ft=markdownで遅延読み込み
-iamcco/markdown-preview.nvim   未着手                     Markdownプレビューとして継続推奨
-thinca/vim-quickrun            未着手                     そのまま継続可能
+iamcco/markdown-preview.nvim   移行済み (editor.lua)      そのまま継続、Markdownプレビュー
+thinca/vim-quickrun            移行済み (editor.lua)      toggleterm.nvim の実行機能で代替
 tyru/open-browser.vim          不要                       gx でのブラウザ起動が標準搭載
 ryanoasis/vim-devicons         移行済み (ui.lua)          nvim-web-devicons へ移行完了
-kassio/neoterm                 未着手                     toggleterm.nvim 等が現代的
+kassio/neoterm                 移行済み (editor.lua)      akinsho/toggleterm.nvim へ移行完了
 lukas-reineke/lsp-format.nvim  不要                       conform.nvim (導入済み) で完結
 shougo/vimproc.vim             不要                       Neovimの非同期Job APIによりほぼ不要
 各言語別プラグイン             不要/部分移行              Tree-sitter + LSP で大半代替可能

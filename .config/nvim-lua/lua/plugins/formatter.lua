@@ -1,3 +1,4 @@
+-- Formatter Plugins (Conform)
 return {
   {
     "stevearc/conform.nvim",
@@ -8,7 +9,7 @@ return {
       conform.setup({
         formatters_by_ft = {
           lua = { "stylua" },
-          python = { "ruff_format" }, 
+          python = { "ruff_format" },
           javascript = { "prettier" },
           typescript = { "prettier" },
           javascriptreact = { "prettier" },
@@ -19,7 +20,7 @@ return {
           json = { "prettier" },
           go = { "goimports", "gofmt" },
         },
-        format_on_save = nil, 
+        format_on_save = nil,
       })
 
       vim.api.nvim_create_user_command("Format", function(args)
