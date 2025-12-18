@@ -73,18 +73,38 @@ return {
       local telescope = require("telescope")
       local builtin = require("telescope.builtin")
       local actions = require("telescope.actions")
+      local action_state = require("telescope.actions.state")
       local map = vim.keymap.set
 
-      local open_selected_files = function(prompt_bufnr)
-        local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+      -- Action for File Search:
+      -- Open all selected files at once if multiple are marked.
+      -- Otherwise, perform the default open action.
+      local smart_open_files = function(prompt_bufnr)
+        local picker = action_state.get_current_picker(prompt_bufnr)
         local selections = picker:get_multi_selection()
         if vim.tbl_isempty(selections) then
           actions.select_default(prompt_bufnr)
         else
           actions.close(prompt_bufnr)
           for _, selection in ipairs(selections) do
-            vim.cmd(string.format("edit %s", selection.path or selection.filename or selection.value))
+            local file = selection.path or selection.filename or selection.value
+            -- Escape filename to handle spaces correctly
+            vim.cmd(string.format("edit %s", vim.fn.fnameescape(file)))
           end
+        end
+      end
+
+      -- Action for Grep:
+      -- Send selected lines to Quickfix List if multiple are marked.
+      -- Otherwise, jump to the single selection.
+      local smart_send_to_qflist = function(prompt_bufnr)
+        local picker = action_state.get_current_picker(prompt_bufnr)
+        local selections = picker:get_multi_selection()
+        if vim.tbl_isempty(selections) then
+          actions.select_default(prompt_bufnr)
+        else
+          actions.send_selected_to_qflist(prompt_bufnr)
+          actions.open_qflist()
         end
       end
 
@@ -95,11 +115,8 @@ return {
           layout_config = {
             prompt_position = "top",
           },
-          mappings = {
-            i = {
-              ["<CR>"] = open_selected_files,
-            },
-          },
+          -- Configuration to include hidden files in Grep results
+          -- Exclude .git directory to avoid noise
           vimgrep_arguments = {
             "rg",
             "--color=never",
@@ -110,7 +127,33 @@ return {
             "--smart-case",
             "--hidden",
             "--glob",
-            "!**/.git/*", -- .gitの中身は見なくて良いので除外
+            "!**/.git/*",
+          },
+        },
+        pickers = {
+          -- File finders: Use smart_open_files on Enter
+          find_files = {
+            -- Include dotfiles
+            hidden = true,
+            mappings = {
+              i = { ["<CR>"] = smart_open_files },
+            },
+          },
+          git_files = {
+            mappings = {
+              i = { ["<CR>"] = smart_open_files },
+            },
+          },
+          -- Grep search: Use smart_send_to_qflist on Enter
+          live_grep = {
+            mappings = {
+              i = { ["<CR>"] = smart_send_to_qflist },
+            },
+          },
+          grep_string = {
+            mappings = {
+              i = { ["<CR>"] = smart_send_to_qflist },
+            },
           },
         },
         extensions = {
@@ -120,24 +163,30 @@ return {
 
       telescope.load_extension("yank_history")
 
-      -- found .git: git_files
-      -- not found .git: find_files
+      -- C-f: Smart find files
+      -- Uses git_files if in a git repo, falls back to find_files with hidden support
       map("n", "<C-f>", function()
         local ok = pcall(builtin.git_files, { show_untracked = true })
         if not ok then
-          builtin.find_files()
+          builtin.find_files({ hidden = true })
         end
       end, { desc = "Smart Find Files" })
+
+      -- C-g: Live Grep
       map("n", "<C-g>", builtin.live_grep, { desc = "Grep" })
 
-      map("n", "<Leader>ff", builtin.find_files, { desc = "Find Files" })
+      -- Standard Telescope shortcuts
+      map("n", "<Leader>ff", function()
+        builtin.find_files({ hidden = true })
+      end, { desc = "Find Files (Hidden)" })
       map("n", "<Leader>fg", builtin.live_grep, { desc = "Live Grep" })
       map("n", "<Leader>fb", builtin.buffers, { desc = "Find Buffers" })
       map("n", "<Leader>fh", builtin.help_tags, { desc = "Find Help" })
       map("n", "<Leader>o", builtin.treesitter, { desc = "Outline (Treesitter)" })
       map("n", "<Leader>y", "<cmd>Telescope yank_history<cr>", { desc = "Yank History" })
 
-      -- Conflicts with EscEsc, so it is overwritten
+      -- Handle Esc behavior in Telescope prompt
+      -- Prevents conflicts with multiple Esc presses
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "TelescopePrompt",
         callback = function(event)
