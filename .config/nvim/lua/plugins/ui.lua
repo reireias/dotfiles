@@ -36,6 +36,8 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
+    lazy = false,
+    priority = 9000,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       -- vim-airline wombat theme color
