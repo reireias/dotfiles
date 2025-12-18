@@ -9,12 +9,12 @@
 - プラグイン: nvim-cmp, telescope.nvim, lualine.nvim, conform.nvim 等
 - github/copilot.vim → copilot.lua (zbirenbaum/copilot.lua)
 - CopilotChat.nvim → CopilotChat.nvim (Lua版: CopilotC-Nvim/CopilotChat.nvim)
+- alvan/vim-closetag → nvim-ts-autotag (windwp/nvim-ts-autotag)
+- tpope/vim-endwise → nvim-autopairs (windwp/nvim-autopairs) で代替
 
 #### 未着手 (8項目)
 
 ##### coding.lua に追加すべきもの (4項目)
-- tpope/vim-endwise → nvim-autopairs (windwp/nvim-autopairs) で代替
-- alvan/vim-closetag → nvim-ts-autotag (windwp/nvim-ts-autotag)
 
 ##### editor.lua に追加すべきもの (6項目)
 - tpope/vim-fugitive (Git操作)
