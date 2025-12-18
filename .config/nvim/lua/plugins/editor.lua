@@ -98,7 +98,19 @@ return {
           mappings = {
             i = {
               ["<CR>"] = open_selected_files,
-            }
+            },
+          },
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+            "--glob",
+            "!**/.git/*", -- .gitの中身は見なくて良いので除外
           },
         },
         extensions = {
@@ -116,6 +128,7 @@ return {
           builtin.find_files()
         end
       end, { desc = "Smart Find Files" })
+      map("n", "<C-g>", builtin.live_grep, { desc = "Grep" })
 
       map("n", "<Leader>ff", builtin.find_files, { desc = "Find Files" })
       map("n", "<Leader>fg", builtin.live_grep, { desc = "Live Grep" })
