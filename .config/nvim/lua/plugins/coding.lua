@@ -33,7 +33,10 @@ return {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
 
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+            local copilot = require("copilot.suggestion")
+            if copilot.is_visible() then
+              copilot.accept()
+            elseif cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
@@ -86,7 +89,7 @@ return {
           auto_trigger = true,
           debounce = 75,
           keymap = {
-            accept = "<Tab>",
+            accept = false,
           },
         },
         panel = { enabled = true },
