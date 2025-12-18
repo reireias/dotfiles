@@ -17,6 +17,15 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
+      local sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+      }
+
+      if vim.api.nvim_buf_get_name(0) ~= "" then
+        table.insert(sources, { name = "path" })
+      end
+
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -46,7 +55,7 @@ return {
               local char = line:sub(col, col)
               if col == 0 or char:match('%s') then
                 local spaces = string.rep(' ', vim.bo.shiftwidth)
-                vim.api.nvim_put({spaces}, 'c', false, true)
+                vim.api.nvim_put({ spaces }, 'c', false, true)
               else
                 fallback()
               end
@@ -68,11 +77,7 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
         }),
 
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "path" },
-        }, {
+        sources = cmp.config.sources(sources, {
           { name = "buffer" },
         }),
       })
