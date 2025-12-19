@@ -19,6 +19,7 @@ return {
           html = { "prettier" },
           json = { "prettier" },
           go = { "goimports", "gofmt" },
+          terraform = { "terraform_fmt" },
         },
         format_on_save = nil,
       })
