@@ -39,7 +39,7 @@ alias nvi='nvim'
 alias vimdiff='nvim -d'
 
 # dotfiles
-alias dot="cd $(ghq root)/github.com/reireias/dotfiles"
+alias dot='cd $(ghq root)/github.com/reireias/dotfiles'
 alias zshconfig='nvim $(readlink -f ~/.zshrc)'
 alias vimconfig='nvim $(readlink -f ~/.config/nvim/init.lua)'
 

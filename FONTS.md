@@ -1,9 +1,9 @@
-# HackGen
+# Moralerspace
 
 ```
-brew install font-hackgen-nerd
-cp .local/share/fonts/HackGen* ~/.fonts
+brew install font-moralerspace
+cp ~/.local/share/fonts/MoralerspaceNeon* ~/.fonts
 fc-cache
 
-# choice HackGen Console NF Regular
+# choice MoralerspaceNeon-Regular NF
 ```
