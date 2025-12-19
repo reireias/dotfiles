@@ -1,0 +1,7 @@
+.zshrc_local
+.bashrc_local
+.linuxbrewrc
+.claude
+*.swp
+*.bak
+.DS_Store
