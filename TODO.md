@@ -5,30 +5,6 @@
 ## 🟡 中優先度
 
 ### ドキュメント強化
-
-- [ ] CHANGELOG.mdの作成
-  - [ ] 過去の主要変更を記録
-  - [ ] 今後の変更履歴管理ルールを確立
-
-- [ ] CONTRIBUTING.mdの作成
-  - [ ] コントリビューションガイドライン
-  - [ ] コードスタイル規約
-  - [ ] プルリクエストのプロセス
-
-- [ ] TROUBLESHOOTING.mdの作成
-  - [ ] よくある問題と解決策
-  - [ ] OS別のトラブルシューティング
-  - [ ] デバッグ方法
-
-- [ ] 各Ansibleロールへの個別READMEの追加
-  - [ ] `ansible/roles/dotfiles/README.md`
-  - [ ] `ansible/roles/homebrew/README.md`
-  - [ ] `ansible/roles/development/README.md`
-  - [ ] `ansible/roles/zsh/README.md`
-  - [ ] `ansible/roles/neovim/README.md`
-  - [ ] `ansible/roles/rust/README.md`
-  - [ ] `ansible/roles/tools/README.md`
-
 - [ ] README.mdの拡充
   - [ ] プラグイン選定の理由を説明
   - [ ] アーキテクチャ設計の意図を記載
