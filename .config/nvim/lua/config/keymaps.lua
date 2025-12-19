@@ -32,8 +32,3 @@ map("n", "<C-p>", "<cmd>cprevious<CR>")
 -- Other / Terminal
 map("s", "<CR>", "<BS>i")
 map("t", "<Esc>", "<C-\\><C-n>", { silent = true })
-
--- TODO: プラグイン側に記述予定
--- 置換 (operator-replace)
--- → プラグイン `vim-operator-replace` を入れたら有効化します。
--- map("n", "R", "<Plug>(operator-replace)")
