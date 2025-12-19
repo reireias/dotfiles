@@ -51,6 +51,8 @@ return {
         insert_a = "#FDE76E",
         visual_a = "#B5D3F3",
         replace_a = "#E5786D",
+        command_a = "#95E1D3",
+        terminal_a = "#E1A3EE",
 
         text_info = "#CAE682",
       }
@@ -75,6 +77,16 @@ return {
           a = { bg = colors.replace_a, fg = colors.black, gui = "bold" },
           b = { bg = colors.gray_b, fg = colors.replace_a },
           c = { bg = colors.gray_c, fg = colors.replace_a },
+        },
+        command = {
+          a = { bg = colors.command_a, fg = colors.black, gui = "bold" },
+          b = { bg = colors.gray_b, fg = colors.command_a },
+          c = { bg = colors.gray_c, fg = colors.command_a },
+        },
+        terminal = {
+          a = { bg = colors.terminal_a, fg = colors.black, gui = "bold" },
+          b = { bg = colors.gray_b, fg = colors.terminal_a },
+          c = { bg = colors.gray_c, fg = colors.terminal_a },
         },
         inactive = {
           a = { bg = colors.gray_c, fg = "#767676", gui = "bold" },
