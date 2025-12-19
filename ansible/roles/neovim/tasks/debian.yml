@@ -1,29 +1,5 @@
 ---
-- name: Create directory for dein
-  file:
-    path: ~/.vim/dein/repos/github.com/Shougo/dein.vim
-    state: directory
-    mode: "0755"
-
-- name: Clone dein
-  git:
-    repo: https://github.com/Shougo/dein.vim.git
-    dest: ~/.vim/dein/repos/github.com/Shougo/dein.vim
-    version: "2.0"
-
 - name: Install neovim
   apt:
     name: neovim
   become: true
-
-- name: Check ~/.config/nvim
-  stat:
-    path: ~/.config/nvim
-  register: neovim_nvim
-
-- name: Create symbolic link for init.vim
-  file:
-    src: ~/.vimrc
-    dest: ~/.config/nvim/init.vim
-    state: link
-  when: neovim_nvim.stat.exists
