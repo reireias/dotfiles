@@ -3,6 +3,12 @@ local augroup = vim.api.nvim_create_augroup("vimrc_filetype", { clear = true })
 local augroup_general = vim.api.nvim_create_augroup("vimrc_general", { clear = true })
 
 autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.tf", "*.tfvars" },
+  group = augroup,
+  command = "set filetype=terraform",
+})
+
+autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.jenkinsfile",
   group = augroup,
   command = "set filetype=groovy",
