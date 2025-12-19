@@ -5,3 +5,15 @@
 *.swp
 *.bak
 .DS_Store
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+.env
+.env.*
+!.env.example
+secrets.yml
+secrets.yaml
+credentials.json
+*.credentials

@@ -1,6 +1,6 @@
 # general
 alias au='awsume -u'
-alias caddy='ruby /opt/caddy/caddy/caddy.rb'
+alias caddy='ruby ${CADDY_SCRIPT:-/opt/caddy/caddy/caddy.rb}'
 alias du='du -shc * | sort -h'
 alias fzf='fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}"'
 alias h='tldr'
@@ -39,7 +39,7 @@ alias nvi='nvim'
 alias vimdiff='nvim -d'
 
 # dotfiles
-alias dot='cd ~/dev/src/github.com/reireias/dotfiles'
+alias dot="cd $(ghq root)/github.com/reireias/dotfiles"
 alias zshconfig='nvim $(readlink -f ~/.zshrc)'
 alias vimconfig='nvim $(readlink -f ~/.config/nvim/init.lua)'
 
