@@ -28,6 +28,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade setuptools
           pip install -r ansible/requirements.txt
+      - name: install ansible collections
+        run: ansible-galaxy collection install -r ansible/requirements.yml
       - name: lint
         run: make lint
       - name: lint .zshrc

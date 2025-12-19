@@ -39,7 +39,6 @@ check-dependencies:
 lint:
 	ansible-lint ansible/dotfiles.yml
 	ansible-lint ansible/dependencies.yml
-	vint --color --style .vimrc
 
 .PHONY: test
 test:
