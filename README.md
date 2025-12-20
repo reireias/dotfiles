@@ -4,7 +4,11 @@
 
 My dotfiles for Linux and macOS.
 
-<!-- TODO: Update terminal screenshot -->
+<img width="1262" height="874" alt="Image" src="https://github.com/user-attachments/assets/4f7f022a-d5d5-4a07-94ab-b37bd9180ab2" />
+
+<img width="1262" height="874" alt="Image" src="https://github.com/user-attachments/assets/ffba0186-d563-4f62-9c0e-6cf1f4555f33" />
+
+<img width="1262" height="874" alt="Image" src="https://github.com/user-attachments/assets/ae01bc98-0847-4d37-b563-4f304e43a426" />
 
 ## Quick Start
 
