@@ -1,3 +1,16 @@
+# Ricty + Nerd Fonts
+```
+mkdir /tmp/fonts
+cd /tmp/fonts
+cp ~/.fonts/Ricty-Regular.ttf ./
+docker run --rm -v $(pwd):/in -v $(pwd):/out nerdfonts/patcher --complete --careful
+cp RictyNerdFont-Regular.ttf ~/.fonts/
+fc-cache -f
+# logout -> login
+
+# choice Ricty Nerd Font Regular
+```
+
 # Moralerspace
 
 ```
