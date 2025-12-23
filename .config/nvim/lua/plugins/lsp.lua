@@ -24,6 +24,25 @@ return {
   config = function(_, opts)
     require("mason-lspconfig").setup(opts)
 
+    -- config for vue_ls + ts_ls
+    vim.lsp.config("ts_ls", {
+      init_options = {
+        plugins = {
+          {
+            name = "@vue/typescript-plugin",
+            location = vim.fn.stdpath("data")
+              .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+            languages = { "javascript", "typescript", "vue" },
+          },
+        },
+      },
+      filetypes = {
+        "javascript",
+        "typescript",
+        "vue",
+      },
+    })
+
     vim.diagnostic.config({
       signs = {
         text = {
