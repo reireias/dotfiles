@@ -99,7 +99,7 @@ return {
         suggestion = {
           enabled = true,
           auto_trigger = true,
-          debounce = 75,
+          debounce = 200,
           keymap = {
             accept = false,
           },
