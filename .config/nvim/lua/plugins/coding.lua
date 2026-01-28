@@ -23,7 +23,14 @@ return {
       }
 
       if vim.api.nvim_buf_get_name(0) ~= "" then
-        table.insert(sources, { name = "path" })
+        table.insert(sources, {
+          name = "path",
+          option = {
+            get_cwd = function()
+              return vim.fn.getcwd()
+            end
+          }
+        })
       end
 
       cmp.setup({
