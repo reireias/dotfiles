@@ -1,0 +1,10 @@
+# This is `bat`s configuration file.
+# Requested theme: Monokai Extended Bright
+
+--theme="Monokai Extended Bright"
+
+# Style: header and grid (matches the fzf alias in .zsh/config/alias.zsh)
+--style="header,grid"
+
+# Force color output
+--color=always

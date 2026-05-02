@@ -1,4 +1,5 @@
 # general
+alias bat='batcat'
 alias au='awsume -u'
 alias caddy='ruby ${CADDY_SCRIPT:-/opt/caddy/caddy/caddy.rb}'
 alias du='du -shc * | sort -h'
