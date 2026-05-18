@@ -1,10 +1,5 @@
 ---
-- name: Set default asdf version
-  set_fact:
-    development_asdf_version: "v0.18.0"
-  when: ansible_facts['os_family'] == 'Debian'
-
-- name: Install packages for asdf
+- name: Install packages for mise
   apt:
     name:
       - zlib1g-dev
@@ -16,70 +11,24 @@
       - git
       - bash
       - curl
+      - gpg
   become: true
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: Get latest asdf version  # noqa: command-instead-of-module
+- name: Install mise via install script for Linux  # noqa: command-instead-of-module
   shell: |
     set -o pipefail
-    curl -s https://api.github.com/repos/asdf-vm/asdf/releases/latest | grep -oP '"tag_name":\s*"\K[^"]+'
+    curl https://mise.run | sh
   args:
     executable: /bin/bash
-  register: development_asdf_version_result
-  changed_when: false
-  failed_when: false
-  when: ansible_facts['os_family'] == 'Debian'
-
-- name: Set asdf version from API
-  set_fact:
-    development_asdf_version: "{{ development_asdf_version_result.stdout }}"
-  when:
-    - ansible_facts['os_family'] == 'Debian'
-    - development_asdf_version_result is defined
-    - development_asdf_version_result.stdout is defined
-    - development_asdf_version_result.stdout | length > 0
-
-- name: Check if asdf is already installed
-  stat:
-    path: /usr/local/bin/asdf
-  register: development_asdf_binary
-  when: ansible_facts['os_family'] == 'Debian'
-
-- name: Download asdf pre-compiled binary  # noqa: command-instead-of-module
-  shell: |
-    curl -L -o "/tmp/asdf-{{ development_asdf_version }}-linux-amd64.tar.gz" \
-      "https://github.com/asdf-vm/asdf/releases/download/{{ development_asdf_version }}/asdf-{{ development_asdf_version }}-linux-amd64.tar.gz"
-  args:
-    creates: "/tmp/asdf-{{ development_asdf_version }}-linux-amd64.tar.gz"
-    executable: /bin/bash
-  when:
-    - ansible_facts['os_family'] == 'Debian'
-    - not development_asdf_binary.stat.exists
-    - not ansible_check_mode
-
-- name: Extract asdf binary
-  unarchive:
-    src: "/tmp/asdf-{{ development_asdf_version }}-linux-amd64.tar.gz"
-    dest: /usr/local/bin
-    remote_src: true
-    creates: /usr/local/bin/asdf
+    creates: /usr/local/bin/mise
   become: true
   when:
     - ansible_facts['os_family'] == 'Debian'
-    - not development_asdf_binary.stat.exists
     - not ansible_check_mode
 
-- name: Cleanup asdf tarball
-  file:
-    path: "/tmp/asdf-{{ development_asdf_version }}-linux-amd64.tar.gz"
-    state: absent
-  when:
-    - ansible_facts['os_family'] == 'Debian'
-    - not development_asdf_binary.stat.exists
-    - not ansible_check_mode
-
-- name: Install asdf for Mac
+- name: Install mise for Mac
   community.general.homebrew:
     name:
-      - asdf
+      - mise
   when: ansible_facts['os_family'] == 'Darwin'

@@ -30,7 +30,7 @@ zi depth=1 light-mode for \
 
 # powerlevel10k
 typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable)
-typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs newline asdf aws)
+typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs newline mise_node mise_ruby mise_python aws)
 typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=' %F{cyan}$ '
 typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -67,16 +67,31 @@ typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON=$'\uF059 ' # 
 typeset -g POWERLEVEL9K_VCS_UNSTAGED_ICON=$'\uF06A ' # 
 typeset -g POWERLEVEL9K_VCS_STAGED_ICON=$'\uF055 ' # 
 
-typeset -g POWERLEVEL9K_PYENV_FOREGROUND='deepskyblue4'
-typeset -g POWERLEVEL9K_PYENV_BACKGROUND='none'
-typeset -g POWERLEVEL9K_PYTHON_ICON=$'\uE606' # 
+# mise custom segments
+function prompt_mise_node() {
+    local v=$(mise current node 2>/dev/null)
+    [[ -n $v ]] && p10k segment -t "$v"
+}
+function prompt_mise_ruby() {
+    local v=$(mise current ruby 2>/dev/null)
+    [[ -n $v ]] && p10k segment -t "$v"
+}
+function prompt_mise_python() {
+    local v=$(mise current python 2>/dev/null)
+    [[ -n $v ]] && p10k segment -t "$v"
+}
 
-typeset -g POWERLEVEL9K_RBENV_FOREGROUND='red'
-typeset -g POWERLEVEL9K_RBENV_BACKGROUND='none'
+typeset -g POWERLEVEL9K_MISE_NODE_FOREGROUND='green'
+typeset -g POWERLEVEL9K_MISE_NODE_BACKGROUND='none'
+typeset -g POWERLEVEL9K_MISE_NODE_VISUAL_IDENTIFIER_EXPANSION=$'⬢'
 
-typeset -g POWERLEVEL9K_ASDF_FOREGROUND='purple'
-typeset -g POWERLEVEL9K_ASDF_BACKGROUND='none'
+typeset -g POWERLEVEL9K_MISE_RUBY_FOREGROUND='red'
+typeset -g POWERLEVEL9K_MISE_RUBY_BACKGROUND='none'
+typeset -g POWERLEVEL9K_MISE_RUBY_VISUAL_IDENTIFIER_EXPANSION=$'\uE791'
 
+typeset -g POWERLEVEL9K_MISE_PYTHON_FOREGROUND='deepskyblue4'
+typeset -g POWERLEVEL9K_MISE_PYTHON_BACKGROUND='none'
+typeset -g POWERLEVEL9K_MISE_PYTHON_VISUAL_IDENTIFIER_EXPANSION=$'\uE606'
 typeset -g POWERLEVEL9K_AWS_FOREGROUND='yellow'
 typeset -g POWERLEVEL9K_AWS_BACKGROUND='none'
 
