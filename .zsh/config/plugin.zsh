@@ -68,6 +68,10 @@ typeset -g POWERLEVEL9K_VCS_UNSTAGED_ICON=$'\uF06A ' # 
 typeset -g POWERLEVEL9K_VCS_STAGED_ICON=$'\uF055 ' # 
 
 # mise custom segments
+if type mise > /dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+fi
+
 function prompt_mise_node() {
     local v
     v=$(mise current node 2>/dev/null)
