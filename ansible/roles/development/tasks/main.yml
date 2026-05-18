@@ -18,7 +18,7 @@
 - name: Install mise via install script for Linux  # noqa: command-instead-of-module
   shell: |
     set -o pipefail
-    curl https://mise.run | sh
+    curl https://mise.run | MISE_INSTALL_PATH=/usr/local/bin/mise sh
   args:
     executable: /bin/bash
     creates: /usr/local/bin/mise
