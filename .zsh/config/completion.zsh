@@ -1,19 +1,13 @@
-# asdf-vm
-if [[ -e ~/.asdf ]]; then
-    # shellcheck disable=SC2206
-    fpath=(~/.asdf/completions "${fpath[@]}")
-
-    # compinit with zi turbo mode
-    # https://wiki.zshell.dev/ja/docs/guides/commands
-    zicompinit
-fi
+# compinit with zi turbo mode
+# https://wiki.zshell.dev/ja/docs/guides/commands
+zicompinit
 
 # aws
 if type aws > /dev/null 2>&1; then
     aws () {
         unset -f aws
         # lazy load
-        source "$(asdf which aws_zsh_completer.sh)"
+        source "$(mise which aws_zsh_completer.sh)"
         aws "$@"
     }
 fi
