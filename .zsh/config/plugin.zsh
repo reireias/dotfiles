@@ -69,15 +69,18 @@ typeset -g POWERLEVEL9K_VCS_STAGED_ICON=$'\uF055 ' # 
 
 # mise custom segments
 function prompt_mise_node() {
-    local v=$(mise current node 2>/dev/null)
+    local v
+    v=$(mise current node 2>/dev/null)
     [[ -n $v ]] && p10k segment -t "$v"
 }
 function prompt_mise_ruby() {
-    local v=$(mise current ruby 2>/dev/null)
+    local v
+    v=$(mise current ruby 2>/dev/null)
     [[ -n $v ]] && p10k segment -t "$v"
 }
 function prompt_mise_python() {
-    local v=$(mise current python 2>/dev/null)
+    local v
+    v=$(mise current python 2>/dev/null)
     [[ -n $v ]] && p10k segment -t "$v"
 }
 
