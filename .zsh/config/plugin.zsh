@@ -30,7 +30,7 @@ zi depth=1 light-mode for \
 
 # powerlevel10k
 typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable)
-typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs newline mise_node mise_ruby mise_python aws)
+typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs newline aws)
 typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=' %F{cyan}$ '
 typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -71,22 +71,6 @@ typeset -g POWERLEVEL9K_VCS_STAGED_ICON=$'\uF055 ' # 
 if type mise > /dev/null 2>&1; then
     eval "$(mise activate zsh)"
 fi
-
-function prompt_mise_node() {
-    local v
-    v=$(mise current node 2>/dev/null)
-    [[ -n $v ]] && p10k segment -t "$v"
-}
-function prompt_mise_ruby() {
-    local v
-    v=$(mise current ruby 2>/dev/null)
-    [[ -n $v ]] && p10k segment -t "$v"
-}
-function prompt_mise_python() {
-    local v
-    v=$(mise current python 2>/dev/null)
-    [[ -n $v ]] && p10k segment -t "$v"
-}
 
 typeset -g POWERLEVEL9K_MISE_NODE_FOREGROUND='green'
 typeset -g POWERLEVEL9K_MISE_NODE_BACKGROUND='none'
