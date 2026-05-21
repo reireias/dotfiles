@@ -69,6 +69,7 @@ alias gst='git status'
 alias gp='git pull'
 alias gf='git fetch'
 alias gs='git switch'
+alias gsd='git switch $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
 alias gm='git merge'
 alias gr='git restore'
 
