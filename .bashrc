@@ -8,9 +8,6 @@
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
-# less
-export LESS='-R'
-
 # Load .linuxbrewrc
 if [[ -e ~/.linuxbrewrc ]]; then
     source ~/.linuxbrewrc
