@@ -45,7 +45,6 @@ alias zshconfig='nvim $(readlink -f ~/.zshrc)'
 alias vimconfig='nvim $(readlink -f ~/.config/nvim/init.lua)'
 
 # grep
-alias g='grep --color=always'
 alias grep='grep --color=always'
 alias jgrep='grep --include="*.java"'
 alias jsgrep='grep --include="*.js"'

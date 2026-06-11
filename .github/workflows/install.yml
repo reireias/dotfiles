@@ -43,6 +43,8 @@ jobs:
         run: |
           eval "$(mise activate bash)"
           mise install
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run test
         run: |
           eval "$(mise activate bash)"
