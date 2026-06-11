@@ -81,6 +81,15 @@ fi
 # }}}
 
 # OTHER {{{
+# GPG
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# direnv
+if type direnv > /dev/null 2>&1; then
+    eval "$(direnv hook zsh)"
+fi
+
 # neovim
 export XDG_CONFIG_HOME=~/.config
 export BUNDLER_EDITOR=vi
