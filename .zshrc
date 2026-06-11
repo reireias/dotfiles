@@ -69,13 +69,7 @@ export BAT_THEME="Monokai Extended Bright"
 
 # FUNCTION {{{
 function pr-open {
-    local url
-    url=$(hub pr list -h "$(git symbolic-ref --short HEAD)" -f "%U")
-    if [[ -z $url ]]; then
-        echo "The PR based this branch not found."
-        return 1
-    fi
-    open "$url"
+    gh pr view --web 2>/dev/null || echo "The PR based this branch not found."
 }
 # }}}
 
