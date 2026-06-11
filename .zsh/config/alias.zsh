@@ -17,11 +17,11 @@ alias tm='terminal'
 alias vdir='ls --color=auto --format=long'
 
 # ls
-if type "exa" > /dev/null 2>&1; then
-    alias ls='exa'
-    alias l='exa -F'
-    alias la='exa -a'
-    alias ll='exa -l'
+if type "eza" > /dev/null 2>&1; then
+    alias ls='eza'
+    alias l='eza -F'
+    alias la='eza -a'
+    alias ll='eza -l'
 else
     alias ls='ls -h --color=always'
     alias l='ls -CF'
