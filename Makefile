@@ -52,16 +52,7 @@ test-on-docker:
 	echo "Starting Docker container: $$DOCKER_IMAGE"; \
 	docker run --rm -u ubuntu "$$DOCKER_IMAGE" bash -c " \
 		set -euo pipefail; \
-		echo 'Updating apt packages...'; \
-		sudo apt update; \
-		echo 'Cloning dotfiles repository...'; \
-		cd; \
-		git clone https://github.com/reireias/dotfiles.git; \
-		cd dotfiles; \
-		echo 'Creating dotfiles...'; \
-		make dotfiles; \
-		echo 'Installing dependencies...'; \
-		make dependencies; \
+		curl -fsSL https://raw.githubusercontent.com/reireias/dotfiles/master/bootstrap.sh | bash; \
 		echo 'Verifying installation...'; \
 		zsh --version; \
 		echo 'Installation test completed successfully!'; \
