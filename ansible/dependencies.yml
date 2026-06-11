@@ -5,7 +5,5 @@
   roles:
     - homebrew
     - development
-    - tools
     - zsh
-    - neovim
     - rust

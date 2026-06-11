@@ -39,5 +39,11 @@ jobs:
         run: make dotfiles
       - name: install dependencies
         run: make dependencies
+      - name: install mise tools
+        run: |
+          eval "$(mise activate bash)"
+          mise install
       - name: run test
-        run: make test
+        run: |
+          eval "$(mise activate bash)"
+          make test
