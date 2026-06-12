@@ -4,7 +4,10 @@
     "config:recommended"
   ],
   "enabledManagers": [
-    "mise"
+    "mise",
+    "pip_requirements",
+    "ansible-galaxy",
+    "github-actions"
   ],
   "minimumReleaseAge": "3 days"
 }
