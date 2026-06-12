@@ -76,18 +76,33 @@
     state: absent
   with_items: "{{ dotfiles_broken_links.stdout_lines }}"
 
-# The mise baseline lives in mise/config.toml and is symlinked to
-# ~/.config/mise/config.local.toml. ~/.config/mise/config.toml is
-# machine-local and where `mise use -g` writes.
-- name: Create mise config directory
+# The mise baseline lives in mise/config.toml and is symlinked into
+# ~/.config/mise/conf.d/. ~/.config/mise/config.toml is machine-local
+# and where `mise use -g` writes; it overrides the baseline while the
+# working directory is under $HOME.
+- name: Create mise conf.d directory
   file:
-    path: ~/.config/mise
+    path: ~/.config/mise/conf.d
     state: directory
     mode: "0755"
+
+- name: Check mise config.local.toml from a previous setup
+  stat:
+    path: ~/.config/mise/config.local.toml
+  register: dotfiles_mise_local
+
+- name: Remove mise baseline symlink from a previous setup
+  file:
+    path: ~/.config/mise/config.local.toml
+    state: absent
+  when:
+    - dotfiles_mise_local.stat.exists
+    - dotfiles_mise_local.stat.islnk
+    - (playbook_dir | dirname) in dotfiles_mise_local.stat.lnk_target
 
 - name: Link mise baseline config
   file:
     src: "{{ playbook_dir }}/../mise/config.toml"
-    dest: ~/.config/mise/config.local.toml
+    dest: ~/.config/mise/conf.d/baseline.toml
     state: link
     force: true
