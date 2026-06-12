@@ -2,6 +2,7 @@
 .bashrc_local
 .linuxbrewrc
 .claude
+/.ansible/
 *.swp
 *.bak
 .DS_Store

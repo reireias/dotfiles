@@ -19,7 +19,7 @@
 - name: List dotdirs
   find:
     path: "{{ playbook_dir }}/../"
-    patterns: "^\\.(?!(git|claude)).*$"
+    patterns: "^\\.(?!(git|claude|ansible)).*$"
     file_type: "directory"
     use_regex: true
     hidden: true
