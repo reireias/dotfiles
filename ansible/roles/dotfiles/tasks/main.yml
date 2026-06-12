@@ -44,4 +44,5 @@
     src: "{{ item.path }}"
     dest: "~/{{ item.path | regex_replace(playbook_dir | dirname + '/') }}"
     state: "link"
+    force: true
   with_items: "{{ dotfiles_files.files }}"
