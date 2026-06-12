@@ -47,8 +47,6 @@ if [[ -e ~/.zshrc_local ]]; then
 fi
 ```
 
-The same is true for vimrc.
-
 ## Development
 Run lint (shellcheck, ansible-lint)
 
