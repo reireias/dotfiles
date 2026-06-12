@@ -117,7 +117,7 @@ source ~/.zsh/config/alias.zsh
 # completion
 source ~/.zsh/config/completion.zsh
 
-# peco
+# search
 source ~/.zsh/config/search.zsh
 
 # local setting
