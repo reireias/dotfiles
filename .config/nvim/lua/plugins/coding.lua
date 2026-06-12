@@ -28,8 +28,8 @@ return {
           option = {
             get_cwd = function()
               return vim.fn.getcwd()
-            end
-          }
+            end,
+          },
         })
       end
 
@@ -57,12 +57,12 @@ return {
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else
-              local col = vim.fn.col('.') - 1
-              local line = vim.fn.getline('.')
+              local col = vim.fn.col(".") - 1
+              local line = vim.fn.getline(".")
               local char = line:sub(col, col)
-              if col == 0 or char:match('%s') then
-                local spaces = string.rep(' ', vim.bo.shiftwidth)
-                vim.api.nvim_put({ spaces }, 'c', false, true)
+              if col == 0 or char:match("%s") then
+                local spaces = string.rep(" ", vim.bo.shiftwidth)
+                vim.api.nvim_put({ spaces }, "c", false, true)
               else
                 fallback()
               end
