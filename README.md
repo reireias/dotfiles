@@ -57,6 +57,9 @@ repository. mise commands such as `mise use -g` write there, and its entries
 take precedence over the baseline, so tools added or updated locally never
 affect this repository.
 
+Changes made to the copied baseline itself (e.g. by `mise upgrade --bump`)
+are reset to the repository version on the next `make dotfiles`.
+
 ## Development
 Run lint (shellcheck, ansible-lint)
 
