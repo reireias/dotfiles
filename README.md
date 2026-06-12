@@ -47,7 +47,18 @@ if [[ -e ~/.zshrc_local ]]; then
 fi
 ```
 
-The same is true for vimrc.
+### mise tools
+Baseline CLI tools are defined in [mise/config.toml](mise/config.toml), and
+their versions are updated automatically by Renovate. `make dotfiles` copies
+it to `~/.config/mise/config.local.toml`.
+
+`~/.config/mise/config.toml` is machine-local and never managed by this
+repository. mise commands such as `mise use -g` write there, and its entries
+take precedence over the baseline, so tools added or updated locally never
+affect this repository.
+
+Changes made to the copied baseline itself (e.g. by `mise upgrade --bump`)
+are reset to the repository version on the next `make dotfiles`.
 
 ## Development
 Run lint (shellcheck, ansible-lint)

@@ -62,6 +62,11 @@ change_shell() {
     info "Default shell is already zsh."
     return
   fi
+  # chsh rejects shells not listed in /etc/shells (e.g. Linuxbrew zsh)
+  if ! grep -qx "${zsh_path}" /etc/shells; then
+    info "Adding ${zsh_path} to /etc/shells..."
+    echo "${zsh_path}" | sudo tee -a /etc/shells > /dev/null
+  fi
   info "Changing default shell to zsh..."
   chsh -s "${zsh_path}"
 }

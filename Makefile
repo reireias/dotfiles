@@ -44,7 +44,7 @@ lint:
 test:
 	bash -n ~/.bashrc
 	zsh -n ~/.zshrc
-	peco --version
+	fzf --version
 
 .PHONY: test-on-docker
 test-on-docker:

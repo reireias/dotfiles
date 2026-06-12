@@ -32,11 +32,11 @@ jobs:
         run: ansible-galaxy collection install -r ansible/requirements.yml
       - name: lint
         run: make lint
-      - name: lint .zshrc
-        uses: Azbagheri/shell-linter@30a9cf3f6cf25c08fc98f10d7dc4167f7b5c0c00 # v0.8.0
-        with:
-          path: ".zshrc,.zsh/*.zsh"
-      - name: shellchecl
+      # Run shellcheck directly because shellcheck actions skip files
+      # without a shebang. .shellcheckrc supplies shell=bash for them.
+      - name: lint zsh configs
+        run: shellcheck .zshrc .zsh/config/*.zsh
+      - name: shellcheck
         uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38 # 2.0.0
         with:
           version: v0.8.0

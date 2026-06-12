@@ -2,7 +2,7 @@
 - name: List dotfiles
   find:
     path: "{{ playbook_dir }}/../"
-    patterns: "^\\.(?!gitignore|travis|shellcheckrc|ansible-lint).*$"
+    patterns: "^\\.(?!gitignore|shellcheckrc|ansible-lint|prettierrc|stylua).*$"
     file_type: "file"
     use_regex: true
     hidden: true
@@ -19,7 +19,7 @@
 - name: List dotdirs
   find:
     path: "{{ playbook_dir }}/../"
-    patterns: "^\\.(?!(git|claude)).*$"
+    patterns: "^\\.(?!(git|claude|ansible)).*$"
     file_type: "directory"
     use_regex: true
     hidden: true
@@ -44,4 +44,60 @@
     src: "{{ item.path }}"
     dest: "~/{{ item.path | regex_replace(playbook_dir | dirname + '/') }}"
     state: "link"
+    force: true
   with_items: "{{ dotfiles_files.files }}"
+
+# Symlinks created by older revisions of this repository become dangling
+# when the source file is removed. Clean up links that point into the
+# repository but no longer resolve.
+- name: List broken symlinks pointing into this repository  # noqa: command-instead-of-module
+  shell: |
+    set -o pipefail
+    {
+      find "$HOME" -maxdepth 1 -name '.*' -type l
+      {% for dir in dotfiles_dotdirs.files %}
+      find "$HOME/{{ dir.path | basename }}" -type l 2>/dev/null || true
+      {% endfor %}
+    } | while IFS= read -r link; do
+      target=$(readlink "$link")
+      if [ ! -e "$link" ] && [ "${target#{{ playbook_dir | dirname }}/}" != "$target" ]; then
+        printf '%s\n' "$link"
+      fi
+    done
+  args:
+    executable: /bin/bash
+  register: dotfiles_broken_links
+  changed_when: false
+  check_mode: false
+
+- name: Remove broken symlinks
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items: "{{ dotfiles_broken_links.stdout_lines }}"
+
+# The mise baseline is copied, not symlinked, so that mise commands
+# (e.g. `mise use -g`, `mise upgrade --bump`) can never write into this
+# repository. ~/.config/mise/config.toml is machine-local and untouched.
+- name: Check existing mise global config
+  stat:
+    path: ~/.config/mise/config.toml
+  register: dotfiles_mise_config
+
+- name: Remove mise global config symlink left by previous setup
+  file:
+    path: ~/.config/mise/config.toml
+    state: absent
+  when: dotfiles_mise_config.stat.exists and dotfiles_mise_config.stat.islnk
+
+- name: Create mise config directory
+  file:
+    path: ~/.config/mise
+    state: directory
+    mode: "0755"
+
+- name: Copy mise baseline config
+  copy:
+    src: "{{ playbook_dir }}/../mise/config.toml"
+    dest: ~/.config/mise/config.local.toml
+    mode: "0644"

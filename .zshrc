@@ -96,7 +96,7 @@ export BUNDLER_EDITOR=vi
 
 # golang
 export GOPATH=$HOME/dev
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
 
 # rust
 export PATH=$PATH:$HOME/.cargo/bin
@@ -117,7 +117,7 @@ source ~/.zsh/config/alias.zsh
 # completion
 source ~/.zsh/config/completion.zsh
 
-# peco
+# search
 source ~/.zsh/config/search.zsh
 
 # local setting
