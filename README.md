@@ -49,16 +49,18 @@ fi
 
 ### mise tools
 Baseline CLI tools are defined in [mise/config.toml](mise/config.toml), and
-their versions are updated automatically by Renovate. `make dotfiles` copies
-it to `~/.config/mise/config.local.toml`.
+their versions are updated automatically by Renovate. `make dotfiles` renders
+it to `~/.tool-versions`.
 
 `~/.config/mise/config.toml` is machine-local and never managed by this
 repository. mise commands such as `mise use -g` write there, and its entries
 take precedence over the baseline, so tools added or updated locally never
 affect this repository.
 
-Changes made to the copied baseline itself (e.g. by `mise upgrade --bump`)
-are reset to the repository version on the next `make dotfiles`.
+Changes made to the rendered baseline itself (e.g. by `mise upgrade --bump`)
+are reset to the repository version on the next `make dotfiles`. Note that
+`~/.tool-versions` only applies when the current directory is under the home
+directory.
 
 ## Development
 Run lint (shellcheck, ansible-lint)

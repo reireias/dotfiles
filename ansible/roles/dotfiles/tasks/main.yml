@@ -76,9 +76,12 @@
     state: absent
   with_items: "{{ dotfiles_broken_links.stdout_lines }}"
 
-# The mise baseline is copied, not symlinked, so that mise commands
-# (e.g. `mise use -g`, `mise upgrade --bump`) can never write into this
-# repository. ~/.config/mise/config.toml is machine-local and untouched.
+# The mise baseline is rendered to ~/.tool-versions, the only layer that
+# loads below ~/.config/mise/config.toml when the cwd is inside the home
+# directory. With no symlink into the repository, mise commands
+# (e.g. `mise use -g`, `mise upgrade --bump`) can never write into it,
+# and ~/.config/mise/config.toml stays machine-local and always wins.
+# mise/config.toml must contain only simple `name = "version"` lines.
 - name: Check existing mise global config
   stat:
     path: ~/.config/mise/config.toml
@@ -90,14 +93,18 @@
     state: absent
   when: dotfiles_mise_config.stat.exists and dotfiles_mise_config.stat.islnk
 
-- name: Create mise config directory
+- name: Remove mise baseline copy from a broken design iteration
   file:
-    path: ~/.config/mise
-    state: directory
-    mode: "0755"
+    path: ~/.config/mise/config.local.toml
+    state: absent
 
-- name: Copy mise baseline config
+- name: Render mise baseline to ~/.tool-versions
   copy:
-    src: "{{ playbook_dir }}/../mise/config.toml"
-    dest: ~/.config/mise/config.local.toml
+    dest: ~/.tool-versions
     mode: "0644"
+    content: |
+      # Generated from {{ playbook_dir | dirname }}/mise/config.toml by `make dotfiles`. Do not edit.
+      {% for tool in lookup('file', playbook_dir + '/../mise/config.toml')
+         | regex_findall('(?m)^([A-Za-z0-9_-]+) *= *"([^"]+)"$') %}
+      {{ tool[0] }} {{ tool[1] }}
+      {% endfor %}
