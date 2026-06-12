@@ -46,3 +46,29 @@
     state: "link"
     force: true
   with_items: "{{ dotfiles_files.files }}"
+
+# The mise baseline is copied, not symlinked, so that mise commands
+# (e.g. `mise use -g`, `mise upgrade --bump`) can never write into this
+# repository. ~/.config/mise/config.toml is machine-local and untouched.
+- name: Check existing mise global config
+  stat:
+    path: ~/.config/mise/config.toml
+  register: dotfiles_mise_config
+
+- name: Remove mise global config symlink left by previous setup
+  file:
+    path: ~/.config/mise/config.toml
+    state: absent
+  when: dotfiles_mise_config.stat.exists and dotfiles_mise_config.stat.islnk
+
+- name: Create mise config directory
+  file:
+    path: ~/.config/mise
+    state: directory
+    mode: "0755"
+
+- name: Copy mise baseline config
+  copy:
+    src: "{{ playbook_dir }}/../mise/config.toml"
+    dest: ~/.config/mise/config.local.toml
+    mode: "0644"
