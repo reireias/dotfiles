@@ -1,0 +1,68 @@
+#!/usr/bin/env zsh
+#
+# tmux の window 名を「<Claude状態アイコン> <リポジトリ名 or ディレクトリ名>」に設定する。
+#
+# 対話シェル(chpwd)と Claude Code の hook の両方から、同じこのスクリプトを呼ぶ。
+#   - base名(リポジトリ名/ディレクトリ名) は window option @win_base にキャッシュし、
+#     ディレクトリが変わりうるタイミング(chpwd/UserPromptSubmit 等)でだけ git を叩く。
+#     PostToolUse 等の高頻度 hook はアイコン差し替えだけで済む。
+#   - アイコン(状態) は window option @claude_icon に保持する。
+#     Claude hook が無い環境(例: Linux)では常に空 → アイコン無しで base名だけになる。
+#
+# usage: tmux-title [state] [refresh]
+#   state   : idle | working | waiting | done | clear | keep(既定, アイコンを変えない)
+#   refresh : "refresh" を渡すと base名を再計算する
+#
+# アイコンは Nerd Font (Material Design Icons):
+#   idle=clock-outline / working=lightning-bolt / waiting=bell-ring / done=check
+
+# このスクリプトは非対話 zsh(.zshenv のみ)で起動されるため、呼び出し元の PATH が
+# 貧弱なことがある。PATH に頼らず tmux/git を実在パスから解決する。
+# tmux が見つからなければ何もせず終了する(エラーを出さない)。
+_bin() {
+  local c
+  for c in "$@"; do
+    if [[ "$c" == /* ]]; then
+      [[ -x "$c" ]] && { print -r -- "$c"; return 0 }
+    else
+      c=$(command -v "$c" 2>/dev/null) && { print -r -- "$c"; return 0 }
+    fi
+  done
+  return 1
+}
+TMUXBIN=$(_bin tmux /opt/homebrew/bin/tmux /usr/local/bin/tmux /usr/bin/tmux) || exit 0
+GITBIN=$(_bin git /opt/homebrew/bin/git /usr/bin/git) || GITBIN=git
+
+[[ -z "$TMUX" ]] && exit 0
+pane="${TMUX_PANE:-}"
+[[ -z "$pane" ]] && exit 0
+
+state="${1:-keep}"
+refresh="${2:-}"
+
+# 1. 状態アイコンを更新 (keep のときは触らない)
+case "$state" in
+  idle)    "$TMUXBIN" set-option -w -t "$pane" @claude_icon $'\U000F0150' ;;
+  working) "$TMUXBIN" set-option -w -t "$pane" @claude_icon $'\U000F140B' ;;
+  waiting) "$TMUXBIN" set-option -w -t "$pane" @claude_icon $'\U000F009C' ;;
+  done)    "$TMUXBIN" set-option -w -t "$pane" @claude_icon $'\U000F012C' ;;
+  clear)   "$TMUXBIN" set-option -w -t "$pane" @claude_icon '' ;;
+  keep)    ;;
+esac
+
+# 2. base名: キャッシュを使う。refresh 指定 or キャッシュ空なら再計算。
+base=$("$TMUXBIN" show-option -wqv -t "$pane" @win_base)
+if [[ "$refresh" == refresh || -z "$base" ]]; then
+  path=$("$TMUXBIN" display-message -p -t "$pane" '#{pane_current_path}')
+  if root=$("$GITBIN" -C "$path" rev-parse --show-toplevel 2>/dev/null); then
+    base=${root:t}   # リポジトリ名
+  else
+    base=${path:t}   # ディレクトリ名
+  fi
+  "$TMUXBIN" set-option -w -t "$pane" @win_base "$base"
+fi
+
+# 3. 描画
+icon=$("$TMUXBIN" show-option -wqv -t "$pane" @claude_icon)
+[[ -n "$icon" ]] && icon="$icon "
+"$TMUXBIN" rename-window -t "$pane" "${icon}${base}"

@@ -23,9 +23,7 @@ function fzf-ghq-look () {
     selected_dir=$(ghq list | fzf --preview=)
     if [ -n "$selected_dir" ]; then
         BUFFER="cd $(ghq list --full-path | grep --color=never -E "/$selected_dir$")"
-        if [[ "$TERM_PROGRAM" == "tmux" ]]; then
-            tmux rename-window "$(basename "$selected_dir")"
-        fi
+        # window 名は cd 後の chpwd フック(tmux.zsh)が設定するため、ここでは行わない
         zle accept-line
     fi
 }
