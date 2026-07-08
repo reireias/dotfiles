@@ -120,6 +120,9 @@ source ~/.zsh/config/completion.zsh
 # search
 source ~/.zsh/config/search.zsh
 
+# tmux
+source ~/.zsh/config/tmux.zsh
+
 # local setting
 if [[ -e ~/.zshrc_local ]]; then
     source ~/.zshrc_local
