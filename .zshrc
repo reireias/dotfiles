@@ -43,7 +43,6 @@ if [[ -z "$SHELL" ]]; then
     SHELL="$(command -v zsh)"
     export SHELL
 fi
-eval "$(dircolors -b)"
 eval "$(dircolors ~/.dircolors)"
 
 # remove file mark
@@ -82,7 +81,7 @@ fi
 
 # OTHER {{{
 # GPG
-GPG_TTY=$(tty)
+GPG_TTY=$TTY
 export GPG_TTY
 
 # direnv
