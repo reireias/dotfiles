@@ -11,6 +11,23 @@ if [ "$ZSHRC_PROFILE" != "" ]; then
   zmodload zsh/zprof && zprof > /dev/null
 fi
 
+# CACHE {{{
+# 出力が静的なコマンドの eval を毎回のサブプロセス起動なしで済ませる。
+# 第2引数(生成元)がキャッシュより新しければ作り直すため、更新は自動で追随する。
+_zsh_cached_eval() {
+    local name=$1 src=$2
+    shift 2
+    local cache="${HOME}/.cache/zsh/${name}.zsh"
+    if [[ ! -f $cache || $src -nt $cache ]]; then
+        mkdir -p "${HOME}/.cache/zsh"
+        "$@" > "$cache"
+    fi
+    # shellcheck disable=SC1090
+    source "$cache"
+}
+# }}}
+
+
 source ~/.bashrc
 
 # plugin
@@ -43,8 +60,7 @@ if [[ -z "$SHELL" ]]; then
     SHELL="$(command -v zsh)"
     export SHELL
 fi
-eval "$(dircolors -b)"
-eval "$(dircolors ~/.dircolors)"
+_zsh_cached_eval dircolors ~/.dircolors dircolors ~/.dircolors
 
 # remove file mark
 unsetopt list_types
@@ -82,12 +98,13 @@ fi
 
 # OTHER {{{
 # GPG
-GPG_TTY=$(tty)
+GPG_TTY=$TTY
 export GPG_TTY
 
 # direnv
 if type direnv > /dev/null 2>&1; then
-    eval "$(direnv hook zsh)"
+    # shellcheck disable=SC2154
+    _zsh_cached_eval direnv "${commands[direnv]}" direnv hook zsh
 fi
 
 # neovim

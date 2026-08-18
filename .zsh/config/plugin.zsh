@@ -69,7 +69,8 @@ typeset -g POWERLEVEL9K_VCS_STAGED_ICON=$'\uF055 ' # 
 
 # mise custom segments
 if type mise > /dev/null 2>&1; then
-    eval "$(mise activate zsh)"
+    # shellcheck disable=SC2154
+    _zsh_cached_eval mise "${commands[mise]}" mise activate zsh
 fi
 
 typeset -g POWERLEVEL9K_MISE_NODE_FOREGROUND='green'
