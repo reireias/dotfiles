@@ -13,6 +13,7 @@ fi
 
 # CACHE {{{
 # 出力が静的なコマンドの eval を毎回のサブプロセス起動なしで済ませる。
+# 出力が TERM などの実行時環境で変わるコマンドには使えない (dircolors が該当)。
 # 第2引数(生成元)がキャッシュより新しければ作り直すため、更新は自動で追随する。
 _zsh_cached_eval() {
     local name=$1 src=$2
@@ -60,7 +61,7 @@ if [[ -z "$SHELL" ]]; then
     SHELL="$(command -v zsh)"
     export SHELL
 fi
-_zsh_cached_eval dircolors ~/.dircolors dircolors ~/.dircolors
+eval "$(dircolors ~/.dircolors)"
 
 # remove file mark
 unsetopt list_types
