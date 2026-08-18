@@ -5,16 +5,20 @@
 # 対話シェル(chpwd)と Claude Code の hook の両方から、同じこのスクリプトを呼ぶ。
 #   - base名(リポジトリ名/ディレクトリ名) は window option @win_base にキャッシュし、
 #     ディレクトリが変わりうるタイミング(chpwd/UserPromptSubmit 等)でだけ git を叩く。
-#     PostToolUse 等の高頻度 hook はアイコン差し替えだけで済む。
-#   - アイコン(状態) は window option @claude_icon に保持する。
-#     Claude hook が無い環境(例: Linux)では常に空 → アイコン無しで base名だけになる。
+#     PostToolUse 等の高頻度 hook は再描画だけで済む。
+#   - 主スレッドの状態は @claude_state、走っている subagent 数は @claude_agents に持つ。
+#     アイコンはこの2つと裏の background Bash の有無から毎回導出し、@claude_icon に残す。
+#     Claude hook が無い環境(例: Linux)では @claude_state が空 → アイコン無しで base名だけになる。
 #
 # usage: tmux-title [state] [refresh]
-#   state   : idle | working | waiting | done | clear | keep(既定, アイコンを変えない)
+#   state   : idle | working | waiting | done | clear | keep(既定, 状態を変えず再描画)
+#             agent-start | agent-stop (subagent の増減)
 #   refresh : "refresh" を渡すと base名を再計算する
 #
 # アイコンは Nerd Font (Material Design Icons):
 #   idle=clock-outline / working=lightning-bolt / waiting=bell-ring / done=check
+#   done でも裏に background Bash か subagent が残っていれば timer-sand にする。
+#   「✓ なのに見に行くと裏が動いていた」を起こさないことを最優先にしている。
 
 # このスクリプトは非対話 zsh(.zshenv のみ)で起動されるため、呼び出し元の PATH が
 # 貧弱なことがある。PATH に頼らず tmux/git を実在パスから解決する。
@@ -40,18 +44,79 @@ pane="${TMUX_PANE:-}"
 state="${1:-keep}"
 refresh="${2:-}"
 
-# 1. 状態アイコンを更新 (keep のときは触らない)
+_opt() { "$TMUXBIN" show-option -wqv -t "$pane" "$1" }
+_set() { "$TMUXBIN" set-option -w -t "$pane" "$1" "$2" }
+
+# hook は subagent の中でも発火し、同じ pane を指す。主スレッドの状態を
+# subagent 由来の working で塗り潰すと「裏が動いているのに ⚡/✓」になるため、
+# stdin の JSON に agent_id があるかどうかで発生源を見分ける。
+# chpwd から呼ばれたときは stdin が tty なので読まない(ブロックを避ける)。
+hook_json=""
+if [[ ! -t 0 ]]; then
+  while IFS= read -r -t 1 hook_line; do hook_json+="$hook_line"; done
+fi
+from_subagent=0
+[[ "$hook_json" =~ '"agent_id"[[:space:]]*:[[:space:]]*"' ]] && from_subagent=1
+
+# Claude Code は background の Bash を自分の直下に shell-snapshots を source する
+# シェルとして起動するので、それを数える(hook 自身は祖先を辿って除外する)。
+# subagent は OS プロセスを持たないためここでは数えられない。そちらは @claude_agents で持つ。
+_has_bg_task() {
+  local pid=$$ ppid comm claude_pid=
+  local -A mine
+  while (( pid > 1 )); do
+    mine[$pid]=1
+    read -r ppid comm <<<"$(ps -o ppid=,comm= -p $pid 2>/dev/null)"
+    [[ -z "$ppid" ]] && return 1
+    [[ "${comm:t}" == claude ]] && { claude_pid=$pid; break }
+    pid=$ppid
+  done
+  [[ -z "$claude_pid" ]] && return 1
+  ps -eo pid=,ppid=,command= | awk -v cp="$claude_pid" -v skip="${(kj:,:)mine}" '
+    BEGIN { n = split(skip, a, ","); for (i = 1; i <= n; i++) s[a[i]] = 1 }
+    $2 == cp && !($1 in s) && index($0, "shell-snapshots") { found = 1; exit }
+    END { exit(found ? 0 : 1) }
+  '
+}
+
+# 1. 状態を更新する
+agents=$(_opt @claude_agents)
+[[ -z "$agents" ]] && agents=0
+
+# @claude_state を持たない window は、状態をアイコンのグリフから復元する。
+# 状態を持つ前の実装で動き始めたセッションでも、アイコンを消さずに引き継ぐため。
+if [[ -z "$(_opt @claude_state)" ]]; then
+  case "$(_opt @claude_icon)" in
+    *$'\U000F0150'*) _set @claude_state idle ;;
+    *$'\U000F140B'*) _set @claude_state working ;;
+    *$'\U000F009C'*) _set @claude_state waiting ;;
+    *$'\U000F012C'*|*$'\U000F051F'*) _set @claude_state done ;;
+  esac
+fi
 case "$state" in
-  idle)    "$TMUXBIN" set-option -w -t "$pane" @claude_icon $'\U000F0150' ;;
-  working) "$TMUXBIN" set-option -w -t "$pane" @claude_icon $'\U000F140B' ;;
-  waiting) "$TMUXBIN" set-option -w -t "$pane" @claude_icon $'\U000F009C' ;;
-  done)    "$TMUXBIN" set-option -w -t "$pane" @claude_icon $'\U000F012C' ;;
-  clear)   "$TMUXBIN" set-option -w -t "$pane" @claude_icon '' ;;
-  keep)    ;;
+  idle)
+    # SessionStart。カウンタが取りこぼしで残っていても、ここで必ず整合を取り直す。
+    _set @claude_state idle
+    agents=0; _set @claude_agents 0
+    ;;
+  working|waiting|done)
+    (( from_subagent )) || _set @claude_state "$state"
+    ;;
+  agent-start)
+    (( agents++ )); _set @claude_agents $agents
+    ;;
+  agent-stop)
+    (( agents-- )); (( agents < 0 )) && agents=0; _set @claude_agents $agents
+    ;;
+  clear)
+    _set @claude_state ''
+    agents=0; _set @claude_agents 0
+    ;;
+  keep) ;;
 esac
 
 # 2. base名: キャッシュを使う。refresh 指定 or キャッシュ空なら再計算。
-base=$("$TMUXBIN" show-option -wqv -t "$pane" @win_base)
+base=$(_opt @win_base)
 if [[ "$refresh" == refresh || -z "$base" ]]; then
   path=$("$TMUXBIN" display-message -p -t "$pane" '#{pane_current_path}')
   if root=$("$GITBIN" -C "$path" rev-parse --show-toplevel 2>/dev/null); then
@@ -59,10 +124,21 @@ if [[ "$refresh" == refresh || -z "$base" ]]; then
   else
     base=${path:t}   # ディレクトリ名
   fi
-  "$TMUXBIN" set-option -w -t "$pane" @win_base "$base"
+  _set @win_base "$base"
 fi
 
-# 3. 描画
-icon=$("$TMUXBIN" show-option -wqv -t "$pane" @claude_icon)
+# 3. 描画: アイコンは状態から毎回導出する
+#    主スレッドが止まっていることを示すアイコン(✓/🔔/🕐)は、裏に何も残っていないときだけ出す。
+#    裏が動いていれば砂時計にする。「✓ や 🔔 が出ているのに見に行くと動いていた」を作らない。
+hourglass=$'#[fg=colour45]\U000F051F#[fg=default]'
+_busy() { (( agents > 0 )) || _has_bg_task }
+icon=''
+case "$(_opt @claude_state)" in
+  working) icon=$'#[fg=colour214]\U000F140B#[fg=default]' ;;
+  waiting) if _busy; then icon="$hourglass"; else icon=$'#[fg=colour203]\U000F009C#[fg=default]'; fi ;;
+  idle)    if _busy; then icon="$hourglass"; else icon=$'#[fg=colour243]\U000F0150#[fg=default]'; fi ;;
+  done)    if _busy; then icon="$hourglass"; else icon=$'#[fg=colour84]\U000F012C#[fg=default]'; fi ;;
+esac
+_set @claude_icon "$icon"
 [[ -n "$icon" ]] && icon="$icon "
 "$TMUXBIN" rename-window -t "$pane" "${icon}${base}"
