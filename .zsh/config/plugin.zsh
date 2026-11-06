@@ -93,7 +93,7 @@ function zsh-startuptime() {
     local msec
     local i
     for i in $(seq 1 5); do
-        msec=$( (TIMEFMT='%mE'; time zsh -i -c exit) 2>/dev/stdout >/dev/null)
+        msec=$( (TIMEFMT='%mE'; time zsh -i -c exit) 2>&1 >/dev/null)
         msec=$(echo "$msec" | tr -d "ms")
         echo " ${i}: ${msec} [ms]"
         total_msec=$(( total_msec + msec ))
