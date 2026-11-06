@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+"""Claude Code セッションの内容から tmux の window 名用の短いラベルを作り、window option に置く。
+
+~/tmp/claude のように同じディレクトリで並行するセッションは、ディレクトリ名では見分けられない。
+transcript のユーザー発言と Claude の応答を Haiku に渡し、表示幅 MAXW 以内のラベルを作らせる。
+表示は tmux-title が @claude_label を読んで行う(このスクリプトは描画しない)。
+
+tmux-title が Stop hook から `tmux run-shell -b` で起動する。hook のプロセスグループから
+切り離すためで、Claude Code は hook が返った時点でその子プロセスを殺す。
+
+usage: tmux-claude-label <pane_id> <transcript_path> <session_id> <cwd>
+"""
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
+import unicodedata
+from datetime import datetime
+
+MAXW = 20                 # 表示幅(全角=2)。MacBook 単体でも window 6 個が並ぶ幅
+REGEN_EVERY = 3           # このターン数ごとに作り直す(作業の段階が進むのに追従する)
+TARGET_DIRS = [os.path.expanduser('~/tmp/claude')]
+PER_USER, PER_ASSISTANT = 200, 300
+LOG = os.path.join(os.environ.get('XDG_STATE_HOME') or os.path.expanduser('~/.local/state'),
+                   'tmux-claude-label.log')
+
+
+def cw(c):
+    return 2 if unicodedata.east_asian_width(c) in 'WF' else 1
+
+
+def width(s):
+    return sum(cw(c) for c in s)
+
+
+def trim(s, n):
+    if width(s) <= n:
+        return s
+    out, w = '', 0
+    for c in s:
+        if w + cw(c) > n - 1:
+            break
+        out += c
+        w += cw(c)
+    return out + '…'
+
+
+# 番号は見ても何の作業か思い出せず、短い枠を食うだけなので落とす
+NUM = re.compile(r'(PR|Issue|issue)?\s*([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#\s?[0-9]+')
+
+
+def clean_label(s):
+    s = s.strip().splitlines()[0] if s.strip() else ''
+    s = s.strip().strip('"「」`*')
+    s = NUM.sub('', s)
+    s = re.sub(r'\s+', ' ', s)
+    return re.sub(r'^([\s:：・,、\-]|の|と)+', '', s).strip()
+
+
+def read_transcript(path):
+    users, assistants = [], []
+    for line in open(path, errors='ignore'):
+        try:
+            r = json.loads(line)
+        except Exception:
+            continue
+        if r.get('isSidechain') or r.get('isMeta'):
+            continue
+        c = r.get('message', {}).get('content') if isinstance(r.get('message'), dict) else None
+        if r.get('type') == 'user':
+            if isinstance(c, list):
+                if any(isinstance(b, dict) and b.get('type') == 'tool_result' for b in c):
+                    continue
+                c = ' '.join(b.get('text', '') for b in c if isinstance(b, dict) and b.get('type') == 'text')
+            if not isinstance(c, str):
+                continue
+            # スラッシュコマンドは名前と引数が作業内容そのものなので残す
+            cmd = re.search(r'<command-name>(.*?)</command-name>', c, re.S)
+            args = re.search(r'<command-args>(.*?)</command-args>', c, re.S)
+            c = re.sub(r'<(system-reminder|local-command-[a-z]+|command-[a-z]+)[^>]*>.*?</\1>', ' ', c, flags=re.S)
+            c = re.sub(r'<[^>]+>', ' ', c)
+            if cmd:
+                c = f'{cmd.group(1).strip()} {args.group(1).strip() if args else ""} {c}'
+            c = re.sub(r'\s+', ' ', c).strip()
+            if c:
+                users.append(c[:PER_USER])
+        elif r.get('type') == 'assistant' and isinstance(c, list):
+            t = ' '.join(b.get('text', '') for b in c if isinstance(b, dict) and b.get('type') == 'text')
+            t = re.sub(r'\s+', ' ', t).strip()
+            if len(t) >= 40:
+                assistants.append(t[:PER_ASSISTANT])
+    return users, assistants
+
+
+def haiku(claude, prompt, workdir):
+    p = subprocess.run(
+        [claude, '--model', 'haiku', '--print', '--output-format', 'json',
+         '--settings', '{"disableAllHooks": true}', '--strict-mcp-config',
+         '--no-session-persistence', '--tools', '',
+         '--system-prompt', 'You write very short Japanese tab labels. Output only the label.',
+         '-p', prompt],
+        capture_output=True, text=True, timeout=90, cwd=workdir)
+    j = json.loads(p.stdout)
+    if j.get('is_error'):
+        raise RuntimeError(j.get('result', 'error'))
+    return j.get('result', ''), float(j.get('total_cost_usd') or 0)
+
+
+RULE = (f'表示幅{MAXW}桁以内(漢字・かな・全角記号は1文字2桁、半角英数字は1文字1桁)。'
+        'PR番号・Issue番号は入れない。「BK」のような独自の略語は使わない。'
+        '助詞や「〜について」は削る。ラベルだけを1行で出力する。')
+
+
+def make_label(claude, users, assistants, workdir):
+    u = users[:2] + ['…'] + users[-3:] if len(users) > 5 else users
+    a = assistants[:1] + assistants[-1:] if len(assistants) > 1 else assistants
+    prompt = ('tmux のタブに表示する、この作業セッションのラベルを作ってください。\n'
+              f'{RULE}\n'
+              '「何を対象にした作業か」を主にし、余裕があれば今の段階(調査・実装・レビュー対応など)を添える。\n\n'
+              'ユーザーの発言(古い順、途中省略あり):\n' + '\n'.join(f'- {t}' for t in u) +
+              '\nClaudeの応答(最初と直近):\n' + '\n'.join(f'- {t}' for t in a))
+    label, cost = haiku(claude, prompt, workdir)
+    label = clean_label(label)
+    if width(label) > MAXW:
+        retry = (f'次のラベルは表示幅{width(label)}桁で、{MAXW}桁を超えています。意味を保って縮めてください。\n'
+                 f'{RULE}\n\nラベル: {label}')
+        l2, c2 = haiku(claude, retry, workdir)
+        cost += c2
+        label = clean_label(l2) or label
+    return trim(label, MAXW), cost
+
+
+def log(msg):
+    try:
+        os.makedirs(os.path.dirname(LOG), exist_ok=True)
+        with open(LOG, 'a') as f:
+            f.write(f'{datetime.now().isoformat(timespec="seconds")} {msg}\n')
+    except OSError:
+        pass
+
+
+def main():
+    if len(sys.argv) != 5:
+        return
+    pane, transcript, session_id, cwd = sys.argv[1:]
+    cwd = os.path.realpath(cwd)
+    if not any(cwd == d or cwd.startswith(d + os.sep) for d in map(os.path.realpath, TARGET_DIRS)):
+        return
+    if not os.path.isfile(transcript):
+        return
+
+    tmux = shutil.which('tmux') or next((p for p in ('/opt/homebrew/bin/tmux', '/usr/local/bin/tmux', '/usr/bin/tmux')
+                                         if os.access(p, os.X_OK)), None)
+    claude = shutil.which('claude') or os.path.expanduser('~/.local/bin/claude')
+    if not tmux or not os.access(claude, os.X_OK):
+        return
+
+    def opt(name):
+        return subprocess.run([tmux, 'show-option', '-wqv', '-t', pane, name],
+                              capture_output=True, text=True).stdout.strip()
+
+    def setopt(name, value):
+        subprocess.run([tmux, 'set-option', '-w', '-t', pane, name, value], check=False)
+
+    # Stop hook は settings.json と settings.enterprise.json の両方から呼ばれ、同時に2本走る。
+    # 二重に Haiku を呼ばないよう pane ごとにロックする。異常終了で残ったロックは5分で捨てる。
+    lock = os.path.join(tempfile.gettempdir(), 'tmux-claude-label-' + re.sub(r'\W', '_', pane))
+    try:
+        if os.path.isdir(lock) and time.time() - os.path.getmtime(lock) > 300:
+            os.rmdir(lock)
+        os.mkdir(lock)
+    except OSError:
+        return
+    try:
+        users, assistants = read_transcript(transcript)
+        if not users:
+            return
+        same_session = opt('@claude_label_session') == session_id
+        try:
+            done_turns = int(opt('@claude_label_turns') or 0)
+        except ValueError:
+            done_turns = 0
+        if same_session and opt('@claude_label') and len(users) - done_turns < REGEN_EVERY:
+            return
+        label, cost = make_label(claude, users, assistants, tempfile.gettempdir())
+        log(f'pane={pane} session={session_id[:8]} turns={len(users)} cost={cost:.5f} label="{label}"')
+        if not label:
+            return
+        setopt('@claude_label', label)
+        setopt('@claude_label_session', session_id)
+        setopt('@claude_label_turns', str(len(users)))
+        title = os.path.expanduser('~/.scripts/tmux-title')
+        if os.access(title, os.X_OK):
+            subprocess.run([title, 'keep'], env={**os.environ, 'TMUX_PANE': pane},
+                           stdin=subprocess.DEVNULL, check=False)
+    except Exception as e:  # ラベルが付かないだけで、作業の邪魔はしない
+        log(f'pane={pane} error={type(e).__name__}: {str(e)[:200]}')
+    finally:
+        try:
+            os.rmdir(lock)
+        except OSError:
+            pass
+
+
+if __name__ == '__main__':
+    main()

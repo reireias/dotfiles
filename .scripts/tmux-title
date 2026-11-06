@@ -98,6 +98,7 @@ case "$state" in
     # SessionStart。カウンタが取りこぼしで残っていても、ここで必ず整合を取り直す。
     _set @claude_state idle
     agents=0; _set @claude_agents 0
+    _set @claude_label ''
     ;;
   working|waiting|done)
     (( from_subagent )) || _set @claude_state "$state"
@@ -111,9 +112,24 @@ case "$state" in
   clear)
     _set @claude_state ''
     agents=0; _set @claude_agents 0
+    _set @claude_label ''
     ;;
   keep) ;;
 esac
+
+# 同じディレクトリで並行するセッションを見分けるラベルを、応答が止まるたびに裏で作らせる。
+# 作り直すかどうか・対象ディレクトリかどうかの判断は tmux-claude-label 側で行う。
+# hook のプロセスグループは hook が返ると殺されるので、tmux サーバー側で起動して切り離す。
+labeler=${0:A:h}/tmux-claude-label
+if [[ "$state" == done ]] && (( ! from_subagent )) && [[ -x "$labeler" ]]; then
+  _json_str() { [[ "$hook_json" =~ "\"$1\"[[:space:]]*:[[:space:]]*\"([^\"]*)\"" ]] && print -r -- "$match[1]" }
+  transcript=$(_json_str transcript_path)
+  session_id=$(_json_str session_id)
+  hook_cwd=$(_json_str cwd)
+  if [[ -n "$transcript" && -n "$session_id" && -n "$hook_cwd" ]]; then
+    "$TMUXBIN" run-shell -b "${(q)labeler} ${(q)pane} ${(q)transcript} ${(q)session_id} ${(q)hook_cwd} >/dev/null 2>&1"
+  fi
+fi
 
 # 2. base名: キャッシュを使う。refresh 指定 or キャッシュ空なら再計算。
 base=$(_opt @win_base)
@@ -126,6 +142,8 @@ if [[ "$refresh" == refresh || -z "$base" ]]; then
   fi
   _set @win_base "$base"
 fi
+label=$(_opt @claude_label)
+[[ -z "$label" ]] && label=$base
 
 # 3. 描画: アイコンは状態から毎回導出する
 #    主スレッドが止まっていることを示すアイコン(✓/🔔/🕐)は、裏に何も残っていないときだけ出す。
@@ -141,4 +159,4 @@ case "$(_opt @claude_state)" in
 esac
 _set @claude_icon "$icon"
 [[ -n "$icon" ]] && icon="$icon "
-"$TMUXBIN" rename-window -t "$pane" "${icon}${base}"
+"$TMUXBIN" rename-window -t "$pane" "${icon}${label}"
